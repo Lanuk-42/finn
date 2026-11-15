@@ -28,6 +28,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
   const [input, setInput] = useState("");
   const [snap, setSnap] = useState<Snapshot | null>(null);
   const [loading, setLoading] = useState(false);
+  const [allHoldings, setAllHoldings] = useState(false);
 
   useEffect(() => { if (initial) setTicker(initial); }, [initial]);
 
@@ -74,23 +75,41 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
           <button className="text-[14px] font-semibold">Go →</button>
         </form>
         {tour === 3 && <Callout step={3} onSkip={() => onSkipTour?.()} text="That’s it. Type any NSE ticker above, e.g. IRCTC, and press Go: FINN reads it live." />}
-        <TickerIndex label="Promise trackers" list={tracked} active={ticker} onPick={go} />
-        <TickerIndex label="Portfolio" list={stocks.map((s) => s.symbol).filter((s) => !tracked.includes(s))} active={ticker} onPick={go} />
+        <div className="mt-3 flex items-baseline justify-between">
+          <p className="label !text-[10px]">Promise trackers</p>
+          <button onClick={() => setAllHoldings((v) => !v)} aria-expanded={allHoldings} className="text-[12px] text-[var(--muted)]">
+            <span className="link">All holdings ({stocks.length})</span> {allHoldings ? "▴" : "▾"}
+          </button>
+        </div>
+        {/* one scrollable line, so the proof and the tracker fit on the first screen */}
+        <div className="-mx-5 mt-1 flex gap-x-3 overflow-x-auto whitespace-nowrap px-5 pb-1 [scrollbar-width:none]">
+          {tracked.map((s) => (
+            <button key={s} onClick={() => go(s)} className={`num shrink-0 text-[13px] ${ticker === s ? "font-semibold text-[var(--ink)] underline decoration-2 underline-offset-4" : "text-[var(--muted)]"}`}>{s}</button>
+          ))}
+        </div>
+        {allHoldings && <TickerIndex label="" list={stocks.map((s) => s.symbol)} active={ticker} onPick={(t) => { setAllHoldings(false); go(t); }} />}
       </header>
 
       <Proof files={promises} onOpen={go} />
 
-      <h1 className="serif mt-8 text-[30px] font-semibold leading-[1.1] tracking-[-0.01em]">
+      <h1 className="serif mt-6 text-[27px] font-semibold leading-[1.1] tracking-[-0.01em]">
         {snap?.ok ? snap.name?.replace(/\s*\(searched.*\)$/, "") : portfolio?.name ?? ticker}
       </h1>
       <p className="label mt-1">{ticker}{portfolio ? ` · ${portfolio.sector} · ${portfolio.cap} cap` : ""}</p>
       {held && held.thesis.status !== "n/a" && (
-        <p id="src-thesis" className="mt-3 scroll-mt-4 text-[14px] leading-snug text-[var(--ink-2)]">
+        <p id="src-thesis" className="mt-2 scroll-mt-4 text-[14px] leading-snug text-[var(--ink-2)]">
           <span className="label !text-[10px]">Your thesis · </span>{held.thesis.rule.replace(">=", "≥").replace("<=", "≤")}:{" "}
           <a href={screenerAt(held.screener_url, held.symbol, "quarters")} target="_blank" rel="noreferrer" className={`src num font-semibold ${held.thesis.status === "breach" ? "text-[var(--accent)]" : ""}`}>{held.thesis.actual}%</a>
           {held.thesis.quarter ? ` in ${fyq(held.thesis.quarter)}` : ""}{held.thesis.status === "breach" ? " (broken)" : " (holding)"}
         </p>
       )}
+
+      {tour === 2 && pf && (
+        <Callout step={3} onSkip={() => onSkipTour?.()} action="Try any ticker" onAction={() => onTour?.(3)}
+          text={`This is ${name}’s promise tracker: what management guided, what was delivered, scored by code. Tap any row for the exact quote.`} />
+      )}
+      {pf && <Tracker pf={pf} name={name} />}
+      {!pf && <OnDemandTracker key={ticker} ticker={ticker} name={name} render={(t) => <Tracker pf={t} name={name} />} />}
 
       {!loading && <BullBear name={name} snap={snap} pf={pf} patterns={patterns.filter((p) => p.symbol === ticker)} stock={held} />}
 
@@ -108,13 +127,6 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
           ))}
         </section>
       )}
-
-      {tour === 2 && pf && (
-        <Callout step={3} onSkip={() => onSkipTour?.()} action="Try any ticker" onAction={() => onTour?.(3)}
-          text={`This is ${name}’s promise tracker: what management guided, what was delivered, scored by code. Tap any row for the exact quote.`} />
-      )}
-      {pf && <Tracker pf={pf} name={name} />}
-      {!pf && <OnDemandTracker key={ticker} ticker={ticker} name={name} render={(t) => <Tracker pf={t} name={name} />} />}
 
       <AskBar ticker={ticker} name={name} />
 
@@ -150,7 +162,7 @@ function TickerIndex({ label, list, active, onPick }: { label: string; list: str
   // Label stacked above its list: side-by-side columns overflowed on narrow phones with wider system fonts.
   return (
     <div className="mt-3">
-      <p className="label !text-[10px]">{label}</p>
+      {label && <p className="label !text-[10px]">{label}</p>}
       <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
         {list.map((s) => (
           <button key={s} onClick={() => onPick(s)}

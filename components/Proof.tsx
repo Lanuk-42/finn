@@ -27,25 +27,25 @@ export default function Proof({ files, onOpen }: { files: PromiseFile[]; onOpen:
   const missed = p.verdict === "Missed";
   const pctOff = p.low ? Math.round(Math.abs((p.actual! - p.low) / p.low) * 1000) / 10 : null;
   return (
-    <section className="mt-6 border-y border-[var(--rule-strong)] py-4">
+    <section className="mt-4 border-y border-[var(--rule-strong)] py-3">
       <div className="flex items-baseline justify-between">
         <span className="label !text-[var(--ink)]">Code decides</span>
         <span className={`border px-1.5 py-[1px] text-[10px] font-semibold uppercase tracking-[0.08em] ${missed ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--paper)]" : "border-[var(--ink)]"}`}>{p.verdict}</span>
       </div>
-      <p className="serif mt-2 text-[20px] font-medium leading-[1.3]">
+      <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">
         {name} guided <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="src">{targetText(p)}</a> of {p.period} {METRIC[p.metric] ?? p.metric}. It delivered{" "}
         <a href={screenerAt(pf.screener_url, pf.symbol, actualTable(p))} target="_blank" rel="noreferrer" className={`src ${missed ? "text-[var(--accent)]" : ""}`}>{actualText(p)}</a>
         {pctOff != null && missed ? `, ${pctOff}% short.` : "."}
       </p>
-      <p className="mt-2 text-[13px] leading-snug text-[var(--muted)]">
-        A model found the sentence in the {p.call} earnings call. Code checked it word for word, read {p.period} {METRIC[p.metric] ?? p.metric} from the reported P&amp;L and decided the verdict.
-      </p>
       <div className="mt-2 flex gap-4 text-[13px]">
-        <button onClick={() => setQuote((v) => !v)} className="link text-[var(--muted)]">{quote ? "Hide the quote" : "The quote"}</button>
+        <button onClick={() => setQuote((v) => !v)} className="link text-[var(--muted)]">{quote ? "Hide" : "The quote and the check"}</button>
         <button onClick={() => onOpen(pf.symbol)} className="link text-[var(--ink)]">{name}’s tracker →</button>
       </div>
       {quote && (
         <>
+          <p className="mt-2 text-[13px] leading-snug text-[var(--muted)]">
+            A model found the sentence in the {p.call} earnings call. Code checked it word for word, read {p.period} {METRIC[p.metric] ?? p.metric} from the reported P&amp;L and decided the verdict.
+          </p>
           <blockquote className="serif mt-2 border-l-2 border-[var(--ink)] pl-3 text-[15px] leading-snug">“{p.quote}”</blockquote>
           <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="link mt-1 inline-block text-[12px] text-[var(--muted)]">{p.call} transcript{p.page ? `, page ${p.page}` : ""} ↗</a>
         </>
