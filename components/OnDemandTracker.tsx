@@ -20,7 +20,8 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
   useEffect(() => {
     let live = true;
     setS({ state: "loading" });
-    fetch(`/api/promise/${encodeURIComponent(ticker)}`).then((r) => r.json()).then((j) => live && setS(j)).catch(() => live && setS({ state: "unavailable" }));
+    // an invalid or unknown ticker: the snapshot above already says so, so no tracker block at all
+    fetch(`/api/promise/${encodeURIComponent(ticker)}`).then((r) => r.json()).then((j) => live && setS(j.state === "rejected" ? { state: "unavailable" } : j)).catch(() => live && setS({ state: "unavailable" }));
     return () => { live = false; if (timer.current) clearTimeout(timer.current); };
   }, [ticker]);
 

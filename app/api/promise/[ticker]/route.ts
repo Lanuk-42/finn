@@ -11,25 +11,6 @@ function bundled(symbol: string) {
   return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, "utf8")) : null;
 }
 
-/** GET: is a tracker ready? With ?req=<id>, the progress of an on-demand build. */
-export async function GET(req: Request, ctx: { params: Promise<{ ticker: string }> }) {
-  const symbol = clean((await ctx.params).ticker);
-  const id = new URL(req.url).searchParams.get("req");
-  const ready = bundled(symbol) ?? (await committedTracker(symbol).catch(() => null));
-  if (ready) return Response.json({ state: "ready", tracker: ready });
-  if (!id) return Response.json({ state: ghEnabled() ? "buildable" : "unavailable" });
-  try {
-    const p = await progress(id);
-    if (p.state === "done") {
-      const t = await committedTracker(symbol).catch(() => null);
-      return Response.json(t ? { state: "ready", tracker: t } : { ...p, state: "running" }); // commit may lag the run by seconds
-    }
-    return Response.json(p);
-  } catch (e) {
-    return Response.json({ state: "running", stages: [], note: (e as Error).message });
-  }
-}
-
 const SYMBOL = /^[A-Z0-9&-]{1,20}$/;
 
 /** Does screener.in know this exact symbol? (Fast search API, so bad tickers are rejected before any build.) */
@@ -41,6 +22,31 @@ async function exists(symbol: string): Promise<boolean> {
     return hits.some((h) => (h.url ?? "").toUpperCase().includes(`/COMPANY/${symbol}/`));
   } catch {
     return true;
+  }
+}
+
+/** GET: is a tracker ready? With ?req=<id>, the progress of an on-demand build. */
+export async function GET(req: Request, ctx: { params: Promise<{ ticker: string }> }) {
+  const raw = (await ctx.params).ticker.trim().toUpperCase();
+  const symbol = clean(raw);
+  if (!SYMBOL.test(raw) || symbol !== raw) return Response.json({ state: "rejected", message: `“${raw}” isn’t a valid NSE symbol.` });
+  const id = new URL(req.url).searchParams.get("req");
+  const ready = bundled(symbol) ?? (await committedTracker(symbol).catch(() => null));
+  if (ready) return Response.json({ state: "ready", tracker: ready });
+  if (!id) {
+    if (!ghEnabled()) return Response.json({ state: "unavailable" });
+    if (!(await exists(symbol))) return Response.json({ state: "rejected", message: `${symbol} isn’t a company FINN can find on screener.in.` });
+    return Response.json({ state: "buildable" });
+  }
+  try {
+    const p = await progress(id);
+    if (p.state === "done") {
+      const t = await committedTracker(symbol).catch(() => null);
+      return Response.json(t ? { state: "ready", tracker: t } : { ...p, state: "running" }); // commit may lag the run by seconds
+    }
+    return Response.json(p);
+  } catch (e) {
+    return Response.json({ state: "running", stages: [], note: (e as Error).message });
   }
 }
 
