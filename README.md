@@ -1,104 +1,132 @@
 # FINN
 
-A mobile-first daily brief for an Indian equity portfolio. It shows only what changed and why it matters, and a promise tracker checks management's guidance against the reported numbers.
+A mobile-first morning note for an Indian equity portfolio. It tells you the few things that need you, and it checks management's promises against the reported numbers.
 
-**Rule: the AI only finds and quotes. Code checks every quote, computes every number and decides every verdict.**
+**Live:** https://finn-wine.vercel.app · **Write-up:** [WRITEUP.md](WRITEUP.md) · **Plan:** [PLAN.md](PLAN.md)
+
+> **The AI only finds and quotes. Code checks every quote, computes every number and decides every verdict.**
 
 ## What it does
 
-**Brief (push)**
-- Portfolio: 18 stocks across sectors and sizes, including a PSU (BEL), two pharma (Sun, Lupin), an NBFC (Cholamandalam), a bank and three small caps.
-- Header: *As of [time], X filings checked, Y need your attention*, with a window picker (24h / 3 days / 7 days / 30 days). The default is the smallest window with at least 3 Act items.
-- **Thesis breaches** sit at the top. Each holding has a pre-filled thesis line (why I own it + one metric, e.g. EBITDA margin ≥ 18%). Code checks it against the latest quarter.
-- **Act** cards:
-  - **Results card:** Revenue, EBITDA, PBT and PAT, with QoQ and YoY computed in code from screener tables, plus a one-line read.
-  - **Management change card:** who left (with tenure, if the filing states it) and who joined (with a 2-line bio). Both come from the filing text, and each quote is verified.
-  - Legal, M&A and equity-raise items. Repeated updates on the same matter collapse into one card.
-- **Moves:** price ±X% or volume ×N against the 20-day average, set with one global threshold control (defaults 5% and 2×). Each move links to a same-day or previous-session filing, or shows **No filing found**.
-- **Note** is a compact list. **Routine** is hidden behind a count.
+**Brief (push)**: a finite note, not a feed.
+- **Header:** one sentence, e.g. *"20 things need you this month"*, with *"from 231 filings across 18 holdings · as of …"* underneath. The window is 24h / 3d / 7d / 30d, and it opens on the shortest window with at least 3 items to act on (computed on the server).
+- **Off thesis:** each holding has a "why I own it" line and a metric rule. Breaches are listed first. The thesis editor (saved on the device) re-checks instantly.
+- **Patterns:** from 180 days of filings:
+  - a rating versus the previous rating;
+  - 2+ senior exits within 90 days;
+  - the promoter-pledge trend.
+- **Act on:** results, management changes, legal matters, deals and equity raises.
+  - Every item opens on one plain-English line built by code from computed numbers.
+  - **Results cards** show revenue, EBITDA, PBT and PAT with QoQ and YoY, plus a promise line: *"Guided ≥28% FY27 EBITDA margin → delivered 27.9%"*. A result stays here only if something moved; in-line quarters go to "Worth a look".
+  - **Management cards** show who left (with tenure) and who joined (with a 2-line bio), taken from the filing and verified word for word.
+  - **Your controls:** mark items done (inbox zero), and choose which filing types count as alerts.
+- **Moves:** price ±X% or volume N× the 20-day average, with a global control and per-stock overrides. Each move is linked to a same-day or previous-session filing, or flagged "no filing to explain it".
+- **Worth a look**, then routine filings set aside behind a count.
+- **Method:** everything about how FINN checked something sits behind "How FINN checked this".
 
 **Research (pull)**
-- **Promise tracker** for BEL, POLYCAB and PERSISTENT (precomputed). BEL replaced DIXON because Dixon guides mostly by segment; BEL gives company-wide yearly revenue-growth and EBITDA-margin targets, so FY26 resolves to real verdicts. It covers what management guided, the reported actual, and a Beat / Met / Missed / In progress verdict. Tap any item to see the exact transcript quote. Credibility is a simple count.
-- **Live financial snapshot** for any NSE ticker typed in. It fetches screener.in at request time and computes headline numbers, margins and an 8-quarter trend. Renamed companies resolve through screener search (ZOMATO → ETERNAL).
-
-**Added in the latest round (all code-only; zero new LLM calls)**
-- Results cards link to the promise tracker: “Guided ≥28% FY27 EBITDA margin → delivered 27.9% this quarter”.
-- Inbox zero: mark Act items done (saved on the device), undo, and a cleared state.
-- Thesis editor: why/metric/operator/number per holding, saved on the device, re-checked instantly.
-- Research extras: five-year trajectory, cash quality (OCF ÷ PAT), balance sheet (debt-to-equity, working-capital days).
-- Pattern flags from filing history: rating vs last rating, 2+ senior exits in 90 days, promoter-pledge trend.
-- Freshness: “as of” on every screen, a STALE tag after 24h, and a saved-copy fallback instead of errors.
-- Start here: a 3-tap first-visit path.
-- Ask the calls: retrieval over the transcripts (`scripts/transcripts.py` builds the page index). Answers are verbatim passages with call and page, or “Not found in the documents.” No model writes them.
+- **Promise tracker:** a big *kept / checked* count, one line, then rows of promise → actual → verdict (Beat / Met / Missed / On track / Off track / Holding / Slipping). Tap a row for the exact quote and its page.
+  - **Precomputed:** BEL, Polycab, Persistent.
+  - **Built on demand:** PG Electroplast and Kaynes.
+  - **Any other ticker:** can be built on demand through GitHub Actions, with live progress. This needs `FINN_GH_TOKEN` on Vercel; see the setup section.
+- **Live snapshot for any NSE ticker:** headline numbers, ratios, an 8-quarter trend, a five-year trajectory, cash quality (OCF ÷ PAT) and the balance sheet (debt-to-equity, working-capital days). If screener.in is down, a saved copy is shown, tagged STALE.
+- **Filing patterns** for the company.
+- **Ask the calls:** answers are verbatim transcript passages with the call and page, or *"Not found in the documents."* This is code-only retrieval, and no model writes the answer.
+- **Start here:** a 3-tap first visit (Brief → a results card → its promise tracker → try any ticker).
 
 ## How it is built
 
 ```
-scripts/fetch.py      yfinance EOD · announcements (NSE API → BSE API → NSE RSS + screener's BSE list) · screener tables → data/
-scripts/brain.py      rules classifier (Act/Note/Routine) · results cards · thesis check · moves · management cards → data/brief.json
-scripts/promises.py   transcripts → Gemini extracts quoted guidance → code verifies + scores → data/promises/<SYM>.json
-app/ + components/    Next.js (App Router), static page built from data/*.json, plus /api/snapshot/[ticker] (live)
+            GitHub Actions (daily 19:00 IST)                          Vercel (Next.js)
+┌───────────────────────────────────────────────────┐    ┌─────────────────────────────────────┐
+│ check_sources.py  NSE API · NSE RSS · BSE · Yahoo  │    │ /            static Brief + Research │
+│ fetch.py   prices (yfinance)                       │    │              built from data/*.json  │
+│            filings: NSE API → BSE API → RSS+screener│──▶ │ /api/snapshot  live screener → code │
+│            tables + concall links (screener.in)     │data│                (saved copy if down)  │
+│ brain.py   rules: Act / Note / Routine              │ /  │ /api/ask       transcript retrieval │
+│            results cards, thesis, moves, patterns   │    │ /api/promise   ready | build | poll  │
+│            lite LLM: who joined/left (quoted) ──┐   │    └──────────────┬──────────────────────┘
+│ promises.py  LLM finds guidance (quoted) ──┐    │   │                   │ workflow_dispatch
+│              code verifies, maps, scores    │    │   │    ┌──────────────▼──────────────────────┐
+└─────────────────────────────────────────────┼────┼───┘    │ promise.yml: fetch → transcripts →   │
+                                              ▼    ▼        │ extract + check → commit tracker     │
+                                  quote checker (verify.py)  └─────────────────────────────────────┘
 ```
 
-Where AI is used, and how code checks it:
-
-| Step | Model | What code checks |
+| Step | Who decides | What code checks |
 |---|---|---|
-| Classify filings | none (ordered regex rules on BSE subcategory, title, company headline; PDF first page for generic "Reg 30" filings) | n/a |
-| Management change | `gemini-3.5-flash-lite` (short filings) | Name and evidence quote must appear in the PDF text. Code decides joined/left from the verified quote's wording. Tenure and bio are kept only if verbatim. Bio is cut to 2 sentences. |
-| Guidance extraction | best available flash model, falling back to lite (long transcripts) | Quote must be in the transcript. Every target number must appear in the quote. Units are converted by code. Code rejects targets for periods that had already ended at the time of the call, and treats qualified targets (e.g. "excluding Vivo") as not checkable. |
-| Verdict | none | Fiscal-period → table-column mapping. Tolerances: ±0.2pp on margins, ±1pp on growth, ±2% on absolute amounts. |
+| Classify filings | ordered regex rules on BSE subcategory, title, company headline; PDF first page for generic "Reg 30" filings | n/a |
+| Results card, thesis, moves, patterns | code only | n/a |
+| Management change | `gemini-3.5-flash-lite` copies names and sentences | Name and evidence must appear in the filing. Code decides joined/left from the verified wording. Tenure and bio are kept only if verbatim. |
+| Guidance | best available flash model, falling back to lite (daily and on-demand runs: lite only) | Quote is in the transcript; the target number is inside the quote; analyst questions are rejected; code converts units, maps the fiscal period to table columns, and applies tolerances (±0.2pp margins, ±1pp growth, ±2% amounts) |
+| Ask the calls | code only (retrieval) | The passage must appear exactly on its page |
 
 Cost controls:
-- Transcripts are cut down to guidance-bearing sentence windows, 55–77% fewer tokens, and quotes are still verified against the full text.
-- Every LLM response is cached on disk.
-- `FINN_LLM_BUDGET=N` hard-caps new (uncached) LLM calls per run.
-- Gemini's free tier allows 20 requests per model per day, so the client falls back across models on overload or exhausted quota.
+- Transcripts are cut to guidance-bearing sentence windows before any model sees them (55–77% fewer tokens), and quotes are still verified against the full text.
+- Every LLM answer is cached by filing or transcript URL plus prompt version.
+- `FINN_LLM_BUDGET` hard-caps new calls (`0` = cache only), and `FINN_LITE_ONLY=1` restricts calls to lite models.
+- Gemini's free tier allows 20 requests per model per day, so the client falls back across models.
 
-## Classifier spot check (labels produced by Claude, not by an independent annotator)
+Totals so far: **116 calls, 634k input and 70k output tokens: ~$0.95 at paid-tier rates, actual cost $0** ([eval/cost.json](eval/cost.json)).
 
-`eval/classifier_spotcheck.json` holds 60 filings drawn at random (seed 7), stratified across FINN's (category, tier) buckets.
-**Claude, the coding assistant that built FINN, labelled each one** from the title, the company's headline and the start of
-the PDF's first page, before comparing with FINN's output. There is no second annotator, so treat this as a sanity check rather than a benchmark.
+| Model | Calls | Input tokens | Output tokens | At paid-tier rates |
+|---|---|---|---|---|
+| gemini-3.5-flash-lite | 87 | 268,297 | 41,467 | $0.18 |
+| gemini-3.5-flash | 27 | 353,499 | 24,721 | $0.75 (rate from a third-party source) |
+| gemini-3-flash-preview | 2 | 12,288 | 3,734 | $0.02 |
 
-| | tier agreement | notes |
+## Data sources
+
+| Source | From this build's cloud sandbox | From GitHub's runner |
 |---|---|---|
-| Measured, before fixes | **44/60 (73%)** | Act precision 8/11, Act recall 8/12; category agreement 58/60 |
-| After fixing the bugs it exposed | 50/60 (83%) | Optimistic: the rules were fixed on this same sample |
+| NSE corporate-announcements API | ❌ 403 | ❌ 403 |
+| BSE announcements API (fallback, used) | ✅ | ✅ (one HTTP 400 for BEL, which fell back) |
+| NSE RSS + screener's BSE filing list (second fallback) | ✅ | ✅ |
+| Yahoo Finance EOD, screener.in, BSE PDFs | ✅ | ✅ |
 
-Misses that were rule bugs (now fixed):
-- Persistent merging a wholly-owned subsidiary into itself → Act.
-- A dividend *declaration* filed under BSE's "Dividend Updates" → Routine.
-- An insider-trading *code* amendment → Note.
-- A letter with the annual-report link → Note.
-- BEL's internal "Executive Director (function)" postings treated as board changes → Act. "Executive Director" is a PSU grade below the board.
-- Persistent's rating-watch letters → Routine. The rating letter itself is now read.
+## Evaluation
 
-Remaining disagreements:
-- **By design (4):** second copies of the same event are folded under the first card, and in-line results move to "Worth a look".
-- **Judgement calls:** AGM papers, a partnership press release, an NBFC's routine NCD allotment.
-- **Unknowable from the first page (1):** a generic Persistent "intimation as enclosed".
-
-## Data sources (fetch check, 15 Nov 2026, from a cloud container)
-
-| Source | Status |
-|---|---|
-| yfinance EOD | ✅ |
-| NSE corporate-announcements API | ❌ Akamai 403 to datacenter IPs |
-| BSE announcements API | ✅ (fallback, used) |
-| NSE RSS / screener's BSE filing list | ✅ (second fallback) |
-| screener.in tables + transcript links, BSE PDFs | ✅ |
+- **Classifier spot check:** 60 stratified filings **labelled by Claude, the coding assistant that built FINN, not by an independent annotator**.
+  - Tier agreement **44/60 (73%) before fixes**. Act precision 8/11, Act recall 8/12; category agreement 58/60.
+  - After fixing the rule bugs it exposed: 50/60. That figure is optimistic, because the same sample was used.
+  - Full list in [eval/classifier_spotcheck.json](eval/classifier_spotcheck.json); misses discussed in [WRITEUP.md](WRITEUP.md#what-broke).
+- **Promise verdicts checked by hand:** 3 verdicts against the transcript PDF page and the annual table, all correct and one borderline. See [eval/promise_handcheck.md](eval/promise_handcheck.md).
+- **Five random NSE tickers** (DMART, ADANIPORTS, ITC, NAUKRI, PAGEIND): see [eval/random_tickers.json](eval/random_tickers.json) and [WRITEUP.md](WRITEUP.md#what-broke).
+- **Private-window first load:** `node tests/first-load.js [url]`.
 
 ## Run it
 
 ```bash
 pip install -r requirements.txt
-python scripts/fetch.py
-GEMINI_API_KEY=... python scripts/brain.py      # --no-llm skips management cards
-GEMINI_API_KEY=... python scripts/promises.py
+python scripts/check_sources.py          # which sources are reachable from here
+python scripts/fetch.py                  # prices, filings, tables  (--screener-only to refresh tables)
+GEMINI_API_KEY=... python scripts/brain.py          # FINN_LLM_BUDGET=0 for cache-only
+GEMINI_API_KEY=... python scripts/promises.py       # precomputed trackers
+python scripts/transcripts.py            # page index for "Ask the calls"
 npm install && npm run dev
 ```
 
-The Gemini key is read only from the `GEMINI_API_KEY` environment variable.
+The Gemini key is read only from `GEMINI_API_KEY`.
 
-See `PLAN.md` for the roadmap and what is in or out of scope.
+## Setup for the scheduled refresh and on-demand trackers
+
+| Where | Name | Why |
+|---|---|---|
+| GitHub Actions secret | `GEMINI_API_KEY` | lite-model calls for new management changes and on-demand trackers (already set) |
+| GitHub Actions secret | `VERCEL_TOKEN` | lets the daily job redeploy after committing fresh data |
+| GitHub Actions variables | `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | which Vercel project to redeploy |
+| Vercel env var | `FINN_GH_TOKEN` | fine-grained GitHub token (this repo; Actions: write, Contents: read) so the app can start and poll on-demand tracker builds |
+
+Without these, the site still works. The daily job commits data but doesn't redeploy, and the "Build tracker" button doesn't appear.
+
+## Repo map
+
+```
+scripts/   fetch.py · brain.py · promises.py · promise_job.py · transcripts.py · check_sources.py
+scripts/finn/   classify.py (rules) · verify.py (quote checker) · results.py · management.py · promises.py
+                patterns.py · screener.py · pdf.py · gemini.py (routing, budget, cache)
+app/ components/ lib/   Next.js app; lib/lead.ts holds every plain-English template
+data/      brief.json · promises/ · screener/ · prices/ · transcripts/ · cache/llm (committed LLM answers)
+eval/      classifier spot check · promise hand-checks · random tickers · cost
+.github/workflows/   daily.yml · promise.yml
+```
