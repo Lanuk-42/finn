@@ -28,5 +28,10 @@ export default function Page() {
   const promises: PromiseFile[] = fs.existsSync(dir)
     ? fs.readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => load<PromiseFile>("promises", f))
     : [];
+  // the screener page each tracker's reported figures come from, so every "actual" can link to its table
+  for (const p of promises) {
+    const f = path.join(process.cwd(), "data", "screener", `${p.symbol}.json`);
+    if (fs.existsSync(f)) p.screener_url = (JSON.parse(fs.readFileSync(f, "utf8")) as { url?: string }).url ?? null;
+  }
   return <App brief={brief} promises={promises} defaultWin={autoWindow(brief)} />;
 }

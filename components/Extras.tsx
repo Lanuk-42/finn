@@ -4,23 +4,29 @@ import type { Extras } from "@/lib/extras";
 
 const n0 = (n: number | null | undefined) => (n == null ? "—" : n.toLocaleString("en-IN", { maximumFractionDigits: 0 }));
 
-function Head({ label, right }: { label: string; right?: string }) {
+function Head({ label, right, src }: { label: string; right?: string; src?: string }) {
   return (
-    <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
-      <h2 className="label !text-[var(--ink)]">{label}</h2>
-      {right && <span className="num text-[12px] text-[var(--muted)]">{right}</span>}
+    <div className="flex items-baseline justify-between gap-3 border-b border-[var(--rule-strong)] pb-1.5">
+      <h2 className="label shrink-0 !text-[var(--ink)]">{label}</h2>
+      <span className="num truncate text-right text-[12px] text-[var(--muted)]">
+        {right}{right && src ? " · " : ""}{src && <a href={src} target="_blank" rel="noreferrer" className="link">source ↗</a>}
+      </span>
     </div>
   );
 }
 
-export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
+export default function ExtrasView({ x, name, url }: { x: Extras; name: string; url?: string }) {
+  // every figure in these blocks comes from one of screener's annual tables; the header links to it
+  const at = (t: string) => (url ? `${url}#${t}` : undefined);
+  const S = ({ t, children }: { t: string; children: React.ReactNode }) =>
+    url ? <a href={at(t)} target="_blank" rel="noreferrer" className="src">{children}</a> : <>{children}</>;
   const fill = (s: string) => s.replace(/\{name\}/g, name);
   const T = x.trajectory, C = x.cash, B = x.balance;
   return (
     <>
       {T && (
         <section id="src-trajectory" className="mt-9 scroll-mt-4">
-          <Head label="Five-year trajectory" right={`${T.years[0]}–${T.years[T.years.length - 1]}`} />
+          <Head label="Five-year trajectory" right={`${T.years[0]}–${T.years[T.years.length - 1]}`} src={at("profit-loss")} />
           <p className="serif mt-3 text-[18px] leading-[1.3]">{fill(T.lead)}</p>
           <div className="mt-3 overflow-x-auto">
             <table className="num w-full min-w-[300px] text-[14px]">
@@ -31,10 +37,10 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Revenue</td>{T.revenue.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${i === T.revenue.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
-                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Profit</td>{T.pat.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${v != null && v < 0 ? "text-[var(--accent)]" : ""} ${i === T.pat.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
+                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Revenue</td>{T.revenue.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${i === T.revenue.length - 1 ? "font-semibold" : ""}`}><S t="profit-loss">{n0(v)}</S></td>)}</tr>
+                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Profit</td>{T.pat.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${v != null && v < 0 ? "text-[var(--accent)]" : ""} ${i === T.pat.length - 1 ? "font-semibold" : ""}`}><S t="profit-loss">{n0(v)}</S></td>)}</tr>
                 {T.opm.some((v) => v != null) && (
-                  <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Op. margin</td>{T.opm.map((v, i) => <td key={i} className="py-1.5 pl-2 text-right text-[var(--ink-2)]">{v == null ? "—" : `${Math.round(v)}%`}</td>)}</tr>
+                  <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Op. margin</td>{T.opm.map((v, i) => <td key={i} className="py-1.5 pl-2 text-right text-[var(--ink-2)]">{v == null ? "—" : <S t="profit-loss">{Math.round(v)}%</S>}</td>)}</tr>
                 )}
               </tbody>
             </table>
@@ -43,7 +49,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
       )}
 
       <section id="src-cash" className="mt-9 scroll-mt-4">
-        <Head label="Cash quality" right={C ? (C.basis === "ebitda" ? "operating cash ÷ operating profit" : "operating cash ÷ profit") : undefined} />
+        <Head label="Cash quality" right={C ? (C.basis === "ebitda" ? "cash ÷ op. profit" : "cash ÷ profit") : undefined} src={at("cash-flow")} />
         {x.isLender && <p className="serif mt-3 text-[17px] leading-snug text-[var(--ink-2)]">Not meaningful for a lender: its operating cash flow is mostly deposits and loans moving through the book.</p>}
         {C && (
           <>
@@ -52,7 +58,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
               {C.years.map((y, i) => (
                 <div key={y} className="border-b rule py-2 text-center">
                   <p className="text-[11px] uppercase tracking-[0.08em] text-[var(--faint)]">{y}</p>
-                  <p className={`text-[16px] font-semibold ${C.ratio[i] != null && C.ratio[i]! < 70 ? "text-[var(--accent)]" : ""}`}>{C.ratio[i] == null ? "—" : `${C.ratio[i]}%`}</p>
+                  <p className={`text-[16px] font-semibold ${C.ratio[i] != null && C.ratio[i]! < 70 ? "text-[var(--accent)]" : ""}`}>{C.ratio[i] == null ? "—" : <S t="cash-flow">{C.ratio[i]}%</S>}</p>
                 </div>
               ))}
             </div>
@@ -63,7 +69,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
       </section>
 
       <section id="src-balance" className="mt-9 scroll-mt-4">
-        <Head label="Balance sheet" right={B ? `as of ${B.asOf}` : undefined} />
+        <Head label="Balance sheet" right={B ? `as of ${B.asOf}` : undefined} src={at("balance-sheet")} />
         {x.isLender && <p className="serif mt-3 text-[17px] leading-snug text-[var(--ink-2)]">Debt-to-equity and working-capital days don’t apply to a lender; deposits and borrowings are its raw material.</p>}
         {B && (
           <>
@@ -81,7 +87,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
               ] as const).map(([k, v]) => (
                 <div key={k} className="border-b rule py-2 pr-2">
                   <dt className="text-[11px] uppercase tracking-[0.06em] text-[var(--faint)]">{k}</dt>
-                  <dd className="text-[15px] font-semibold">{v}</dd>
+                  <dd className="text-[15px] font-semibold">{v === "—" ? v : <S t={/days/i.test(k) ? "ratios" : "balance-sheet"}>{v}</S>}</dd>
                 </div>
               ))}
             </dl>

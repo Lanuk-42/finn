@@ -12,7 +12,7 @@ import ExtrasView from "./Extras";
 import BullBear from "./BullBear";
 import { checkThesis, type ThesisLine } from "./ThesisEditor";
 import { useDeviceState } from "@/lib/device";
-import { fillName, pdfAt, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
+import { fillName, pdfAt, screenerAt, actualTable, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
 export default function Research({ promises, stocks, patterns = [], asOf, initial, tour = 0, onTour, onSkipTour }: {
   promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; asOf: string; initial: string | null;
@@ -87,7 +87,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
       {held && held.thesis.status !== "n/a" && (
         <p id="src-thesis" className="mt-3 scroll-mt-4 text-[14px] leading-snug text-[var(--ink-2)]">
           <span className="label !text-[10px]">Your thesis · </span>{held.thesis.rule.replace(">=", "≥").replace("<=", "≤")}:{" "}
-          <span className={`num font-semibold ${held.thesis.status === "breach" ? "text-[var(--accent)]" : ""}`}>{held.thesis.actual}%</span>
+          <a href={screenerAt(held.screener_url, held.symbol, "quarters")} target="_blank" rel="noreferrer" className={`src num font-semibold ${held.thesis.status === "breach" ? "text-[var(--accent)]" : ""}`}>{held.thesis.actual}%</a>
           {held.thesis.quarter ? ` in ${fyq(held.thesis.quarter)}` : ""}{held.thesis.status === "breach" ? " (broken)" : " (holding)"}
         </p>
       )}
@@ -139,7 +139,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
         )}
         {!loading && snap?.ok && <SnapshotBody s={snap} name={name} />}
       </section>
-      {!loading && snap?.ok && snap.extras && <ExtrasView x={snap.extras} name={name} />}
+      {!loading && snap?.ok && snap.extras && <ExtrasView x={snap.extras} name={name} url={snap.url} />}
       <div className="h-8" />
     </div>
   );
@@ -195,9 +195,9 @@ function Tracker({ pf, name }: { pf: PromiseFile; name: string }) {
         </div>
         {pf.promises.length === 0 && <p className="serif border-b rule py-4 text-[16px] text-[var(--ink-2)]">No company-wide target in these calls can be checked against reported numbers.</p>}
         {pf.promises.map((p, i) => (
-          <button key={i} onClick={() => setSheet(p)} className="grid w-full grid-cols-[1fr_auto_auto] items-baseline gap-x-3 border-b rule py-3 text-left">
+          <div key={i} role="button" tabIndex={0} onClick={() => setSheet(p)} onKeyDown={(e) => e.key === "Enter" && setSheet(p)} className="grid w-full cursor-pointer grid-cols-[1fr_auto_auto] items-baseline gap-x-3 border-b rule py-3 text-left">
             <span>
-              <span className="block text-[15px] leading-snug">{promiseTitle(p)}</span>
+              <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="src block text-[15px] leading-snug">{promiseTitle(p)}</a>
               <span className="num block text-[12px] text-[var(--faint)]">said {p.call}{p.followups.length ? `, repeated ${p.followups.length}×` : ""}</span>
               {p.status === "standing" && p.checks && p.checks.length > 0 && (
                 <span className="num mt-1 block text-[12px] text-[var(--muted)]">
@@ -210,11 +210,11 @@ function Tracker({ pf, name }: { pf: PromiseFile; name: string }) {
               )}
             </span>
             <span className={`num text-right text-[17px] font-semibold ${isBad(p) ? "text-[var(--accent)]" : ""}`}>
-              {actualText(p)}
+              <a href={screenerAt(pf.screener_url, pf.symbol, actualTable(p))} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} className="src">{actualText(p)}</a>
               {p.status === "in_progress" && <span className="block text-[11px] font-normal text-[var(--faint)]">so far</span>}
             </span>
             <span className="text-right"><Verdict p={p} /></span>
-          </button>
+          </div>
         ))}
       </div>
 
@@ -240,7 +240,7 @@ function Tracker({ pf, name }: { pf: PromiseFile; name: string }) {
         </div>
       )}
 
-      {sheet && <QuoteSheet p={sheet} onClose={() => setSheet(null)} />}
+      {sheet && <QuoteSheet p={sheet} onClose={() => setSheet(null)} symbol={pf.symbol} screenerUrl={pf.screener_url} />}
     </section>
   );
 }
@@ -255,7 +255,7 @@ function Verdict({ p }: { p: Promise_ }) {
   );
 }
 
-function QuoteSheet({ p, onClose }: { p: Promise_; onClose: () => void }) {
+function QuoteSheet({ p, onClose, symbol, screenerUrl }: { p: Promise_; onClose: () => void; symbol: string; screenerUrl?: string | null }) {
   const [how, setHow] = useState(false);
   return (
     <div className="fixed inset-0 z-40 flex items-end bg-black/35" onClick={onClose}>
@@ -279,6 +279,7 @@ function QuoteSheet({ p, onClose }: { p: Promise_; onClose: () => void }) {
         ))}
         <div className="mt-5 flex items-baseline gap-4 text-[13px] text-[var(--muted)]">
           <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">{p.page ? `Transcript, page ${p.page}` : "Transcript"} ↗</a>
+          {p.status !== "not_checkable" && actualText(p) !== "—" && <a href={screenerAt(screenerUrl, symbol, actualTable(p))} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Reported figure ↗</a>}
           <button onClick={() => setHow((v) => !v)} className="link">How FINN checked this</button>
         </div>
         {how && (
@@ -296,6 +297,10 @@ function QuoteSheet({ p, onClose }: { p: Promise_; onClose: () => void }) {
 
 // ------------------------------------------------------------------ live snapshot
 const fmtPct = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}%`);
+function Src({ u, children }: { u: string; children: React.ReactNode }) {
+  return <a href={u} target="_blank" rel="noreferrer" className="src">{children}</a>;
+}
+
 function sig(n: number | null | undefined) {
   if (n == null) return "text-[var(--faint)]";
   if (n <= -5) return "text-[var(--accent)] font-semibold";
@@ -315,6 +320,7 @@ function SnapshotBody({ s, name }: { s: Snapshot; name: string }) {
   const prevM = s.trend && s.trend.length >= 2 ? s.trend[s.trend.length - 2].margin : null;
   const mQoq = L.ebitda_margin != null && prevM != null ? Math.round((L.ebitda_margin - prevM) * 10) / 10 : null;
   const ppTxt = (n: number | null) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}pp`);
+  const q = screenerAt(s.url, s.symbol, "quarters"); // every figure here is from screener's quarterly table
   const ppCls = (n: number | null) => (n == null ? "text-[var(--faint)]" : n <= -1 ? "font-semibold text-[var(--accent)]" : n >= 1 ? "font-semibold" : "text-[var(--ink-2)]");
 
   return (
@@ -336,18 +342,18 @@ function SnapshotBody({ s, name }: { s: Snapshot; name: string }) {
             return (
               <tr key={k} className="border-t rule">
                 <td className="py-1.5 text-[14px] text-[var(--muted)]">{label}</td>
-                <td className="py-1.5 text-right font-semibold">{l?.value != null ? l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : L.is_bank && k === "ebitda" ? "n/a" : "—"}</td>
-                <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l ? fmtPct(l.qoq) : ""}</td>
-                <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l ? fmtPct(l.yoy) : ""}</td>
+                <td className="py-1.5 text-right font-semibold">{l?.value != null ? <Src u={q}>{l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</Src> : L.is_bank && k === "ebitda" ? "n/a" : "—"}</td>
+                <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l?.qoq != null ? <Src u={q}>{fmtPct(l.qoq)}</Src> : l ? fmtPct(l.qoq) : ""}</td>
+                <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l?.yoy != null ? <Src u={q}>{fmtPct(l.yoy)}</Src> : l ? fmtPct(l.yoy) : ""}</td>
               </tr>
             );
           })}
           {L.ebitda_margin != null && (
             <tr className="border-t rule">
               <td className="py-1.5 text-[14px] text-[var(--muted)]">EBITDA margin</td>
-              <td className="py-1.5 text-right font-semibold">{L.ebitda_margin}%</td>
-              <td className={`py-1.5 pl-3 text-right ${ppCls(mQoq)}`}>{ppTxt(mQoq)}</td>
-              <td className={`py-1.5 pl-3 text-right ${ppCls(mDelta)}`}>{ppTxt(mDelta)}</td>
+              <td className="py-1.5 text-right font-semibold"><Src u={q}>{L.ebitda_margin}%</Src></td>
+              <td className={`py-1.5 pl-3 text-right ${ppCls(mQoq)}`}><Src u={q}>{ppTxt(mQoq)}</Src></td>
+              <td className={`py-1.5 pl-3 text-right ${ppCls(mDelta)}`}><Src u={q}>{ppTxt(mDelta)}</Src></td>
             </tr>
           )}
         </tbody>
@@ -358,7 +364,7 @@ function SnapshotBody({ s, name }: { s: Snapshot; name: string }) {
           {ratios.map(([k, label]) => (
             <div key={k} className="border-b rule py-2 pr-2">
               <dt className="text-[11px] uppercase tracking-[0.08em] text-[var(--faint)]">{label}</dt>
-              <dd className="text-[15px] font-semibold">{s.ratios![k].replace(/\s*Cr\.$/, " Cr").replace(/\s+%/, "%").replace(/₹\s+/, "₹")}</dd>
+              <dd className="text-[15px] font-semibold"><Src u={s.url ?? q}>{s.ratios![k].replace(/\s*Cr\.$/, " Cr").replace(/\s+%/, "%").replace(/₹\s+/, "₹")}</Src></dd>
             </div>
           ))}
         </dl>
@@ -366,7 +372,7 @@ function SnapshotBody({ s, name }: { s: Snapshot; name: string }) {
 
       {s.trend && s.trend.length > 0 && (
         <div className="mt-6">
-          <p className="label">Revenue by quarter{L.ebitda_margin != null ? " · EBITDA margin %" : ""}</p>
+          <p className="label">Revenue by quarter{L.ebitda_margin != null ? " · EBITDA margin %" : ""} · <a href={q} target="_blank" rel="noreferrer" className="link normal-case tracking-normal">source ↗</a></p>
           {/* minmax(0,1fr) lets columns shrink below their label width, so 8 bars fit a 320px phone */}
           <div className="mt-3 grid h-28 items-end gap-1.5" style={{ gridTemplateColumns: `repeat(${s.trend.length}, minmax(0, 1fr))` }}>
             {s.trend.map((t, i) => (

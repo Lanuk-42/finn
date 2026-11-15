@@ -243,7 +243,7 @@ export function periodCovers(period: string, label: string): boolean {
   return Number(m[1][1]) === qn;
 }
 
-export type PromiseLink = { text: string; bad: boolean };
+export type PromiseLink = { text: string; bad: boolean; p: Promise_ };
 
 /** One line tying a results card to what management promised, computed from the card and the tracker. */
 export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): PromiseLink | null {
@@ -274,13 +274,20 @@ export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): Promis
   }
   if (!cands.length) return null;
   const best = cands.sort((a, b) => b.score - a.score)[0];
-  return { text: best.v, bad: best.bad };
+  return { text: best.v, bad: best.bad, p: best.p };
 }
 
 /** Fill the pipeline's "{name}" placeholder with the short display name (possessive-aware). */
 export function fillName(text: string, name: string): string {
   return text.replace(/\{name\}’s/g, poss(name)).replace(/\{name\}/g, name);
 }
+
+/** screener.in company page, optionally at one of its tables (#quarters, #profit-loss, #balance-sheet, #cash-flow, #ratios). */
+export const screenerAt = (url: string | null | undefined, symbol: string, table?: string) =>
+  `${url || `https://www.screener.in/company/${symbol}/consolidated/`}${table ? `#${table}` : ""}`;
+
+/** Where a promise's "actual" comes from: the annual table for a finished year, the quarterly table otherwise. */
+export const actualTable = (p: Promise_) => (p.status === "resolved" ? "profit-loss" : "quarters");
 
 /** A PDF link that opens at the page a quote or figure was found on. */
 export const pdfAt = (url: string, page?: number | null) => (page ? `${url}#page=${page}` : url);

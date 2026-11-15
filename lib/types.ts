@@ -13,11 +13,12 @@ export interface ResultsCard {
   lines?: { revenue: Line | null; ebitda: Line | null; pbt: Line | null; pat: Line | null };
   ebitda_margin?: { value: number | null; prev: number | null; year_ago: number | null; qoq_pp: number | null; yoy_pp: number | null };
   raw_pdf?: string | null;
+  screener_url?: string | null;
   filing_url?: string | null;
   why_act?: string[];
   filing_check?: {
     status: "matched" | "mismatch" | "fallback" | "screener_only"; reason?: string; unit?: string; pages?: number[]; checked?: number;
-    lines?: Record<string, { filing: number; screener: number | null; match: boolean; quote: string; derived?: boolean }>;
+    lines?: Record<string, { filing: number; screener: number | null; match: boolean; quote: string; derived?: boolean; page?: number | null }>;
   };
 }
 
@@ -40,7 +41,7 @@ export interface Thesis {
 
 export interface Stock {
   symbol: string; name: string; sector: string; cap: string; thesis: Thesis;
-  close: number; date: string; day_pct: number;
+  close: number; date: string; day_pct: number; screener_url?: string | null;
   metrics?: Record<string, number | null>; metrics_quarter?: string | null;
 }
 
@@ -66,7 +67,7 @@ export interface Promise_ {
 export interface PromiseFile {
   symbol: string; company: string; generated_at: string;
   transcripts: { label: string; quarter?: string; quarter_basis?: string; url: string; status: string }[];
-  promises: Promise_[]; not_checkable: Promise_[]; rejected: Promise_[];
+  promises: Promise_[]; not_checkable: Promise_[]; rejected: Promise_[]; screener_url?: string | null;
   credibility: { kept: number; resolved: number; in_progress: number; standing: number };
 }
 

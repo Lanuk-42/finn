@@ -7,7 +7,7 @@ import { ageHours, CATEGORY_LABEL, cleanTitle, day, fyq, IST, STALE_HOURS, when 
 import { useDeviceState } from "@/lib/device";
 import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
 import Callout from "./Tour";
-import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tenureText, tidy, tidyProse, tidyRole } from "@/lib/lead";
+import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, pdfAt, promiseLink, screenerAt, sentenceCase, shortName, tenureText, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 import { actGroupsFor, autoWindow, MIN_ACT, tsMs, WINDOWS } from "@/lib/window";
 
@@ -172,6 +172,9 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
               </p>
               <p className="mt-1 text-[13px] leading-snug text-[var(--muted)]">You own it because: {s.thesis.why.charAt(0).toLowerCase() + s.thesis.why.slice(1)}.</p>
             </button>
+            <a href={screenerAt(s.screener_url, s.symbol, "quarters")} target="_blank" rel="noreferrer" className="link mt-1 inline-block text-[12px] text-[var(--muted)]">
+              {s.thesis.rule.split(/ [<>]=/)[0]} {s.thesis.actual}%{s.thesis.quarter ? ` in ${fyq(s.thesis.quarter)}` : ""}: screener.in quarterly table ↗
+            </a>
           </Item>
         ))}
         {breaches.length > 3 && (
@@ -435,16 +438,21 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
       <Meta sym={f.symbol} id={f.id} kind={results ? `${fyq(results.quarter)} results` : CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
       <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">{filingLead(name, f)}</p>
 
-      {results?.status === "ok" && <ResultsTable c={results} />}
+      {results?.status === "ok" && <ResultsTable c={results} sym={f.symbol} />}
       {results?.status === "ok" && <FilingCheckLine c={results} />}
       {results && (() => {
         const link = promiseLink(results, pf);
         return link && (
-          <button onClick={() => onOpenStock(f.symbol)} className="mt-2.5 flex w-full items-baseline gap-2 border-t rule pt-2 text-left">
-            <span className="label shrink-0 !text-[10px]">Promise</span>
-            <span className={`num flex-1 text-[14px] leading-snug ${link.bad ? "text-[var(--accent)]" : "text-[var(--ink)]"}`}>{link.text}</span>
-            <span className="text-[13px] text-[var(--muted)]">→</span>
-          </button>
+          <>
+            <button onClick={() => onOpenStock(f.symbol)} className="mt-2.5 flex w-full items-baseline gap-2 border-t rule pt-2 text-left">
+              <span className="label shrink-0 !text-[10px]">Promise</span>
+              <span className={`num flex-1 text-[14px] leading-snug ${link.bad ? "text-[var(--accent)]" : "text-[var(--ink)]"}`}>{link.text}</span>
+              <span className="text-[13px] text-[var(--muted)]">→</span>
+            </button>
+            <p className="mt-0.5 pl-[62px] text-[12px] text-[var(--muted)]">
+              <a href={pdfAt(link.p.source_url, link.p.page)} target="_blank" rel="noreferrer" className="link">The guidance, {link.p.call} call{link.p.page ? `, page ${link.p.page}` : ""} ↗</a>
+            </p>
+          </>
         );
       })()}
       {mgmt && mgmt.people.length > 0 && <People c={mgmt} company={name} />}
@@ -482,12 +490,15 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
               <p>Checked against the results PDF{results.filing_check.pages ? ` (pages ${results.filing_check.pages.join(", ")})` : ""}{results.filing_check.unit ? `, units “${results.filing_check.unit}”` : ""}. A lite model copied each figure with its row; code found every row in the PDF, converted units and compared with screener (±1%):</p>
               <ul className="mt-1 space-y-0.5">
                 {Object.entries(results.filing_check.lines).map(([k, v]) => (
-                  <li key={k} className="num">{LINE_NAME[k]}: filing {crore(v.filing)} · screener {crore(v.screener)} · {v.match ? "match" : v.derived ? "differs (derived from PBT, finance costs, depreciation and other income; definitions differ)" : "differs"}{!v.derived && <> · <span className="italic">“{v.quote.slice(0, 90)}”</span></>}</li>
+                  <li key={k} className="num">{LINE_NAME[k]}: filing {crore(v.filing)} · screener {crore(v.screener)} · {v.match ? "match" : v.derived ? "differs (derived from PBT, finance costs, depreciation and other income; definitions differ)" : "differs"}
+                    {!v.derived && <> · matched line: <span className="italic">“{v.quote.slice(0, 120)}”</span></>}
+                    {results.filing_url && <> · <a href={pdfAt(results.filing_url, v.page)} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">{v.page ? `page ${v.page}` : "filing"} ↗</a></>}
+                  </li>
                 ))}
               </ul>
             </div>
           )}
-          {results && <p>Numbers are from the screener.in quarterly table; QoQ, YoY and margins were computed in code. {results.raw_pdf && <a href={results.raw_pdf} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Table source</a>}</p>}
+          {results && <p>The table shows screener.in’s quarterly figures; QoQ, YoY and margins were computed in code. Tap any figure for its source: the filing page when it was verified, otherwise <a href={screenerAt(results.screener_url, f.symbol, "quarters")} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">screener’s quarterly table ↗</a>.</p>}
           {results?.is_bank && <p>Banks report no EBITDA line; revenue is total interest plus other income.</p>}
           {results?.status === "pending" && <p>{results.note}</p>}
           {mgmt && (
@@ -524,7 +535,14 @@ function FilingCheckLine({ c }: { c: ResultsCard }) {
   return <p className="mt-2 text-[12px] text-[var(--muted)]">Screener’s figures: {fc.status === "screener_only" ? "not checked against the filing (older than 30 days)" : /scanned|units|reliab/.test(fc.reason ?? "") ? "the filing is a scanned image FINN couldn’t read reliably" : "the filing couldn’t be checked"}.</p>;
 }
 
-function ResultsTable({ c }: { c: ResultsCard }) {
+function ResultsTable({ c, sym }: { c: ResultsCard; sym: string }) {
+  const table = screenerAt(c.screener_url, sym, "quarters");
+  // a verified line opens the filing at the page it is printed on; everything else opens screener's quarterly table
+  const src = (k: string) => {
+    const ln = c.filing_check?.lines?.[k];
+    return ln && ln.match && !ln.derived && c.filing_url ? pdfAt(c.filing_url, ln.page) : table;
+  };
+  const S = ({ href, children }: { href: string; children: React.ReactNode }) => <a href={href} target="_blank" rel="noreferrer" className="src">{children}</a>;
   const flagged = new Set(Object.entries(c.filing_check?.status === "mismatch" ? c.filing_check.lines ?? {} : {}).filter(([, v]) => !v.match && !v.derived).map(([k]) => k));
   const rows: [string, Line | null | undefined, boolean][] = [
     ["Revenue", c.lines?.revenue, false], ["EBITDA", c.lines?.ebitda, !!c.is_bank], ["PBT", c.lines?.pbt, false], ["PAT", c.lines?.pat, false],
@@ -543,17 +561,17 @@ function ResultsTable({ c }: { c: ResultsCard }) {
         {rows.map(([label, l, na]) => (
           <tr key={label} className="border-t rule">
             <td className="py-1.5 text-[14px] text-[var(--muted)]">{label}</td>
-            <td className={`py-1.5 text-right font-semibold ${flagged.has(rowKey(label)) ? "text-[var(--accent)]" : ""}`}>{flagged.has(rowKey(label)) && "⚑ "}{l?.value != null ? l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : na ? "n/a" : "—"}</td>
-            <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l ? fmtPct(l.qoq) : ""}</td>
-            <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l ? fmtPct(l.yoy) : ""}</td>
+            <td className={`py-1.5 text-right font-semibold ${flagged.has(rowKey(label)) ? "text-[var(--accent)]" : ""}`}>{flagged.has(rowKey(label)) && "⚑ "}{l?.value != null ? <S href={src(rowKey(label))}>{l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 })}</S> : na ? "n/a" : "—"}</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l?.qoq != null ? <S href={table}>{fmtPct(l.qoq)}</S> : l ? fmtPct(l.qoq) : ""}</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l?.yoy != null ? <S href={table}>{fmtPct(l.yoy)}</S> : l ? fmtPct(l.yoy) : ""}</td>
           </tr>
         ))}
         {c.ebitda_margin && (
           <tr className="border-t rule">
             <td className="py-1.5 text-[14px] text-[var(--muted)]">EBITDA margin</td>
-            <td className="py-1.5 text-right font-semibold">{c.ebitda_margin.value}%</td>
-            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.qoq_pp, "pp")}`}>{fmtPp(c.ebitda_margin.qoq_pp)}</td>
-            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.yoy_pp, "pp")}`}>{fmtPp(c.ebitda_margin.yoy_pp)}</td>
+            <td className="py-1.5 text-right font-semibold"><S href={table}>{c.ebitda_margin.value}%</S></td>
+            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.qoq_pp, "pp")}`}><S href={table}>{fmtPp(c.ebitda_margin.qoq_pp)}</S></td>
+            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.yoy_pp, "pp")}`}><S href={table}>{fmtPp(c.ebitda_margin.yoy_pp)}</S></td>
           </tr>
         )}
       </tbody>
@@ -618,8 +636,10 @@ function MoveItem({ m, sym, name, reason, linkedCount, px, vx, custom, onOpen }:
       <div className="mt-1 flex items-start gap-4">
         <p className="serif flex-1 text-[17px] leading-snug">{what} <span className={reason ? "" : "text-[var(--accent)]"}>{why}</span></p>
         <div className="num shrink-0 text-right leading-tight">
-          <p className={`text-[17px] font-semibold ${m.pct <= -px ? "text-[var(--accent)]" : ""}`}>{fmtPct(m.pct)}</p>
-          <p className="text-[12px] text-[var(--muted)]">{m.volx?.toFixed(1)}× vol</p>
+          <a href={`https://finance.yahoo.com/quote/${sym}.NS/history/`} target="_blank" rel="noreferrer" className="src block">
+            <span className={`block text-[17px] font-semibold ${m.pct <= -px ? "text-[var(--accent)]" : ""}`}>{fmtPct(m.pct)}</span>
+            <span className="block text-[12px] text-[var(--muted)]">{m.volx?.toFixed(1)}× vol</span>
+          </a>
         </div>
       </div>
     </Item>

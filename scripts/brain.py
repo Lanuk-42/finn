@@ -66,6 +66,7 @@ def build_filings(sym, raw, scr, now):
         f["card"] = {"type": "results", **results.card(q, quarter)}
         f["card"]["filing_url"] = f["url"]
         # Check the card's numbers against the results filing itself (recent cards only: lite model, cached by URL).
+        f["card"]["screener_url"] = scr.get("url")
         if f["card"]["status"] == "ok" and f.get("url") and (now - datetime.fromisoformat(f["ts"])).days <= FILING_CHECK_DAYS:
             f["card"]["filing_check"] = results_filing.check(
                 f["url"], scr.get("variant") or "consolidated", quarter, f["card"], cache_key=f"results:v1:{f['url']}:{scr.get('variant')}:{quarter}")
@@ -221,7 +222,7 @@ def main():
         pats += [{"symbol": sym, **x} for x in patterns.for_stock(sym, "{name}", fl, now)]
         last, prev = prices["rows"][-1], prices["rows"][-2]
         stocks.append({
-            "symbol": sym, "name": p["name"], "sector": p["sector"], "cap": p["cap"],
+            "symbol": sym, "name": p["name"], "sector": p["sector"], "cap": p["cap"], "screener_url": scr.get("url"),
             "thesis": results.thesis_check(p["thesis"], scr.get("quarters")),
             # every thesis metric for the latest quarter, so the on-device thesis editor can re-check instantly
             "metrics": {m: results.metric_value(scr.get("quarters"), m)[0] for m in results.METRIC_LABEL},

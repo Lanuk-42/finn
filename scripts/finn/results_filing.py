@@ -152,7 +152,8 @@ def check(url, variant, quarter_label, card, cache_key):
         fc = first_column(q) if how == "same row" else None
         if fc:
             cands += _num_variants(fc)
-        got[k] = {"cands": [x * mult for x in cands], "quote": q, "printed": str(v["value"]), "how": how}
+        page = next((n for n, t in pages if quote_ok(q, t)), None)  # the PDF page the row is printed on (code, not model)
+        got[k] = {"cands": [x * mult for x in cands], "quote": q, "printed": str(v["value"]), "how": how, "page": page}
 
     L = card.get("lines") or {}
     scr = {k: (L.get(k) or {}).get("value") for k in ("revenue", "ebitda", "pbt", "pat")}
@@ -167,12 +168,14 @@ def check(url, variant, quarter_label, card, cache_key):
     for k in ("revenue", "pbt"):
         if k in got:
             v = best(got[k]["cands"], scr[k])
-            lines[k] = {"filing": round(v, 1), "screener": scr[k], "match": close(v, scr[k], 0.01), "quote": got[k]["quote"]}
+            lines[k] = {"filing": round(v, 1), "screener": scr[k], "match": close(v, scr[k], 0.01), "quote": got[k]["quote"],
+                        "page": got[k]["page"]}
     pat_c = (got.get("pat", {}).get("cands") or []) + (got.get("pat_owners", {}).get("cands") or [])
     if pat_c:
         v = best(pat_c, scr["pat"])
-        q = got["pat"]["quote"] if "pat" in got and v in got["pat"]["cands"] else got.get("pat_owners", got.get("pat", {})).get("quote")
-        lines["pat"] = {"filing": round(v, 1), "screener": scr["pat"], "match": close(v, scr["pat"], 0.01), "quote": q}
+        src = got["pat"] if "pat" in got and v in got["pat"]["cands"] else got.get("pat_owners", got.get("pat", {}))
+        lines["pat"] = {"filing": round(v, 1), "screener": scr["pat"], "match": close(v, scr["pat"], 0.01), "quote": src.get("quote"),
+                        "page": src.get("page")}
     if scr["ebitda"] is not None and all(k in got for k in ("pbt", "depreciation", "other_income")):
         pbt = best(got["pbt"]["cands"], scr["pbt"])
         fin = best(got["finance_costs"]["cands"], 0) if "finance_costs" in got else 0.0
@@ -180,7 +183,8 @@ def check(url, variant, quarter_label, card, cache_key):
         oi = best(got["other_income"]["cands"], 0)
         e = pbt + fin + dep - oi
         lines["ebitda"] = {"filing": round(e, 1), "screener": scr["ebitda"], "match": close(e, scr["ebitda"], 0.02),
-                           "quote": "PBT + finance costs + depreciation - other income, each verified in the filing"}
+                           "quote": "PBT + finance costs + depreciation - other income, each verified in the filing",
+                           "page": got["pbt"]["page"]}
     core = [lines[k] for k in ("revenue", "pbt", "pat") if k in lines]
     if len(core) < 2:
         return {"status": "fallback", "reason": f"only {len(core)} of revenue, PBT and PAT could be read from the filing",

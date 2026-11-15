@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { Promise_, PromiseFile } from "@/lib/types";
-import { actualText, shortName, targetText } from "@/lib/lead";
+import { actualTable, actualText, pdfAt, screenerAt, shortName, targetText } from "@/lib/lead";
 
 const METRIC: Record<string, string> = {
   revenue: "sales", revenue_growth_yoy: "revenue growth", ebitda_margin: "EBITDA margin", ebit_margin: "EBIT margin",
@@ -33,8 +33,8 @@ export default function Proof({ files, onOpen }: { files: PromiseFile[]; onOpen:
         <span className={`border px-1.5 py-[1px] text-[10px] font-semibold uppercase tracking-[0.08em] ${missed ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--paper)]" : "border-[var(--ink)]"}`}>{p.verdict}</span>
       </div>
       <p className="serif mt-2 text-[20px] font-medium leading-[1.3]">
-        {name} guided {targetText(p)} of {p.period} {METRIC[p.metric] ?? p.metric}. It delivered{" "}
-        <span className={missed ? "text-[var(--accent)]" : ""}>{actualText(p)}</span>
+        {name} guided <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="src">{targetText(p)}</a> of {p.period} {METRIC[p.metric] ?? p.metric}. It delivered{" "}
+        <a href={screenerAt(pf.screener_url, pf.symbol, actualTable(p))} target="_blank" rel="noreferrer" className={`src ${missed ? "text-[var(--accent)]" : ""}`}>{actualText(p)}</a>
         {pctOff != null && missed ? `, ${pctOff}% short.` : "."}
       </p>
       <p className="mt-2 text-[13px] leading-snug text-[var(--muted)]">
@@ -44,7 +44,12 @@ export default function Proof({ files, onOpen }: { files: PromiseFile[]; onOpen:
         <button onClick={() => setQuote((v) => !v)} className="link text-[var(--muted)]">{quote ? "Hide the quote" : "The quote"}</button>
         <button onClick={() => onOpen(pf.symbol)} className="link text-[var(--ink)]">{name}’s tracker →</button>
       </div>
-      {quote && <blockquote className="serif mt-2 border-l-2 border-[var(--ink)] pl-3 text-[15px] leading-snug">“{p.quote}”</blockquote>}
+      {quote && (
+        <>
+          <blockquote className="serif mt-2 border-l-2 border-[var(--ink)] pl-3 text-[15px] leading-snug">“{p.quote}”</blockquote>
+          <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="link mt-1 inline-block text-[12px] text-[var(--muted)]">{p.call} transcript{p.page ? `, page ${p.page}` : ""} ↗</a>
+        </>
+      )}
     </section>
   );
 }
