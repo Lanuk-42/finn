@@ -63,7 +63,7 @@ def gemini_key():
         return False, "GEMINI_API_KEY not set"
     r = requests.get("https://generativelanguage.googleapis.com/v1beta/models", params={"pageSize": 5},
                      headers={"x-goog-api-key": k}, timeout=20)
-    return r.status_code == 200, f"models list HTTP {r.status_code} (key ending …{k[-4:]})" if len(k) > 8 else f"HTTP {r.status_code}"
+    return r.status_code == 200, f"models list HTTP {r.status_code}"  # never print any part of the key
 
 
 if __name__ == "__main__":
