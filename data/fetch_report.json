@@ -1,0 +1,296 @@
+{
+ "run_at": "2026-11-15T17:58:46+05:30",
+ "stocks": {
+  "RELIANCE": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 20
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 99
+     }
+    ],
+    "stored_total": 99
+   }
+  },
+  "HDFCBANK": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 21
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 82
+     }
+    ],
+    "stored_total": 82
+   }
+  },
+  "TCS": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 41
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 91
+     }
+    ],
+    "stored_total": 91
+   }
+  },
+  "SUNPHARMA": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 27
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 81
+     }
+    ],
+    "stored_total": 82
+   }
+  },
+  "ASIANPAINT": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 35
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 101
+     }
+    ],
+    "stored_total": 101
+   }
+  },
+  "DIXON": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 37
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 86
+     }
+    ],
+    "stored_total": 86
+   }
+  },
+  "POLYCAB": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 35
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 85
+     }
+    ],
+    "stored_total": 85
+   }
+  },
+  "PERSISTENT": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 34
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 155
+     }
+    ],
+    "stored_total": 155
+   }
+  },
+  "DEEPAKNTR": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 24
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 36
+     }
+    ],
+    "stored_total": 36
+   }
+  },
+  "CAMPUS": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 127,
+    "last": "2026-11-13"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "standalone",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 18
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 61
+     }
+    ],
+    "stored_total": 61
+   }
+  }
+ },
+ "finished_at": "2026-11-15T17:59:35+05:30"
+}
