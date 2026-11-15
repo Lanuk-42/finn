@@ -1,0 +1,1093 @@
+{
+ "ok": true,
+ "name": "KEI Industries Ltd",
+ "about": "Incorporated in 1968, KEI Industries Ltd manufactures wires and cables (W&C) like EHV cables, HT cables, LT cables, and sells them in India and overseas [1]",
+ "ratios": {
+  "Market Cap": "₹ 38,641 Cr.",
+  "Current Price": "₹ 4,040",
+  "High / Low": "₹ 5,931 / 3,652",
+  "Stock P/E": "36.6",
+  "Book Value": "₹ 753",
+  "Dividend Yield": "0.11 %",
+  "ROCE": "20.0 %",
+  "ROE": "14.7 %",
+  "Face Value": "₹ 2.00"
+ },
+ "bse_code": "517569",
+ "screener_id": "1744",
+ "quarters": {
+  "headers": [
+   "Sep 2023",
+   "Dec 2023",
+   "Mar 2024",
+   "Jun 2024",
+   "Sep 2024",
+   "Dec 2024",
+   "Mar 2025",
+   "Jun 2025",
+   "Sep 2025",
+   "Dec 2025",
+   "Mar 2026",
+   "Jun 2026",
+   "Sep 2026"
+  ],
+  "rows": {
+   "Sales": [
+    1945.0,
+    2059.0,
+    2330.0,
+    2065.0,
+    2284.0,
+    2472.0,
+    2915.0,
+    2590.0,
+    2726.0,
+    2955.0,
+    3476.0,
+    3185.0,
+    3776.0
+   ],
+   "YoY Sales growth": [
+    21.0,
+    15.0,
+    19.0,
+    16.0,
+    17.0,
+    20.0,
+    25.0,
+    25.0,
+    19.0,
+    20.0,
+    19.0,
+    23.0,
+    39.0
+   ],
+   "Expenses": [
+    1743.0,
+    1845.0,
+    2075.0,
+    1846.0,
+    2059.0,
+    2226.0,
+    2614.0,
+    2332.0,
+    2457.0,
+    2635.0,
+    3095.0,
+    2790.0,
+    3400.0
+   ],
+   "Operating Profit": [
+    202.0,
+    215.0,
+    255.0,
+    219.0,
+    225.0,
+    246.0,
+    301.0,
+    258.0,
+    269.0,
+    320.0,
+    382.0,
+    396.0,
+    377.0
+   ],
+   "OPM %": [
+    10.0,
+    10.0,
+    11.0,
+    11.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    11.0,
+    11.0,
+    12.0,
+    10.0
+   ],
+   "Other Income": [
+    9.0,
+    14.0,
+    4.0,
+    13.0,
+    13.0,
+    9.0,
+    37.0,
+    40.0,
+    42.0,
+    34.0,
+    43.0,
+    20.0,
+    25.0
+   ],
+   "Interest": [
+    8.0,
+    11.0,
+    17.0,
+    14.0,
+    13.0,
+    14.0,
+    14.0,
+    14.0,
+    14.0,
+    17.0,
+    19.0,
+    18.0,
+    17.0
+   ],
+   "Depreciation": [
+    16.0,
+    15.0,
+    16.0,
+    16.0,
+    16.0,
+    19.0,
+    19.0,
+    20.0,
+    20.0,
+    23.0,
+    28.0,
+    29.0,
+    31.0
+   ],
+   "Profit before tax": [
+    188.0,
+    202.0,
+    227.0,
+    203.0,
+    208.0,
+    221.0,
+    305.0,
+    263.0,
+    277.0,
+    315.0,
+    377.0,
+    369.0,
+    353.0
+   ],
+   "Tax %": [
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    27.0,
+    25.0,
+    25.0,
+    26.0,
+    26.0
+   ],
+   "Net Profit": [
+    140.0,
+    151.0,
+    168.0,
+    150.0,
+    155.0,
+    165.0,
+    227.0,
+    196.0,
+    204.0,
+    235.0,
+    284.0,
+    274.0,
+    262.0
+   ],
+   "EPS in Rs": [
+    15.54,
+    16.7,
+    18.67,
+    16.65,
+    17.15,
+    17.25,
+    23.71,
+    20.49,
+    21.29,
+    24.57,
+    29.74,
+    28.68,
+    27.45
+   ]
+  },
+  "links": {
+   "raw_pdf": [
+    "https://www.screener.in/company/source/quarter/1744/9/2023/",
+    "https://www.screener.in/company/source/quarter/1744/12/2023/",
+    "https://www.screener.in/company/source/quarter/1744/3/2024/",
+    "https://www.screener.in/company/source/quarter/1744/6/2024/",
+    "https://www.screener.in/company/source/quarter/1744/9/2024/",
+    "https://www.screener.in/company/source/quarter/1744/12/2024/",
+    "https://www.screener.in/company/source/quarter/1744/3/2025/",
+    "https://www.screener.in/company/source/quarter/1744/6/2025/",
+    "https://www.screener.in/company/source/quarter/1744/9/2025/",
+    "https://www.screener.in/company/source/quarter/1744/12/2025/",
+    "https://www.screener.in/company/source/quarter/1744/3/2026/",
+    "https://www.screener.in/company/source/quarter/1744/6/2026/",
+    "https://www.screener.in/company/source/quarter/1744/9/2026/"
+   ]
+  }
+ },
+ "annual": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026",
+   "TTM"
+  ],
+  "rows": {
+   "Sales": [
+    2033.0,
+    2351.0,
+    2628.0,
+    3466.0,
+    4231.0,
+    4888.0,
+    4182.0,
+    5727.0,
+    6912.0,
+    8104.0,
+    9736.0,
+    11748.0,
+    13393.0
+   ],
+   "Sales growth": [
+    null,
+    16.0,
+    12.0,
+    32.0,
+    22.0,
+    16.0,
+    -14.0,
+    37.0,
+    21.0,
+    17.0,
+    20.0,
+    21.0,
+    25.0
+   ],
+   "Expenses": [
+    1839.0,
+    2108.0,
+    2360.0,
+    3126.0,
+    3790.0,
+    4391.0,
+    3721.0,
+    5138.0,
+    6206.0,
+    7267.0,
+    8745.0,
+    10519.0,
+    11919.0
+   ],
+   "Operating Profit": [
+    194.0,
+    243.0,
+    269.0,
+    339.0,
+    441.0,
+    497.0,
+    461.0,
+    589.0,
+    706.0,
+    838.0,
+    991.0,
+    1229.0,
+    1474.0
+   ],
+   "OPM %": [
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    11.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    11.0
+   ],
+   "Other Income": [
+    5.0,
+    6.0,
+    10.0,
+    9.0,
+    7.0,
+    17.0,
+    20.0,
+    15.0,
+    28.0,
+    49.0,
+    72.0,
+    159.0,
+    121.0
+   ],
+   "Interest": [
+    121.0,
+    127.0,
+    124.0,
+    112.0,
+    136.0,
+    129.0,
+    57.0,
+    40.0,
+    35.0,
+    44.0,
+    56.0,
+    64.0,
+    70.0
+   ],
+   "Depreciation": [
+    25.0,
+    25.0,
+    28.0,
+    32.0,
+    34.0,
+    57.0,
+    58.0,
+    55.0,
+    57.0,
+    61.0,
+    70.0,
+    91.0,
+    110.0
+   ],
+   "Profit before tax": [
+    53.0,
+    96.0,
+    126.0,
+    204.0,
+    278.0,
+    328.0,
+    366.0,
+    508.0,
+    642.0,
+    781.0,
+    937.0,
+    1232.0,
+    1414.0
+   ],
+   "Tax %": [
+    35.0,
+    35.0,
+    26.0,
+    29.0,
+    35.0,
+    22.0,
+    25.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    25.0,
+    null
+   ],
+   "Net Profit": [
+    34.0,
+    63.0,
+    94.0,
+    145.0,
+    181.0,
+    256.0,
+    273.0,
+    376.0,
+    477.0,
+    581.0,
+    696.0,
+    918.0,
+    1056.0
+   ],
+   "EPS in Rs": [
+    4.43,
+    8.1,
+    12.04,
+    18.47,
+    22.92,
+    28.64,
+    30.33,
+    41.73,
+    52.93,
+    64.35,
+    72.88,
+    96.07,
+    110.44
+   ],
+   "Dividend Payout %": [
+    9.0,
+    6.0,
+    5.0,
+    5.0,
+    5.0,
+    5.0,
+    7.0,
+    6.0,
+    6.0,
+    5.0,
+    5.0,
+    5.0,
+    null
+   ]
+  },
+  "links": {}
+ },
+ "balance_sheet": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026",
+   "Sep 2026"
+  ],
+  "rows": {
+   "Equity Capital": [
+    15.0,
+    15.0,
+    16.0,
+    16.0,
+    16.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    18.0,
+    19.0,
+    19.0,
+    19.0
+   ],
+   "Reserves": [
+    288.0,
+    352.0,
+    446.0,
+    589.0,
+    762.0,
+    1489.0,
+    1760.0,
+    2118.0,
+    2571.0,
+    3130.0,
+    5767.0,
+    6646.0,
+    7184.0
+   ],
+   "Borrowings": [
+    452.0,
+    498.0,
+    813.0,
+    842.0,
+    599.0,
+    367.0,
+    305.0,
+    355.0,
+    162.0,
+    166.0,
+    217.0,
+    253.0,
+    350.0
+   ],
+   "Other Liabilities": [
+    588.0,
+    599.0,
+    622.0,
+    773.0,
+    1387.0,
+    1395.0,
+    930.0,
+    1036.0,
+    1019.0,
+    1342.0,
+    1232.0,
+    2038.0,
+    2066.0
+   ],
+   "Total Liabilities": [
+    1345.0,
+    1464.0,
+    1896.0,
+    2220.0,
+    2764.0,
+    3269.0,
+    3014.0,
+    3527.0,
+    3770.0,
+    4656.0,
+    7235.0,
+    8956.0,
+    9619.0
+   ],
+   "Fixed Assets": [
+    298.0,
+    328.0,
+    405.0,
+    407.0,
+    489.0,
+    554.0,
+    537.0,
+    531.0,
+    567.0,
+    770.0,
+    993.0,
+    1686.0,
+    1772.0
+   ],
+   "CWIP": [
+    4.0,
+    29.0,
+    3.0,
+    23.0,
+    32.0,
+    11.0,
+    7.0,
+    17.0,
+    15.0,
+    121.0,
+    385.0,
+    1002.0,
+    1272.0
+   ],
+   "Investments": [
+    3.0,
+    3.0,
+    3.0,
+    3.0,
+    2.0,
+    1.0,
+    1.0,
+    2.0,
+    1.0,
+    2.0,
+    2.0,
+    2.0,
+    5.0
+   ],
+   "Other Assets": [
+    1039.0,
+    1103.0,
+    1485.0,
+    1787.0,
+    2242.0,
+    2703.0,
+    2469.0,
+    2978.0,
+    3187.0,
+    3764.0,
+    5854.0,
+    6266.0,
+    6571.0
+   ],
+   "Total Assets": [
+    1345.0,
+    1464.0,
+    1896.0,
+    2220.0,
+    2764.0,
+    3269.0,
+    3014.0,
+    3527.0,
+    3770.0,
+    4656.0,
+    7235.0,
+    8956.0,
+    9619.0
+   ]
+  },
+  "links": {}
+ },
+ "cash_flow": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026"
+  ],
+  "rows": {
+   "Cash from Operating Activity": [
+    199.0,
+    186.0,
+    -29.0,
+    191.0,
+    623.0,
+    -13.0,
+    154.0,
+    229.0,
+    514.0,
+    610.0,
+    -32.0,
+    840.0
+   ],
+   "Cash from Investing Activity": [
+    -17.0,
+    -98.0,
+    -63.0,
+    -76.0,
+    -275.0,
+    11.0,
+    75.0,
+    -58.0,
+    -137.0,
+    -353.0,
+    -1501.0,
+    -349.0
+   ],
+   "Cash from Financing Activity": [
+    -182.0,
+    -87.0,
+    229.0,
+    -69.0,
+    -386.0,
+    99.0,
+    -129.0,
+    -31.0,
+    -256.0,
+    -72.0,
+    1919.0,
+    -98.0
+   ],
+   "Net Cash Flow": [
+    0.0,
+    1.0,
+    137.0,
+    45.0,
+    -38.0,
+    97.0,
+    101.0,
+    139.0,
+    121.0,
+    186.0,
+    386.0,
+    392.0
+   ],
+   "Free Cash Flow": [
+    182.0,
+    88.0,
+    -91.0,
+    126.0,
+    501.0,
+    -93.0,
+    131.0,
+    169.0,
+    416.0,
+    210.0,
+    -726.0,
+    -412.0
+   ],
+   "CFO/EBITDA Share of operating profit converting into cash: CFO (before tax) / Operating Profit": [
+    107.0,
+    85.0,
+    1.0,
+    72.0,
+    161.0,
+    16.0,
+    53.0,
+    60.0,
+    98.0,
+    97.0,
+    20.0,
+    90.0
+   ]
+  },
+  "links": {}
+ },
+ "ratios_table": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026"
+  ],
+  "rows": {
+   "Debtor Days": [
+    85.0,
+    88.0,
+    114.0,
+    108.0,
+    94.0,
+    102.0,
+    118.0,
+    89.0,
+    73.0,
+    68.0,
+    67.0,
+    57.0
+   ],
+   "Inventory Days": [
+    109.0,
+    95.0,
+    114.0,
+    97.0,
+    95.0,
+    103.0,
+    103.0,
+    96.0,
+    79.0,
+    84.0,
+    87.0,
+    100.0
+   ],
+   "Days Payable": [
+    119.0,
+    97.0,
+    110.0,
+    110.0,
+    139.0,
+    139.0,
+    99.0,
+    68.0,
+    54.0,
+    63.0,
+    39.0,
+    55.0
+   ],
+   "Cash Conversion Cycle": [
+    75.0,
+    86.0,
+    119.0,
+    95.0,
+    49.0,
+    66.0,
+    121.0,
+    117.0,
+    99.0,
+    89.0,
+    115.0,
+    102.0
+   ],
+   "Working Capital Days": [
+    24.0,
+    32.0,
+    17.0,
+    28.0,
+    19.0,
+    61.0,
+    94.0,
+    81.0,
+    80.0,
+    71.0,
+    89.0,
+    80.0
+   ],
+   "ROCE %": [
+    null,
+    28.0,
+    23.0,
+    23.0,
+    29.0,
+    28.0,
+    21.0,
+    24.0,
+    26.0,
+    27.0,
+    21.0,
+    20.0
+   ]
+  },
+  "links": {}
+ },
+ "concalls": [
+  {
+   "period": "Oct 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4e54d4d8-32a5-4d3c-aca0-c9459e230fa8.pdf"
+  },
+  {
+   "period": "Aug 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fa259637-1212-4754-bdd1-a19b8210ea7e.pdf"
+  },
+  {
+   "period": "Aug 2026",
+   "transcript_url": null
+  },
+  {
+   "period": "May 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=449c4e34-2df5-4a50-9580-fd8169e26770.pdf"
+  },
+  {
+   "period": "Feb 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3c2c8796-1a97-4468-8799-109ec0490d86.pdf"
+  },
+  {
+   "period": "Jan 2026",
+   "transcript_url": null
+  },
+  {
+   "period": "Jan 2026",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=68f4e3b3-93bd-4e1d-b2ad-67d80051f893.pdf"
+  },
+  {
+   "period": "Oct 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "Oct 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "Aug 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bf2e5f23-9979-48e0-a9c2-ae9762b17c08.pdf"
+  },
+  {
+   "period": "Jul 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "Jul 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "May 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=45d3042e-4331-4ebb-aaff-451896db3643.pdf"
+  },
+  {
+   "period": "May 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "Feb 2025",
+   "transcript_url": "https://trendlyne.com/posts/4819839/kei-industries-ltd-517569-announcement-under-regulation-30-lodr-earnings-call-transcript"
+  },
+  {
+   "period": "Jan 2025",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ba3007c2-7545-4f27-b189-bcd0f1e7704b.pdf"
+  },
+  {
+   "period": "Oct 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Aug 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f565ec17-b2d6-4720-a6d3-43c4b9d34ad9.pdf"
+  },
+  {
+   "period": "May 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=de935307-cd16-4457-90df-826cc029e110.pdf"
+  },
+  {
+   "period": "Feb 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0c45f561-75d4-4138-be36-00e8e68e939c.pdf"
+  },
+  {
+   "period": "Jan 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6eabcde4-561b-4399-b927-7699f4334603.pdf"
+  },
+  {
+   "period": "Aug 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c82cb570-82d6-4f2b-8dc9-d55ab6de8413.pdf"
+  },
+  {
+   "period": "May 2023",
+   "transcript_url": null
+  },
+  {
+   "period": "May 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=23ecf7a7-f2ad-40eb-8d1c-6fade7d28307.pdf"
+  },
+  {
+   "period": "May 2023",
+   "transcript_url": null
+  },
+  {
+   "period": "Jan 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b0776c33-9921-4de0-90d7-561eb2bb83a1.pdf"
+  },
+  {
+   "period": "Oct 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f08f6034-69c7-461b-ac84-fd5b2379bc8f.pdf"
+  },
+  {
+   "period": "Aug 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8b8c5bb8-74e2-4467-b9bc-f2c9549a2f74.pdf"
+  },
+  {
+   "period": "May 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=a0ae543c-c82b-441b-9080-8290189ed91c.pdf"
+  },
+  {
+   "period": "Jan 2022",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2022/02/monarch-kei-ind-Jan-28-2022.pdf"
+  },
+  {
+   "period": "Oct 2021",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2021/11/monarch-keiindustries-oct28-2021.pdf"
+  },
+  {
+   "period": "Aug 2021",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2021/08/monarch-kei-aug02-2021.pdf"
+  },
+  {
+   "period": "May 2021",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2021/06/monarch-keiindus-may31-2021.pdf"
+  },
+  {
+   "period": "Jan 2021",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2021/02/KEI_Industries-3QFY21_Concall_Transcript.doc"
+  },
+  {
+   "period": "Nov 2020",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2021/01/Edelweiss-KEI-Industries-Nov03-2020.doc"
+  },
+  {
+   "period": "Sep 2020",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2020/09/KEI-AGM-dated-09092020-transcript.pdf"
+  },
+  {
+   "period": "Jun 2020",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2020/06/Edelweiss-Kei-02Jun-2020.doc"
+  },
+  {
+   "period": "Nov 2019",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2019/11/Edelweiss-KEI-Indutsries-Nov13-2019.docx"
+  },
+  {
+   "period": "Aug 2019",
+   "transcript_url": "https://www.kei-ind.com/wp-content/uploads/2019/08/con-call-Q1-2019.doc"
+  },
+  {
+   "period": "May 2019",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2019/05/Con-call-Q4-2018-19.pdf"
+  },
+  {
+   "period": "Feb 2019",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2019/02/con-call-Q3-2018.pdf"
+  },
+  {
+   "period": "Nov 2018",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2018/11/con-call-Q2-2018.pdf"
+  },
+  {
+   "period": "Aug 2018",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2018/11/con-call-Q1-2018.pdf"
+  },
+  {
+   "period": "May 2018",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/conf-call-qr-4-17-18.pdf"
+  },
+  {
+   "period": "Jan 2018",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/conf-call-qr-3-17-18.pdf"
+  },
+  {
+   "period": "Nov 2017",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2018/11/con-call-Q2-2017.pdf"
+  },
+  {
+   "period": "Aug 2017",
+   "transcript_url": "http://www.kei-ind.com/wp-content/uploads/2018/11/con-call-Q1-2017.pdf"
+  },
+  {
+   "period": "May 2017",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/AnandRathi-KEI-11May-2017.pdf"
+  },
+  {
+   "period": "Feb 2017",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/AnandRathi-KEIIndustries-Feb02-2017.pdf"
+  },
+  {
+   "period": "Nov 2016",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/AnandRathi-KEI_Industries-Nov07-2016.pdf"
+  },
+  {
+   "period": "Jul 2016",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/1QFY17_KEI_Industries_concall_transcript_July21_2016.pdf"
+  },
+  {
+   "period": "May 2016",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/AnandRathi_KEIEarnings_May23_2016.pdf"
+  },
+  {
+   "period": "Jan 2016",
+   "transcript_url": "http://www.kei-ind.com/wp-content/themes/keiind/pdf/conference/Concall_transcript_Jan25-2016.pdf"
+  }
+ ],
+ "filings": [
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
+   "ts": "2026-11-04T15:12:18+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=71d743be-ad95-4b18-8751-47634594d564.pdf"
+  },
+  {
+   "title": "Transcript Of Analysts/Investors Call Pertaining To The Un-Audited Financial Results For The Quarter Ended On September 30, 2026. 29 Oct",
+   "ts": "2026-10-29T17:24:55+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4e54d4d8-32a5-4d3c-aca0-c9459e230fa8.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
+   "ts": "2026-10-22T19:04:44+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=860a30b8-edbc-4a6f-85f6-ebf63c62afbe.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "ts": "2026-10-22T18:12:05+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2ae9ef96-7f76-4fde-86a0-18d3755a87dd.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "ts": "2026-10-22T17:54:11+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4b6be751-d34e-421c-8cc1-340cf9955922.pdf"
+  }
+ ],
+ "variant": "consolidated",
+ "url": "https://www.screener.in/company/KEI/consolidated/",
+ "fetched_at": "2026-11-15T21:50:10+05:30"
+}
