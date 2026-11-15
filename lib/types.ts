@@ -15,6 +15,10 @@ export interface ResultsCard {
   raw_pdf?: string | null;
   filing_url?: string | null;
   why_act?: string[];
+  filing_check?: {
+    status: "matched" | "mismatch" | "fallback" | "screener_only"; reason?: string; unit?: string; pages?: number[]; checked?: number;
+    lines?: Record<string, { filing: number; screener: number | null; match: boolean; quote: string; derived?: boolean }>;
+  };
 }
 
 export interface Person {

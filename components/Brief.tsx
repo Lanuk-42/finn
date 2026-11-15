@@ -424,6 +424,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
       <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">{filingLead(name, f)}</p>
 
       {results?.status === "ok" && <ResultsTable c={results} />}
+      {results?.status === "ok" && <FilingCheckLine c={results} />}
       {results && (() => {
         const link = promiseLink(results, pf);
         return link && (
@@ -463,6 +464,17 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
         <div className="mt-2 space-y-2 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
           <p>Ranked “act on” by the “{f.rule.replace(/[_+]/g, " ")}” rule, matched on the filing’s {f.basis === "pdf" ? "first page" : f.basis}.</p>
           {results?.why_act && results.why_act.length > 0 && <p>Kept as “act on” because: {results.why_act.join(", ")}. Results with none of these move to “Worth a look”.</p>}
+          {results?.filing_check?.status === "fallback" && <p>Filing check: {results.filing_check.reason}.</p>}
+          {results?.filing_check?.lines && (
+            <div>
+              <p>Checked against the results PDF{results.filing_check.pages ? ` (pages ${results.filing_check.pages.join(", ")})` : ""}{results.filing_check.unit ? `, units “${results.filing_check.unit}”` : ""}. A lite model copied each figure with its row; code found every row in the PDF, converted units and compared with screener (±1%):</p>
+              <ul className="mt-1 space-y-0.5">
+                {Object.entries(results.filing_check.lines).map(([k, v]) => (
+                  <li key={k} className="num">{LINE_NAME[k]}: filing {crore(v.filing)} · screener {crore(v.screener)} · {v.match ? "match" : v.derived ? "differs (derived from PBT, finance costs, depreciation and other income; definitions differ)" : "differs"}{!v.derived && <> · <span className="italic">“{v.quote.slice(0, 90)}”</span></>}</li>
+                ))}
+              </ul>
+            </div>
+          )}
           {results && <p>Numbers are from the screener.in quarterly table; QoQ, YoY and margins were computed in code. {results.raw_pdf && <a href={results.raw_pdf} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Table source</a>}</p>}
           {results?.is_bank && <p>Banks report no EBITDA line; revenue is total interest plus other income.</p>}
           {results?.status === "pending" && <p>{results.note}</p>}
@@ -478,7 +490,30 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
   );
 }
 
+const rowKey = (label: string) => ({ Revenue: "revenue", EBITDA: "ebitda", PBT: "pbt", PAT: "pat" } as Record<string, string>)[label];
+const LINE_NAME: Record<string, string> = { revenue: "Revenue", ebitda: "EBITDA", pbt: "PBT", pat: "PAT" };
+const crore = (n: number | null | undefined) => (n == null ? "—" : `₹${Math.round(n).toLocaleString("en-IN")} Cr`);
+
+/** Where the card's numbers come from: checked against the results PDF, flagged, or screener's figures as labelled. */
+function FilingCheckLine({ c }: { c: ResultsCard }) {
+  const fc = c.filing_check;
+  if (!fc) return null;
+  if (fc.status === "matched") {
+    return <p className="mt-2 text-[12px] font-semibold text-[var(--ink)]">✓ Verified against the filing{fc.checked && fc.checked < 3 ? ` (${fc.checked} of 3 lines readable)` : ""}</p>;
+  }
+  if (fc.status === "mismatch") {
+    const bad = Object.entries(fc.lines ?? {}).filter(([, v]) => !v.match && !v.derived);
+    return (
+      <p className="mt-2 text-[12px] leading-snug text-[var(--accent)]">
+        ⚑ The filing differs: {bad.map(([k, v]) => `${LINE_NAME[k]} ${crore(v.filing)} in the filing vs ${crore(v.screener)} shown`).join("; ")}. The table shows screener’s figure.
+      </p>
+    );
+  }
+  return <p className="mt-2 text-[12px] text-[var(--muted)]">Screener’s figures: {fc.status === "screener_only" ? "not checked against the filing (older than 30 days)" : /scanned|units|reliab/.test(fc.reason ?? "") ? "the filing is a scanned image FINN couldn’t read reliably" : "the filing couldn’t be checked"}.</p>;
+}
+
 function ResultsTable({ c }: { c: ResultsCard }) {
+  const flagged = new Set(Object.entries(c.filing_check?.status === "mismatch" ? c.filing_check.lines ?? {} : {}).filter(([, v]) => !v.match && !v.derived).map(([k]) => k));
   const rows: [string, Line | null | undefined, boolean][] = [
     ["Revenue", c.lines?.revenue, false], ["EBITDA", c.lines?.ebitda, !!c.is_bank], ["PBT", c.lines?.pbt, false], ["PAT", c.lines?.pat, false],
   ];
@@ -496,7 +531,7 @@ function ResultsTable({ c }: { c: ResultsCard }) {
         {rows.map(([label, l, na]) => (
           <tr key={label} className="border-t rule">
             <td className="py-1.5 text-[14px] text-[var(--muted)]">{label}</td>
-            <td className="py-1.5 text-right font-semibold">{l?.value != null ? l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : na ? "n/a" : "—"}</td>
+            <td className={`py-1.5 text-right font-semibold ${flagged.has(rowKey(label)) ? "text-[var(--accent)]" : ""}`}>{flagged.has(rowKey(label)) && "⚑ "}{l?.value != null ? l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : na ? "n/a" : "—"}</td>
             <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l ? fmtPct(l.qoq) : ""}</td>
             <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l ? fmtPct(l.yoy) : ""}</td>
           </tr>

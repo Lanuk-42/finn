@@ -11,13 +11,14 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from finn import classify, gemini, management, patterns, pdf, results  # noqa: E402
+from finn import classify, gemini, management, patterns, pdf, results, results_filing  # noqa: E402
 from finn.config import DATA, PORTFOLIO  # noqa: E402
 
 IST = timezone(timedelta(hours=5, minutes=30))
 NO_LLM = "--no-llm" in sys.argv
 MGMT_DAYS = 120   # management-change cards are built for filings this recent
 MOVE_DAYS = 90    # trading-day rows kept for the Moves panel
+FILING_CHECK_DAYS = 30  # results cards this recent are cross-checked against the results PDF
 TIER_ORDER = {"Act": 0, "Note": 1, "Routine": 2}
 ACT_ORDER = ["results", "management_change", "litigation", "M&A", "fund_raise", "credit_rating", "pledging"]
 
@@ -64,6 +65,12 @@ def build_filings(sym, raw, scr, now):
     for quarter, f in primaries.items():
         f["card"] = {"type": "results", **results.card(q, quarter)}
         f["card"]["filing_url"] = f["url"]
+        # Check the card's numbers against the results filing itself (recent cards only: lite model, cached by URL).
+        if f["card"]["status"] == "ok" and f.get("url") and (now - datetime.fromisoformat(f["ts"])).days <= FILING_CHECK_DAYS:
+            f["card"]["filing_check"] = results_filing.check(
+                f["url"], scr.get("variant") or "consolidated", quarter, f["card"], cache_key=f"results:v1:{f['url']}:{scr.get('variant')}:{quarter}")
+        elif f["card"]["status"] == "ok":
+            f["card"]["filing_check"] = {"status": "screener_only", "reason": f"older than {FILING_CHECK_DAYS} days: not checked against the filing"}
     for f in out:
         if f["category"] == "results" and "card" not in f:
             qtr = results.quarter_for_filing(f["ts"])
