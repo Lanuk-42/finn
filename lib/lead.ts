@@ -257,7 +257,7 @@ export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): Promis
     if (p.unit === "bps") {
       const v = actualValue(p);
       // a running ("so far") figure belongs only on the card for the quarter it runs through
-      if (v != null && (p.basis ?? "").trim().endsWith(c.quarter)) cands.push({ p, v: `Guided ${what} → ${v > 0 ? "+" : "−"}${Math.abs(v)} bps so far`, bad: isBad(p), score: 3 });
+      if (v != null && (p.basis ?? "").split(":")[0].trim().endsWith(c.quarter)) cands.push({ p, v: `Guided ${what} → ${v > 0 ? "+" : "−"}${Math.abs(v)} bps so far`, bad: isBad(p), score: 3 });
       continue;
     }
     let cur: number | null | undefined = null;
