@@ -1,20 +1,21 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Brief as BriefT, Filing, MgmtCard, ResultsCard, Stock } from "@/lib/types";
-import { CATEGORY_LABEL, cleanTitle, day, fyq, opSym, pct, pp, tone, when } from "@/lib/format";
+import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, ResultsCard } from "@/lib/types";
+import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
+import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
-  { d: 1, label: "24h", long: "last 24 hours" },
-  { d: 3, label: "3 days", long: "last 3 days" },
-  { d: 7, label: "7 days", long: "last 7 days" },
-  { d: 30, label: "30 days", long: "last 30 days" },
+  { d: 1, label: "24h", phrase: "today", span: "the last 24 hours" },
+  { d: 3, label: "3d", phrase: "this week", span: "the last 3 days" },
+  { d: 7, label: "7d", phrase: "this week", span: "the last 7 days" },
+  { d: 30, label: "30d", phrase: "this month", span: "the last 30 days" },
 ];
-const MIN_ACT = 3; // default window = the smallest one with at least this many Act cards
+const MIN_ACT = 3; // default window = the smallest one with at least this many Act items
 
 const tsMs = (ts: string) => new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime();
 
-/** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one card. */
+/** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one item. */
 function actGroupsFor(brief: BriefT, asOf: number, days: number) {
   const rank = (c: string) => { const i = brief.act_order.indexOf(c); return i < 0 ? 99 : i; };
   const act = brief.filings.filter((f) => f.tier === "Act" && asOf - tsMs(f.ts) <= days * 86400e3);
@@ -26,6 +27,16 @@ function actGroupsFor(brief: BriefT, asOf: number, days: number) {
   return groups.sort((a, b) => rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));
 }
 
+/** A change "matters" if it is a real decline (accent) or a large move (weight). Everything else stays quiet. */
+function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
+  if (n == null) return "text-[var(--faint)]";
+  if (kind === "pct" ? n <= -5 : n <= -1) return "text-[var(--accent)] font-semibold";
+  if (kind === "pct" ? n >= 15 : n >= 1) return "text-[var(--ink)] font-semibold";
+  return "text-[var(--ink-2)]";
+}
+const fmtPct = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}%`);
+const fmtPp = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}pp`);
+
 export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenStock: (s: string) => void }) {
   const asOf = new Date(brief.data_as_of).getTime();
   const autoWin = useMemo(
@@ -35,338 +46,336 @@ export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenSto
   const [win, setWin] = useState(autoWin);
   const [px, setPx] = useState(5);
   const [vx, setVx] = useState(2);
+  const [adjust, setAdjust] = useState(false);
   const [showRoutine, setShowRoutine] = useState(false);
-  const [showBreaches, setShowBreaches] = useState(false);
+  const [allBreaches, setAllBreaches] = useState(false);
+  const [howOpen, setHowOpen] = useState(false);
 
   const byId = useMemo(() => Object.fromEntries(brief.filings.map((f) => [f.id, f])), [brief.filings]);
   const stock = useMemo(() => Object.fromEntries(brief.stocks.map((s) => [s.symbol, s])), [brief.stocks]);
+  const nm = (sym: string) => shortName(sym, stock[sym]?.name);
 
+  const W = WINDOWS.find((w) => w.d === win)!;
   const inWin = (ts: string) => asOf - tsMs(ts) <= win * 86400e3;
   const filings = brief.filings.filter((f) => inWin(f.ts));
   const actGroups = useMemo(() => actGroupsFor(brief, asOf, win), [brief, asOf, win]);
-  const winLabel = WINDOWS.find((w) => w.d === win)!;
   const note = filings.filter((f) => f.tier === "Note");
   const routine = filings.filter((f) => f.tier === "Routine");
   const breaches = brief.stocks.filter((s) => s.thesis.status === "breach");
 
-  const moves = Object.entries(brief.moves)
-    .flatMap(([sym, rows]) => rows.filter((r) => inWin(r.date) && (Math.abs(r.pct) >= px || (r.volx ?? 0) >= vx)).map((r) => ({ sym, ...r })))
+  const rowsInWin = Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => inWin(r.date)).map((r) => ({ sym, ...r })));
+  const moves = rowsInWin
+    .filter((r) => Math.abs(r.pct) >= px || (r.volx ?? 0) >= vx)
     .sort((a, b) => b.date.localeCompare(a.date) || Math.abs(b.pct) - Math.abs(a.pct));
 
+  // For useful empty states: the last material event before this window, and the biggest move inside it.
+  const lastAct = brief.filings.filter((f) => f.tier === "Act" && !inWin(f.ts)).sort((a, b) => b.ts.localeCompare(a.ts))[0];
+  // No session inside the window (e.g. a weekend)? Fall back to the last trading session.
+  const pool = rowsInWin.length ? rowsInWin
+    : Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => r.date === brief.latest_trading_day).map((r) => ({ sym, ...r })));
+  const biggest = [...pool].sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))[0];
+  const n = actGroups.length;
+
   return (
-    <div className="px-4">
-      <header className="sticky top-0 z-20 -mx-4 border-b hairline bg-[var(--bg)]/95 px-4 pb-3 pt-[max(env(safe-area-inset-top),14px)] backdrop-blur">
-        <div className="flex items-baseline justify-between">
-          <h1 className="text-[22px] font-semibold tracking-tight">FINN</h1>
-          <span className="text-[12px] text-[var(--muted)]">{brief.stocks.length} holdings</span>
+    <div className="px-5">
+      {/* Masthead */}
+      <header className="pt-[max(env(safe-area-inset-top),18px)]">
+        <div className="flex items-baseline justify-between border-b-2 border-[var(--rule-strong)] pb-2">
+          <span className="serif text-[17px] font-bold tracking-[0.02em]">FINN</span>
+          <span className="label">Morning note · {new Date(brief.data_as_of).toLocaleDateString("en-IN", { timeZone: IST, weekday: "short", day: "numeric", month: "short" })}</span>
         </div>
-        <p className="num mt-1 text-[14px] leading-snug text-[var(--muted)]">
-          As of <span className="text-[var(--ink)]">{when(brief.data_as_of)}</span>,{" "}
-          <span className="text-[var(--ink)]">{filings.length}</span> filings checked,{" "}
-          <span className={actGroups.length ? "font-semibold text-[var(--act)]" : "text-[var(--ink)]"}>{actGroups.length}</span> need your attention
+        <h1 className="serif mt-5 text-[32px] font-semibold leading-[1.1] tracking-[-0.01em]">
+          {n === 0 ? <>Nothing needs you {W.phrase}</> : <><span className="num">{n}</span> {n === 1 ? "thing needs" : "things need"} you {W.phrase}</>}
+        </h1>
+        <p className="num mt-2 text-[14px] text-[var(--muted)]">
+          from {filings.length} filings across {brief.stocks.length} holdings · {when(brief.data_as_of)} IST
         </p>
-        <div role="tablist" aria-label="Time window" className="mt-3 grid grid-cols-4 gap-1 rounded-xl bg-[var(--chip)] p-1">
+        <nav aria-label="Time window" className="mt-4 flex gap-6 border-b rule">
           {WINDOWS.map((w) => (
-            <button
-              key={w.d}
-              role="tab"
-              aria-selected={win === w.d}
-              onClick={() => setWin(w.d)}
-              className={`num rounded-lg py-1.5 text-[13px] transition-colors ${win === w.d ? "bg-[var(--ink)] font-semibold text-[var(--bg)] shadow-sm" : "font-medium text-[var(--muted)]"}`}
-            >
+            <button key={w.d} onClick={() => setWin(w.d)} aria-pressed={win === w.d}
+              className={`num -mb-px border-b-2 pb-2 text-[14px] ${win === w.d ? "border-[var(--ink)] font-semibold text-[var(--ink)]" : "border-transparent text-[var(--faint)]"}`}>
               {w.label}
             </button>
           ))}
-        </div>
-        <p className="mt-1.5 text-[12px] text-[var(--muted)]">
-          Showing the <b className="text-[var(--ink)]">{winLabel.long}</b>
-          {win === autoWin && <span className="text-[var(--faint)]"> · auto: smallest window with {MIN_ACT}+ items to act on</span>}
-        </p>
+        </nav>
       </header>
 
-      {breaches.length > 0 && (
-        <section className="mt-4 overflow-hidden rounded-2xl border border-[var(--down)]/30 bg-[var(--act-bg)]">
-          <p className="flex items-center gap-2 px-4 pt-3 text-[12px] font-semibold uppercase tracking-wide text-[var(--down)]">
-            <span className="inline-block h-2 w-2 rounded-full bg-[var(--down)]" /> {breaches.length} thesis breach{breaches.length > 1 ? "es" : ""}
-          </p>
-          <ul className="mt-1 divide-y divide-[var(--down)]/15">
-            {(showBreaches ? breaches : breaches.slice(0, 3)).map((s) => <BreachRow key={s.symbol} s={s} onOpen={() => onOpenStock(s.symbol)} />)}
-          </ul>
-          {breaches.length > 3 && (
-            <button onClick={() => setShowBreaches((v) => !v)} className="w-full px-4 pb-3 pt-1 text-left text-[12px] font-medium text-[var(--down)]">
-              {showBreaches ? "Show fewer" : `+${breaches.length - 3} more`}
+      {/* Thesis */}
+      <Section label="Off thesis" right={breaches.length ? `${breaches.length} of ${brief.stocks.length}` : undefined}>
+        {breaches.length === 0 && <Empty>All {brief.stocks.length} holdings are on thesis.</Empty>}
+        {(allBreaches ? breaches : breaches.slice(0, 3)).map((s) => (
+          <Item key={s.symbol}>
+            <button onClick={() => onOpenStock(s.symbol)} className="block w-full text-left">
+              <p className="serif text-[17px] leading-snug">
+                <span className="text-[var(--accent)]">{breachLead(nm(s.symbol), s)}</span>
+              </p>
+              <p className="mt-1 text-[13px] leading-snug text-[var(--muted)]">You own it because: {s.thesis.why.charAt(0).toLowerCase() + s.thesis.why.slice(1)}.</p>
             </button>
-          )}
-        </section>
-      )}
-
-      <Section title="Act" count={actGroups.length} tone="act" hint="Material: results, management, legal, deals, equity raises">
-        {actGroups.length === 0 && <Empty>Nothing material in this window.</Empty>}
-        {actGroups.map((g) => <FilingCard key={g.lead.id} f={g.lead} earlier={g.earlier} onOpenStock={onOpenStock} />)}
+          </Item>
+        ))}
+        {breaches.length > 3 && (
+          <More onClick={() => setAllBreaches((v) => !v)}>{allBreaches ? "Show fewer" : `${breaches.length - 3} more off thesis`}</More>
+        )}
       </Section>
 
-      <Section title="Moves" count={moves.length} tone="ink" hint="End-of-day price or volume beyond your thresholds">
-        <Thresholds px={px} vx={vx} setPx={setPx} setVx={setVx} />
-        {moves.length === 0 && <Empty>No stock crossed ±{px}% or {vx.toFixed(1)}× volume.</Empty>}
-        <div className="card divide-y divide-[var(--line)] overflow-hidden">
-          {moves.map((m) => (
-            <MoveRow key={m.sym + m.date} m={m} order={brief.act_order} linked={m.filings.map((id) => byId[id]).filter(Boolean)} name={stock[m.sym]?.name} px={px} vx={vx} onOpen={() => onOpenStock(m.sym)} />
-          ))}
-        </div>
+      {/* Act */}
+      <Section label="Act on" right={n ? String(n) : undefined}>
+        {n === 0 && (
+          <Empty>
+            Quiet {W.phrase === "today" ? "day" : W.phrase.replace("this ", "")}.{" "}
+            {lastAct ? <>Last material event: {lastEventText(nm(lastAct.symbol), lastAct)}, {day(lastAct.ts)}.</> : "Nothing material in 30 days."}
+          </Empty>
+        )}
+        {actGroups.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} onOpenStock={onOpenStock} />)}
       </Section>
 
-      <Section title="Note" count={note.length} tone="note" hint="Worth a glance: transcripts, ratings, orders, dividends">
-        {note.length === 0 && <Empty>Nothing to note.</Empty>}
-        <div className="card divide-y divide-[var(--line)] overflow-hidden">
-          {note.map((f) => <CompactRow key={f.id} f={f} onOpenStock={onOpenStock} />)}
-        </div>
-      </Section>
-
-      <section className="mt-6">
-        <button onClick={() => setShowRoutine((v) => !v)} className="flex w-full items-center justify-between py-2 text-left">
-          <span className="text-[13px] font-medium text-[var(--muted)]">
-            {routine.length} routine filings hidden
-            <span className="ml-1 text-[var(--faint)]">· investor meets, ad copies, compliance certificates</span>
-          </span>
-          <span className="text-[13px] text-[var(--muted)]">{showRoutine ? "Hide" : "Show"}</span>
-        </button>
-        {showRoutine && (
-          <div className="card divide-y divide-[var(--line)] overflow-hidden opacity-80">
-            {routine.map((f) => <CompactRow key={f.id} f={f} onOpenStock={onOpenStock} />)}
+      {/* Moves */}
+      <Section
+        label="Moves"
+        right={
+          <button onClick={() => setAdjust((v) => !v)} className="num text-[12px] text-[var(--muted)]">
+            ±{px}% · {vx.toFixed(1)}× vol · <span className="link text-[var(--ink)]">{adjust ? "Done" : "Adjust"}</span>
+          </button>
+        }
+      >
+        {adjust && (
+          <div className="grid grid-cols-2 gap-5 border-b rule py-3">
+            <label className="block text-[12px] text-[var(--muted)]">
+              Price move <b className="num float-right text-[var(--ink)]">±{px}%</b>
+              <input type="range" min={1} max={15} step={0.5} value={px} onChange={(e) => setPx(Number(e.target.value))} className="mt-2 w-full" aria-label="Price move threshold" />
+            </label>
+            <label className="block text-[12px] text-[var(--muted)]">
+              Volume vs 20-day avg <b className="num float-right text-[var(--ink)]">{vx.toFixed(1)}×</b>
+              <input type="range" min={1.2} max={6} step={0.1} value={vx} onChange={(e) => setVx(Number(e.target.value))} className="mt-2 w-full" aria-label="Volume threshold" />
+            </label>
           </div>
         )}
-      </section>
+        {moves.length === 0 && (
+          <Empty>
+            No holding moved ±{px}% or traded {vx.toFixed(1)}× its usual volume.
+            {biggest && <> {rowsInWin.length ? "Biggest move" : `Last session (${day(biggest.date)}), biggest move`}: {nm(biggest.sym)} {fmtPct(biggest.pct)}{rowsInWin.length ? ` on ${day(biggest.date)}` : ""}.</>}
+          </Empty>
+        )}
+        {moves.map((m) => {
+          const linked = m.filings.map((id) => byId[id]).filter(Boolean) as Filing[];
+          const rank = (f: Filing) => ({ Act: 0, Note: 1, Routine: 2 })[f.tier] * 100 + (brief.act_order.indexOf(f.category) < 0 ? 50 : brief.act_order.indexOf(f.category));
+          const material = linked.filter((f) => f.tier !== "Routine").sort((a, b) => rank(a) - rank(b));
+          return <MoveItem key={m.sym + m.date} m={m} sym={m.sym} name={nm(m.sym)} reason={material[0]} linkedCount={linked.length} px={px} vx={vx} onOpen={() => onOpenStock(m.sym)} />;
+        })}
+      </Section>
 
-      <footer className="mt-8 space-y-1 pb-4 text-[11px] leading-relaxed text-[var(--faint)]">
-        <p>Filings: BSE corporate announcements (NSE API blocks cloud IPs; BSE is the fallback). Prices: Yahoo Finance EOD, last session {day(brief.latest_trading_day)}. Results numbers: screener.in quarterly tables.</p>
-        <p>Tiers are decided by rules in code, not by a model. Every number is computed from the tables; every quote is checked against the filing text.</p>
-      </footer>
+      {/* Note */}
+      <Section label="Worth a look" right={note.length ? String(note.length) : undefined}>
+        {note.length === 0 && <Empty>Nothing else worth a look in {W.span}.</Empty>}
+        {note.map((f) => <CompactItem key={f.id} f={f} name={nm(f.symbol)} onOpenStock={onOpenStock} />)}
+      </Section>
+
+      {/* Routine */}
+      {routine.length > 0 && <div className="mt-8 border-t rule pt-3">
+        <button onClick={() => setShowRoutine((v) => !v)} className="flex w-full items-baseline justify-between text-left text-[14px] text-[var(--muted)]">
+          <span><span className="num text-[var(--ink)]">{routine.length}</span> routine filings set aside</span>
+          <span className="link text-[13px]">{showRoutine ? "Hide" : "Show"}</span>
+        </button>
+        {showRoutine && <div className="mt-1 opacity-80">{routine.map((f) => <CompactItem key={f.id} f={f} name={nm(f.symbol)} onOpenStock={onOpenStock} />)}</div>}
+      </div>}
+
+      {/* Method */}
+      <div className="mt-6 border-t rule pb-6 pt-3">
+        <button onClick={() => setHowOpen((v) => !v)} className="link text-[13px] text-[var(--muted)]">How FINN checked this</button>
+        {howOpen && (
+          <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-[var(--muted)]">
+            <li>Window: {W.span}.{win === autoWin && ` Picked automatically as the shortest window with at least ${MIN_ACT} items to act on.`}</li>
+            <li>Filings come from BSE corporate announcements; NSE’s API blocks cloud servers, so BSE is the fallback. Prices are Yahoo Finance end-of-day, last session {day(brief.latest_trading_day)}. Results numbers come from screener.in quarterly tables.</li>
+            <li>Act, Worth a look and Routine are decided by fixed rules in code, not by a model. Every number is computed from the tables; every quoted name, tenure and bio was checked word-for-word against the filing.</li>
+            <li>A move counts when the close changes by at least ±{px}% or volume is {vx.toFixed(1)}× its prior 20-day average. It is linked to filings from the same day or since the previous session; routine paperwork does not count as an explanation.</li>
+            <li>Thesis lines are checked against the latest reported quarter.</li>
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
 
-function Section({ title, count, tone, hint, children }: { title: string; count: number; tone: "act" | "note" | "ink"; hint: string; children: React.ReactNode }) {
-  const color = tone === "act" ? "text-[var(--act)]" : tone === "note" ? "text-[var(--note)]" : "text-[var(--ink)]";
+function lastEventText(name: string, f: Filing) {
+  if (f.card?.type === "results") return `${name} ${fyq(f.card.quarter)} results`;
+  return `${name} ${(CATEGORY_LABEL[f.category] ?? f.category).toLowerCase()} filing`;
+}
+
+// ---------------------------------------------------------------- layout primitives
+function Section({ label, right, children }: { label: string; right?: React.ReactNode; children: React.ReactNode }) {
   return (
-    <section className="mt-6">
-      <div className="mb-2 flex items-baseline gap-2">
-        <h2 className={`text-[15px] font-semibold ${color}`}>{title}</h2>
-        <span className="num text-[13px] text-[var(--faint)]">{count}</span>
-        <span className="ml-auto truncate text-[11px] text-[var(--faint)]">{hint}</span>
+    <section className="mt-9">
+      <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
+        <h2 className="label !text-[var(--ink)]">{label}</h2>
+        {typeof right === "string" ? <span className="num text-[12px] text-[var(--muted)]">{right}</span> : right}
       </div>
-      <div className="space-y-2.5">{children}</div>
+      <div>{children}</div>
     </section>
   );
 }
 
+function Item({ children }: { children: React.ReactNode }) {
+  return <article className="border-b rule py-4">{children}</article>;
+}
+
 function Empty({ children }: { children: React.ReactNode }) {
-  return <p className="rounded-xl border border-dashed hairline px-3 py-3 text-[13px] text-[var(--muted)]">{children}</p>;
+  return <p className="serif border-b rule py-4 text-[16px] leading-snug text-[var(--ink-2)]">{children}</p>;
 }
 
-function BreachRow({ s, onOpen }: { s: Stock; onOpen: () => void }) {
-  return (
-    <li>
-      <button onClick={onOpen} className="w-full px-4 py-2.5 text-left">
-        <p className="num text-[14px] leading-snug">
-          <b>{s.symbol}</b> <span className="text-[var(--muted)]">{s.thesis.rule.split(/ [<>]=/)[0]}</span>{" "}
-          <b className="text-[var(--down)]">{s.thesis.actual}%</b>
-          <span className="text-[var(--muted)]"> vs your {opSym(s.thesis.op)} {s.thesis.value}% · {fyq(s.thesis.quarter)}</span>
-        </p>
-        <p className="mt-0.5 truncate text-[12px] text-[var(--muted)]">Why you own it: {s.thesis.why}</p>
-      </button>
-    </li>
-  );
+function More({ children, onClick }: { children: React.ReactNode; onClick: () => void }) {
+  return <button onClick={onClick} className="link py-3 text-[13px] text-[var(--muted)]">{children}</button>;
 }
 
-function Thresholds({ px, vx, setPx, setVx }: { px: number; vx: number; setPx: (n: number) => void; setVx: (n: number) => void }) {
+function Meta({ sym, kind, ts, onOpen }: { sym: string; kind?: string; ts: string; onOpen: () => void }) {
   return (
-    <div className="card grid grid-cols-2 gap-4 px-4 py-3">
-      <label className="block">
-        <span className="flex justify-between text-[12px] text-[var(--muted)]">Price move <b className="num text-[var(--ink)]">±{px}%</b></span>
-        <input type="range" min={1} max={15} step={0.5} value={px} onChange={(e) => setPx(Number(e.target.value))} className="mt-2 w-full" aria-label="Price move threshold" />
-      </label>
-      <label className="block">
-        <span className="flex justify-between text-[12px] text-[var(--muted)]">Volume <b className="num text-[var(--ink)]">{vx.toFixed(1)}×</b></span>
-        <input type="range" min={1.2} max={6} step={0.1} value={vx} onChange={(e) => setVx(Number(e.target.value))} className="mt-2 w-full" aria-label="Volume threshold" />
-        <span className="text-[10px] text-[var(--faint)]">vs prior 20-day average</span>
-      </label>
+    <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
+      <button onClick={onOpen} className="font-semibold text-[var(--ink)]">{sym}</button>
+      {kind && <span className="text-[var(--muted)]">{kind}</span>}
+      <span className="num ml-auto normal-case tracking-normal text-[12px] text-[var(--faint)]">{when(ts)}</span>
     </div>
   );
 }
 
-function MoveRow({ m, linked, order, name, px, vx, onOpen }: {
-  m: { sym: string; date: string; pct: number; volx: number | null; explained: boolean }; linked: Filing[]; order: string[]; name?: string; px: number; vx: number; onOpen: () => void;
-}) {
-  const rank = (f: Filing) => ({ Act: 0, Note: 1, Routine: 2 })[f.tier] * 100 + (order.indexOf(f.category) < 0 ? 50 : order.indexOf(f.category));
-  const material = linked.filter((f) => f.tier !== "Routine").sort((a, b) => rank(a) - rank(b));
-  const reason = material[0];
-  return (
-    <div className="px-4 py-3">
-      <div className="flex items-baseline gap-2">
-        <button onClick={onOpen} className="text-[14px] font-semibold">{m.sym}</button>
-        <span className="truncate text-[12px] text-[var(--faint)]">{name}</span>
-        <span className="num ml-auto text-[12px] text-[var(--muted)]">{day(m.date)}</span>
-      </div>
-      <div className="num mt-0.5 flex gap-3 text-[13px]">
-        <span className={`${tone(m.pct)} ${Math.abs(m.pct) >= px ? "font-semibold" : ""}`}>{pct(m.pct)}</span>
-        <span className={(m.volx ?? 0) >= vx ? "font-semibold" : "text-[var(--muted)]"}>{m.volx?.toFixed(1)}× vol</span>
-      </div>
-      {reason ? (
-        <p className="mt-1 text-[13px] leading-snug text-[var(--muted)]">
-          <span className="text-[var(--ink)]">Filed {day(reason.ts)}:</span> {shortTitle(reason)}
-          {material.length > 1 && <span className="text-[var(--faint)]"> · +{material.length - 1} more</span>}
-        </p>
-      ) : (
-        <p className="mt-1 inline-block rounded-md bg-[var(--warn-bg)] px-2 py-0.5 text-[12px] font-medium text-[var(--warn)]">
-          {linked.length ? "Only routine paperwork filed: move unexplained" : "No filing found"}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function shortTitle(f: Filing): string {
-  if (f.card?.type === "results") return `${fyq(f.card.quarter)} results`;
-  const t = cleanTitle(f.title);
-  return `${CATEGORY_LABEL[f.category] ?? f.category} · ${t.length > 70 ? t.slice(0, 68) + "…" : t}`;
-}
-
-/** One-line read of a results card, computed from the numbers (no model). */
-function resultsRead(c: ResultsCard): string | null {
-  const r = c.lines?.revenue?.yoy, p = c.lines?.pat?.yoy;
-  if (r == null || p == null) return null;
-  const m = c.ebitda_margin?.yoy_pp;
-  const mtxt = m != null && Math.abs(m) >= 0.5 ? `; EBITDA margin ${m > 0 ? "up" : "down"} ${Math.abs(m).toFixed(1)}pp` : "";
-  if (r >= 0 && p < 0) return `Revenue up ${r.toFixed(0)}% YoY but PAT down ${Math.abs(p).toFixed(0)}%${mtxt}`;
-  if (r < 0 && p >= 0) return `PAT up ${p.toFixed(0)}% YoY despite revenue down ${Math.abs(r).toFixed(0)}%${mtxt}`;
-  return `Revenue ${pct(r, 0)} YoY, PAT ${pct(p, 0)}${mtxt}`;
-}
-
-function CompactRow({ f, onOpenStock }: { f: Filing; onOpenStock: (s: string) => void }) {
-  const head = f.headline && f.headline.toLowerCase() !== f.title.toLowerCase() && !/^(disclosure|announcement|intimation) under/i.test(f.headline) ? f.headline : "";
-  return (
-    <div className="px-4 py-2.5">
-      <div className="flex items-baseline gap-2 text-[12px]">
-        <button onClick={() => onOpenStock(f.symbol)} className="font-semibold text-[var(--ink)]">{f.symbol}</button>
-        <span className="text-[var(--faint)]">{CATEGORY_LABEL[f.category] ?? f.category}</span>
-        <span className="num ml-auto text-[var(--faint)]">{when(f.ts)}</span>
-      </div>
-      <a href={f.url ?? undefined} target="_blank" rel="noreferrer" className="clamp-2 mt-0.5 block text-[14px] leading-snug">
-        {head || cleanTitle(f.title)}
-      </a>
-    </div>
-  );
-}
-
-function FilingCard({ f, earlier = [], onOpenStock }: { f: Filing; earlier?: Filing[]; onOpenStock: (s: string) => void }) {
+// ---------------------------------------------------------------- Act
+function ActItem({ f, earlier, name, onOpenStock }: { f: Filing; earlier: Filing[]; name: string; onOpenStock: (s: string) => void }) {
+  const [how, setHow] = useState(false);
   const [showEarlier, setShowEarlier] = useState(false);
-  const isResults = f.card?.type === "results" && f.card.status === "ok";
-  const head = f.headline && f.headline.toLowerCase() !== f.title.toLowerCase() && !/^(disclosure|announcement|intimation) under/i.test(f.headline) ? f.headline : "";
+  const results = f.card?.type === "results" ? f.card : null;
+  const mgmt = f.card?.type === "management" ? f.card : null;
   return (
-    <article className="card overflow-hidden">
-      <div className="px-4 pt-3">
-        <div className="flex items-center gap-2 text-[12px]">
-          <button onClick={() => onOpenStock(f.symbol)} className="rounded-md bg-[var(--ink)] px-1.5 py-0.5 font-semibold text-[var(--bg)]">{f.symbol}</button>
-          <span className="font-medium text-[var(--act)]">{CATEGORY_LABEL[f.category] ?? f.category}</span>
-          <span className="num ml-auto text-[var(--faint)]">{when(f.ts)}</span>
+    <Item>
+      <Meta sym={f.symbol} kind={results ? `${fyq(results.quarter)} results` : CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
+      <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">{filingLead(name, f)}</p>
+
+      {results?.status === "ok" && <ResultsTable c={results} />}
+      {mgmt && mgmt.people.length > 0 && <People c={mgmt} />}
+
+      {earlier.length > 0 && (
+        <div className="mt-2">
+          <button onClick={() => setShowEarlier((v) => !v)} className="link text-[13px] text-[var(--muted)]">
+            {showEarlier ? "Hide earlier updates" : `${earlier.length} earlier update${earlier.length > 1 ? "s" : ""} on this`}
+          </button>
+          {showEarlier && (
+            <ul className="mt-2 space-y-1.5 border-l rule pl-3">
+              {earlier.map((e) => (
+                <li key={e.id} className="text-[13px] leading-snug text-[var(--ink-2)]">
+                  <span className="num text-[var(--faint)]">{day(e.ts)}</span>{" "}
+                  <a href={e.url ?? undefined} target="_blank" rel="noreferrer" className="link">{sentenceCase(tidy(isBoiler(e.headline, e.title) ? cleanTitle(e.title) : e.headline))}</a>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-        <h3 className="mt-2 text-[15px] font-medium leading-snug">
-          {f.card?.type === "results" ? `${fyq(f.card.quarter)} results` : cleanTitle(f.title)}
-        </h3>
-        {isResults && resultsRead(f.card as ResultsCard) && <p className="mt-0.5 text-[13px] leading-snug text-[var(--muted)]">{resultsRead(f.card as ResultsCard)}</p>}
-        {head && !f.card && <p className="clamp-2 mt-1 text-[13px] leading-snug text-[var(--muted)]">{head}</p>}
-        {earlier.length > 0 && (
-          <button onClick={() => setShowEarlier((v) => !v)} className="mt-1.5 text-[12px] font-medium text-[var(--muted)] underline decoration-[var(--line)] underline-offset-2">
-            {showEarlier ? "Hide" : `+${earlier.length} earlier update${earlier.length > 1 ? "s" : ""} on this`}
-          </button>
-        )}
-        {showEarlier && (
-          <ul className="mt-1.5 space-y-1 border-l-2 hairline pl-3">
-            {earlier.map((e) => (
-              <li key={e.id} className="text-[12px] leading-snug text-[var(--muted)]">
-                <span className="num text-[var(--faint)]">{when(e.ts)}</span> · <a href={e.url ?? undefined} target="_blank" rel="noreferrer" className="underline decoration-[var(--line)] underline-offset-2">{e.headline || cleanTitle(e.title)}</a>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-      {f.card?.type === "results" && <ResultsBody c={f.card} />}
-      {f.card?.type === "management" && <MgmtBody c={f.card} headline={head} />}
-      <div className="mt-3 flex items-center gap-3 border-t hairline px-4 py-2 text-[12px]">
-        {f.url && <a href={f.url} target="_blank" rel="noreferrer" className="font-medium text-[var(--ink)] underline decoration-[var(--line)] underline-offset-2">Filing PDF</a>}
-        {f.card?.type === "results" && f.card.raw_pdf && <a href={f.card.raw_pdf} target="_blank" rel="noreferrer" className="text-[var(--muted)] underline decoration-[var(--line)] underline-offset-2">Table source</a>}
-        <span className="ml-auto truncate font-mono text-[10px] text-[var(--faint)]">rule: {f.rule} · {f.basis}</span>
-      </div>
-    </article>
-  );
-}
-
-function ResultsBody({ c }: { c: ResultsCard }) {
-  if (c.status !== "ok" || !c.lines) {
-    return <p className="mx-4 mt-2 rounded-lg bg-[var(--warn-bg)] px-3 py-2 text-[13px] text-[var(--warn)]">{c.note}</p>;
-  }
-  const rows: [string, keyof NonNullable<ResultsCard["lines"]>][] = [["Revenue", "revenue"], ["EBITDA", "ebitda"], ["PBT", "pbt"], ["PAT", "pat"]];
-  return (
-    <div className="mt-3 px-4">
-      <div className="num grid grid-cols-[1fr_auto_auto_auto] items-baseline gap-x-4 gap-y-1.5 text-[13px]">
-        <span className="text-[11px] uppercase tracking-wide text-[var(--faint)]">{c.quarter}</span>
-        <span className="text-right text-[11px] uppercase tracking-wide text-[var(--faint)]">₹ Cr</span>
-        <span className="text-right text-[11px] uppercase tracking-wide text-[var(--faint)]">QoQ</span>
-        <span className="text-right text-[11px] uppercase tracking-wide text-[var(--faint)]">YoY</span>
-        {rows.map(([label, k]) => {
-          const l = c.lines![k];
-          return (
-            <Fragment4 key={k}>
-              <span className="text-[var(--muted)]">{label}</span>
-              <span className="text-right font-medium">{l ? l.value?.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : "—"}</span>
-              <span className={`text-right ${tone(l?.qoq)}`}>{l ? pct(l.qoq) : c.is_bank && k === "ebitda" ? "n/a" : "—"}</span>
-              <span className={`text-right ${tone(l?.yoy)}`}>{l ? pct(l.yoy) : c.is_bank && k === "ebitda" ? "bank" : "—"}</span>
-            </Fragment4>
-          );
-        })}
-      </div>
-      {c.ebitda_margin && (
-        <p className="num mt-2 text-[12px] text-[var(--muted)]">
-          EBITDA margin <b className="text-[var(--ink)]">{c.ebitda_margin.value}%</b>
-          <span className={`ml-2 ${tone(c.ebitda_margin.qoq_pp)}`}>{pp(c.ebitda_margin.qoq_pp)} QoQ</span>
-          <span className={`ml-2 ${tone(c.ebitda_margin.yoy_pp)}`}>{pp(c.ebitda_margin.yoy_pp)} YoY</span>
-        </p>
       )}
-      {c.is_bank && <p className="mt-1 text-[11px] text-[var(--faint)]">Banks report no EBITDA line; revenue is total interest + other income.</p>}
-    </div>
+
+      <div className="mt-3 flex items-baseline gap-4 text-[13px] text-[var(--muted)]">
+        {f.url && <a href={f.url} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Filing</a>}
+        <button onClick={() => setHow((v) => !v)} className="link">How FINN checked this</button>
+      </div>
+      {how && (
+        <div className="mt-2 space-y-2 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
+          <p>Ranked “act on” by the “{f.rule.replace(/[_+]/g, " ")}” rule, matched on the filing’s {f.basis === "pdf" ? "first page" : f.basis}.</p>
+          {results && <p>Numbers are from the screener.in quarterly table; QoQ, YoY and margins were computed in code. {results.raw_pdf && <a href={results.raw_pdf} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Table source</a>}</p>}
+          {results?.is_bank && <p>Banks report no EBITDA line; revenue is total interest plus other income.</p>}
+          {results?.status === "pending" && <p>{results.note}</p>}
+          {mgmt && (
+            <>
+              <p>A model only copied names and sentences out of the filing; each was found word-for-word in the filing text before it was shown, and code decided who joined or left.{mgmt.dropped ? ` ${mgmt.dropped} unverifiable entr${mgmt.dropped > 1 ? "ies were" : "y was"} dropped.` : ""}{mgmt.note ? ` ${mgmt.note}.` : ""}</p>
+              {mgmt.people.map((p, i) => <blockquote key={i} className="serif italic text-[var(--ink-2)]">“{p.evidence}”</blockquote>)}
+            </>
+          )}
+        </div>
+      )}
+    </Item>
   );
 }
 
-function Fragment4({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+function ResultsTable({ c }: { c: ResultsCard }) {
+  const rows: [string, Line | null | undefined, boolean][] = [
+    ["Revenue", c.lines?.revenue, false], ["EBITDA", c.lines?.ebitda, !!c.is_bank], ["PBT", c.lines?.pbt, false], ["PAT", c.lines?.pat, false],
+  ];
+  return (
+    <table className="num mt-3 w-full text-[15px]">
+      <thead>
+        <tr className="text-[11px] uppercase tracking-[0.08em] text-[var(--faint)]">
+          <th className="pb-1 text-left font-medium">₹ crore</th>
+          <th className="pb-1 text-right font-medium">{fyq(c.quarter).replace(" ", " ")}</th>
+          <th className="pb-1 text-right font-medium">QoQ</th>
+          <th className="pb-1 text-right font-medium">YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map(([label, l, na]) => (
+          <tr key={label} className="border-t rule">
+            <td className="py-1.5 text-[14px] text-[var(--muted)]">{label}</td>
+            <td className="py-1.5 text-right font-semibold">{l?.value != null ? l.value.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : na ? "n/a" : "—"}</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(l?.qoq)}`}>{l ? fmtPct(l.qoq) : ""}</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(l?.yoy)}`}>{l ? fmtPct(l.yoy) : ""}</td>
+          </tr>
+        ))}
+        {c.ebitda_margin && (
+          <tr className="border-t rule">
+            <td className="py-1.5 text-[14px] text-[var(--muted)]">EBITDA margin</td>
+            <td className="py-1.5 text-right font-semibold">{c.ebitda_margin.value}%</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.qoq_pp, "pp")}`}>{fmtPp(c.ebitda_margin.qoq_pp)}</td>
+            <td className={`py-1.5 pl-3 text-right ${sig(c.ebitda_margin.yoy_pp, "pp")}`}>{fmtPp(c.ebitda_margin.yoy_pp)}</td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+  );
 }
 
-function MgmtBody({ c, headline }: { c: MgmtCard; headline: string }) {
-  const [open, setOpen] = useState<number | null>(null);
-  if (!c.people.length) {
-    return <p className="mx-4 mt-1 text-[13px] leading-snug text-[var(--muted)]">{headline || c.note || "Names could not be verified in the filing text: open the PDF."}</p>;
-  }
-  const badge = { joined: "bg-[var(--up)]/15 text-[var(--up)]", left: "bg-[var(--down)]/15 text-[var(--down)]", reappointed: "chip text-[var(--muted)]", redesignated: "chip text-[var(--muted)]" };
+function People({ c }: { c: MgmtCard }) {
   return (
-    <ul className="mt-2 space-y-2.5 px-4">
+    <ul className="mt-3 space-y-3">
       {c.people.map((p, i) => (
-        <li key={i} className="rounded-xl bg-[var(--bg)] px-3 py-2.5">
-          <div className="flex items-start gap-2">
-            <span className={`mt-0.5 shrink-0 rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide ${badge[p.change]}`}>{p.change}</span>
-            <div className="min-w-0">
-              <p className="text-[14px] font-semibold leading-tight">{p.name.replace(/^(Mr\.|Ms\.|Mrs\.|Dr\.|Shri)\s*/i, "")}</p>
-              <p className="text-[12px] leading-snug text-[var(--muted)]">{p.role}</p>
-            </div>
-          </div>
-          {p.change === "left" && p.tenure && <p className="mt-1.5 text-[12px] leading-snug text-[var(--muted)]">Tenure: “{p.tenure}”</p>}
-          {p.bio && <p className="clamp-2 mt-1.5 text-[13px] leading-snug">{p.bio}</p>}
-          {p.change !== "left" && !p.bio && <p className="mt-1.5 text-[12px] text-[var(--faint)]">No background given in the filing.</p>}
-          <button onClick={() => setOpen(open === i ? null : i)} className="mt-1.5 text-[11px] font-medium text-[var(--muted)] underline decoration-[var(--line)] underline-offset-2">
-            {open === i ? "Hide source" : "Source quote ✓ verified"}
-          </button>
-          {open === i && <blockquote className="mt-1 border-l-2 hairline pl-2 text-[12px] italic leading-snug text-[var(--muted)]">“{p.evidence}”</blockquote>}
+        <li key={i} className="border-t rule pt-2.5">
+          <p className="text-[15px] leading-snug">
+            <span className="label mr-2 !text-[var(--muted)]">{p.change}</span>
+            <b className="font-semibold">{cleanName(p.name)}</b>
+          </p>
+          <p className="text-[13px] leading-snug text-[var(--muted)]">{tidyRole(p.role)}</p>
+          {p.change === "left" && p.tenure && <p className="serif mt-1 text-[14px] italic leading-snug text-[var(--ink-2)]">“{tidyProse(p.tenure)}”</p>}
+          {p.bio && <p className="mt-1 text-[14px] leading-snug text-[var(--ink-2)]">{tidyProse(p.bio)}</p>}
+          {p.change !== "left" && !p.bio && <p className="mt-1 text-[13px] text-[var(--faint)]">No background given in the filing.</p>}
         </li>
       ))}
     </ul>
   );
 }
+
+// ---------------------------------------------------------------- Moves, Notes
+function MoveItem({ m, sym, name, reason, linkedCount, px, vx, onOpen }: {
+  m: MoveRow; sym: string; name: string; reason?: Filing; linkedCount: number; px: number; vx: number; onOpen: () => void;
+}) {
+  const [what, why] = moveLead(name, m, reason, linkedCount, px, vx);
+  return (
+    <Item>
+      <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
+        <button onClick={onOpen} className="font-semibold text-[var(--ink)]">{sym}</button>
+        <span className="num ml-auto normal-case tracking-normal text-[12px] text-[var(--faint)]">{day(m.date)}</span>
+      </div>
+      <div className="mt-1 flex items-start gap-4">
+        <p className="serif flex-1 text-[17px] leading-snug">{what} <span className={reason ? "" : "text-[var(--accent)]"}>{why}</span></p>
+        <div className="num shrink-0 text-right leading-tight">
+          <p className={`text-[17px] font-semibold ${m.pct <= -px ? "text-[var(--accent)]" : ""}`}>{fmtPct(m.pct)}</p>
+          <p className="text-[12px] text-[var(--muted)]">{m.volx?.toFixed(1)}× vol</p>
+        </div>
+      </div>
+    </Item>
+  );
+}
+
+function CompactItem({ f, name, onOpenStock }: { f: Filing; name: string; onOpenStock: (s: string) => void }) {
+  const text = noteText(f);
+  return (
+    <div className="border-b rule py-3">
+      <Meta sym={f.symbol} kind={CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
+      <a href={f.url ?? undefined} target="_blank" rel="noreferrer" aria-label={`${name}: ${text}`} className="mt-1 block text-[15px] leading-snug text-[var(--ink)]">
+        {text}
+      </a>
+    </div>
+  );
+}
+

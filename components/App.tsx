@@ -16,22 +16,22 @@ export default function App({ brief, promises }: { brief: BriefT; promises: Prom
   };
 
   return (
-    <div className="mx-auto min-h-dvh max-w-[560px] pb-24">
+    <div className="mx-auto min-h-dvh max-w-[560px] pb-20">
       {tab === "brief" ? (
         <Brief brief={brief} onOpenStock={openResearch} />
       ) : (
         <Research promises={promises} stocks={brief.stocks} initial={researchTicker} />
       )}
 
-      <nav className="fixed inset-x-0 bottom-0 z-30 border-t hairline bg-[var(--card)]/95 backdrop-blur">
-        <div className="mx-auto grid max-w-[560px] grid-cols-2 px-4 pb-[max(env(safe-area-inset-bottom),8px)] pt-2">
+      <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--ink)] bg-[var(--paper)]">
+        <div className="mx-auto grid max-w-[560px] grid-cols-2 px-5 pb-[max(env(safe-area-inset-bottom),10px)]">
           {(["brief", "research"] as const).map((t) => (
             <button
               key={t}
               onClick={() => { setTab(t); window.scrollTo({ top: 0 }); }}
-              className={`flex flex-col items-center gap-0.5 py-1.5 text-[13px] font-medium ${tab === t ? "text-[var(--ink)]" : "text-[var(--faint)]"}`}
+              aria-current={tab === t ? "page" : undefined}
+              className={`-mt-px border-t-2 pt-2.5 pb-1 text-[12px] font-semibold uppercase tracking-[0.1em] ${tab === t ? "border-[var(--ink)] text-[var(--ink)]" : "border-transparent text-[var(--faint)]"}`}
             >
-              <span className={`h-1 w-6 rounded-full ${tab === t ? "bg-[var(--ink)]" : "bg-transparent"}`} />
               {t === "brief" ? "Brief" : "Research"}
             </button>
           ))}
