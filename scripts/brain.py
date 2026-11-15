@@ -102,6 +102,39 @@ def build_filings(sym, raw, scr, now):
     return out
 
 
+def _promise_off_track(sym):
+    """A tracked promise currently running below target (in-progress dated target or a standing range missed last quarter)."""
+    f = DATA / "promises" / f"{sym}.json"
+    if not f.exists():
+        return False
+    for p in json.loads(f.read_text()).get("promises", []):
+        if p.get("status") == "in_progress" and p.get("metric") != "revenue" and p.get("low") is not None:
+            v = p.get("tracking", p.get("actual"))
+            if v is not None and v < p["low"]:
+                return True
+        if p.get("status") == "standing" and p.get("checks") and p["checks"][-1]["verdict"] == "Missed":
+            return True
+    return False
+
+
+def results_materiality(card, thesis_breach, off_track):
+    """Why a results card needs action, or [] if the quarter is in line. Code-only, from the computed numbers."""
+    if card.get("status") != "ok":
+        return ["numbers pending"]
+    L, why = card.get("lines") or {}, []
+    pat = (L.get("pat") or {}).get("yoy")
+    rev = (L.get("revenue") or {}).get("yoy")
+    m = (card.get("ebitda_margin") or {}).get("yoy_pp")
+    if pat is not None and pat < 0: why.append("profit down YoY")
+    if pat is not None and pat >= 25: why.append("profit up 25%+ YoY")
+    if rev is not None and rev < 0: why.append("revenue down YoY")
+    if m is not None and abs(m) >= 2: why.append("EBITDA margin moved 2pp+")
+    if thesis_breach: why.append("thesis breach")
+    if off_track: why.append("promise off track")
+    if pat is None and rev is None: why.append("no year-ago comparison")
+    return why
+
+
 def _is_top(role):
     r = (role or "").lower().replace("non-executive", "").replace("non executive", "").replace("independent", "")
     return any(k in r for k in ("chief executive", "ceo", "chief financial", "cfo", "managing director", "chair",
@@ -144,6 +177,16 @@ def main():
         scr = load(DATA / "screener" / f"{sym}.json")
         prices = load(DATA / "prices" / f"{sym}.json")
         fl = build_filings(sym, ann.get(sym, []), scr, now)
+        # In-line results become Note ("worth a look"): Act is for quarters where something moved.
+        breach = results.thesis_check(p["thesis"], scr.get("quarters"))["status"] == "breach"
+        off = _promise_off_track(sym)
+        for f in fl:
+            c = f.get("card")
+            if c and c.get("type") == "results" and f["tier"] == "Act":
+                why = results_materiality(c, breach, off)
+                c["why_act"] = why
+                if not why:
+                    f["tier"], f["rule"] = "Note", "results_in_line"
         filings += fl
         moves[sym] = build_moves(prices, fl)
         # "{name}" is filled in by the UI with its short display name

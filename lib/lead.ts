@@ -91,6 +91,7 @@ export function tidy(t: string): string {
 
 /** The line a compact row shows: verified names for management changes, else the company's own subject in sentence case. */
 export function noteText(f: Filing): string {
+  if (f.card?.type === "results" && f.card.status === "ok") return resultsLead("", f.card).replace(/^\s*’s\s*/, "").replace(/^\s+/, "").replace(/^./, (c) => c.toUpperCase());
   if (f.card?.type === "management" && f.card.people.length) return mgmtLead("", f.card, "").replace(/^:\s*/, "").replace(/^\s*/, "").replace(/^./, (c) => c.toUpperCase());
   const raw = isBoiler(f.headline, f.title) ? cleanTitle(f.title) : f.headline;
   if (isBoiler(raw, "")) return "Regulatory disclosure; subject not stated in the filing title";

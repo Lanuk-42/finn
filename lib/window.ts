@@ -10,6 +10,8 @@ export const WINDOWS = [
 ];
 export const MIN_ACT = 3; // default window = the smallest one with at least this many Act items
 
+const SAME_MATTER = new Set(["M&A", "litigation", "fund_raise", "credit_rating", "pledging"]);
+
 export const tsMs = (ts: string) => new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime();
 
 /** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one item. */
@@ -18,7 +20,10 @@ export function actGroupsFor(brief: Brief, asOf: number, days: number) {
   const act = brief.filings.filter((f) => f.tier === "Act" && asOf - tsMs(f.ts) <= days * 86400e3);
   const groups: { lead: Filing; earlier: Filing[] }[] = [];
   for (const f of [...act].sort((a, b) => b.ts.localeCompare(a.ts))) {
-    const g = groups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule && cleanTitle(x.lead.title) === cleanTitle(f.title));
+    const g = groups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule &&
+      (cleanTitle(x.lead.title) === cleanTitle(f.title) ||
+        // the same deal, legal matter, raise or rating within two weeks is one item (e.g. Jio Platforms' IPO pricing + listing)
+        (SAME_MATTER.has(f.category) && Math.abs(tsMs(x.lead.ts) - tsMs(f.ts)) <= 14 * 86400e3)));
     if (g) g.earlier.push(f); else groups.push({ lead: f, earlier: [] });
   }
   return groups.sort((a, b) => rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));

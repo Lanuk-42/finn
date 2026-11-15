@@ -373,6 +373,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
       {how && (
         <div className="mt-2 space-y-2 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
           <p>Ranked “act on” by the “{f.rule.replace(/[_+]/g, " ")}” rule, matched on the filing’s {f.basis === "pdf" ? "first page" : f.basis}.</p>
+          {results?.why_act && results.why_act.length > 0 && <p>Kept as “act on” because: {results.why_act.join(", ")}. Results with none of these move to “Worth a look”.</p>}
           {results && <p>Numbers are from the screener.in quarterly table; QoQ, YoY and margins were computed in code. {results.raw_pdf && <a href={results.raw_pdf} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Table source</a>}</p>}
           {results?.is_bank && <p>Banks report no EBITDA line; revenue is total interest plus other income.</p>}
           {results?.status === "pending" && <p>{results.note}</p>}

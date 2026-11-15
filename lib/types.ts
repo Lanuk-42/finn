@@ -14,6 +14,7 @@ export interface ResultsCard {
   ebitda_margin?: { value: number | null; prev: number | null; year_ago: number | null; qoq_pp: number | null; yoy_pp: number | null };
   raw_pdf?: string | null;
   filing_url?: string | null;
+  why_act?: string[];
 }
 
 export interface Person {

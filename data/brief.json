@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T20:59:26+05:30",
+ "generated_at": "2026-11-15T21:03:26+05:30",
  "data_as_of": "2026-11-15T19:24:19+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -1319,7 +1319,12 @@
      "yoy_pp": -3.6
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2832/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/36424e2a-ee66-49c2-ab23-71d869f6ec35.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/36424e2a-ee66-49c2-ab23-71d869f6ec35.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -1385,8 +1390,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7da0864-7680-438c-8753-f5e5b713c279.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -1433,7 +1438,8 @@
      "yoy_pp": -0.3
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1275219/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7da0864-7680-438c-8753-f5e5b713c279.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7da0864-7680-438c-8753-f5e5b713c279.pdf",
+    "why_act": []
    }
   },
   {
@@ -1706,7 +1712,11 @@
      "yoy_pp": -7.1
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1924/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/8e643cf9-cee6-404a-90d3-c8ce9c73d6c8.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/8e643cf9-cee6-404a-90d3-c8ce9c73d6c8.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -2252,7 +2262,10 @@
      "yoy_pp": -0.9
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2726/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9d4cb3ed-a184-4662-91fc-f4112ce354b7.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9d4cb3ed-a184-4662-91fc-f4112ce354b7.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -2325,7 +2338,10 @@
      "yoy_pp": -1.5
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/456/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/94f70584-8a8f-47f2-bed8-30409cda4d4c.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/94f70584-8a8f-47f2-bed8-30409cda4d4c.pdf",
+    "why_act": [
+     "promise off track"
+    ]
    }
   },
   {
@@ -2385,7 +2401,10 @@
      "yoy_pp": -1.1
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1274137/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7b8fffb-7a5f-4efa-9241-482c5d765f1d.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d7b8fffb-7a5f-4efa-9241-482c5d765f1d.pdf",
+    "why_act": [
+     "profit down YoY"
+    ]
    }
   },
   {
@@ -2499,7 +2518,11 @@
      "yoy_pp": -2.0
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3245/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/658231ad-7203-4355-be99-2a162b722c0c.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/658231ad-7203-4355-be99-2a162b722c0c.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -2638,7 +2661,11 @@
      "yoy_pp": 9.7
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/786/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a59f1b7a-6692-4d45-9886-f842d7faf839.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a59f1b7a-6692-4d45-9886-f842d7faf839.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -2908,7 +2935,11 @@
      "yoy_pp": 1.1
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3467/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/386aab9b-d99c-44af-ba52-1bd95d49a60c.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/386aab9b-d99c-44af-ba52-1bd95d49a60c.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -3047,7 +3078,11 @@
      "yoy_pp": -2.0
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/295/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e20392a9-cbd5-4271-9ad1-450cad3ff835.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e20392a9-cbd5-4271-9ad1-450cad3ff835.pdf",
+    "why_act": [
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -3225,7 +3260,10 @@
      }
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/648/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1d651fc4-f14d-4463-8df4-e3870306d21f.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1d651fc4-f14d-4463-8df4-e3870306d21f.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -3442,7 +3480,10 @@
      "yoy_pp": -0.4
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1202/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/34cfdee2-3458-4ab9-b5aa-187bc856abc3.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/34cfdee2-3458-4ab9-b5aa-187bc856abc3.pdf",
+    "why_act": [
+     "thesis breach"
+    ]
    }
   },
   {
@@ -3583,7 +3624,12 @@
      "yoy_pp": -3.1
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2023/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/fca20bad-7bfe-438f-a526-d9f42ccf0346.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/fca20bad-7bfe-438f-a526-d9f42ccf0346.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -3779,8 +3825,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c1a6b710-ad35-4ea0-a9d0-bf27ec1a724e.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -3827,7 +3873,8 @@
      "yoy_pp": -1.2
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1632/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c1a6b710-ad35-4ea0-a9d0-bf27ec1a724e.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c1a6b710-ad35-4ea0-a9d0-bf27ec1a724e.pdf",
+    "why_act": []
    }
   },
   {
@@ -4506,7 +4553,10 @@
      }
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1298/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f5d5fb37-aa66-401c-85d6-58ccd3982828.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f5d5fb37-aa66-401c-85d6-58ccd3982828.pdf",
+    "why_act": [
+     "thesis breach"
+    ]
    }
   },
   {
@@ -4814,7 +4864,12 @@
      "yoy_pp": -5.5
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2458/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/65a6126a-e1b1-4c5b-a0d8-5b9648dc32b6.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/65a6126a-e1b1-4c5b-a0d8-5b9648dc32b6.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+",
+     "promise off track"
+    ]
    }
   },
   {
@@ -4954,7 +5009,10 @@
      "yoy_pp": -1.4
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1274653/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4ac93ea0-d4d1-4b85-8849-14a19e0dcceb.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4ac93ea0-d4d1-4b85-8849-14a19e0dcceb.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -5660,8 +5718,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7184460f-2b14-493c-ae94-9de56eac3fe4.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -5708,7 +5766,8 @@
      "yoy_pp": -1.6
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3365/9/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7184460f-2b14-493c-ae94-9de56eac3fe4.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7184460f-2b14-493c-ae94-9de56eac3fe4.pdf",
+    "why_act": []
    }
   },
   {
@@ -11315,7 +11374,10 @@
      "yoy_pp": 2.0
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1924/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/94de8eea-a882-42ef-85c2-4ee7d517787d.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/94de8eea-a882-42ef-85c2-4ee7d517787d.pdf",
+    "why_act": [
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -11623,7 +11685,11 @@
      "yoy_pp": 2.0
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3467/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9513ecde-5f6a-461e-b619-4c63b5617c80.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9513ecde-5f6a-461e-b619-4c63b5617c80.pdf",
+    "why_act": [
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -11648,8 +11714,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/64279bcf-6812-4366-a273-220c2e6badf9.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -11696,7 +11762,8 @@
      "yoy_pp": 0.0
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1275219/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/64279bcf-6812-4366-a273-220c2e6badf9.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/64279bcf-6812-4366-a273-220c2e6badf9.pdf",
+    "why_act": []
    }
   },
   {
@@ -12215,7 +12282,11 @@
      "yoy_pp": 10.8
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/786/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/029beb25-b401-4582-901b-cb5f306ee282.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/029beb25-b401-4582-901b-cb5f306ee282.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -12303,7 +12374,12 @@
      "yoy_pp": -2.3
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2832/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/327c2303-2e31-4edd-aa1f-c6fa3061c827.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/327c2303-2e31-4edd-aa1f-c6fa3061c827.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -12534,7 +12610,11 @@
      "yoy_pp": -2.2
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2458/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/07482857-4c4d-4aae-8cfa-ffefb125f68b.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/07482857-4c4d-4aae-8cfa-ffefb125f68b.pdf",
+    "why_act": [
+     "EBITDA margin moved 2pp+",
+     "promise off track"
+    ]
    }
   },
   {
@@ -12997,7 +13077,12 @@
      "yoy_pp": -3.8
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2023/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f940c992-b7af-4b96-82cd-07efd0cf4234.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f940c992-b7af-4b96-82cd-07efd0cf4234.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -13057,7 +13142,10 @@
      "yoy_pp": -0.8
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1274137/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2c18cfd5-2d05-4f0b-96d9-64217e915829.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2c18cfd5-2d05-4f0b-96d9-64217e915829.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -13180,7 +13268,11 @@
      "yoy_pp": -2.2
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3245/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/cc8f321b-b5b9-4f47-883d-28790c0650e3.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/cc8f321b-b5b9-4f47-883d-28790c0650e3.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -13503,7 +13595,12 @@
      "yoy_pp": 2.4
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/295/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d01f7424-f9d8-4550-9f0f-43c12e5bd82f.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d01f7424-f9d8-4550-9f0f-43c12e5bd82f.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -13735,7 +13832,10 @@
      }
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/648/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1a6bc023-898b-41ae-8ed4-f445230dfb80.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1a6bc023-898b-41ae-8ed4-f445230dfb80.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -13900,7 +14000,11 @@
      "yoy_pp": -2.2
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1202/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4febe8da-bcf6-4b19-a6e1-bd0fc8c9deb1.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4febe8da-bcf6-4b19-a6e1-bd0fc8c9deb1.pdf",
+    "why_act": [
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -14546,7 +14650,11 @@
      "yoy_pp": -4.4
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1632/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/69ee9942-6dca-4d2c-8c2e-a6b736f5375d.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/69ee9942-6dca-4d2c-8c2e-a6b736f5375d.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -14619,7 +14727,10 @@
      }
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1298/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7abdb29f-c7a2-4f32-a37f-5273fded5000.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7abdb29f-c7a2-4f32-a37f-5273fded5000.pdf",
+    "why_act": [
+     "thesis breach"
+    ]
    }
   },
   {
@@ -14799,7 +14910,11 @@
      "yoy_pp": -2.2
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2726/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d3e9bc74-1dfe-4b8d-8219-865340f12b45.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d3e9bc74-1dfe-4b8d-8219-865340f12b45.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -14990,7 +15105,10 @@
      "yoy_pp": -0.7
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1274653/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/faa11982-c753-4036-96ed-0e11eb17832b.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/faa11982-c753-4036-96ed-0e11eb17832b.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -16005,8 +16123,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/502d743f-b924-4265-9db6-274a5df56622.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -16053,7 +16171,8 @@
      "yoy_pp": -0.9
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3365/6/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/502d743f-b924-4265-9db6-274a5df56622.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/502d743f-b924-4265-9db6-274a5df56622.pdf",
+    "why_act": []
    }
   },
   {
@@ -20145,7 +20264,12 @@
      "yoy_pp": 2.1
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/295/3/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4fa1ce54-50cb-4d0b-9bc8-7dbe64d41dff.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4fa1ce54-50cb-4d0b-9bc8-7dbe64d41dff.pdf",
+    "why_act": [
+     "profit up 25%+ YoY",
+     "EBITDA margin moved 2pp+",
+     "thesis breach"
+    ]
    }
   },
   {
@@ -20987,7 +21111,10 @@
      "yoy_pp": 0.5
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1275219/3/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7d8e5f0b-6021-4255-9b4d-66d3cef2ba0e.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7d8e5f0b-6021-4255-9b4d-66d3cef2ba0e.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -21140,7 +21267,11 @@
      "yoy_pp": -3.9
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/1632/3/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/90cd4578-3367-49c0-b0b7-5140213157e7.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/90cd4578-3367-49c0-b0b7-5140213157e7.pdf",
+    "why_act": [
+     "profit down YoY",
+     "EBITDA margin moved 2pp+"
+    ]
    }
   },
   {
@@ -21356,7 +21487,10 @@
      "yoy_pp": -1.6
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/3245/3/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/71784525-33ff-4631-8d3c-2bc7e9798bbd.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/71784525-33ff-4631-8d3c-2bc7e9798bbd.pdf",
+    "why_act": [
+     "profit up 25%+ YoY"
+    ]
    }
   },
   {
@@ -21884,7 +22018,11 @@
      "yoy_pp": -1.4
     },
     "raw_pdf": "https://www.screener.in/company/source/quarter/2832/3/2026/",
-    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/65a0e3ee-744c-45bb-8263-22f88f1d0200.pdf"
+    "filing_url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/65a0e3ee-744c-45bb-8263-22f88f1d0200.pdf",
+    "why_act": [
+     "profit down YoY",
+     "thesis breach"
+    ]
    }
   },
   {
