@@ -99,7 +99,9 @@ export async function askAny(symbol: string, question: string): Promise<Answer &
 type Role = "management" | "analyst" | "moderator" | "unknown";
 type Seg = { page: number; start: number; end: number; speaker: string | null; role: Role };
 const LABEL = /(?:^|(?<=[.?!"”’)\]]\s?)\s)((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’.-]+(?:\s[A-Z][A-Za-z'’.-]*){0,4})\s?:\s/g;
-const INTRO = /(?:line of|question (?:is|comes) from|questions? from|we have)\s+((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’-]+(?:\s[A-Z][A-Za-z'’-]*){0,3})(?=\s+(?:from|of|with)\s|\s?[.,–-])/g;
+const INTRO = /(?:l ?ine of|question (?:is|comes) from|questions? from|we have)\s+((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’-]+(?:\s[A-Z][A-Za-z'’-]*){0,3})(?=\s+(?:from|of|with)\s[A-Z0-9]|\s?[.,–-](?!\s*(?:Founder|Co-|Chair|Vice|Managing|Joint|Whole|Executive|Director|Chief|CEO|CFO|COO|President|Head|Company|Investor|General|Group|Senior)))/g;
+// The company names its own people with a title: "Mr. Hitesh Oberoi – Co-Promoter & Managing Director", "Mr. X, CFO".
+const TITLED = /((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’-]+(?:\s[A-Z][A-Za-z'’.-]*){0,3})\s*(?:[–—-]|,)\s*(?:the\s|our\s)?(?:Founder|Co-Founder|Co-Promoter|Promoter|Chairman|Chairperson|Vice Chairman|Managing Director|Joint Managing|Whole[- ]?Time|Executive Director|Executive Vice|Director|Chief|CEO|CFO|COO|CTO|President|Group CFO|Head|Senior Vice|Vice President|Company Secretary|Investor Relations|General Manager|Business Head)/g;
 // Hosted calls name the host in the header: "MODERATOR: MR. NISCHINT CHAWATHE – KOTAK SECURITIES"
 const HOST = /MODERATOR\s*:\s*(?:(?:MR|MS|MRS|DR)\.?\s)?([A-Z][A-Z'’-]+(?:\s[A-Z][A-Z'’-]+){0,3})\s*[–-]/;
 const NOT_NAME = /^(Page|Note|Subject|Sub|Ref|Date|Scrip|Symbol|ISIN|CIN|Email|Website|Tel|Phone|Fax|Encl|To|Dear|Regd|Registered|Re|Disclaimer|Management|Participants?|Analysts?|Speakers?|Q|A|Question|Answer|Agenda|Time|Venue)\b/;
@@ -117,6 +119,8 @@ export function segments(call: Call): { segs: Seg[]; labelled: boolean } {
     if (w.length > 1) analysts.add(`${w[0]} ${w[w.length - 1]}`);
   };
   for (const m of all.matchAll(INTRO)) addAnalyst(m[1]);
+  const titled = new Set<string>();
+  for (const m of call.pages.slice(0, 4).join(" ").matchAll(TITLED)) { const k = keyOf(m[1]); if (k.includes(" ")) titled.add(k); }
   const host = HOST.exec(call.pages.slice(0, 3).join(" "));
   const hostKey = host ? keyOf(host[1]) : null;
   const isMod = (k: string) => /^(moderator|operator|coordinator)$/.test(k) || k === hostKey;
@@ -128,6 +132,7 @@ export function segments(call: Call): { segs: Seg[]; labelled: boolean } {
   for (const pg of call.pages) for (const m of pg.matchAll(LABEL)) if (!NOT_NAME.test(cleanSpeaker(m[1]))) counts.set(keyOf(m[1]), (counts.get(keyOf(m[1])) ?? 0) + 1);
   const isSpeaker = (n: string) => { const k = keyOf(n); return !!k && !NOT_NAME.test(cleanSpeaker(n)) && !/\b(office|address|code|number|name|date)$/.test(k) && (isMod(k) || isAnalyst(k) || (counts.get(k) ?? 0) >= 2); };
   const raw: { page: number; start: number; end: number; speaker: string | null }[] = [];
+  const turns: { page: number; at: number; speaker: string }[] = [];
   let cur: string | null = null, labelled = false;
   call.pages.forEach((pg, i) => {
     let at = 0;
@@ -136,6 +141,7 @@ export function segments(call: Call): { segs: Seg[]; labelled: boolean } {
       labelled = true;
       if (m.index! > at) raw.push({ page: i + 1, start: at, end: m.index!, speaker: cur });
       cur = cleanSpeaker(m[1]);
+      turns.push({ page: i + 1, at: m.index!, speaker: cur });
       at = m.index! + m[0].length;
     }
     if (pg.length > at) raw.push({ page: i + 1, start: at, end: pg.length, speaker: cur });
@@ -153,10 +159,19 @@ export function segments(call: Call): { segs: Seg[]; labelled: boolean } {
     asks.set(k, [q + Number(body.includes("?")), n + 1]);
   }
   for (const [k, [q, n]] of asks) if (n >= 2 && q / n >= 0.6 && !isMod(k)) analysts.add(k);
+  // Whoever speaks right after a hand-off ("the next question is from Sachin from Bank of America ... Sachin Salgaonkar:")
+  // is that analyst, even when the hand-off gives only a first name or comes from the company's own IR head.
+  call.pages.forEach((pg, i) => {
+    for (const m of pg.matchAll(INTRO)) {
+      const next = turns.find((t) => t.page > i + 1 || (t.page === i + 1 && t.at > m.index!));
+      const first = keyOf(m[1]).split(/\s+/)[0];
+      if (next && keyOf(next.speaker).split(/\s+/)[0] === first) analysts.add(keyOf(next.speaker));
+    }
+  });
   const roleOf = (n: string | null): Role => {
     if (!n) return "unknown";
     const k = keyOf(n);
-    return isMod(k) ? "moderator" : isAnalyst(k) ? "analyst" : "management";
+    return isMod(k) ? "moderator" : titled.has(k) ? "management" : isAnalyst(k) ? "analyst" : "management";
   };
   return { segs: raw.map((r) => ({ ...r, role: roleOf(r.speaker) })), labelled };
 }
