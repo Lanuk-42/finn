@@ -18,7 +18,7 @@ export default function App({ brief, promises }: { brief: BriefT; promises: Prom
   return (
     <div className="mx-auto min-h-dvh max-w-[560px] pb-20">
       {tab === "brief" ? (
-        <Brief brief={brief} onOpenStock={openResearch} />
+        <Brief brief={brief} promises={promises} onOpenStock={openResearch} />
       ) : (
         <Research promises={promises} stocks={brief.stocks} initial={researchTicker} />
       )}

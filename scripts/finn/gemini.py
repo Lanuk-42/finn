@@ -33,7 +33,8 @@ class BudgetExceeded(RuntimeError):
 
 
 # Hard cap on NEW (uncached) calls per run: FINN_LLM_BUDGET=12 python scripts/brain.py
-BUDGET = int(os.environ.get("FINN_LLM_BUDGET", "0")) or None
+# FINN_LLM_BUDGET=0 means no new calls at all (cache only); unset means no cap.
+BUDGET = int(os.environ["FINN_LLM_BUDGET"]) if os.environ.get("FINN_LLM_BUDGET", "").strip() else None
 
 
 def _stream(model, body, key):

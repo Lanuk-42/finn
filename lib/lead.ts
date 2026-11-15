@@ -225,3 +225,51 @@ export function trackerLead(name: string, pf: PromiseFile): string {
   const s = clauses.join(clauses.length > 1 && (off || slipping) ? ", but " : "; ");
   return s.charAt(0).toUpperCase() + s.slice(1) + ".";
 }
+
+// --------------------------------------------------------------- results card -> promise link
+const QMON: Record<string, number> = { Jun: 1, Sep: 2, Dec: 3, Mar: 4 };
+/** Does a fiscal period ('FY27', 'H1FY27', 'Q2FY27') contain the quarter ending at `label` ('Sep 2026')? */
+export function periodCovers(period: string, label: string): boolean {
+  const m = /^(Q[1-4]|H[12])?FY(\d{2})$/.exec(period || "");
+  const q = /^(Mar|Jun|Sep|Dec) (\d{4})$/.exec(label || "");
+  if (!m || !q) return false;
+  const qn = QMON[q[1]], fy = (Number(q[2]) + (q[1] === "Mar" ? 0 : 1)) % 100;
+  if (fy !== Number(m[2])) return false;
+  if (!m[1]) return true;
+  if (m[1].startsWith("H")) return m[1] === "H1" ? qn <= 2 : qn >= 3;
+  return Number(m[1][1]) === qn;
+}
+
+export type PromiseLink = { text: string; bad: boolean };
+
+/** One line tying a results card to what management promised, computed from the card and the tracker. */
+export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): PromiseLink | null {
+  if (!pf || c.status !== "ok") return null;
+  const cands: { p: Promise_; v: string; bad: boolean; score: number }[] = [];
+  for (const p of pf.promises) {
+    const what = `${targetText(p)} ${p.status === "standing" ? "" : p.period + " "}${METRIC_SHORT[p.metric] ?? p.metric}`.replace(/\s+/g, " ");
+    if (p.status === "standing") {
+      const ck = p.checks?.find((x) => x.quarter === c.quarter);
+      if (ck) cands.push({ p, v: `Guided ${what} → delivered ${ck.value}%`, bad: ck.verdict === "Missed", score: 2 });
+      continue;
+    }
+    if (!periodCovers(p.period, c.quarter)) continue;
+    if (p.unit === "bps") {
+      const v = actualValue(p);
+      // a running ("so far") figure belongs only on the card for the quarter it runs through
+      if (v != null && (p.basis ?? "").trim().endsWith(c.quarter)) cands.push({ p, v: `Guided ${what} → ${v > 0 ? "+" : "−"}${Math.abs(v)} bps so far`, bad: isBad(p), score: 3 });
+      continue;
+    }
+    let cur: number | null | undefined = null;
+    if (p.metric === "ebitda_margin") cur = c.ebitda_margin?.value;
+    else if (p.metric === "revenue_growth_yoy") cur = c.lines?.revenue?.yoy;
+    else if (p.metric === "pat_growth_yoy") cur = c.lines?.pat?.yoy;
+    else if (p.metric === "ebitda_growth_yoy") cur = c.lines?.ebitda?.yoy;
+    if (cur == null) continue;
+    const below = p.low != null && cur < p.low;
+    cands.push({ p, v: `Guided ${what} → delivered ${cur}% this quarter`, bad: below, score: 1 + (below ? 3 : 0) + (p.metric.endsWith("margin") ? 1 : 0) });
+  }
+  if (!cands.length) return null;
+  const best = cands.sort((a, b) => b.score - a.score)[0];
+  return { text: best.v, bad: best.bad };
+}

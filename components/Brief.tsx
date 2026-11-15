@@ -1,9 +1,9 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, ResultsCard } from "@/lib/types";
+import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, ResultsCard } from "@/lib/types";
 import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
-import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
+import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
   { d: 1, label: "24h", phrase: "today", span: "the last 24 hours" },
@@ -37,7 +37,7 @@ function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
 const fmtPct = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}%`);
 const fmtPp = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}pp`);
 
-export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenStock: (s: string) => void }) {
+export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT; promises: PromiseFile[]; onOpenStock: (s: string) => void }) {
   const asOf = new Date(brief.data_as_of).getTime();
   const autoWin = useMemo(
     () => WINDOWS.find((w) => actGroupsFor(brief, asOf, w.d).length >= MIN_ACT)?.d ?? WINDOWS[WINDOWS.length - 1].d,
@@ -126,7 +126,7 @@ export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenSto
             {lastAct ? <>Last material event: {lastEventText(nm(lastAct.symbol), lastAct)}, {day(lastAct.ts)}.</> : "Nothing material in 30 days."}
           </Empty>
         )}
-        {actGroups.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} onOpenStock={onOpenStock} />)}
+        {actGroups.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} pf={promises.find((p) => p.symbol === g.lead.symbol)} onOpenStock={onOpenStock} />)}
       </Section>
 
       {/* Moves */}
@@ -237,7 +237,7 @@ function Meta({ sym, kind, ts, onOpen }: { sym: string; kind?: string; ts: strin
 }
 
 // ---------------------------------------------------------------- Act
-function ActItem({ f, earlier, name, onOpenStock }: { f: Filing; earlier: Filing[]; name: string; onOpenStock: (s: string) => void }) {
+function ActItem({ f, earlier, name, pf, onOpenStock }: { f: Filing; earlier: Filing[]; name: string; pf?: PromiseFile; onOpenStock: (s: string) => void }) {
   const [how, setHow] = useState(false);
   const [showEarlier, setShowEarlier] = useState(false);
   const results = f.card?.type === "results" ? f.card : null;
@@ -248,6 +248,16 @@ function ActItem({ f, earlier, name, onOpenStock }: { f: Filing; earlier: Filing
       <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">{filingLead(name, f)}</p>
 
       {results?.status === "ok" && <ResultsTable c={results} />}
+      {results && (() => {
+        const link = promiseLink(results, pf);
+        return link && (
+          <button onClick={() => onOpenStock(f.symbol)} className="mt-2.5 flex w-full items-baseline gap-2 border-t rule pt-2 text-left">
+            <span className="label shrink-0 !text-[10px]">Promise</span>
+            <span className={`num flex-1 text-[14px] leading-snug ${link.bad ? "text-[var(--accent)]" : "text-[var(--ink)]"}`}>{link.text}</span>
+            <span className="text-[13px] text-[var(--muted)]">→</span>
+          </button>
+        );
+      })()}
       {mgmt && mgmt.people.length > 0 && <People c={mgmt} />}
 
       {earlier.length > 0 && (
