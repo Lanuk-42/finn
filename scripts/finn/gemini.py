@@ -16,7 +16,9 @@ from .config import DATA
 URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
 CACHE = DATA / "cache" / "llm"
 
-# Routing: short filings -> lite model; long transcripts -> best available flash, lite as last resort.
+# Routing by task. Short jobs (management bios, results figures) -> lite. Long transcripts (promise extraction, in the
+# precomputed and on-demand trackers) -> the best available Flash model, falling back across Flash models, lite last.
+# Filing classification uses no model at all (rules in classify.py).
 CHEAP = ["gemini-3.5-flash-lite"]
 STRONG = [m for m in os.environ.get("FINN_STRONG_MODELS", "").split(",") if m] or [
     "gemini-3-flash-preview", "gemini-3.8-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-3.5-flash-lite"]

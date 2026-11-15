@@ -2,8 +2,9 @@
 
   python scripts/promise_job.py fetch SYM         # screener tables + concall links
   python scripts/promise_job.py transcripts SYM   # download the latest transcripts (no LLM)
-  python scripts/promise_job.py extract SYM       # lite model finds guidance; code checks every quote, maps and scores
-Same engine and checks as the precomputed trackers. Lite model only, hard budget: FINN_LITE_ONLY=1 FINN_LLM_BUDGET=6.
+  python scripts/promise_job.py extract SYM       # a model finds guidance; code checks every quote, maps and scores
+Same engine and checks as the precomputed trackers. Transcripts go to the best available Flash model first, then the
+other Flash models, then lite (gemini.STRONG). Hard budget: FINN_LLM_BUDGET=6.
 """
 import json
 import sys

@@ -1,6 +1,7 @@
 # On-demand promise tracker for a ticker FINN hasn't precomputed. Started by the app (POST /api/promise/<ticker>),
 # which then polls this run's step status for progress. Each stage is its own step so progress is real.
-# Secret: GEMINI_API_KEY (lite model only, at most 6 new calls per run).
+# Secret: GEMINI_API_KEY. Transcript extraction uses the best available Flash model first, falling back across the
+# Flash models and then to lite (scripts/finn/gemini.py STRONG); at most 6 new calls per run.
 name: promise-tracker
 run-name: promise ${{ inputs.ticker }} ${{ inputs.request_id }}
 
@@ -27,7 +28,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      FINN_LITE_ONLY: "1"
       FINN_LLM_BUDGET: "6"
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
     steps:
