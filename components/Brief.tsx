@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, ResultsCard } from "@/lib/types";
 import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
+import { useDeviceState } from "@/lib/device";
 import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
@@ -50,6 +51,8 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
   const [showRoutine, setShowRoutine] = useState(false);
   const [allBreaches, setAllBreaches] = useState(false);
   const [howOpen, setHowOpen] = useState(false);
+  const [doneIds, setDoneIds] = useDeviceState<string[]>("finn.done.v1", []);
+  const [showDone, setShowDone] = useState(false);
 
   const byId = useMemo(() => Object.fromEntries(brief.filings.map((f) => [f.id, f])), [brief.filings]);
   const stock = useMemo(() => Object.fromEntries(brief.stocks.map((s) => [s.symbol, s])), [brief.stocks]);
@@ -74,7 +77,12 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
   const pool = rowsInWin.length ? rowsInWin
     : Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => r.date === brief.latest_trading_day).map((r) => ({ sym, ...r })));
   const biggest = [...pool].sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))[0];
-  const n = actGroups.length;
+  const total = actGroups.length;
+  const doneSet = new Set(doneIds);
+  const open = actGroups.filter((g) => !doneSet.has(g.lead.id));
+  const handled = actGroups.filter((g) => doneSet.has(g.lead.id));
+  const n = open.length;
+  const toggleDone = (id: string) => setDoneIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   return (
     <div className="px-5">
@@ -85,10 +93,12 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
           <span className="label">Morning note · {new Date(brief.data_as_of).toLocaleDateString("en-IN", { timeZone: IST, weekday: "short", day: "numeric", month: "short" })}</span>
         </div>
         <h1 className="serif mt-5 text-[32px] font-semibold leading-[1.1] tracking-[-0.01em]">
-          {n === 0 ? <>Nothing needs you {W.phrase}</> : <><span className="num">{n}</span> {n === 1 ? "thing needs" : "things need"} you {W.phrase}</>}
+          {total > 0 && n === 0 ? <>You’re clear {W.phrase}</>
+            : n === 0 ? <>Nothing needs you {W.phrase}</>
+            : <><span className="num">{n}</span> {n === 1 ? "thing needs" : "things need"} you {W.phrase}</>}
         </h1>
         <p className="num mt-2 text-[14px] text-[var(--muted)]">
-          from {filings.length} filings across {brief.stocks.length} holdings · {when(brief.data_as_of)} IST
+          {handled.length > 0 && <>{handled.length} of {total} done · </>}from {filings.length} filings across {brief.stocks.length} holdings · {when(brief.data_as_of)} IST
         </p>
         <nav aria-label="Time window" className="mt-4 flex gap-6 border-b rule">
           {WINDOWS.map((w) => (
@@ -119,14 +129,39 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
       </Section>
 
       {/* Act */}
-      <Section label="Act on" right={n ? String(n) : undefined}>
-        {n === 0 && (
+      <Section label="Act on" right={total ? (handled.length ? `${n} open · ${handled.length} done` : String(n)) : undefined}>
+        {total > 0 && n === 0 && (
+          <div className="border-b rule py-5">
+            <p className="serif text-[22px] font-semibold leading-tight">Inbox zero.</p>
+            <p className="serif mt-1 text-[16px] leading-snug text-[var(--ink-2)]">
+              {total === 1 ? `The one item from ${W.span} is handled.` : `All ${total} items from ${W.span} are handled.`} New filings will land here as they come in.
+            </p>
+          </div>
+        )}
+        {total === 0 && (
           <Empty>
             Quiet {W.phrase === "today" ? "day" : W.phrase.replace("this ", "")}.{" "}
             {lastAct ? <>Last material event: {lastEventText(nm(lastAct.symbol), lastAct)}, {day(lastAct.ts)}.</> : "Nothing material in 30 days."}
           </Empty>
         )}
-        {actGroups.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} pf={promises.find((p) => p.symbol === g.lead.symbol)} onOpenStock={onOpenStock} />)}
+        {open.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} pf={promises.find((p) => p.symbol === g.lead.symbol)} onOpenStock={onOpenStock} onDone={() => toggleDone(g.lead.id)} />)}
+        {handled.length > 0 && (
+          <div className="pt-3">
+            <button onClick={() => setShowDone((v) => !v)} className="link text-[13px] text-[var(--muted)]">
+              {showDone ? "Hide done" : `${handled.length} done`}
+            </button>
+            {showDone && (
+              <ul className="mt-1">
+                {handled.map((g) => (
+                  <li key={g.lead.id} className="flex items-baseline gap-3 border-b rule py-2.5 text-[14px] text-[var(--muted)]">
+                    <span className="flex-1 leading-snug line-through decoration-[var(--faint)]">{filingLead(nm(g.lead.symbol), g.lead)}</span>
+                    <button onClick={() => toggleDone(g.lead.id)} className="link shrink-0 text-[13px] text-[var(--ink)]">Undo</button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
       </Section>
 
       {/* Moves */}
@@ -237,7 +272,7 @@ function Meta({ sym, kind, ts, onOpen }: { sym: string; kind?: string; ts: strin
 }
 
 // ---------------------------------------------------------------- Act
-function ActItem({ f, earlier, name, pf, onOpenStock }: { f: Filing; earlier: Filing[]; name: string; pf?: PromiseFile; onOpenStock: (s: string) => void }) {
+function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; earlier: Filing[]; name: string; pf?: PromiseFile; onOpenStock: (s: string) => void; onDone: () => void }) {
   const [how, setHow] = useState(false);
   const [showEarlier, setShowEarlier] = useState(false);
   const results = f.card?.type === "results" ? f.card : null;
@@ -281,6 +316,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock }: { f: Filing; earlier: Fi
       <div className="mt-3 flex items-baseline gap-4 text-[13px] text-[var(--muted)]">
         {f.url && <a href={f.url} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Filing</a>}
         <button onClick={() => setHow((v) => !v)} className="link">How FINN checked this</button>
+        <button onClick={onDone} className="ml-auto border border-[var(--ink)] px-2 py-0.5 text-[12px] font-semibold text-[var(--ink)]">Done ✓</button>
       </div>
       {how && (
         <div className="mt-2 space-y-2 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
