@@ -51,7 +51,8 @@
    "call": "Q4FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf",
+   "page": 8
   },
   {
    "metric": "other",
@@ -68,7 +69,8 @@
    "call": "Q4FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -85,7 +87,8 @@
    "call": "Q3FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2292e7c9-0098-4067-a7a1-b5c2a5b755b6.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2292e7c9-0098-4067-a7a1-b5c2a5b755b6.pdf",
+   "page": 6
   }
  ],
  "rejected": [
@@ -104,7 +107,8 @@
    "call": "Q2FY27",
    "status": "rejected",
    "reason": "analyst question, not a management statement",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=160d9e40-34d9-4f66-8c1f-e1c50f663569.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=160d9e40-34d9-4f66-8c1f-e1c50f663569.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -121,7 +125,8 @@
    "call": "Q1FY27",
    "status": "rejected",
    "reason": "analyst question, not a management statement",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5e39e029-d034-49cf-b1b7-14523890ac2a.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5e39e029-d034-49cf-b1b7-14523890ac2a.pdf",
+   "page": 10
   },
   {
    "metric": "other",
@@ -138,7 +143,8 @@
    "call": "Q4FY26",
    "status": "rejected",
    "reason": "quote not found in transcript",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf",
+   "page": null
   }
  ],
  "credibility": {

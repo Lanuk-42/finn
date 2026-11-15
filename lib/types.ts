@@ -54,12 +54,12 @@ export interface Brief {
 
 export interface Promise_ {
   metric: string; scope: string; period: string; kind: string; low: number | null; high: number | null;
-  unit: string; summary: string; speaker: string | null; quote: string; call: string; source_url: string;
+  unit: string; summary: string; speaker: string | null; quote: string; call: string; source_url: string; page?: number | null;
   status: "resolved" | "in_progress" | "standing" | "not_checkable" | "rejected";
   verdict?: "Beat" | "Met" | "Missed"; actual?: number | null; tracking?: number; basis?: string; base?: string;
   reason?: string; qualifier?: string | null;
   checks?: { quarter: string; value: number; verdict: string }[]; held?: number; tested?: number;
-  followups: { call: string; quote: string; low: number | null; high: number | null; kind: string; source_url: string }[];
+  followups: { call: string; quote: string; low: number | null; high: number | null; kind: string; source_url: string; page?: number | null }[];
 }
 
 export interface PromiseFile {

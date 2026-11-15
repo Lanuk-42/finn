@@ -328,6 +328,7 @@ def run(symbol, scr, max_transcripts=5):
             continue  # same call listed twice
         transcripts.append({"label": c["period"], "quarter": q, "quarter_basis": how, "url": u, "chars": len(text),
                             "status": "ok"})
+        page_texts = pdf.pages(u)
         try:
             found = extract(text, q, url=u)
         except (gemini.QuotaExceeded, gemini.BudgetExceeded) as e:
@@ -336,6 +337,7 @@ def run(symbol, scr, max_transcripts=5):
         for g in found:
             item = check(g, text, q, quarters, annual)
             item["source_url"] = u
+            item["page"] = pdf.page_of(item.get("quote"), page_texts) if item.get("quote") else None
             items.append(item)
         if sum(1 for t in transcripts if t["status"] == "ok") >= max_transcripts:
             break
@@ -358,7 +360,7 @@ def run(symbol, scr, max_transcripts=5):
                 continue
             seen_calls.add(x["call"])
             fu.append({"call": x["call"], "quote": x["quote"], "low": x["low"], "high": x["high"],
-                       "kind": x["kind"], "source_url": x["source_url"]})
+                       "kind": x["kind"], "source_url": x["source_url"], "page": x.get("page")})
         first["followups"] = fu
         promises.append(first)
     kept = sum(1 for p in promises if p.get("verdict") in ("Met", "Beat"))

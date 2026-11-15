@@ -84,9 +84,11 @@
      "low": 11,
      "high": 13,
      "kind": "range",
-     "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf"
+     "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf",
+     "page": 13
     }
-   ]
+   ],
+   "page": 15
   },
   {
    "metric": "ebitda_margin",
@@ -117,7 +119,8 @@
    "held": 2,
    "tested": 2,
    "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf",
-   "followups": []
+   "followups": [],
+   "page": 13
   }
  ],
  "not_checkable": [
@@ -136,7 +139,8 @@
    "call": "Q2FY27",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf",
+   "page": 7
   },
   {
    "metric": "other",
@@ -153,7 +157,8 @@
    "call": "Q2FY27",
    "status": "not_checkable",
    "reason": "qualified target (industry growth rate); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf",
+   "page": 7
   },
   {
    "metric": "other",
@@ -170,7 +175,8 @@
    "call": "Q2FY27",
    "status": "not_checkable",
    "reason": "qualified target (market growth rate); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf",
+   "page": 13
   },
   {
    "metric": "other",
@@ -187,7 +193,8 @@
    "call": "Q2FY27",
    "status": "not_checkable",
    "reason": "qualified target (EPC order book); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf",
+   "page": 14
   },
   {
    "metric": "ebit_margin",
@@ -204,7 +211,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (Wires & Cables business); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 5
   },
   {
    "metric": "ebitda_margin",
@@ -221,7 +229,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (FMEG business); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 6
   },
   {
    "metric": "revenue_growth_yoy",
@@ -238,7 +247,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (FMEG segment); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 6
   },
   {
    "metric": "other",
@@ -255,7 +265,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (working capital cycle); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 5
   },
   {
    "metric": "revenue_growth_yoy",
@@ -272,7 +283,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (market growth multiplier); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -289,7 +301,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (Bharat Net and RDSS order book); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 14
   },
   {
    "metric": "other",
@@ -306,7 +319,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (RDSS revenue translation); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 14
   },
   {
    "metric": "revenue_growth_yoy",
@@ -323,7 +337,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (market growth multiplier); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 18
   },
   {
    "metric": "other",
@@ -340,7 +355,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (exports as percentage of top line); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 19
   },
   {
    "metric": "ebitda_margin",
@@ -357,7 +373,8 @@
    "call": "Q1FY27",
    "status": "not_checkable",
    "reason": "qualified target (FMEG full year basis); tables show reported totals",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 19
   },
   {
    "metric": "ebitda_margin",
@@ -374,7 +391,8 @@
    "call": "Q4FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf",
+   "page": 8
   },
   {
    "metric": "ebitda_margin",
@@ -391,7 +409,8 @@
    "call": "Q4FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -408,7 +427,8 @@
    "call": "Q4FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f66f17ac-c40f-4309-afca-3e66af0956a0.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -425,7 +445,8 @@
    "call": "Q3FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf",
+   "page": 5
   },
   {
    "metric": "other",
@@ -442,7 +463,8 @@
    "call": "Q3FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf",
+   "page": 7
   },
   {
    "metric": "ebitda_margin",
@@ -459,7 +481,8 @@
    "call": "Q3FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c54bf2c3-22fa-45e1-bf1a-2194e7b46183.pdf",
+   "page": 7
   },
   {
    "metric": "other",
@@ -476,7 +499,8 @@
    "call": "Q2FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf",
+   "page": 6
   },
   {
    "metric": "other",
@@ -493,7 +517,8 @@
    "call": "Q2FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf",
+   "page": 8
   },
   {
    "metric": "ebitda_margin",
@@ -510,7 +535,8 @@
    "call": "Q2FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf",
+   "page": 8
   },
   {
    "metric": "other",
@@ -527,7 +553,8 @@
    "call": "Q2FY26",
    "status": "not_checkable",
    "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf",
+   "page": 8
   }
  ],
  "rejected": [
@@ -546,7 +573,8 @@
    "call": "Q2FY27",
    "status": "rejected",
    "reason": "quote not found in transcript",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf",
+   "page": null
   },
   {
    "metric": "other",
@@ -563,7 +591,8 @@
    "call": "Q1FY27",
    "status": "rejected",
    "reason": "target 7 not stated in the quote",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf",
+   "page": 9
   },
   {
    "metric": "other",
@@ -580,7 +609,8 @@
    "call": "Q2FY26",
    "status": "rejected",
    "reason": "target 1.2 not stated in the quote",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf"
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a5825e0-67d1-41af-96e0-d78387aaba8d.pdf",
+   "page": 17
   }
  ],
  "credibility": {

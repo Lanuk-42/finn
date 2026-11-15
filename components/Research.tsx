@@ -12,7 +12,7 @@ import ExtrasView from "./Extras";
 import BullBear from "./BullBear";
 import { checkThesis, type ThesisLine } from "./ThesisEditor";
 import { useDeviceState } from "@/lib/device";
-import { fillName, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
+import { fillName, pdfAt, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
 export default function Research({ promises, stocks, patterns = [], asOf, initial, tour = 0, onTour, onSkipTour }: {
   promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; asOf: string; initial: string | null;
@@ -274,15 +274,16 @@ function QuoteSheet({ p, onClose }: { p: Promise_; onClose: () => void }) {
           <div key={i} className="mt-4">
             <p className="label">Repeated in {f.call}</p>
             <blockquote className="serif mt-1 border-l rule pl-3 text-[15px] leading-snug text-[var(--ink-2)]">“{f.quote}”</blockquote>
+            <a href={pdfAt(f.source_url, f.page)} target="_blank" rel="noreferrer" className="link mt-1 inline-block text-[13px] text-[var(--muted)]">{f.page ? `Transcript, page ${f.page}` : "Transcript"} ↗</a>
           </div>
         ))}
         <div className="mt-5 flex items-baseline gap-4 text-[13px] text-[var(--muted)]">
-          <a href={p.source_url} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Transcript</a>
+          <a href={pdfAt(p.source_url, p.page)} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">{p.page ? `Transcript, page ${p.page}` : "Transcript"} ↗</a>
           <button onClick={() => setHow((v) => !v)} className="link">How FINN checked this</button>
         </div>
         {how && (
           <div className="mt-2 space-y-1.5 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
-            <p>The quote was found word-for-word in the transcript, and the target number appears inside it.</p>
+            <p>The quote was found word-for-word in the transcript{p.page ? `, on page ${p.page}` : ""}, and the target number appears inside it.</p>
             {p.basis && <p className="num">Checked against: {p.basis}{p.base ? ` (base ${p.base})` : ""}.</p>}
             {p.reason && <p>{p.status === "not_checkable" ? "Not scored" : "Note"}: {p.reason}.</p>}
           </div>

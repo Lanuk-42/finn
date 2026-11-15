@@ -279,3 +279,6 @@ export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): Promis
 export function fillName(text: string, name: string): string {
   return text.replace(/\{name\}’s/g, poss(name)).replace(/\{name\}/g, name);
 }
+
+/** A PDF link that opens at the page a quote or figure was found on. */
+export const pdfAt = (url: string, page?: number | null) => (page ? `${url}#page=${page}` : url);
