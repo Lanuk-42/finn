@@ -165,6 +165,9 @@ def parse_company_html(html):
         "screener_id": cid.group(1) if cid else None,
         "quarters": _table(s.find(id="quarters")),
         "annual": _table(s.find(id="profit-loss")),
+        "balance_sheet": _table(s.find(id="balance-sheet")),
+        "cash_flow": _table(s.find(id="cash-flow")),
+        "ratios_table": _table(s.find(id="ratios")),
         "concalls": concalls,
         "filings": filings,
     }

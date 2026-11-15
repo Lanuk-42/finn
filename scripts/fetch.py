@@ -175,6 +175,17 @@ def merge_filings(old, new):
 
 
 # ---------------------------------------------------------------- main
+def screener_only(symbols):
+    """Refresh only the screener snapshots (no prices, no filings). Used for the web app's offline fallback."""
+    for sym in symbols:
+        scr = screener.fetch_company(sym) or {"ok": False}
+        scr["fetched_at"] = now_iso()
+        write_json(DATA / "screener" / f"{sym}.json", scr)
+        print(sym, scr.get("variant"), (scr.get("quarters") or {}).get("headers", [None])[-1],
+              "bs" if scr.get("balance_sheet") else "-", "cf" if scr.get("cash_flow") else "-", "ratios" if scr.get("ratios_table") else "-", flush=True)
+        time.sleep(1.5)
+
+
 def main(symbols):
     rep_path = DATA / "fetch_report.json"
     report = json.loads(rep_path.read_text()) if rep_path.exists() else {"stocks": {}}
@@ -225,5 +236,6 @@ def main(symbols):
 
 
 if __name__ == "__main__":
-    syms = [s.upper() for s in sys.argv[1:]] or [p["symbol"] for p in PORTFOLIO]
-    main(syms)
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    syms = [s.upper() for s in args] or [p["symbol"] for p in PORTFOLIO]
+    screener_only(syms) if "--screener-only" in sys.argv else main(syms)

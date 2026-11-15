@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, ResultsCard } from "@/lib/types";
-import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
+import { ageHours, CATEGORY_LABEL, cleanTitle, day, fyq, IST, STALE_HOURS, when } from "@/lib/format";
 import { useDeviceState } from "@/lib/device";
 import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
 import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
@@ -52,6 +52,8 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
   const [showRoutine, setShowRoutine] = useState(false);
   const [allBreaches, setAllBreaches] = useState(false);
   const [howOpen, setHowOpen] = useState(false);
+  const [stale, setStale] = useState(false); // decided after mount, from the viewer's clock
+  useEffect(() => setStale(ageHours(brief.data_as_of) > STALE_HOURS), [brief.data_as_of]);
   const [doneIds, setDoneIds] = useDeviceState<string[]>("finn.done.v1", []);
   const [showDone, setShowDone] = useState(false);
 
@@ -107,7 +109,8 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
             : <><span className="num">{n}</span> {n === 1 ? "thing needs" : "things need"} you {W.phrase}</>}
         </h1>
         <p className="num mt-2 text-[14px] text-[var(--muted)]">
-          {handled.length > 0 && <>{handled.length} of {total} done · </>}from {filings.length} filings across {brief.stocks.length} holdings · {when(brief.data_as_of)} IST
+          {handled.length > 0 && <>{handled.length} of {total} done · </>}from {filings.length} filings across {brief.stocks.length} holdings · as of {when(brief.data_as_of)} IST
+          {stale && <> <StaleTag /></>}
         </p>
         <nav aria-label="Time window" className="mt-4 flex gap-6 border-b rule">
           {WINDOWS.map((w) => (
@@ -267,6 +270,10 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
       </div>
     </div>
   );
+}
+
+export function StaleTag({ label = "Stale" }: { label?: string }) {
+  return <span className="ml-1 inline-block border border-[var(--accent)] px-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-[var(--accent)]">{label}</span>;
 }
 
 function lastEventText(name: string, f: Filing) {

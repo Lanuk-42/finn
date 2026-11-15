@@ -20,7 +20,7 @@ export default function App({ brief, promises }: { brief: BriefT; promises: Prom
       {tab === "brief" ? (
         <Brief brief={brief} promises={promises} onOpenStock={openResearch} />
       ) : (
-        <Research promises={promises} stocks={brief.stocks} patterns={brief.patterns} initial={researchTicker} />
+        <Research promises={promises} stocks={brief.stocks} patterns={brief.patterns} asOf={brief.data_as_of} initial={researchTicker} />
       )}
 
       <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-[var(--ink)] bg-[var(--paper)]">

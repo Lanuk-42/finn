@@ -54,6 +54,43 @@ async function resolve(q: string): Promise<string | null> {
   return m ? m[1].toUpperCase() : null;
 }
 
+/** Everything a snapshot is built from. Comes from the live page, or from the saved copy in data/screener/. */
+export interface Parts {
+  symbol: string; variant: string; url: string; name: string; about: string | null; ratios: Record<string, string>;
+  quarters: Table; annual: Table | null; bs: Table | null; cf: Table | null; ratioTable: Table | null; fetched_at: string;
+}
+
+/** Pure: tables in, snapshot out. Every derived number (QoQ, YoY, margins, extras) is computed here. */
+export function buildSnapshot(P: Parts): Snapshot {
+  const q = P.quarters, rows = q.rows;
+  const isBank = "Financing Profit" in rows;
+  const series = {
+    revenue: rows["Sales"] ?? rows["Revenue"] ?? null,
+    ebitda: isBank ? null : rows["Operating Profit"] ?? null,
+    pbt: rows["Profit before tax"] ?? null,
+    pat: rows["Net Profit"] ?? null,
+  };
+  const i = q.headers.length - 1;
+  const line = (s: (number | null)[] | null): Line | null =>
+    s ? { value: s[i], prev: s[i - 1] ?? null, year_ago: s[i - 4] ?? null, qoq: pctCh(s[i], s[i - 1] ?? null), yoy: pctCh(s[i], s[i - 4] ?? null) } : null;
+  const trend = q.headers.slice(-8).map((h) => {
+    const j = q.headers.indexOf(h);
+    return { quarter: h, revenue: series.revenue?.[j] ?? null, margin: series.ebitda && series.revenue ? margin(series.ebitda[j], series.revenue[j]) : null };
+  });
+  return {
+    ok: true, symbol: P.symbol, variant: P.variant, url: P.url, name: P.name, about: P.about, ratios: P.ratios, fetched_at: P.fetched_at,
+    latest: {
+      quarter: q.headers[i], prev: q.headers[i - 1] ?? null, year_ago: q.headers[i - 4] ?? null, is_bank: isBank,
+      lines: { revenue: line(series.revenue), ebitda: line(series.ebitda), pbt: line(series.pbt), pat: line(series.pat) },
+      ebitda_margin: series.ebitda && series.revenue ? margin(series.ebitda[i], series.revenue[i]) : null,
+      ebitda_margin_ya: series.ebitda && series.revenue && i >= 4 ? margin(series.ebitda[i - 4], series.revenue[i - 4]) : null,
+    },
+    trend,
+    extras: computeExtras("{name}", P.annual, P.bs, P.cf, P.ratioTable), // the client fills in its short display name
+  };
+}
+
+/** Live fetch from screener.in. Throws on network/HTTP failure so the caller can fall back to the saved copy. */
 export async function fetchSnapshot(symbolRaw: string, resolved = false): Promise<Snapshot> {
   const symbol = symbolRaw.toUpperCase().replace(/[^A-Z0-9&-]/g, "");
   if (!symbol) return { ok: false, symbol, error: "Enter an NSE ticker" };
@@ -62,7 +99,7 @@ export async function fetchSnapshot(symbolRaw: string, resolved = false): Promis
     const url = `https://www.screener.in${path}`;
     const r = await fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "en-US,en;q=0.9" }, cache: "no-store" });
     if (r.status === 404) continue;
-    if (!r.ok) return { ok: false, symbol, error: `screener.in answered HTTP ${r.status}` };
+    if (!r.ok) throw new Error(`screener.in answered HTTP ${r.status}`);
     const $ = cheerio.load(await r.text());
     const q = parseTable($, "quarters");
     if (!best || latestKey(q) > latestKey(best.q)) best = { $, q, variant, url };
@@ -80,7 +117,6 @@ export async function fetchSnapshot(symbolRaw: string, resolved = false): Promis
     }
     return { ok: false, symbol, error: `No quarterly results found for ${symbol} on screener.in` };
   }
-
   const { $, q, variant, url } = best;
   const ratios: Record<string, string> = {};
   $("#top-ratios li").each((_, li) => {
@@ -88,37 +124,11 @@ export async function fetchSnapshot(symbolRaw: string, resolved = false): Promis
     const v = $(li).find(".value").text().replace(/\s+/g, " ").trim();
     if (n && v) ratios[n] = v;
   });
-  const rows = q.rows;
-  const isBank = "Financing Profit" in rows;
-  const series = {
-    revenue: rows["Sales"] ?? rows["Revenue"] ?? null,
-    ebitda: isBank ? null : rows["Operating Profit"] ?? null,
-    pbt: rows["Profit before tax"] ?? null,
-    pat: rows["Net Profit"] ?? null,
-  };
-  const i = q.headers.length - 1;
-  const line = (s: (number | null)[] | null): Line | null =>
-    s ? { value: s[i], prev: s[i - 1] ?? null, year_ago: s[i - 4] ?? null, qoq: pctCh(s[i], s[i - 1] ?? null), yoy: pctCh(s[i], s[i - 4] ?? null) } : null;
-  const trend = q.headers.slice(-8).map((h) => {
-    const j = q.headers.indexOf(h);
-    return { quarter: h, revenue: series.revenue?.[j] ?? null, margin: series.ebitda && series.revenue ? margin(series.ebitda[j], series.revenue[j]) : null };
-  });
-  return {
-    ok: true, symbol, variant, url,
+  return buildSnapshot({
+    symbol, variant, url, ratios,
     name: $("h1").first().text().trim(),
     about: $("div.about").first().text().replace(/\s+/g, " ").trim() || null,
-    ratios,
-    fetched_at: new Date().toISOString(),
-    latest: {
-      quarter: q.headers[i], prev: q.headers[i - 1] ?? null, year_ago: q.headers[i - 4] ?? null, is_bank: isBank,
-      lines: { revenue: line(series.revenue), ebitda: line(series.ebitda), pbt: line(series.pbt), pat: line(series.pat) },
-      ebitda_margin: series.ebitda && series.revenue ? margin(series.ebitda[i], series.revenue[i]) : null,
-      ebitda_margin_ya: series.ebitda && series.revenue && i >= 4 ? margin(series.ebitda[i - 4], series.revenue[i - 4]) : null,
-    },
-    trend,
-    extras: computeExtras(
-      "{name}", // the client substitutes its short display name
-      parseTable($, "profit-loss"), parseTable($, "balance-sheet"), parseTable($, "cash-flow"), parseTable($, "ratios"),
-    ),
-  };
+    quarters: q, annual: parseTable($, "profit-loss"), bs: parseTable($, "balance-sheet"), cf: parseTable($, "cash-flow"),
+    ratioTable: parseTable($, "ratios"), fetched_at: new Date().toISOString(),
+  });
 }

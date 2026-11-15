@@ -59,3 +59,7 @@ export function fyq(label: string | null | undefined): string {
 }
 
 export const opSym = (op: string) => (op === ">=" ? "≥" : op === "<=" ? "≤" : op);
+
+/** Freshness helpers: data older than this is tagged stale rather than hidden or errored. */
+export const STALE_HOURS = 24;
+export const ageHours = (ts: string, now = Date.now()) => (now - new Date(ts).getTime()) / 3600e3;

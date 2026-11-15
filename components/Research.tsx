@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
-import { fyq, when } from "@/lib/format";
+import { day, fyq, when } from "@/lib/format";
+import { StaleTag } from "./Brief";
 import ExtrasView from "./Extras";
 import { fillName, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
-export default function Research({ promises, stocks, patterns = [], initial }: { promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; initial: string | null }) {
+export default function Research({ promises, stocks, patterns = [], asOf, initial }: { promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; asOf: string; initial: string | null }) {
   const tracked = promises.map((p) => p.symbol);
   const [ticker, setTicker] = useState<string>(initial ?? tracked[0] ?? "TCS");
   const [input, setInput] = useState("");
@@ -19,7 +20,8 @@ export default function Research({ promises, stocks, patterns = [], initial }: {
     let live = true;
     setLoading(true);
     setSnap(null);
-    fetch(`/api/snapshot/${encodeURIComponent(ticker)}`)
+    const offline = typeof window !== "undefined" && window.location.search.includes("offline=1") ? "?offline=1" : "";
+    fetch(`/api/snapshot/${encodeURIComponent(ticker)}${offline}`)
       .then((r) => r.json())
       .then((j: Snapshot) => live && setSnap(j))
       .catch((e) => live && setSnap({ ok: false, symbol: ticker, error: String(e) }))
@@ -63,7 +65,7 @@ export default function Research({ promises, stocks, patterns = [], initial }: {
         <section className="mt-7">
           <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
             <h2 className="label !text-[var(--ink)]">Filing patterns</h2>
-            <span className="num text-[12px] text-[var(--muted)]">last 180 days</span>
+            <span className="num text-[12px] text-[var(--muted)]">180 days to {day(asOf)}</span>
           </div>
           {patterns.filter((p) => p.symbol === ticker).map((p) => (
             <div key={p.kind} className="border-b rule py-3">
@@ -76,16 +78,24 @@ export default function Research({ promises, stocks, patterns = [], initial }: {
 
       {pf && <Tracker pf={pf} name={name} />}
 
+
       <section className="mt-9">
         <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
-          <h2 className="label !text-[var(--ink)]">Latest quarter</h2>
-          {snap?.ok && snap.latest && <span className="num text-[12px] text-[var(--muted)]">{fyq(snap.latest.quarter)}</span>}
+          <h2 className="label shrink-0 whitespace-nowrap !text-[var(--ink)]">Latest quarter</h2>
+          {snap?.ok && snap.latest && (
+            <span className="num text-[12px] text-[var(--muted)]">
+              {fyq(snap.latest.quarter)} · {snap.stale ? <>saved {snap.fetched_at ? when(snap.fetched_at) : ""}<StaleTag /></> : <>live {snap.fetched_at ? when(snap.fetched_at).split(", ")[1] : ""}</>}
+            </span>
+          )}
         </div>
         {loading && <p className="serif py-4 text-[16px] text-[var(--muted)]">Reading {ticker} from screener.in…</p>}
         {!loading && snap && !snap.ok && (
           <p className="serif border-b rule py-4 text-[16px] leading-snug text-[var(--ink-2)]">
-            {snap.error?.startsWith("No quarterly") ? <>Couldn’t find {ticker} on screener.in. Try the current NSE symbol (Zomato is now ETERNAL).</> : <>Couldn’t load {ticker}: {snap.error}</>}
+            {snap.error?.startsWith("No quarterly") ? <>Couldn’t find {ticker} on screener.in. Try the current NSE symbol (Zomato is now ETERNAL).</> : <>{snap.error}</>}
           </p>
+        )}
+        {!loading && snap?.ok && snap.stale && (
+          <p className="mt-3 text-[13px] text-[var(--muted)]">screener.in didn’t answer, so this is FINN’s last saved copy{snap.fetched_at ? ` from ${when(snap.fetched_at)}` : ""}.</p>
         )}
         {!loading && snap?.ok && <SnapshotBody s={snap} name={name} />}
       </section>
@@ -127,7 +137,7 @@ function Tracker({ pf, name }: { pf: PromiseFile; name: string }) {
     <section className="mt-7">
       <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
         <h2 className="label !text-[var(--ink)]">Promises vs delivery</h2>
-        <span className="num text-[12px] text-[var(--muted)]">{calls.length} calls</span>
+        <span className="num text-[12px] text-[var(--muted)]">{calls.length} calls · as of {day(pf.generated_at)}</span>
       </div>
 
       <div className="mt-4 flex items-end gap-3">
