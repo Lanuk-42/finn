@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Callout from "./Tour";
 import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
 import { day, fyq, when } from "@/lib/format";
 import { StaleTag } from "./Brief";
 import ExtrasView from "./Extras";
 import { fillName, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
-export default function Research({ promises, stocks, patterns = [], asOf, initial }: { promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; asOf: string; initial: string | null }) {
+export default function Research({ promises, stocks, patterns = [], asOf, initial, tour = 0, onTour, onSkipTour }: {
+  promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; asOf: string; initial: string | null;
+  tour?: number; onTour?: (n: number) => void; onSkipTour?: () => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
   const tracked = promises.map((p) => p.symbol);
   const [ticker, setTicker] = useState<string>(initial ?? tracked[0] ?? "TCS");
   const [input, setInput] = useState("");
@@ -32,7 +37,8 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
   const pf = promises.find((p) => p.symbol === ticker);
   const portfolio = stocks.find((s) => s.symbol === ticker);
   const name = shortName(snap?.ok && snap.symbol !== ticker ? snap.symbol : ticker, portfolio?.name ?? (snap?.ok ? snap.name : undefined));
-  const go = (t: string) => { const s = t.trim().toUpperCase(); if (s) { setTicker(s); setInput(""); } };
+  const go = (t: string) => { const s = t.trim().toUpperCase(); if (s) { setTicker(s); setInput(""); if (tour === 3) onSkipTour?.(); } };
+  useEffect(() => { if (tour === 3) { window.scrollTo({ top: 0, behavior: "smooth" }); inputRef.current?.focus(); } }, [tour]);
 
   return (
     <div className="px-5">
@@ -43,6 +49,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
         </div>
         <form onSubmit={(e) => { e.preventDefault(); go(input); }} className="mt-4 flex items-end gap-3 border-b border-[var(--ink)] pb-1.5">
           <input
+            ref={inputRef}
             value={input}
             onChange={(e) => setInput(e.target.value.toUpperCase())}
             placeholder="Look up any NSE ticker"
@@ -52,6 +59,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
           />
           <button className="text-[14px] font-semibold">Go →</button>
         </form>
+        {tour === 3 && <Callout step={3} onSkip={() => onSkipTour?.()} text="That’s it. Type any NSE ticker above, e.g. IRCTC, and press Go: FINN reads it live." />}
         <TickerIndex label="Promise trackers" list={tracked} active={ticker} onPick={go} />
         <TickerIndex label="Portfolio" list={stocks.map((s) => s.symbol).filter((s) => !tracked.includes(s))} active={ticker} onPick={go} />
       </header>
@@ -76,6 +84,10 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
         </section>
       )}
 
+      {tour === 2 && pf && (
+        <Callout step={3} onSkip={() => onSkipTour?.()} action="Try any ticker" onAction={() => onTour?.(3)}
+          text={`This is ${name}’s promise tracker: what management guided, what was delivered, scored by code. Tap any row for the exact quote.`} />
+      )}
       {pf && <Tracker pf={pf} name={name} />}
 
 

@@ -5,6 +5,7 @@ import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, Res
 import { ageHours, CATEGORY_LABEL, cleanTitle, day, fyq, IST, STALE_HOURS, when } from "@/lib/format";
 import { useDeviceState } from "@/lib/device";
 import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
+import Callout from "./Tour";
 import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
@@ -39,7 +40,9 @@ function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
 const fmtPct = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}%`);
 const fmtPp = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}pp`);
 
-export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT; promises: PromiseFile[]; onOpenStock: (s: string) => void }) {
+export default function Brief({ brief, promises, onOpenStock, tour = 0, onTour, onSkipTour }: {
+  brief: BriefT; promises: PromiseFile[]; onOpenStock: (s: string) => void; tour?: number; onTour?: (n: number) => void; onSkipTour?: () => void;
+}) {
   const asOf = new Date(brief.data_as_of).getTime();
   const autoWin = useMemo(
     () => WINDOWS.find((w) => actGroupsFor(brief, asOf, w.d).length >= MIN_ACT)?.d ?? WINDOWS[WINDOWS.length - 1].d,
@@ -93,6 +96,11 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
   const open = actGroups.filter((g) => !doneSet.has(g.lead.id));
   const handled = actGroups.filter((g) => doneSet.has(g.lead.id));
   const n = open.length;
+  // The tour's results card: the first open results item that links to a promise tracker.
+  const tourCard = open.find((g) => g.lead.card?.type === "results" && promiseLink(g.lead.card, promises.find((p) => p.symbol === g.lead.symbol)));
+  useEffect(() => {
+    if (tour === 1.5 && tourCard) document.getElementById(`item-${tourCard.lead.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [tour, tourCard]);
   const toggleDone = (id: string) => setDoneIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   return (
@@ -121,6 +129,13 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
           ))}
         </nav>
       </header>
+
+      {tour === 1 && (
+        <Callout step={1} onSkip={() => onSkipTour?.()}
+          text={tourCard ? `FINN reads every filing and keeps only what needs you. Start with ${nm(tourCard.lead.symbol)}’s latest results.` : "FINN reads every filing and keeps only what needs you. Open Research to see a promise tracker."}
+          action={tourCard ? "Show me a results card" : "Open Research"}
+          onAction={() => (tourCard ? onTour?.(1.5) : onOpenStock(promises[0]?.symbol ?? "BEL"))} />
+      )}
 
       {/* Thesis */}
       <Section label="Off thesis" right={
@@ -185,7 +200,14 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
             {lastAct ? <>Last material event: {lastEventText(nm(lastAct.symbol), lastAct)}, {day(lastAct.ts)}.</> : "Nothing material in 30 days."}
           </Empty>
         )}
-        {open.map((g) => <ActItem key={g.lead.id} f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} pf={promises.find((p) => p.symbol === g.lead.symbol)} onOpenStock={onOpenStock} onDone={() => toggleDone(g.lead.id)} />)}
+        {open.map((g) => (
+          <div key={g.lead.id} id={`item-${g.lead.id}`} className={tour === 1.5 && tourCard?.lead.id === g.lead.id ? "-mx-2 px-2 outline outline-2 outline-[var(--ink)]" : ""}>
+            {tour === 1.5 && tourCard?.lead.id === g.lead.id && (
+              <Callout step={2} onSkip={() => onSkipTour?.()} text="Numbers first, then what management promised. Tap the Promise line under the table." />
+            )}
+            <ActItem f={g.lead} earlier={g.earlier} name={nm(g.lead.symbol)} pf={promises.find((p) => p.symbol === g.lead.symbol)} onOpenStock={onOpenStock} onDone={() => toggleDone(g.lead.id)} />
+          </div>
+        ))}
         {handled.length > 0 && (
           <div className="pt-3">
             <button onClick={() => setShowDone((v) => !v)} className="link text-[13px] text-[var(--muted)]">
