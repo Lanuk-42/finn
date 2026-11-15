@@ -220,6 +220,9 @@ def check(g, text, call_quarter, quarters, annual):
     out["call"] = call_quarter
     if not quote_in_text(g.get("quote"), text):
         return {**out, "status": "rejected", "reason": "quote not found in transcript"}
+    # Guidance must be management speaking, not an analyst asking about it.
+    if "?" in g.get("quote", "") or re.search(r"\b(wanted to ask|my (first |next )?question|question is|could you)\b", g.get("quote", ""), re.I):
+        return {**out, "status": "rejected", "reason": "analyst question, not a management statement"}
     nums = numbers_in(g.get("quote"))
     for t in (g.get("low"), g.get("high")):
         if t is not None and not any(abs(n - float(t)) < 1e-6 for n in nums):
@@ -347,8 +350,14 @@ def run(symbol, scr, max_transcripts=5):
     promises = []
     for _key, gs in groups.items():
         first = dict(gs[0])
-        first["followups"] = [{"call": x["call"], "quote": x["quote"], "low": x["low"], "high": x["high"],
-                               "kind": x["kind"], "source_url": x["source_url"]} for x in gs[1:]]
+        fu, seen_calls = [], {first["call"]}
+        for x in gs[1:]:  # one follow-up per later call
+            if x["call"] in seen_calls:
+                continue
+            seen_calls.add(x["call"])
+            fu.append({"call": x["call"], "quote": x["quote"], "low": x["low"], "high": x["high"],
+                       "kind": x["kind"], "source_url": x["source_url"]})
+        first["followups"] = fu
         promises.append(first)
     kept = sum(1 for p in promises if p.get("verdict") in ("Met", "Beat"))
     resolved = sum(1 for p in promises if p["status"] == "resolved")

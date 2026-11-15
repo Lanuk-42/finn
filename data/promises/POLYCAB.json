@@ -190,6 +190,23 @@
    "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
   },
   {
+   "metric": "ebit_margin",
+   "scope": "segment",
+   "period": "UNSPECIFIED",
+   "kind": "range",
+   "low": 11,
+   "high": 13,
+   "unit": "%",
+   "summary": "Medium- to long-term EBIT margin guidance for Wires & Cables business.",
+   "speaker": "Niyant Maru",
+   "quote": "Consistent with our Project Spring roadmap, we continue to maintain our medium- to long- term margin guidance of 11% to 13% for this business.",
+   "qualifier": "Wires & Cables business",
+   "call": "Q1FY27",
+   "status": "not_checkable",
+   "reason": "qualified target (Wires & Cables business); tables show reported totals",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
+  },
+  {
    "metric": "ebitda_margin",
    "scope": "segment",
    "period": "FY30",
@@ -532,23 +549,6 @@
    "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77b6d277-0ffc-440d-ba8a-2bd9bc3dc43e.pdf"
   },
   {
-   "metric": "ebit_margin",
-   "scope": "segment",
-   "period": "unspecified",
-   "kind": "range",
-   "low": 11,
-   "high": 13,
-   "unit": "%",
-   "summary": "Medium- to long-term EBIT margin guidance for Wires & Cables business.",
-   "speaker": "Niyant Maru",
-   "quote": "Consistent with our Project Spring roadmap, we continue to maintain our medium- to long- term margin guidance of 11% to 13% for this business.",
-   "qualifier": "Wires & Cables business",
-   "call": "Q1FY27",
-   "status": "rejected",
-   "reason": "quote not found in transcript",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e47a217c-cefa-4ff6-8e34-6bbd07d42b13.pdf"
-  },
-  {
    "metric": "other",
    "scope": "segment",
    "period": "unspecified",
@@ -589,6 +589,6 @@
   "in_progress": 0,
   "standing": 2
  },
- "generated_at": "2026-11-15T18:59:01+05:30",
+ "generated_at": "2026-11-15T19:29:59+05:30",
  "company": "Polycab India Ltd"
 }

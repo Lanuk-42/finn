@@ -16,13 +16,18 @@ def norm(s):
 
 def quote_in_text(quote, text):
     """True if the quote appears verbatim (after whitespace/typography normalisation).
-    An ellipsis splits a quote into parts that must appear in order."""
+    An ellipsis splits a quote into parts that must appear in order. PDF extraction often splits words
+    ("cro res"), so a second pass compares with ALL whitespace removed: every character must still match, in order."""
     if not quote or len(quote.strip()) < 12:
         return False
-    t = norm(text)
+    squash = lambda x: re.sub(r"[\s-]+", "", norm(x))  # noqa: E731  (PDFs drop/insert spaces and hyphens at line breaks)
+    return _in(quote, norm(text), norm) or _in(quote, squash(text), squash)
+
+
+def _in(quote, t, nq):
     pos = 0
     for part in re.split(r"\.\.\.|…", quote):
-        p = norm(part)
+        p = nq(part)
         if len(p) < 6:
             continue
         i = t.find(p, pos)

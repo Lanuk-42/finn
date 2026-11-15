@@ -7,7 +7,8 @@ A mobile-first daily brief for an Indian equity portfolio. It shows only what ch
 ## What it does
 
 **Brief (push)**
-- Header: *As of [time], X filings checked, Y need your attention*, with a window picker (24h / 3d / 7d / 30d, default 7d).
+- Portfolio: 18 stocks across sectors and sizes, including a PSU (BEL), two pharma (Sun, Lupin), an NBFC (Cholamandalam), a bank and three small caps.
+- Header: *As of [time], X filings checked, Y need your attention*, with a window picker (24h / 3 days / 7 days / 30 days). The default is the smallest window with at least 3 Act items.
 - **Thesis breaches** sit at the top. Each holding has a pre-filled thesis line (why I own it + one metric, e.g. EBITDA margin ≥ 18%). Code checks it against the latest quarter.
 - **Act** cards:
   - **Results card:** Revenue, EBITDA, PBT and PAT, with QoQ and YoY computed in code from screener tables, plus a one-line read.
@@ -17,7 +18,7 @@ A mobile-first daily brief for an Indian equity portfolio. It shows only what ch
 - **Note** is a compact list. **Routine** is hidden behind a count.
 
 **Research (pull)**
-- **Promise tracker** for POLYCAB, PERSISTENT and DIXON (precomputed). It covers what management guided, the reported actual, and a Beat / Met / Missed / In progress verdict. Tap any item to see the exact transcript quote. Credibility is a simple count.
+- **Promise tracker** for BEL, POLYCAB and PERSISTENT (precomputed). BEL replaced DIXON because Dixon guides mostly by segment; BEL gives company-wide yearly revenue-growth and EBITDA-margin targets, so FY26 resolves to real verdicts. It covers what management guided, the reported actual, and a Beat / Met / Missed / In progress verdict. Tap any item to see the exact transcript quote. Credibility is a simple count.
 - **Live financial snapshot** for any NSE ticker typed in. It fetches screener.in at request time and computes headline numbers, margins and an 8-quarter trend. Renamed companies resolve through screener search (ZOMATO → ETERNAL).
 
 ## How it is built
@@ -41,6 +42,7 @@ Where AI is used, and how code checks it:
 Cost controls:
 - Transcripts are cut down to guidance-bearing sentence windows, 55–77% fewer tokens, and quotes are still verified against the full text.
 - Every LLM response is cached on disk.
+- `FINN_LLM_BUDGET=N` hard-caps new (uncached) LLM calls per run.
 - Gemini's free tier allows 20 requests per model per day, so the client falls back across models on overload or exhausted quota.
 
 ## Data sources (fetch check, 15 Nov 2026, from a cloud container)

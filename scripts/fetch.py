@@ -176,7 +176,9 @@ def merge_filings(old, new):
 
 # ---------------------------------------------------------------- main
 def main(symbols):
-    report = {"run_at": now_iso(), "stocks": {}}
+    rep_path = DATA / "fetch_report.json"
+    report = json.loads(rep_path.read_text()) if rep_path.exists() else {"stocks": {}}
+    report["run_at"] = now_iso()  # stocks not fetched this run keep their previous entry
     ann_path = DATA / "announcements.json"
     ann_all = json.loads(ann_path.read_text()) if ann_path.exists() else {}
 

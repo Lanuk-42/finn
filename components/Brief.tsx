@@ -5,40 +5,46 @@ import type { Brief as BriefT, Filing, MgmtCard, ResultsCard, Stock } from "@/li
 import { CATEGORY_LABEL, cleanTitle, day, fyq, opSym, pct, pp, tone, when } from "@/lib/format";
 
 const WINDOWS = [
-  { d: 1, label: "24h" },
-  { d: 3, label: "3d" },
-  { d: 7, label: "7d" },
-  { d: 30, label: "30d" },
+  { d: 1, label: "24h", long: "last 24 hours" },
+  { d: 3, label: "3 days", long: "last 3 days" },
+  { d: 7, label: "7 days", long: "last 7 days" },
+  { d: 30, label: "30 days", long: "last 30 days" },
 ];
+const MIN_ACT = 3; // default window = the smallest one with at least this many Act cards
+
+const tsMs = (ts: string) => new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime();
+
+/** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one card. */
+function actGroupsFor(brief: BriefT, asOf: number, days: number) {
+  const rank = (c: string) => { const i = brief.act_order.indexOf(c); return i < 0 ? 99 : i; };
+  const act = brief.filings.filter((f) => f.tier === "Act" && asOf - tsMs(f.ts) <= days * 86400e3);
+  const groups: { lead: Filing; earlier: Filing[] }[] = [];
+  for (const f of [...act].sort((a, b) => b.ts.localeCompare(a.ts))) {
+    const g = groups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule && cleanTitle(x.lead.title) === cleanTitle(f.title));
+    if (g) g.earlier.push(f); else groups.push({ lead: f, earlier: [] });
+  }
+  return groups.sort((a, b) => rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));
+}
 
 export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenStock: (s: string) => void }) {
-  const [win, setWin] = useState(7);
+  const asOf = new Date(brief.data_as_of).getTime();
+  const autoWin = useMemo(
+    () => WINDOWS.find((w) => actGroupsFor(brief, asOf, w.d).length >= MIN_ACT)?.d ?? WINDOWS[WINDOWS.length - 1].d,
+    [brief, asOf],
+  );
+  const [win, setWin] = useState(autoWin);
   const [px, setPx] = useState(5);
   const [vx, setVx] = useState(2);
   const [showRoutine, setShowRoutine] = useState(false);
+  const [showBreaches, setShowBreaches] = useState(false);
 
-  const asOf = new Date(brief.data_as_of).getTime();
   const byId = useMemo(() => Object.fromEntries(brief.filings.map((f) => [f.id, f])), [brief.filings]);
   const stock = useMemo(() => Object.fromEntries(brief.stocks.map((s) => [s.symbol, s])), [brief.stocks]);
 
-  const inWin = (ts: string) => asOf - new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime() <= win * 86400e3;
+  const inWin = (ts: string) => asOf - tsMs(ts) <= win * 86400e3;
   const filings = brief.filings.filter((f) => inWin(f.ts));
-  const act = filings
-    .filter((f) => f.tier === "Act")
-    .sort((a, b) => {
-      const ia = brief.act_order.indexOf(a.category), ib = brief.act_order.indexOf(b.category);
-      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || b.ts.localeCompare(a.ts);
-    });
-  // Collapse repeated updates on the same matter (e.g. six CIRP hearing updates) into one card.
-  const actGroups: { lead: Filing; earlier: Filing[] }[] = [];
-  for (const f of [...act].sort((a, b) => b.ts.localeCompare(a.ts))) {
-    const g = actGroups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule && cleanTitle(x.lead.title) === cleanTitle(f.title));
-    if (g) g.earlier.push(f); else actGroups.push({ lead: f, earlier: [] });
-  }
-  actGroups.sort((a, b) => {
-    const ia = brief.act_order.indexOf(a.lead.category), ib = brief.act_order.indexOf(b.lead.category);
-    return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib) || b.lead.ts.localeCompare(a.lead.ts);
-  });
+  const actGroups = useMemo(() => actGroupsFor(brief, asOf, win), [brief, asOf, win]);
+  const winLabel = WINDOWS.find((w) => w.d === win)!;
   const note = filings.filter((f) => f.tier === "Note");
   const routine = filings.filter((f) => f.tier === "Routine");
   const breaches = brief.stocks.filter((s) => s.thesis.status === "breach");
@@ -59,27 +65,43 @@ export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenSto
           <span className="text-[var(--ink)]">{filings.length}</span> filings checked,{" "}
           <span className={actGroups.length ? "font-semibold text-[var(--act)]" : "text-[var(--ink)]"}>{actGroups.length}</span> need your attention
         </p>
-        <div className="mt-3 flex gap-1.5">
+        <div role="tablist" aria-label="Time window" className="mt-3 grid grid-cols-4 gap-1 rounded-xl bg-[var(--chip)] p-1">
           {WINDOWS.map((w) => (
             <button
               key={w.d}
+              role="tab"
+              aria-selected={win === w.d}
               onClick={() => setWin(w.d)}
-              className={`num rounded-full px-3 py-1 text-[13px] font-medium ${win === w.d ? "bg-[var(--ink)] text-[var(--bg)]" : "chip text-[var(--muted)]"}`}
+              className={`num rounded-lg py-1.5 text-[13px] transition-colors ${win === w.d ? "bg-[var(--ink)] font-semibold text-[var(--bg)] shadow-sm" : "font-medium text-[var(--muted)]"}`}
             >
               {w.label}
             </button>
           ))}
         </div>
+        <p className="mt-1.5 text-[12px] text-[var(--muted)]">
+          Showing the <b className="text-[var(--ink)]">{winLabel.long}</b>
+          {win === autoWin && <span className="text-[var(--faint)]"> · auto: smallest window with {MIN_ACT}+ items to act on</span>}
+        </p>
       </header>
 
       {breaches.length > 0 && (
-        <section className="mt-4 space-y-2">
-          {breaches.map((s) => <BreachBanner key={s.symbol} s={s} onOpen={() => onOpenStock(s.symbol)} />)}
+        <section className="mt-4 overflow-hidden rounded-2xl border border-[var(--down)]/30 bg-[var(--act-bg)]">
+          <p className="flex items-center gap-2 px-4 pt-3 text-[12px] font-semibold uppercase tracking-wide text-[var(--down)]">
+            <span className="inline-block h-2 w-2 rounded-full bg-[var(--down)]" /> {breaches.length} thesis breach{breaches.length > 1 ? "es" : ""}
+          </p>
+          <ul className="mt-1 divide-y divide-[var(--down)]/15">
+            {(showBreaches ? breaches : breaches.slice(0, 3)).map((s) => <BreachRow key={s.symbol} s={s} onOpen={() => onOpenStock(s.symbol)} />)}
+          </ul>
+          {breaches.length > 3 && (
+            <button onClick={() => setShowBreaches((v) => !v)} className="w-full px-4 pb-3 pt-1 text-left text-[12px] font-medium text-[var(--down)]">
+              {showBreaches ? "Show fewer" : `+${breaches.length - 3} more`}
+            </button>
+          )}
         </section>
       )}
 
       <Section title="Act" count={actGroups.length} tone="act" hint="Material: results, management, legal, deals, equity raises">
-        {act.length === 0 && <Empty>Nothing material in this window.</Empty>}
+        {actGroups.length === 0 && <Empty>Nothing material in this window.</Empty>}
         {actGroups.map((g) => <FilingCard key={g.lead.id} f={g.lead} earlier={g.earlier} onOpenStock={onOpenStock} />)}
       </Section>
 
@@ -141,17 +163,18 @@ function Empty({ children }: { children: React.ReactNode }) {
   return <p className="rounded-xl border border-dashed hairline px-3 py-3 text-[13px] text-[var(--muted)]">{children}</p>;
 }
 
-function BreachBanner({ s, onOpen }: { s: Stock; onOpen: () => void }) {
+function BreachRow({ s, onOpen }: { s: Stock; onOpen: () => void }) {
   return (
-    <button onClick={onOpen} className="w-full rounded-2xl border border-[var(--down)]/30 bg-[var(--act-bg)] px-4 py-3 text-left">
-      <div className="flex items-center gap-2 text-[12px] font-semibold uppercase tracking-wide text-[var(--down)]">
-        <span className="inline-block h-2 w-2 rounded-full bg-[var(--down)]" /> Thesis breach · {s.symbol}
-      </div>
-      <p className="num mt-1 text-[15px] font-medium leading-snug">
-        {s.thesis.rule.split(/ [<>]=/)[0]} is <span className="text-[var(--down)]">{s.thesis.actual}%</span> in {fyq(s.thesis.quarter)}; your line is {opSym(s.thesis.op)} {s.thesis.value}%.
-      </p>
-      <p className="mt-0.5 text-[13px] text-[var(--muted)]">Why you own it: {s.thesis.why}</p>
-    </button>
+    <li>
+      <button onClick={onOpen} className="w-full px-4 py-2.5 text-left">
+        <p className="num text-[14px] leading-snug">
+          <b>{s.symbol}</b> <span className="text-[var(--muted)]">{s.thesis.rule.split(/ [<>]=/)[0]}</span>{" "}
+          <b className="text-[var(--down)]">{s.thesis.actual}%</b>
+          <span className="text-[var(--muted)]"> vs your {opSym(s.thesis.op)} {s.thesis.value}% · {fyq(s.thesis.quarter)}</span>
+        </p>
+        <p className="mt-0.5 truncate text-[12px] text-[var(--muted)]">Why you own it: {s.thesis.why}</p>
+      </button>
+    </li>
   );
 }
 

@@ -144,23 +144,6 @@
   },
   {
    "metric": "other",
-   "scope": "company",
-   "period": "FY31",
-   "kind": "at_least",
-   "low": 5,
-   "high": null,
-   "unit": "usd_bn",
-   "summary": "Aspiration to reach USD 5 billion by FY31",
-   "speaker": null,
-   "quote": "Many of you have asked us in Earning Calls before, do we need additional verticals to scale to the aspiration of $5 billion that we have? By FY31, we get that as well at a nice scale.",
-   "qualifier": "aspiration",
-   "call": "Q1FY27",
-   "status": "not_checkable",
-   "reason": "segment / non-INR / non-table metric",
-   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b1c49752-0908-4750-9177-398a60654630.pdf"
-  },
-  {
-   "metric": "other",
    "scope": "segment",
    "period": "UNSPECIFIED",
    "kind": "at_least",
@@ -281,6 +264,23 @@
  ],
  "rejected": [
   {
+   "metric": "other",
+   "scope": "company",
+   "period": "FY31",
+   "kind": "at_least",
+   "low": 5,
+   "high": null,
+   "unit": "usd_bn",
+   "summary": "Aspiration to reach USD 5 billion by FY31",
+   "speaker": null,
+   "quote": "Many of you have asked us in Earning Calls before, do we need additional verticals to scale to the aspiration of $5 billion that we have? By FY31, we get that as well at a nice scale.",
+   "qualifier": "aspiration",
+   "call": "Q1FY27",
+   "status": "rejected",
+   "reason": "analyst question, not a management statement",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b1c49752-0908-4750-9177-398a60654630.pdf"
+  },
+  {
    "metric": "ebit_margin",
    "scope": "company",
    "period": "FY26",
@@ -304,6 +304,6 @@
   "in_progress": 1,
   "standing": 1
  },
- "generated_at": "2026-11-15T18:59:01+05:30",
+ "generated_at": "2026-11-15T19:29:59+05:30",
  "company": "Persistent Systems Ltd"
 }

@@ -28,6 +28,14 @@ class QuotaExceeded(RuntimeError):
     pass
 
 
+class BudgetExceeded(RuntimeError):
+    pass
+
+
+# Hard cap on NEW (uncached) calls per run: FINN_LLM_BUDGET=12 python scripts/brain.py
+BUDGET = int(os.environ.get("FINN_LLM_BUDGET", "0")) or None
+
+
 def _stream(model, body, key):
     r = requests.post(URL, json={**body, "model": model, "stream": True,
                                  "stream_options": {"include_usage": True}},
@@ -57,6 +65,8 @@ def ask_json(system, user, models=CHEAP, rounds=3):
     if p.exists():
         USAGE["cached"] += 1
         return json.loads(p.read_text())["parsed"]
+    if BUDGET is not None and USAGE["calls"] >= BUDGET:
+        raise BudgetExceeded(f"LLM budget of {BUDGET} new calls used")
     body = {"temperature": 0, "response_format": {"type": "json_object"},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
     dead, last = set(), ""

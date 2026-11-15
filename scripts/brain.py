@@ -73,6 +73,8 @@ def build_filings(sym, raw, scr, now):
             continue
         try:
             m = management.extract(txt, f["headline"])
+        except gemini.BudgetExceeded:
+            m = {"people": [], "note": "Skipped: LLM budget for this run used up"}
         except Exception as e:  # noqa: BLE001
             m = {"people": [], "note": f"extraction failed: {str(e)[:80]}"}
         f["card"] = {"type": "management", **m}

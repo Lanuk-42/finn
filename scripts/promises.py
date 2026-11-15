@@ -14,10 +14,10 @@ from finn.config import DATA, PROMISE_TICKERS  # noqa: E402
 IST = timezone(timedelta(hours=5, minutes=30))
 
 if __name__ == "__main__":
-    syms = [s.upper() for s in sys.argv[1:]] or PROMISE_TICKERS
+    syms = [s.upper() for s in sys.argv[1:]] or list(PROMISE_TICKERS)
     for sym in syms:
         scr = json.loads((DATA / "screener" / f"{sym}.json").read_text())
-        out = promises.run(sym, scr)
+        out = promises.run(sym, scr, max_transcripts=PROMISE_TICKERS.get(sym, 5))
         out["generated_at"] = datetime.now(IST).isoformat(timespec="seconds")
         out["company"] = scr.get("name")
         (DATA / "promises").mkdir(exist_ok=True)

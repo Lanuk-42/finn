@@ -134,7 +134,7 @@ function Tracker({ pf }: { pf: PromiseFile }) {
             {checks ? <>{kept}<span className="text-[20px] text-[var(--faint)]">/{checks}</span></> : "—"}
           </p>
           <p className="pb-1 text-[13px] leading-snug text-[var(--muted)]">
-            checks kept: {c.kept}/{c.resolved} dated targets resolved, plus {qHeld}/{qTested} quarters inside a standing range.
+            checks kept: {c.kept}/{c.resolved} dated targets resolved{qTested > 0 && <>, plus {qHeld}/{qTested} quarters inside a standing range</>}.
             {c.in_progress > 0 && <> {c.in_progress} still in progress.</>}
           </p>
         </div>
@@ -273,12 +273,13 @@ function SnapshotCard({ s }: { s: Snapshot }) {
       {s.trend && s.trend.length > 0 && (
         <div className="mt-4">
           <p className="text-[11px] uppercase tracking-wide text-[var(--faint)]">Revenue, last {s.trend.length} quarters{L.ebitda_margin !== null ? " · EBITDA margin" : ""}</p>
-          <div className="mt-2 flex h-24 items-end gap-1.5">
+          {/* minmax(0,1fr) lets columns shrink below their label width, so 8 bars fit a 320px phone */}
+          <div className="mt-2 grid h-28 items-end gap-1" style={{ gridTemplateColumns: `repeat(${s.trend.length}, minmax(0, 1fr))` }}>
             {s.trend.map((t) => (
-              <div key={t.quarter} className="flex flex-1 flex-col items-center justify-end gap-1">
-                {t.margin !== null && <span className="num text-[9px] text-[var(--muted)]">{t.margin}</span>}
-                <div className="w-full rounded-t bg-[var(--ink)]/80" style={{ height: `${Math.max(4, ((t.revenue ?? 0) / maxRev) * 64)}px` }} />
-                <span className="num text-[9px] text-[var(--faint)]">{t.quarter.slice(0, 3)}&apos;{t.quarter.slice(-2)}</span>
+              <div key={t.quarter} className="flex min-w-0 flex-col items-center justify-end gap-1">
+                {t.margin !== null && <span className="num text-[9px] leading-none text-[var(--muted)]">{t.margin}</span>}
+                <div className="w-full max-w-[28px] rounded-t bg-[var(--ink)]/80" style={{ height: `${Math.max(4, ((t.revenue ?? 0) / maxRev) * 60)}px` }} />
+                <span className="num text-center text-[9px] leading-[1.1] text-[var(--faint)]">{t.quarter.slice(0, 3)}<br />&apos;{t.quarter.slice(-2)}</span>
               </div>
             ))}
           </div>
