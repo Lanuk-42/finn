@@ -1,0 +1,1113 @@
+{
+ "ok": true,
+ "name": "Havells India Ltd",
+ "about": "Havells India Limited is a leading Fast Moving Electrical Goods (FMEG) Company and a major power distribution equipment manufacturer with a strong global presence. It enjoys enviable market dominance across a wide spectrum of products, including Industrial & Domestic Circuit Protection Devices, Cables & Wires, Motors, Fans, Modular Switches, Home Appliances, Air Conditioners, Electric Water Heaters, Power Capacitors, Luminaires for Domestic, Commercial and Industrial Applications. [1]",
+ "ratios": {
+  "Market Cap": "₹ 72,867 Cr.",
+  "Current Price": "₹ 1,161",
+  "High / Low": "₹ 1,515 / 999",
+  "Stock P/E": "42.9",
+  "Book Value": "₹ 156",
+  "Dividend Yield": "0.86 %",
+  "ROCE": "24.9 %",
+  "ROE": "19.0 %",
+  "Face Value": "₹ 1.00"
+ },
+ "bse_code": "517354",
+ "screener_id": "1288",
+ "quarters": {
+  "headers": [
+   "Sep 2023",
+   "Dec 2023",
+   "Mar 2024",
+   "Jun 2024",
+   "Sep 2024",
+   "Dec 2024",
+   "Mar 2025",
+   "Jun 2025",
+   "Sep 2025",
+   "Dec 2025",
+   "Mar 2026",
+   "Jun 2026",
+   "Sep 2026"
+  ],
+  "rows": {
+   "Sales": [
+    3900.0,
+    4414.0,
+    5442.0,
+    5806.0,
+    4539.0,
+    4889.0,
+    6544.0,
+    5455.0,
+    4779.0,
+    5588.0,
+    6705.0,
+    6518.0,
+    6432.0
+   ],
+   "YoY Sales growth": [
+    6.0,
+    7.0,
+    12.0,
+    20.0,
+    16.0,
+    11.0,
+    20.0,
+    -6.0,
+    5.0,
+    14.0,
+    2.0,
+    19.0,
+    35.0
+   ],
+   "Expenses": [
+    3527.0,
+    3981.0,
+    4807.0,
+    5234.0,
+    4164.0,
+    4462.0,
+    5787.0,
+    4940.0,
+    4341.0,
+    5072.0,
+    5976.0,
+    6052.0,
+    5859.0
+   ],
+   "Operating Profit": [
+    373.0,
+    433.0,
+    635.0,
+    572.0,
+    375.0,
+    426.0,
+    757.0,
+    516.0,
+    438.0,
+    516.0,
+    729.0,
+    466.0,
+    573.0
+   ],
+   "OPM %": [
+    10.0,
+    10.0,
+    12.0,
+    10.0,
+    8.0,
+    9.0,
+    12.0,
+    9.0,
+    9.0,
+    9.0,
+    11.0,
+    7.0,
+    9.0
+   ],
+   "Other Income": [
+    52.0,
+    56.0,
+    76.0,
+    77.0,
+    93.0,
+    64.0,
+    69.0,
+    69.0,
+    91.0,
+    9.0,
+    310.0,
+    54.0,
+    33.0
+   ],
+   "Interest": [
+    9.0,
+    10.0,
+    18.0,
+    9.0,
+    10.0,
+    9.0,
+    15.0,
+    9.0,
+    9.0,
+    9.0,
+    10.0,
+    7.0,
+    5.0
+   ],
+   "Depreciation": [
+    81.0,
+    88.0,
+    93.0,
+    92.0,
+    95.0,
+    104.0,
+    110.0,
+    106.0,
+    106.0,
+    109.0,
+    112.0,
+    121.0,
+    129.0
+   ],
+   "Profit before tax": [
+    335.0,
+    391.0,
+    599.0,
+    549.0,
+    363.0,
+    377.0,
+    701.0,
+    470.0,
+    415.0,
+    408.0,
+    918.0,
+    392.0,
+    473.0
+   ],
+   "Tax %": [
+    26.0,
+    26.0,
+    25.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    23.0,
+    26.0,
+    21.0,
+    26.0,
+    26.0
+   ],
+   "Net Profit": [
+    249.0,
+    288.0,
+    447.0,
+    408.0,
+    268.0,
+    278.0,
+    517.0,
+    348.0,
+    318.0,
+    300.0,
+    723.0,
+    290.0,
+    349.0
+   ],
+   "EPS in Rs": [
+    3.97,
+    4.59,
+    7.13,
+    6.51,
+    4.28,
+    4.44,
+    8.26,
+    5.55,
+    5.09,
+    4.8,
+    11.53,
+    4.63,
+    5.57
+   ]
+  },
+  "links": {
+   "raw_pdf": [
+    "https://www.screener.in/company/source/quarter/1288/9/2023/",
+    "https://www.screener.in/company/source/quarter/1288/12/2023/",
+    "https://www.screener.in/company/source/quarter/1288/3/2024/",
+    "https://www.screener.in/company/source/quarter/1288/6/2024/",
+    "https://www.screener.in/company/source/quarter/1288/9/2024/",
+    "https://www.screener.in/company/source/quarter/1288/12/2024/",
+    "https://www.screener.in/company/source/quarter/1288/3/2025/",
+    "https://www.screener.in/company/source/quarter/1288/6/2025/",
+    "https://www.screener.in/company/source/quarter/1288/9/2025/",
+    "https://www.screener.in/company/source/quarter/1288/12/2025/",
+    "https://www.screener.in/company/source/quarter/1288/3/2026/",
+    "https://www.screener.in/company/source/quarter/1288/6/2026/",
+    "https://www.screener.in/company/source/quarter/1288/9/2026/"
+   ]
+  }
+ },
+ "annual": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026",
+   "TTM"
+  ],
+  "rows": {
+   "Sales": [
+    8468.0,
+    7594.0,
+    6130.0,
+    8116.0,
+    10073.0,
+    9440.0,
+    10457.0,
+    13938.0,
+    16911.0,
+    18590.0,
+    21778.0,
+    22528.0,
+    25243.0
+   ],
+   "Sales growth": [
+    5.0,
+    -10.0,
+    -19.0,
+    32.0,
+    24.0,
+    -6.0,
+    11.0,
+    33.0,
+    21.0,
+    10.0,
+    17.0,
+    3.0,
+    16.0
+   ],
+   "Expenses": [
+    7713.0,
+    6798.0,
+    5315.0,
+    7083.0,
+    8885.0,
+    8373.0,
+    8868.0,
+    12163.0,
+    15290.0,
+    16709.0,
+    19603.0,
+    20286.0,
+    22958.0
+   ],
+   "Operating Profit": [
+    755.0,
+    796.0,
+    815.0,
+    1033.0,
+    1189.0,
+    1067.0,
+    1589.0,
+    1775.0,
+    1621.0,
+    1881.0,
+    2175.0,
+    2241.0,
+    2285.0
+   ],
+   "OPM %": [
+    9.0,
+    10.0,
+    13.0,
+    13.0,
+    12.0,
+    11.0,
+    15.0,
+    13.0,
+    10.0,
+    10.0,
+    10.0,
+    10.0,
+    9.0
+   ],
+   "Other Income": [
+    48.0,
+    949.0,
+    42.0,
+    97.0,
+    124.0,
+    106.0,
+    187.0,
+    159.0,
+    178.0,
+    249.0,
+    288.0,
+    479.0,
+    406.0
+   ],
+   "Interest": [
+    96.0,
+    91.0,
+    13.0,
+    25.0,
+    16.0,
+    51.0,
+    90.0,
+    67.0,
+    55.0,
+    84.0,
+    72.0,
+    79.0,
+    31.0
+   ],
+   "Depreciation": [
+    139.0,
+    134.0,
+    121.0,
+    140.0,
+    149.0,
+    218.0,
+    249.0,
+    261.0,
+    296.0,
+    338.0,
+    400.0,
+    432.0,
+    470.0
+   ],
+   "Profit before tax": [
+    569.0,
+    1520.0,
+    723.0,
+    965.0,
+    1147.0,
+    904.0,
+    1438.0,
+    1607.0,
+    1447.0,
+    1707.0,
+    1990.0,
+    2210.0,
+    2190.0
+   ],
+   "Tax %": [
+    32.0,
+    14.0,
+    32.0,
+    31.0,
+    31.0,
+    19.0,
+    27.0,
+    26.0,
+    26.0,
+    26.0,
+    26.0,
+    24.0,
+    null
+   ],
+   "Net Profit": [
+    385.0,
+    1300.0,
+    494.0,
+    661.0,
+    788.0,
+    735.0,
+    1044.0,
+    1196.0,
+    1072.0,
+    1271.0,
+    1470.0,
+    1689.0,
+    1662.0
+   ],
+   "EPS in Rs": [
+    6.17,
+    20.82,
+    7.91,
+    10.6,
+    12.59,
+    11.75,
+    16.68,
+    19.1,
+    17.11,
+    20.28,
+    23.48,
+    26.95,
+    26.53
+   ],
+   "Dividend Payout %": [
+    49.0,
+    29.0,
+    44.0,
+    4.0,
+    36.0,
+    34.0,
+    39.0,
+    39.0,
+    44.0,
+    44.0,
+    43.0,
+    37.0,
+    null
+   ]
+  },
+  "links": {}
+ },
+ "balance_sheet": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026",
+   "Sep 2026"
+  ],
+  "rows": {
+   "Equity Capital": [
+    62.0,
+    62.0,
+    62.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0,
+    63.0
+   ],
+   "Reserves": [
+    1756.0,
+    2965.0,
+    3214.0,
+    3667.0,
+    4135.0,
+    4249.0,
+    5114.0,
+    5940.0,
+    6563.0,
+    7384.0,
+    8261.0,
+    9393.0,
+    9710.0
+   ],
+   "Borrowings": [
+    424.0,
+    134.0,
+    208.0,
+    115.0,
+    94.0,
+    72.0,
+    521.0,
+    616.0,
+    223.0,
+    303.0,
+    319.0,
+    265.0,
+    239.0
+   ],
+   "Other Liabilities": [
+    2546.0,
+    1225.0,
+    1683.0,
+    2763.0,
+    2856.0,
+    2690.0,
+    3155.0,
+    3904.0,
+    4309.0,
+    4683.0,
+    5167.0,
+    5026.0,
+    4732.0
+   ],
+   "Total Liabilities": [
+    4788.0,
+    4387.0,
+    5168.0,
+    6608.0,
+    7148.0,
+    7073.0,
+    8852.0,
+    10523.0,
+    11157.0,
+    12433.0,
+    13809.0,
+    14746.0,
+    14743.0
+   ],
+   "Fixed Assets": [
+    1541.0,
+    1224.0,
+    1300.0,
+    2819.0,
+    2904.0,
+    3350.0,
+    3290.0,
+    3434.0,
+    3621.0,
+    3988.0,
+    4652.0,
+    5343.0,
+    5741.0
+   ],
+   "CWIP": [
+    38.0,
+    20.0,
+    12.0,
+    24.0,
+    233.0,
+    86.0,
+    90.0,
+    57.0,
+    166.0,
+    299.0,
+    118.0,
+    443.0,
+    501.0
+   ],
+   "Investments": [
+    0.0,
+    189.0,
+    162.0,
+    0.0,
+    0.0,
+    0.0,
+    306.0,
+    426.0,
+    201.0,
+    20.0,
+    11.0,
+    888.0,
+    888.0
+   ],
+   "Other Assets": [
+    3209.0,
+    2954.0,
+    3694.0,
+    3765.0,
+    4012.0,
+    3638.0,
+    5166.0,
+    6606.0,
+    7170.0,
+    8126.0,
+    9028.0,
+    8072.0,
+    7613.0
+   ],
+   "Total Assets": [
+    4788.0,
+    4387.0,
+    5168.0,
+    6608.0,
+    7148.0,
+    7073.0,
+    8852.0,
+    10523.0,
+    11157.0,
+    12433.0,
+    13809.0,
+    14746.0,
+    14743.0
+   ]
+  },
+  "links": {}
+ },
+ "cash_flow": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026"
+  ],
+  "rows": {
+   "Cash from Operating Activity": [
+    963.0,
+    513.0,
+    767.0,
+    1100.0,
+    501.0,
+    827.0,
+    660.0,
+    1728.0,
+    565.0,
+    1953.0,
+    1523.0,
+    1572.0
+   ],
+   "Cash from Investing Activity": [
+    -485.0,
+    -121.0,
+    -220.0,
+    -946.0,
+    185.0,
+    -548.0,
+    -763.0,
+    -759.0,
+    31.0,
+    -1618.0,
+    -305.0,
+    -895.0
+   ],
+   "Cash from Financing Activity": [
+    -754.0,
+    -621.0,
+    -98.0,
+    -409.0,
+    -318.0,
+    -716.0,
+    190.0,
+    -547.0,
+    -907.0,
+    -534.0,
+    -677.0,
+    -693.0
+   ],
+   "Net Cash Flow": [
+    -277.0,
+    -229.0,
+    450.0,
+    -255.0,
+    368.0,
+    -437.0,
+    87.0,
+    421.0,
+    -311.0,
+    -199.0,
+    541.0,
+    -17.0
+   ],
+   "Free Cash Flow": [
+    793.0,
+    299.0,
+    529.0,
+    -489.0,
+    2.0,
+    467.0,
+    507.0,
+    1475.0,
+    -21.0,
+    1191.0,
+    769.0,
+    156.0
+   ],
+   "CFO/EBITDA Share of operating profit converting into cash: CFO (before tax) / Operating Profit": [
+    153.0,
+    87.0,
+    119.0,
+    130.0,
+    63.0,
+    100.0,
+    59.0,
+    121.0,
+    59.0,
+    125.0,
+    93.0,
+    93.0
+   ]
+  },
+  "links": {}
+ },
+ "ratios_table": {
+  "headers": [
+   "Mar 2015",
+   "Mar 2016",
+   "Mar 2017",
+   "Mar 2018",
+   "Mar 2019",
+   "Mar 2020",
+   "Mar 2021",
+   "Mar 2022",
+   "Mar 2023",
+   "Mar 2024",
+   "Mar 2025",
+   "Mar 2026"
+  ],
+  "rows": {
+   "Debtor Days": [
+    27.0,
+    11.0,
+    14.0,
+    15.0,
+    15.0,
+    9.0,
+    20.0,
+    20.0,
+    21.0,
+    23.0,
+    21.0,
+    13.0
+   ],
+   "Inventory Days": [
+    103.0,
+    70.0,
+    99.0,
+    124.0,
+    115.0,
+    121.0,
+    153.0,
+    119.0,
+    119.0,
+    102.0,
+    104.0,
+    110.0
+   ],
+   "Days Payable": [
+    79.0,
+    42.0,
+    66.0,
+    125.0,
+    94.0,
+    92.0,
+    93.0,
+    95.0,
+    85.0,
+    81.0,
+    78.0,
+    72.0
+   ],
+   "Cash Conversion Cycle": [
+    51.0,
+    39.0,
+    46.0,
+    14.0,
+    36.0,
+    39.0,
+    79.0,
+    44.0,
+    55.0,
+    44.0,
+    47.0,
+    51.0
+   ],
+   "Working Capital Days": [
+    -6.0,
+    -3.0,
+    -8.0,
+    -17.0,
+    -0.0,
+    1.0,
+    20.0,
+    7.0,
+    25.0,
+    11.0,
+    12.0,
+    14.0
+   ],
+   "ROCE %": [
+    27.0,
+    28.0,
+    25.0,
+    27.0,
+    29.0,
+    22.0,
+    30.0,
+    27.0,
+    22.0,
+    24.0,
+    25.0,
+    25.0
+   ]
+  },
+  "links": {}
+ },
+ "concalls": [
+  {
+   "period": "Oct 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=160d9e40-34d9-4f66-8c1f-e1c50f663569.pdf"
+  },
+  {
+   "period": "Jul 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5e39e029-d034-49cf-b1b7-14523890ac2a.pdf"
+  },
+  {
+   "period": "Apr 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+  },
+  {
+   "period": "Jan 2026",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2292e7c9-0098-4067-a7a1-b5c2a5b755b6.pdf"
+  },
+  {
+   "period": "Oct 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=783e02f6-2b40-4dbd-b077-7bb9e1ea693c.pdf"
+  },
+  {
+   "period": "Jul 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f06ac0bc-fd4a-4321-b6d4-af1bf9dcb01e.pdf"
+  },
+  {
+   "period": "Apr 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=355ab0dd-3e65-4cdb-b0f0-ea2fd547771a.pdf"
+  },
+  {
+   "period": "Jan 2025",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e071dcb3-e58c-4fc2-9c97-49370d5d0d9b.pdf"
+  },
+  {
+   "period": "Oct 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=08933b19-b929-4bfe-9f57-7ed00b95b6db.pdf"
+  },
+  {
+   "period": "Jul 2024",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fba632fa-c89a-453e-81fd-66c570c549ab.pdf"
+  },
+  {
+   "period": "Jul 2024",
+   "transcript_url": null
+  },
+  {
+   "period": "Apr 2024",
+   "transcript_url": "https://havells.com//media/wysiwyg/PDF/Financial/Quarterly-Results/2023-2024/Quarter-4/Earnings_Call_Transcript_Q4_FY24.pdf"
+  },
+  {
+   "period": "Jan 2024",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2023-2024/Quarter3/Earnings_Call_Transcript_Q3_FY24.pdf"
+  },
+  {
+   "period": "Oct 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6a06d848-bcf2-4a1d-b646-db0211e85dc0.pdf"
+  },
+  {
+   "period": "Jul 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c81585df-ee45-4cfe-a30f-7f16aa420b9b.pdf"
+  },
+  {
+   "period": "May 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2dc6919e-c2f3-4cb0-9aa3-a53b635c3177.pdf"
+  },
+  {
+   "period": "Jan 2023",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=f70fe364-1540-4c05-9934-d310dd37acc2.pdf"
+  },
+  {
+   "period": "Oct 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=21132677-3a4d-4d12-95b2-633405768e9e.pdf"
+  },
+  {
+   "period": "Jul 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=534a49c3-3cec-49d9-92d0-76ca1cad4e25.pdf"
+  },
+  {
+   "period": "May 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e32e2eed-dc3e-4d65-b164-41a3ce4009cd.pdf"
+  },
+  {
+   "period": "Jan 2022",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=8c305a6c-f5e4-4f68-93b6-45e45ac8a50a.pdf"
+  },
+  {
+   "period": "Oct 2021",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0ac71ba5-d09c-42d2-b98d-3e1bf75fc016.pdf"
+  },
+  {
+   "period": "Jul 2021",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2021-2022/Quarter1/Transcript_Q1_FY_2022.pdf"
+  },
+  {
+   "period": "Jul 2021",
+   "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=18aecec6-171e-46da-be11-c3c46c288cdc.pdf"
+  },
+  {
+   "period": "May 2021",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2020-2021/Quarter4/Transcript_Q4_FY21.pdf"
+  },
+  {
+   "period": "Jan 2021",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2020-2021/Quarter3/Transcript_Q3_FY21.pdf"
+  },
+  {
+   "period": "Oct 2020",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2020-2021/Quarter2/Transcript_Q2_FY21.pdf"
+  },
+  {
+   "period": "Jul 2020",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2020-2021/Transcript_Q1_FY21.pdf"
+  },
+  {
+   "period": "May 2020",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2019-2020/Transcript_Q4_FY20.pdf"
+  },
+  {
+   "period": "Feb 2020",
+   "transcript_url": null
+  },
+  {
+   "period": "Jan 2020",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2019-2020/Transcript_Q3_FY20.pdf"
+  },
+  {
+   "period": "Dec 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Oct 2019",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2019-2020/Transcript_Q2_FY20.pdf"
+  },
+  {
+   "period": "Aug 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Jul 2019",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2019-2020/Transcript_Q1_FY20.pdf"
+  },
+  {
+   "period": "Jun 2019",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2018-2019/Quaterly-Results4/TranscriptQ4_FY19.pdf"
+  },
+  {
+   "period": "May 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Feb 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Feb 2019",
+   "transcript_url": null
+  },
+  {
+   "period": "Jan 2019",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2018-2019/Transcript_Q3_FY19.pdf"
+  },
+  {
+   "period": "Dec 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Nov 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Oct 2018",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/2018-2019/Quaterly-Results2/Transcript_Q2_FY19.pdf"
+  },
+  {
+   "period": "Sep 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Aug 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Jul 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Jun 2018",
+   "transcript_url": "https://www.havells.com/HavellsProductImages/HavellsIndia/Content/pdf/About-Havells/Investor-Relations/Financials/Quaterly-Results/Transcript_Q1_FY19.pdf"
+  },
+  {
+   "period": "May 2018",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2017-2018/Quarter%204/Transcript%20Q4%20FY18.pdf"
+  },
+  {
+   "period": "May 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Mar 2018",
+   "transcript_url": null
+  },
+  {
+   "period": "Jan 2018",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2017-2018/Quarter%203/Transcript_Q3_FY18.pdf"
+  },
+  {
+   "period": "Dec 2017",
+   "transcript_url": null
+  },
+  {
+   "period": "Oct 2017",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2017-2018/Quarter%202/Transcript%20Q2%20FY18.pdf"
+  },
+  {
+   "period": "Aug 2017",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2017-2018/Quarter%201/Transcript%20Q1%20FY18.pdf"
+  },
+  {
+   "period": "May 2017",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2016-2017/Quarter%204/Transcript%20Q4%20FY17.pdf"
+  },
+  {
+   "period": "Jan 2017",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2016-2017/Quarter%203/Transcript%20Q3FY17.pdf"
+  },
+  {
+   "period": "Oct 2016",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2016-2017/Quarter%202/Transcript-%20Q2FY17.pdf"
+  },
+  {
+   "period": "Jul 2016",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2016-2017/Quarter%201/Transcript-Q1FY17.pdf"
+  },
+  {
+   "period": "May 2016",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2015-2016/Quarter%204/Transcript-FY16.pdf"
+  },
+  {
+   "period": "Jan 2016",
+   "transcript_url": "https://www.havells.com/content/dam/havells/quarterlyReports/2015-2016/Quarter%203/Transcript-Q3FY16.pdf"
+  }
+ ],
+ "filings": [
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "ts": "2026-11-06T18:01:37+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=76c1af3b-cd5a-41f9-a5a0-c28ad060a97c.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
+   "ts": "2026-11-06T14:57:56+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e8189984-29dc-4859-b799-dfa3a2f68e19.pdf"
+  },
+  {
+   "title": "Intimation U/R 30",
+   "ts": "2026-11-06T12:38:54+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4b43eb5d-d126-415c-997d-ea3d67138b49.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Strikes /Lockouts / Disturbances",
+   "ts": "2026-11-04T18:02:04+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fceda5cc-1e97-46df-9f94-0d1901ed9eec.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Strikes /Lockouts / Disturbances",
+   "ts": "2026-11-04T12:14:51+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e16f632d-97e1-46de-a305-ca4a361fc812.pdf"
+  }
+ ],
+ "variant": "consolidated",
+ "url": "https://www.screener.in/company/HAVELLS/consolidated/",
+ "fetched_at": "2026-11-15T21:45:16+05:30"
+}

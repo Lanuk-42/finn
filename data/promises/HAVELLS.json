@@ -1,0 +1,153 @@
+{
+ "symbol": "HAVELLS",
+ "transcripts": [
+  {
+   "label": "Oct 2026",
+   "quarter": "Q2FY27",
+   "quarter_basis": "text",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=160d9e40-34d9-4f66-8c1f-e1c50f663569.pdf",
+   "chars": 44769,
+   "status": "ok"
+  },
+  {
+   "label": "Jul 2026",
+   "quarter": "Q1FY27",
+   "quarter_basis": "text",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5e39e029-d034-49cf-b1b7-14523890ac2a.pdf",
+   "chars": 44231,
+   "status": "ok"
+  },
+  {
+   "label": "Apr 2026",
+   "quarter": "Q4FY26",
+   "quarter_basis": "text",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf",
+   "chars": 39870,
+   "status": "ok"
+  },
+  {
+   "label": "Jan 2026",
+   "quarter": "Q3FY26",
+   "quarter_basis": "text",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2292e7c9-0098-4067-a7a1-b5c2a5b755b6.pdf",
+   "chars": 37756,
+   "status": "ok"
+  }
+ ],
+ "promises": [],
+ "not_checkable": [
+  {
+   "metric": "other",
+   "scope": "segment",
+   "period": "UNSPECIFIED",
+   "kind": "range",
+   "low": 5,
+   "high": 20,
+   "unit": "%",
+   "summary": "Weighted average price hike across product ranges",
+   "speaker": "Anil Rai Gupta",
+   "quote": "No, I think we would like to see that in many product ranges, it ranges between 5% to 20%.",
+   "qualifier": null,
+   "call": "Q4FY26",
+   "status": "not_checkable",
+   "reason": "segment / non-INR / non-table metric",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+  },
+  {
+   "metric": "other",
+   "scope": "segment",
+   "period": "UNSPECIFIED",
+   "kind": "range",
+   "low": 8,
+   "high": 15,
+   "unit": "%",
+   "summary": "Price pass-through range depending on AC",
+   "speaker": null,
+   "quote": "So that is now being passed on. So there is a work in progress. It ranges between at least 8% to 15% depending upon the AC",
+   "qualifier": null,
+   "call": "Q4FY26",
+   "status": "not_checkable",
+   "reason": "segment / non-INR / non-table metric",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+  },
+  {
+   "metric": "other",
+   "scope": "company",
+   "period": "FY27",
+   "kind": "about",
+   "low": 1000,
+   "high": null,
+   "unit": "crore",
+   "summary": "Capex spend of around INR 1,000 crores in the coming year",
+   "speaker": null,
+   "quote": "So overall, it should be in the range of another INR1,000 crores in the coming year.",
+   "qualifier": null,
+   "call": "Q3FY26",
+   "status": "not_checkable",
+   "reason": "segment / non-INR / non-table metric",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2292e7c9-0098-4067-a7a1-b5c2a5b755b6.pdf"
+  }
+ ],
+ "rejected": [
+  {
+   "metric": "other",
+   "scope": "company",
+   "period": "FY27",
+   "kind": "about",
+   "low": 14,
+   "high": null,
+   "unit": "inr_bn",
+   "summary": "Capex estimate of about INR14 billion in FY27",
+   "speaker": "Anil Rai Gupta",
+   "quote": "Sonali: Got it, sir. And just last question from my end on the capex, are we retaining our estimate of about INR14 billion capex in FY27, and largely for C&W? Anil Rai Gupta: Cables and wires, R&D centre as well.",
+   "qualifier": null,
+   "call": "Q2FY27",
+   "status": "rejected",
+   "reason": "analyst question, not a management statement",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=160d9e40-34d9-4f66-8c1f-e1c50f663569.pdf"
+  },
+  {
+   "metric": "other",
+   "scope": "company",
+   "period": "FY27",
+   "kind": "about",
+   "low": 1400,
+   "high": null,
+   "unit": "crore",
+   "summary": "Capex for FY27 expected at INR 1,400 crores",
+   "speaker": "Anil Rai Gupta",
+   "quote": "Sonali: Understood. Sir, and just one last question, sort of a confirmation. For the capex for FY27, we should expect at about INR14 billion, right? Anil Rai Gupta: INR1,400 crores, yes.",
+   "qualifier": null,
+   "call": "Q1FY27",
+   "status": "rejected",
+   "reason": "analyst question, not a management statement",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5e39e029-d034-49cf-b1b7-14523890ac2a.pdf"
+  },
+  {
+   "metric": "other",
+   "scope": "segment",
+   "period": "unspecified",
+   "kind": "range",
+   "low": 30,
+   "high": 32,
+   "unit": "%",
+   "summary": "Lighting segment contribution long-term average margin",
+   "speaker": "Anil Rai Gupta",
+   "quote": "So, overall, one can say on an average, you can expect 30% to 32% , but sometimes the first three quarter releases also happen .",
+   "qualifier": null,
+   "call": "Q4FY26",
+   "status": "rejected",
+   "reason": "quote not found in transcript",
+   "source_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d6d676cf-d73c-4a15-a3dd-8c2bf8213110.pdf"
+  }
+ ],
+ "credibility": {
+  "kept": 0,
+  "resolved": 0,
+  "in_progress": 0,
+  "standing": 0
+ },
+ "generated_at": "2026-11-15T21:45:31+05:30",
+ "company": "Havells India Ltd",
+ "on_demand": true
+}
