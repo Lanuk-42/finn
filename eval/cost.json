@@ -6,7 +6,7 @@
    "input_tokens": 268297,
    "output_tokens": 41467,
    "paid_tier_usd": 0.18415659999999998,
-   "rate_source": "ai.google.dev pricing page"
+   "rate_source": "Google Gemini API pricing page"
   },
   {
    "model": "gemini-3.5-flash",
@@ -14,7 +14,8 @@
    "input_tokens": 353499,
    "output_tokens": 24721,
    "paid_tier_usd": 0.7527375,
-   "rate_source": "third-party forum post; not on the official page I retrieved"
+   "rate_source": "estimate: not on the official pricing page retrieved",
+   "estimate": true
   },
   {
    "model": "gemini-3-flash-preview",
@@ -22,7 +23,7 @@
    "input_tokens": 12288,
    "output_tokens": 3734,
    "paid_tier_usd": 0.017346,
-   "rate_source": "ai.google.dev pricing page"
+   "rate_source": "Google Gemini API pricing page"
   }
  ],
  "total": {
@@ -36,17 +37,17 @@
   "gemini-3.5-flash-lite": {
    "input": 0.3,
    "output": 2.5,
-   "source": "ai.google.dev pricing page"
+   "source": "Google Gemini API pricing page"
   },
   "gemini-3-flash-preview": {
    "input": 0.5,
    "output": 3.0,
-   "source": "ai.google.dev pricing page"
+   "source": "Google Gemini API pricing page"
   },
   "gemini-3.5-flash": {
    "input": 1.5,
    "output": 9.0,
-   "source": "third-party forum post; not on the official page I retrieved"
+   "source": "estimate (not on the official pricing page retrieved)"
   }
  },
  "notes": [

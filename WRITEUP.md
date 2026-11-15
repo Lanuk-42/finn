@@ -47,7 +47,7 @@ An investor's scarce resource is attention, so the product's job is to *end*:
 - **Tolerances are explicit.** ±0.2pp on margins (they're reported to 0.1pp), ±1pp on growth, ±2% on rupee amounts. "Around 15%" against 16.2% is a Beat under these rules. The hand-check flags it as borderline, and it is the kind of call a reader should be able to see, so it is.
 - **BEL was chosen by text search before any model calls.** When I needed a company with company-wide yearly targets, I regex-scanned the transcripts of three candidates (BEL, PG Electroplast, Kaynes) for guidance-plus-number sentences, and confirmed that management (not analysts) stated them. Only then did I spend calls. Gemini's free tier allows 20 requests per model per day, so every call was budgeted.
 - **Thresholds were set before seeing the data.** The thesis lines for all 18 holdings, the Act rules and the "results that matter" bar (profit down or up 25%+, revenue down, margin moving 2pp+, thesis breach, promise off track) were written down before looking at the quarter's numbers. That way the breaches (HDFC Bank, Asian Paints, Maruti, Trent, Safari, Gravita) are findings, not tuning.
-- **Cost.** 116 model calls in total (634k input and 70k output tokens), about $0.95 at paid-tier rates and **$0 actually spent**. The levers that kept it there:
+- **Cost.** 116 model calls in total (634k input and 70k output tokens), about $0.95 at paid-tier rates (an estimate, because one model's rate isn't on Google's official page) and **$0 actually spent**. The levers that kept it there:
   - Transcripts are chunked to guidance-bearing sentence windows (55–77% fewer tokens).
   - Answers are cached per filing or transcript URL.
   - A hard per-run budget, and lite-only scheduled runs.
@@ -89,9 +89,14 @@ An investor's scarce resource is attention, so the product's job is to *end*:
 
 **Five random tickers** (DMART, ADANIPORTS, ITC, NAUKRI, PAGEIND)
 - Snapshots and extras worked for all five, in under 2 seconds.
-- The ask box was **dead for all five**: its transcript index only covers the 18 holdings.
-- The on-demand tracker needs a GitHub token on Vercel that isn't set yet.
-- **Info Edge (NAUKRI)'s "cash lags profit: 24%" is misleading.** Its profit is dominated by gains on investment stakes, and its working-capital days are distorted by advance billing. OCF ÷ PAT needs an "other income" adjustment.
+- **Ask box:** it was **dead for all five**, because its transcript index only covered the 18 holdings. *Fixed:* it now reads an unseen ticker's two latest transcripts on first use, and 4 of 5 answer in 3–7 seconds.
+  - ITC is still refused correctly: no transcripts are listed for it.
+  - Retrieval can still surface an analyst's question when no management sentence matches better (Info Edge's "billings growth").
+- **On-demand tracker:** it needed a GitHub token on Vercel. *Fixed:* the token is set, and a live build for Havells went from button to tracker in about a minute.
+  - Havells gives no numeric guidance, so its tracker correctly scores nothing.
+  - The first reuse test started a duplicate build, because GitHub lists a new run only after a few seconds; fixed and re-tested.
+- **Info Edge (NAUKRI):** "cash lags profit: 24%" was misleading, because its profit is dominated by gains on investment stakes and its working-capital days include cash. *Fixed:* cash quality now uses operating profit when other income is 30%+ of pre-tax profit, and working-capital days that include cash are marked n/m in favour of the trade cycle.
+- **First real daily run:** fetch and brain succeeded, but the commit step failed, because excluding an ignored path makes `git add` exit with an error. Fixed; the next run committed data and redeployed the site.
 
 **UX**
 - A first load once showed "Nothing needs you today, from 0 filings" (24h). I couldn't reproduce it in fresh contexts, so the default window is now computed on the server, and pages restored from the back/forward cache reset to it.
@@ -99,7 +104,6 @@ An investor's scarce resource is attention, so the product's job is to *end*:
 
 ## What's next
 
-- **Ask any ticker:** fetch and index transcripts on demand, the same way the snapshot works live.
 - **Score segment and USD promises** against segment tables and investor presentations.
 - **Calibrate the tolerances** with a second human annotator, and grow the classifier eval beyond one labeller.
 - **Morning push:** a web-push notification of the one-line header, once a day, nothing else.
