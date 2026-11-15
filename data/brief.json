@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T23:01:54+05:30",
+ "generated_at": "2026-11-15T23:04:51+05:30",
  "data_as_of": "2026-11-15T21:57:12+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -1357,9 +1357,9 @@
      "checked": 3
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -1794,8 +1794,8 @@
      "checked": 3
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+"
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -2295,8 +2295,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9d4cb3ed-a184-4662-91fc-f4112ce354b7.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -2380,9 +2380,7 @@
      ],
      "checked": 3
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -2592,7 +2590,7 @@
      "checked": 3
     },
     "why_act": [
-     "profit down YoY"
+     "profit down 10%+ YoY"
     ]
    }
   },
@@ -2717,8 +2715,8 @@
      ]
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+"
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -2810,8 +2808,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a59f1b7a-6692-4d45-9886-f842d7faf839.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -2863,10 +2861,7 @@
      "status": "fallback",
      "reason": "the filing's text couldn't be read reliably (units not found)"
     },
-    "why_act": [
-     "profit up 25%+ YoY",
-     "EBITDA margin moved 2pp+"
-    ]
+    "why_act": []
    }
   },
   {
@@ -3162,7 +3157,6 @@
      "checked": 3
     },
     "why_act": [
-     "profit up 25%+ YoY",
      "thesis breach"
     ]
    }
@@ -3341,8 +3335,8 @@
      "checked": 3
     },
     "why_act": [
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -3486,8 +3480,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1d651fc4-f14d-4463-8df4-e3870306d21f.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -3551,9 +3545,7 @@
      ],
      "checked": 3
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -3943,9 +3935,9 @@
      "reason": "the filing's text couldn't be read reliably (units not found)"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -5215,9 +5207,9 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+",
-     "promise off track"
+     "promise off track",
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -5310,8 +5302,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4ac93ea0-d4d1-4b85-8849-14a19e0dcceb.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -5363,9 +5355,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -11692,8 +11682,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/94de8eea-a882-42ef-85c2-4ee7d517787d.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -11745,9 +11735,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "EBITDA margin moved 2pp+"
-    ]
+    "why_act": []
    }
   },
   {
@@ -12062,7 +12050,6 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "EBITDA margin moved 2pp+",
      "thesis breach"
     ]
    }
@@ -12613,8 +12600,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/029beb25-b401-4582-901b-cb5f306ee282.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -12666,10 +12653,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY",
-     "EBITDA margin moved 2pp+"
-    ]
+    "why_act": []
    }
   },
   {
@@ -12763,9 +12747,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -13003,8 +12986,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "EBITDA margin moved 2pp+",
-     "promise off track"
+     "promise off track",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -13475,9 +13458,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -13490,8 +13472,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2c18cfd5-2d05-4f0b-96d9-64217e915829.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -13543,9 +13525,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -13674,8 +13654,7 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit up 25%+ YoY",
-     "EBITDA margin moved 2pp+"
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -14005,8 +13984,6 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit up 25%+ YoY",
-     "EBITDA margin moved 2pp+",
      "thesis breach"
     ]
    }
@@ -14205,8 +14182,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1a6bc023-898b-41ae-8ed4-f445230dfb80.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -14245,9 +14222,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -14418,8 +14393,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "EBITDA margin moved 2pp+",
-     "thesis breach"
+     "thesis breach",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -15072,8 +15047,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+"
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -15340,8 +15315,8 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+"
+     "profit down 10%+ YoY",
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -15485,8 +15460,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/faa11982-c753-4036-96ed-0e11eb17832b.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -15538,9 +15513,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -20706,8 +20679,6 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit up 25%+ YoY",
-     "EBITDA margin moved 2pp+",
      "thesis breach"
     ]
    }
@@ -21503,8 +21474,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7d8e5f0b-6021-4255-9b4d-66d3cef2ba0e.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -21556,9 +21527,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -21717,8 +21686,7 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
-     "EBITDA margin moved 2pp+"
+     "EBITDA margin down 2pp+ YoY"
     ]
    }
   },
@@ -21887,8 +21855,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/71784525-33ff-4631-8d3c-2bc7e9798bbd.pdf",
    "source": "bse_api",
    "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "tier": "Note",
+   "rule": "results_in_line",
    "basis": "title",
    "card": {
     "type": "results",
@@ -21940,9 +21908,7 @@
      "status": "screener_only",
      "reason": "older than 30 days: not checked against the filing"
     },
-    "why_act": [
-     "profit up 25%+ YoY"
-    ]
+    "why_act": []
    }
   },
   {
@@ -22476,7 +22442,6 @@
      "reason": "older than 30 days: not checked against the filing"
     },
     "why_act": [
-     "profit down YoY",
      "thesis breach"
     ]
    }
@@ -27220,8 +27185,8 @@
     "pct": -2.02,
     "volx": 0.98,
     "filings": [
-     "9e183c9057cd",
      "d816e7a8d28e",
+     "9e183c9057cd",
      "ad49a4735a83",
      "ccc993b7da85"
     ],
@@ -27233,8 +27198,8 @@
     "pct": -1.12,
     "volx": 1.1,
     "filings": [
-     "9e183c9057cd",
      "d816e7a8d28e",
+     "9e183c9057cd",
      "ad49a4735a83",
      "ccc993b7da85",
      "bea871459403"
@@ -28671,8 +28636,8 @@
     "pct": 0.15,
     "volx": 1.2,
     "filings": [
-     "06be1d2df442",
      "38dab20c2a61",
+     "06be1d2df442",
      "83caca947443",
      "a183b4548f39",
      "5478e32e63c0",
@@ -30018,8 +29983,8 @@
     "pct": 0.23,
     "volx": 1.66,
     "filings": [
-     "918b477d4d70",
      "c2a861de96b8",
+     "918b477d4d70",
      "b61a34545903",
      "8f9f55fae6c7"
     ],
@@ -30031,8 +29996,8 @@
     "pct": 1.11,
     "volx": 21.39,
     "filings": [
-     "918b477d4d70",
      "c2a861de96b8",
+     "918b477d4d70",
      "b61a34545903",
      "8f9f55fae6c7",
      "bf60c51a5d78",
@@ -33982,8 +33947,8 @@
     "pct": 5.19,
     "volx": 1.95,
     "filings": [
-     "f0963559d604",
      "f6d3661ee4b3",
+     "f0963559d604",
      "150c18eede29",
      "582ad2690202",
      "4fc7611762ea"
@@ -33996,8 +33961,8 @@
     "pct": 3.82,
     "volx": 2.71,
     "filings": [
-     "f0963559d604",
      "f6d3661ee4b3",
+     "f0963559d604",
      "150c18eede29",
      "582ad2690202",
      "4fc7611762ea",

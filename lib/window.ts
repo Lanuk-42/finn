@@ -14,10 +14,24 @@ const SAME_MATTER = new Set(["M&A", "litigation", "fund_raise", "credit_rating",
 
 export const tsMs = (ts: string) => new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime();
 
+/** How urgent an Act item is, by fixed rule: thesis breaches and promise misses first, then large profit or margin
+ * declines, then management changes, then legal and everything else. */
+export function severity(f: Filing): number {
+  const why = (f.card?.type === "results" && f.card.why_act) || [];
+  if (why.some((w) => /thesis breach|promise/.test(w))) return 4;
+  if (why.length) return 3;
+  if (f.category === "management_change") return 2;
+  return 1;
+}
+
+/** Filings already shown inside a flagged pattern (e.g. a rating action behind "on rating watch") aren't repeated in Act. */
+export const inPattern = (brief: Brief) => new Set((brief.patterns ?? []).filter((p) => p.severity === "flag").flatMap((p) => p.filings));
+
 /** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one item. */
 export function actGroupsFor(brief: Brief, asOf: number, days: number) {
   const rank = (c: string) => { const i = brief.act_order.indexOf(c); return i < 0 ? 99 : i; };
-  const act = brief.filings.filter((f) => f.tier === "Act" && asOf - tsMs(f.ts) <= days * 86400e3);
+  const covered = inPattern(brief);
+  const act = brief.filings.filter((f) => f.tier === "Act" && !covered.has(f.id) && asOf - tsMs(f.ts) <= days * 86400e3);
   const groups: { lead: Filing; earlier: Filing[] }[] = [];
   for (const f of [...act].sort((a, b) => b.ts.localeCompare(a.ts))) {
     const g = groups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule &&
@@ -26,7 +40,8 @@ export function actGroupsFor(brief: Brief, asOf: number, days: number) {
         (SAME_MATTER.has(f.category) && Math.abs(tsMs(x.lead.ts) - tsMs(f.ts)) <= 14 * 86400e3)));
     if (g) g.earlier.push(f); else groups.push({ lead: f, earlier: [] });
   }
-  return groups.sort((a, b) => rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));
+  const n = (g: { lead: Filing }) => (g.lead.card?.type === "results" && g.lead.card.why_act?.length) || 0;
+  return groups.sort((a, b) => severity(b.lead) - severity(a.lead) || n(b) - n(a) || rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));
 }
 
 export function autoWindow(brief: Brief): number {

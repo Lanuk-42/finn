@@ -189,6 +189,17 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
                 <span className="text-[var(--muted)]">{p.kind === "credit" ? "Credit rating" : p.kind === "exits" ? "Senior exits" : "Promoter pledges"}</span>
               </div>
               <p className="serif mt-1.5 text-[17px] leading-snug">{fillName(p.lead, nm(p.symbol))}</p>
+              {(() => {
+                const fs = p.filings.map((id) => byId[id]).filter((f) => f?.url).sort((a, b) => b.ts.localeCompare(a.ts));
+                return fs.length > 0 && (
+                  <p className="mt-1.5 text-[13px] text-[var(--muted)]">
+                    {fs.slice(0, 3).map((f, i) => (
+                      <span key={f.id}>{i > 0 ? " · " : ""}<a href={f.url!} target="_blank" rel="noreferrer" className="link text-[var(--ink)]">Filing {day(f.ts)} ↗</a></span>
+                    ))}
+                    {fs.length > 3 ? ` · ${fs.length - 3} more` : ""}
+                  </p>
+                );
+              })()}
             </Item>
           ))}
         </Section>
@@ -356,6 +367,7 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
           <ul className="mt-3 space-y-2 text-[13px] leading-relaxed text-[var(--muted)]">
             <li>Window: {W.span}.{win === autoWin && ` Picked automatically as the shortest window with at least ${MIN_ACT} items to act on.`}</li>
             <li>Filings come from BSE corporate announcements; NSE’s API blocks cloud servers, so BSE is the fallback. Prices are Yahoo Finance end-of-day, last session {day(brief.latest_trading_day)}. Results numbers come from screener.in quarterly tables.</li>
+            <li>Act items are ordered by severity, not date: thesis breaches and promises running behind first, then large profit or margin drops, then management changes, then legal and other items. Filings already counted in a pattern are shown there, not repeated.</li>
             <li>Act, Worth a look and Routine are decided by fixed rules in code, not by a model. Every number is computed from the tables; every quoted name, tenure and bio was checked word-for-word against the filing.</li>
             <li>A move counts when the close changes by at least ±{px}% or volume is {vx.toFixed(1)}× its prior 20-day average. It is linked to filings from the same day or since the previous session; routine paperwork does not count as an explanation.</li>
             <li>Thesis lines are checked against the latest reported quarter.</li>
@@ -463,7 +475,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
       {how && (
         <div className="mt-2 space-y-2 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
           <p>Ranked “act on” by the “{f.rule.replace(/[_+]/g, " ")}” rule, matched on the filing’s {f.basis === "pdf" ? "first page" : f.basis}.</p>
-          {results?.why_act && results.why_act.length > 0 && <p>Kept as “act on” because: {results.why_act.join(", ")}. Results with none of these move to “Worth a look”.</p>}
+          {results?.why_act && results.why_act.length > 0 && <p>Kept as “act on” because: {results.why_act.join(", ")}. Results with none of these (no thesis breach, no promise behind, no drop of 10%+ in profit, 5%+ in revenue or 2 points in margin) move to “Worth a look”.</p>}
           {results?.filing_check?.status === "fallback" && <p>Filing check: {results.filing_check.reason}.</p>}
           {results?.filing_check?.lines && (
             <div>

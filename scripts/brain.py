@@ -135,21 +135,26 @@ def _promise_off_track(sym):
     return False
 
 
+LARGE_PROFIT_DROP = -10   # % YoY
+LARGE_REVENUE_DROP = -5   # % YoY
+LARGE_MARGIN_DROP = -2    # percentage points YoY
+
+
 def results_materiality(card, thesis_breach, off_track):
-    """Why a results card needs action, or [] if the quarter is in line. Code-only, from the computed numbers."""
+    """Why a results card needs action, or [] if it doesn't. Code-only, from the computed numbers. A result stays in
+    Act only for a thesis breach, a promise running behind, or a large decline; good or in-line quarters go to
+    Worth a look."""
     if card.get("status") != "ok":
-        return ["numbers pending"]
+        return []  # numbers not out yet: nothing to act on
     L, why = card.get("lines") or {}, []
     pat = (L.get("pat") or {}).get("yoy")
     rev = (L.get("revenue") or {}).get("yoy")
     m = (card.get("ebitda_margin") or {}).get("yoy_pp")
-    if pat is not None and pat < 0: why.append("profit down YoY")
-    if pat is not None and pat >= 25: why.append("profit up 25%+ YoY")
-    if rev is not None and rev < 0: why.append("revenue down YoY")
-    if m is not None and abs(m) >= 2: why.append("EBITDA margin moved 2pp+")
     if thesis_breach: why.append("thesis breach")
     if off_track: why.append("promise off track")
-    if pat is None and rev is None: why.append("no year-ago comparison")
+    if pat is not None and pat <= LARGE_PROFIT_DROP: why.append("profit down 10%+ YoY")
+    if m is not None and m <= LARGE_MARGIN_DROP: why.append("EBITDA margin down 2pp+ YoY")
+    if rev is not None and rev <= LARGE_REVENUE_DROP: why.append("revenue down 5%+ YoY")
     return why
 
 
