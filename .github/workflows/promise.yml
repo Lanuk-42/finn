@@ -1,0 +1,53 @@
+# On-demand promise tracker for a ticker FINN hasn't precomputed. Started by the app (POST /api/promise/<ticker>),
+# which then polls this run's step status for progress. Each stage is its own step so progress is real.
+# Secret: GEMINI_API_KEY (lite model only, at most 6 new calls per run).
+name: promise-tracker
+run-name: promise ${{ inputs.ticker }} ${{ inputs.request_id }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      ticker:
+        description: "NSE symbol"
+        required: true
+      request_id:
+        description: "set by the app to find this run"
+        required: false
+        default: manual
+
+permissions:
+  contents: write
+
+concurrency:
+  group: promise-${{ inputs.ticker }}
+  cancel-in-progress: false
+
+jobs:
+  tracker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      FINN_LITE_ONLY: "1"
+      FINN_LLM_BUDGET: "6"
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: "stage 1: fetch financial tables"
+        run: python scripts/promise_job.py fetch "${{ inputs.ticker }}"
+      - name: "stage 2: read earnings-call transcripts"
+        run: python scripts/promise_job.py transcripts "${{ inputs.ticker }}"
+      - name: "stage 3: find guidance and check every quote"
+        run: python scripts/promise_job.py extract "${{ inputs.ticker }}"
+      - name: "stage 4: save the tracker"
+        run: |
+          git config user.name "finn-bot"
+          git config user.email "finn-bot@users.noreply.github.com"
+          T=$(echo "${{ inputs.ticker }}" | tr '[:lower:]' '[:upper:]')
+          git add "data/promises/$T.json" "data/screener/$T.json" data/cache/llm
+          git diff --cached --quiet || git commit -m "data: on-demand promise tracker for $T"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done

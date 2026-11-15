@@ -227,6 +227,8 @@ def check(g, text, call_quarter, quarters, annual):
     for t in (g.get("low"), g.get("high")):
         if t is not None and not any(abs(n - float(t)) < 1e-6 for n in nums):
             return {**out, "status": "rejected", "reason": f"target {t} not stated in the quote"}
+    if g.get("low") is None and g.get("high") is None:
+        return {**out, "status": "not_checkable", "reason": "no number stated"}
     period = (g.get("period") or "").upper().replace(" ", "").replace("'", "")
     out["period"] = period
     conv = {"inr_bn": 100.0, "inr_mn": 0.1}.get(g.get("unit"))
@@ -328,7 +330,7 @@ def run(symbol, scr, max_transcripts=5):
                             "status": "ok"})
         try:
             found = extract(text, q)
-        except gemini.QuotaExceeded as e:
+        except (gemini.QuotaExceeded, gemini.BudgetExceeded) as e:
             transcripts[-1]["status"] = f"skipped: {e}"
             break
         for g in found:

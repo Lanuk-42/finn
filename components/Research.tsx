@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Callout from "./Tour";
 import AskBar from "./AskBar";
+import OnDemandTracker from "./OnDemandTracker";
 import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
 import { day, fyq, when } from "@/lib/format";
 import { StaleTag } from "./Brief";
@@ -90,6 +91,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
           text={`This is ${name}’s promise tracker: what management guided, what was delivered, scored by code. Tap any row for the exact quote.`} />
       )}
       {pf && <Tracker pf={pf} name={name} />}
+      {!pf && <OnDemandTracker key={ticker} ticker={ticker} name={name} render={(t) => <Tracker pf={t} name={name} />} />}
 
       <AskBar ticker={ticker} name={name} />
 
