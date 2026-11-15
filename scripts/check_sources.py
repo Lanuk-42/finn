@@ -55,9 +55,20 @@ def screener():
     return r.status_code == 200 and 'id="quarters"' in r.text, f"HTTP {r.status_code}"
 
 
+def gemini_key():
+    """Valid key? Listing models costs no generation quota. The key itself is never printed."""
+    import os
+    k = os.environ.get("GEMINI_API_KEY")
+    if not k:
+        return False, "GEMINI_API_KEY not set"
+    r = requests.get("https://generativelanguage.googleapis.com/v1beta/models", params={"pageSize": 5},
+                     headers={"x-goog-api-key": k}, timeout=20)
+    return r.status_code == 200, f"models list HTTP {r.status_code} (key ending …{k[-4:]})" if len(k) > 8 else f"HTTP {r.status_code}"
+
+
 if __name__ == "__main__":
     res = [probe(n, f) for n, f in (("NSE API", nse_api), ("NSE RSS", nse_rss), ("BSE API", bse_api),
-                                     ("Yahoo Finance", yahoo), ("screener.in", screener))]
+                                     ("Yahoo Finance", yahoo), ("screener.in", screener), ("Gemini key", gemini_key))]
     for r in res:
         print(f"{'OK  ' if r['ok'] else 'FAIL'} {r['source']:<14} {r['detail']}  ({r['ms']} ms)")
     out = {"checked_at": datetime.now(IST).isoformat(timespec="seconds"), "results": res}
