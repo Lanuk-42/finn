@@ -209,7 +209,11 @@ def main():
     latest_price = max(s["date"] for s in stocks)
     brief = {
         "generated_at": now.isoformat(timespec="seconds"),
-        "data_as_of": max(report["finished_at"], filings[0]["ts"] if filings else ""),
+        # "As of" reflects data actually fetched: the run time only if most stocks' filings came through,
+        # otherwise the newest filing we hold (so a failed run never looks fresh).
+        "data_as_of": (report.get("finished_at", "") if sum(
+            1 for v in report["stocks"].values() if any(x.get("ok") for x in v["announcements"]["path"])) >= len(report["stocks"]) / 2
+            else (filings[0]["ts"] if filings else report.get("finished_at", ""))),
         "latest_trading_day": latest_price,
         "fetch": {k: {"announcements": v["announcements"]["path"][-1]["source"] if v["announcements"]["path"] else None,
                       "prices": v["prices"].get("ok"), "screener": v["screener"].get("ok")}

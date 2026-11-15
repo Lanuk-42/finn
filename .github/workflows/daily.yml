@@ -1,0 +1,85 @@
+# Keeps the Brief fresh: after market close, fetch prices/filings/tables, rebuild the brief, commit data/, redeploy.
+# Secrets (Settings -> Secrets and variables -> Actions):
+#   GEMINI_API_KEY  optional. Lite model only, hard budget of FINN_LLM_BUDGET new calls; without it, cached answers are reused
+#                   and new management changes show the company's own headline instead of extracted names.
+#   VERCEL_TOKEN    optional. With VERCEL_ORG_ID + VERCEL_PROJECT_ID (Actions variables) the site is redeployed after the commit.
+name: daily-brief
+
+on:
+  schedule:
+    - cron: "30 13 * * 1-5"   # 19:00 IST, Mon-Fri: after the close and the evening filing rush
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Check sources and build, but don't commit or deploy"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env:
+      FINN_LITE_ONLY: "1"
+      FINN_LLM_BUDGET: "12"
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Reuse downloaded filing PDFs between runs
+        uses: actions/cache@v4
+        with:
+          path: data/cache/pdf
+          key: pdf-${{ github.run_id }}
+          restore-keys: pdf-
+
+      - name: Which sources can this runner reach?
+        run: python scripts/check_sources.py
+
+      - name: Fetch (NSE API -> BSE API -> NSE RSS + screener; a failed source keeps the previous data)
+        run: python scripts/fetch.py || echo "::warning::fetch.py exited non-zero; continuing with the data we have"
+
+      - name: Rebuild the brief (rules + code; lite LLM only for new management changes, capped)
+        run: python scripts/brain.py
+
+      - name: Summary
+        run: |
+          python - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json
+          c = json.load(open("data/source_check.json")); b = json.load(open("data/brief.json"))
+          print("| source | reachable | detail |\n|---|---|---|")
+          for r in c["results"]: print(f"| {r['source']} | {'yes' if r['ok'] else '**no**'} | {r['detail']} |")
+          print(f"\nBrief as of {b['data_as_of']}; {len(b['filings'])} filings; LLM {b['llm_usage']}")
+          PY
+
+      - name: Commit data/
+        if: ${{ !inputs.dry_run }}
+        run: |
+          git config user.name "finn-bot"
+          git config user.email "finn-bot@users.noreply.github.com"
+          git add data/ ':!data/cache/pdf'
+          if git diff --cached --quiet; then echo "No data changes."; exit 0; fi
+          git commit -m "data: daily refresh $(date -u +%F)"
+          git push
+
+      - name: Redeploy the site
+        if: ${{ !inputs.dry_run && env.VERCEL_TOKEN != '' }}
+        env:
+          VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}
+        run: npx -y vercel@65.16.0 deploy --prod --yes --token "$VERCEL_TOKEN"

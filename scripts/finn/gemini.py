@@ -55,17 +55,25 @@ def _stream(model, body, key):
     return 200, "".join(parts), usage
 
 
+# FINN_LITE_ONLY=1 (the scheduled GitHub Actions run) restricts every call to lite models.
+LITE_ONLY = os.environ.get("FINN_LITE_ONLY") == "1"
+
+
 def ask_json(system, user, models=CHEAP, rounds=3):
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key:
-        raise RuntimeError("GEMINI_API_KEY is not set")
     models = [models] if isinstance(models, str) else list(models)
     CACHE.mkdir(parents=True, exist_ok=True)
     h = hashlib.sha256(f"{models[0]}\n{system}\n{user}".encode()).hexdigest()[:24]
     p = CACHE / f"{h}.json"
-    if p.exists():
+    if p.exists():  # cache first: a run without a key still reuses every earlier answer
         USAGE["cached"] += 1
         return json.loads(p.read_text())["parsed"]
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        raise BudgetExceeded("GEMINI_API_KEY is not set; skipping new LLM calls")
+    if LITE_ONLY:
+        models = [m for m in models if "lite" in m]
+        if not models:
+            raise BudgetExceeded("lite-only run: this task has no lite model")
     if BUDGET is not None and USAGE["calls"] >= BUDGET:
         raise BudgetExceeded(f"LLM budget of {BUDGET} new calls used")
     body = {"temperature": 0, "response_format": {"type": "json_object"},
