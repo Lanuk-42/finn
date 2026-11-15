@@ -5,6 +5,7 @@
 """
 import hashlib
 import json
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -39,6 +40,15 @@ def build_filings(sym, raw, scr, now):
         out.append({"id": fid(f), "symbol": sym, "ts": f["ts"], "title": f.get("title"),
                     "headline": f.get("headline") or "", "url": f.get("url"), "source": f.get("source"),
                     "category": c["category"], "tier": c["tier"], "rule": c["rule"], "basis": c["basis"]})
+
+    # Credit ratings: the letter itself says whether it is a downgrade or a negative watch.
+    for f in out:
+        if f["category"] == "credit_rating" and f["tier"] != "Act" and f.get("url"):
+            t = pdf.text(f["url"], max_pages=3).lower()
+            # explicit actions only: rating letters also carry boilerplate like "factors that could lead to a downgrade"
+            if re.search(r"(has been |have been |was |were )?downgraded (to|from)|watch with negative implications|"
+                         r"outlook (has been )?(revised|changed) (from \w+ )?to negative", re.sub(r"\s+", " ", t)):
+                f["tier"], f["rule"], f["basis"] = "Act", "rating_negative_pdf", "pdf"
 
     # One results card per quarter: the 'Financial Results' filing wins; other results-family filings that
     # land within 2 days are folded under it (tier -> Routine, reason recorded).
@@ -137,6 +147,9 @@ def results_materiality(card, thesis_breach, off_track):
 
 def _is_top(role):
     r = (role or "").lower().replace("non-executive", "").replace("non executive", "").replace("independent", "")
+    # PSU grades: "Executive Director (SCCS)", "Unit Head", "General Manager" are senior staff, not board seats
+    if re.search(r"executive director\s*\(|unit head|general manager", r):
+        return False
     return any(k in r for k in ("chief executive", "ceo", "chief financial", "cfo", "managing director", "chair",
                                 "whole-time", "whole time", "executive director", "chief operating", "coo"))
 

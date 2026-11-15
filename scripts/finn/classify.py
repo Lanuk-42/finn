@@ -18,6 +18,8 @@ RULES = [
      r"reg\.? ?74 ?\(5\)|74\(5\)|secretarial compliance|24\(a\)|brsr|business responsibility|esg (rating|overview|report)|"
      r"sustainability report|compliance certificate|certificate under|investor education|iepf|special window|"
      r"loss of share certificate|duplicate share|transfer and demat|registrar and (share )?transfer|\brta\b"),
+    ("insider_code", "insider_trading", ROUTINE, r"code of (practices|conduct|fair disclosure)|fair disclosure of unpublished|regulation 8\(2\)"),
+    ("shareholder_letter", "unclassified", ROUTINE, r"letter to (the )?shareholders.{0,120}(e-?mail|link)|whose e-?mail address"),
     ("esop", "unclassified", ROUTINE, r"esop|esps|stock option|restricted stock unit|\brsus?\b|employee stock|allotment of esop"),
     ("investor_meet", "investor_meetings", ROUTINE,
      r"analyst|investor meet|investors'* meet|institutional investor|investor conference|meeting updates|"
@@ -65,7 +67,8 @@ RULES = [
     # Money moving between group companies (subsidiary investments, subscriptions, subsidiary buybacks) is not a deal.
     ("intra_group", "M&A", NOTE,
      r"subsidiary.{0,250}(buy-?back|investment|subscri|allot|at+ot+ed|al+ot+ed|infus|preference shares|rights issue)|"
-     r"(buy-?back|investment in|subscri\w* to|allot\w*|infus\w*).{0,600}subsidiary"),  # at+ot+ed: OCR reads "allotted" as "attotted"
+     r"(buy-?back|investment in|subscri\w* to|allot\w*|infus\w*).{0,600}subsidiary|"
+     r"(merger|amalgamation) of .{0,160}(wholly[- ]owned )?subsidiar|subsidiar.{0,160}(merger|amalgamation) (into|with)"),  # at+ot+ed: OCR reads "allotted" as "attotted"
     ("litigation", "litigation", ACT,
      r"penalt|\bfine[ds]?\b|show cause|\bnclt\b|tribunal|high court|supreme court|litigation|antitrust|"
      r"tax demand|demand notice|\bgst\b.*(order|demand)|income tax.*(order|search)|search and seizure|enforcement directorate|"
@@ -90,6 +93,7 @@ RULES = [
     ("pledge", "pledging", NOTE, r"pledge"),
     ("insider", "insider_trading", NOTE, r"insider"),
     ("bonus_split", "bonus_split", NOTE, r"\bbonus\b|stock split|sub-?division|split of"),
+    ("dividend_declared", "dividend", NOTE, r"declar\w* (of )?(an )?(interim |final |special )?dividend|approv\w* (the )?(payment of )?(an )?(interim |final )?dividend"),
     ("dividend_pay", "dividend", ROUTINE, r"date of payment|payment of dividend|dividend updates|tds on dividend"),
     ("dividend", "dividend", NOTE, r"dividend"),
     ("record_date", "dividend", ROUTINE, r"record date|book closure"),

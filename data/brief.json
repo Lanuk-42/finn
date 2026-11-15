@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T21:10:29+05:30",
+ "generated_at": "2026-11-15T21:17:26+05:30",
  "data_as_of": "2026-11-15T19:24:19+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -1232,8 +1232,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/32c43414-44c7-40f5-bd7c-8db2bd94b9f8.pdf",
    "source": "bse_api",
    "category": "insider_trading",
-   "tier": "Note",
-   "rule": "insider",
+   "tier": "Routine",
+   "rule": "insider_code",
    "basis": "title"
   },
   {
@@ -1246,7 +1246,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -1259,7 +1259,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -2964,8 +2964,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/cc0c50f8-1d2d-4bbd-95bc-806513fe6062.pdf",
    "source": "bse_api",
    "category": "dividend",
-   "tier": "Routine",
-   "rule": "dividend_pay",
+   "tier": "Note",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -2977,8 +2977,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a27ed780-8c39-4533-a783-817445f5f11d.pdf",
    "source": "bse_api",
    "category": "dividend",
-   "tier": "Routine",
-   "rule": "dividend_pay",
+   "tier": "Note",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -3004,7 +3004,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -3407,7 +3407,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -3419,8 +3419,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c35447a-5cec-488b-8b49-b8ec7cc55736.pdf",
    "source": "bse_api",
    "category": "dividend",
-   "tier": "Routine",
-   "rule": "dividend_pay",
+   "tier": "Note",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -4057,9 +4057,9 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d500e04f-fe02-4b5c-923a-0275b18f6044.pdf",
    "source": "bse_api",
    "category": "credit_rating",
-   "tier": "Routine",
-   "rule": "rating_other",
-   "basis": "title"
+   "tier": "Act",
+   "rule": "rating_negative_pdf",
+   "basis": "pdf"
   },
   {
    "id": "681fb267043f",
@@ -5403,9 +5403,9 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1ffb29fc-9816-4e05-a1b6-3eb4f3035e9a.pdf",
    "source": "bse_api",
    "category": "credit_rating",
-   "tier": "Routine",
-   "rule": "rating_other",
-   "basis": "title"
+   "tier": "Act",
+   "rule": "rating_negative_pdf",
+   "basis": "pdf"
   },
   {
    "id": "86d5db78a506",
@@ -5679,7 +5679,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -6040,7 +6040,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -6053,7 +6053,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -6273,8 +6273,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/77b525dd-aefa-4773-93d4-08b72f426e54.pdf",
    "source": "bse_api",
    "category": "insider_trading",
-   "tier": "Note",
-   "rule": "insider",
+   "tier": "Routine",
+   "rule": "insider_code",
    "basis": "pdf"
   },
   {
@@ -12691,7 +12691,7 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/abe29a22-a5f1-4c45-b76f-1e4c5711ed34.pdf",
    "source": "bse_api",
    "category": "management_change",
-   "tier": "Act",
+   "tier": "Note",
    "rule": "mgmt_other",
    "basis": "title",
    "card": {
@@ -16070,7 +16070,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -16340,9 +16340,9 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/bc9f5e3f-c5c3-41d1-a880-30da4cc79e0d.pdf",
    "source": "bse_api",
    "category": "credit_rating",
-   "tier": "Routine",
-   "rule": "rating_other",
-   "basis": "title"
+   "tier": "Act",
+   "rule": "rating_negative_pdf",
+   "basis": "pdf"
   },
   {
    "id": "3c0b7b93d414",
@@ -16639,8 +16639,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d8e923a2-ffd9-44cc-b0df-79b6e6c85276.pdf",
    "source": "bse_api",
    "category": "insider_trading",
-   "tier": "Note",
-   "rule": "insider",
+   "tier": "Routine",
+   "rule": "insider_code",
    "basis": "pdf"
   },
   {
@@ -17354,8 +17354,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/bf42fa76-1f74-4507-9867-9ce447a0e588.pdf",
    "source": "bse_api",
    "category": "unclassified",
-   "tier": "Note",
-   "rule": "annual_report",
+   "tier": "Routine",
+   "rule": "shareholder_letter",
    "basis": "title"
   },
   {
@@ -19174,8 +19174,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/55f8f33b-5558-4899-84db-fe3da451e831.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "title"
   },
   {
@@ -20137,8 +20137,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2c5af9d6-bb28-409e-bbeb-d7a7d3752046.pdf",
    "source": "bse_api",
    "category": "dividend",
-   "tier": "Routine",
-   "rule": "dividend_pay",
+   "tier": "Note",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -20204,7 +20204,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -21051,7 +21051,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -21932,7 +21932,7 @@
    "source": "bse_api",
    "category": "dividend",
    "tier": "Note",
-   "rule": "dividend",
+   "rule": "dividend_declared",
    "basis": "title"
   },
   {
@@ -26480,10 +26480,10 @@
     "filings": [
      "bffe365bb449",
      "0d477fb076e3",
-     "0b4dedc3162d",
-     "e962869aa876",
      "16a8be65df19",
      "fb184c188d97",
+     "0b4dedc3162d",
+     "e962869aa876",
      "81d599dbc177",
      "837b5f57c2b5"
     ],
@@ -26497,10 +26497,10 @@
     "filings": [
      "bffe365bb449",
      "0d477fb076e3",
-     "0b4dedc3162d",
-     "e962869aa876",
      "16a8be65df19",
      "fb184c188d97",
+     "0b4dedc3162d",
+     "e962869aa876",
      "81d599dbc177",
      "837b5f57c2b5"
     ],
@@ -28409,10 +28409,10 @@
     "pct": 3.58,
     "volx": 1.28,
     "filings": [
-     "42a799a81bba",
-     "8cef838d215c"
+     "8cef838d215c",
+     "42a799a81bba"
     ],
-    "explained": false
+    "explained": true
    },
    {
     "date": "2026-07-08",
@@ -28422,7 +28422,7 @@
     "filings": [
      "8cef838d215c"
     ],
-    "explained": false
+    "explained": true
    },
    {
     "date": "2026-07-09",
@@ -29111,12 +29111,12 @@
     "pct": 5.52,
     "volx": 1.79,
     "filings": [
+     "43579ca6ae75",
      "b977bfe18c1f",
      "64b8687c9ca6",
      "ba5ce760a4a4",
      "51ffd760c82d",
-     "447be71bf5c9",
-     "43579ca6ae75"
+     "447be71bf5c9"
     ],
     "explained": true
    },
@@ -29126,10 +29126,10 @@
     "pct": 0.29,
     "volx": 0.76,
     "filings": [
+     "43579ca6ae75",
      "b977bfe18c1f",
      "51ffd760c82d",
-     "447be71bf5c9",
-     "43579ca6ae75"
+     "447be71bf5c9"
     ],
     "explained": true
    },
@@ -29220,10 +29220,10 @@
     "volx": 1.11,
     "filings": [
      "57bfff159c44",
+     "7b305a445da3",
      "2c65dad3bc7f",
      "a4faf91be07b",
-     "6c8ebbd65f67",
-     "7b305a445da3"
+     "6c8ebbd65f67"
     ],
     "explained": true
    },
@@ -29236,7 +29236,7 @@
      "7b305a445da3",
      "c0adc4d08193"
     ],
-    "explained": false
+    "explained": true
    },
    {
     "date": "2026-10-26",
@@ -31228,8 +31228,8 @@
     "pct": 1.11,
     "volx": 0.78,
     "filings": [
-     "d3688a376297",
-     "0999a205dd50"
+     "0999a205dd50",
+     "d3688a376297"
     ],
     "explained": true
    },
@@ -36953,8 +36953,8 @@
      "5de7c99d4a95",
      "154a9add2803",
      "7741777d3c1c",
-     "ee51df08b11f",
      "7250960d0fba",
+     "ee51df08b11f",
      "3f45279b0657"
     ],
     "explained": true
@@ -36968,8 +36968,8 @@
      "5de7c99d4a95",
      "154a9add2803",
      "7741777d3c1c",
-     "ee51df08b11f",
      "7250960d0fba",
+     "ee51df08b11f",
      "3f45279b0657",
      "cdfcf05cbe2f"
     ],
@@ -37797,10 +37797,10 @@
     "filings": [
      "62bfc3076796",
      "4d7e02023376",
+     "9965954ed948",
      "3caaae774baa",
      "1b7d3b6186a6",
      "47f836d4dade",
-     "9965954ed948",
      "f513266a5015"
     ],
     "explained": true
@@ -37812,10 +37812,10 @@
     "volx": 0.91,
     "filings": [
      "62bfc3076796",
+     "9965954ed948",
      "3caaae774baa",
      "1b7d3b6186a6",
      "47f836d4dade",
-     "9965954ed948",
      "f513266a5015",
      "ec13d452de2e",
      "5927f1aba9bc",

@@ -55,6 +55,30 @@ Cost controls:
 - `FINN_LLM_BUDGET=N` hard-caps new (uncached) LLM calls per run.
 - Gemini's free tier allows 20 requests per model per day, so the client falls back across models on overload or exhausted quota.
 
+## Classifier spot check (labels produced by Claude, not by an independent annotator)
+
+`eval/classifier_spotcheck.json` holds 60 filings drawn at random (seed 7), stratified across FINN's (category, tier) buckets.
+**Claude, the coding assistant that built FINN, labelled each one** from the title, the company's headline and the start of
+the PDF's first page, before comparing with FINN's output. There is no second annotator, so treat this as a sanity check rather than a benchmark.
+
+| | tier agreement | notes |
+|---|---|---|
+| Measured, before fixes | **44/60 (73%)** | Act precision 8/11, Act recall 8/12; category agreement 58/60 |
+| After fixing the bugs it exposed | 50/60 (83%) | Optimistic: the rules were fixed on this same sample |
+
+Misses that were rule bugs (now fixed):
+- Persistent merging a wholly-owned subsidiary into itself → Act.
+- A dividend *declaration* filed under BSE's "Dividend Updates" → Routine.
+- An insider-trading *code* amendment → Note.
+- A letter with the annual-report link → Note.
+- BEL's internal "Executive Director (function)" postings treated as board changes → Act. "Executive Director" is a PSU grade below the board.
+- Persistent's rating-watch letters → Routine. The rating letter itself is now read.
+
+Remaining disagreements:
+- **By design (4):** second copies of the same event are folded under the first card, and in-line results move to "Worth a look".
+- **Judgement calls:** AGM papers, a partnership press release, an NBFC's routine NCD allotment.
+- **Unknowable from the first page (1):** a generic Persistent "intimation as enclosed".
+
 ## Data sources (fetch check, 15 Nov 2026, from a cloud container)
 
 | Source | Status |
