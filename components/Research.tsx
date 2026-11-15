@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Callout from "./Tour";
 import AskBar from "./AskBar";
 import OnDemandTracker from "./OnDemandTracker";
+import Proof from "./Proof";
 import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
 import { day, fyq, when } from "@/lib/format";
 import { StaleTag } from "./Brief";
@@ -15,7 +16,11 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
   tour?: number; onTour?: (n: number) => void; onSkipTour?: () => void;
 }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const tracked = promises.map((p) => p.symbol);
+  // Curated trackers first, then on-demand builds; within each, the ones with the most scored promises first.
+  const scored = (p: PromiseFile) => p.promises.filter((x) => x.status !== "not_checkable").length;
+  const tracked = [...promises]
+    .sort((a, b) => Number(!!(a as { on_demand?: boolean }).on_demand) - Number(!!(b as { on_demand?: boolean }).on_demand) || scored(b) - scored(a))
+    .map((p) => p.symbol);
   const [ticker, setTicker] = useState<string>(initial ?? tracked[0] ?? "TCS");
   const [input, setInput] = useState("");
   const [snap, setSnap] = useState<Snapshot | null>(null);
@@ -65,6 +70,8 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
         <TickerIndex label="Promise trackers" list={tracked} active={ticker} onPick={go} />
         <TickerIndex label="Portfolio" list={stocks.map((s) => s.symbol).filter((s) => !tracked.includes(s))} active={ticker} onPick={go} />
       </header>
+
+      <Proof files={promises} onOpen={go} />
 
       <h1 className="serif mt-8 text-[30px] font-semibold leading-[1.1] tracking-[-0.01em]">
         {snap?.ok ? snap.name?.replace(/\s*\(searched.*\)$/, "") : portfolio?.name ?? ticker}
