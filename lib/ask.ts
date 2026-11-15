@@ -5,8 +5,9 @@ import path from "node:path";
 
 type Call = { quarter: string; label: string; url: string; pages: string[] };
 export type Answer =
-  | { found: true; quote: string; quarter: string; page: number; url: string; score: number; matched: string[]; searched: string[] }
-  | { found: false; reason: string; searched: string[] };
+  | { found: true; quote: string; quarter: string; page: number; url: string; score: number; matched: string[]; searched: string[];
+      speaker?: string | null }
+  | { found: false; reason: string; searched: string[]; analystOnly?: boolean };
 
 const STOP = new Set(("a an the of to in on for and or is are was were be been being what which who whom whose when where why how " +
   "does do did can could would should will shall may might must has have had it its this that these those there their they them " +
@@ -93,6 +94,73 @@ export async function askAny(symbol: string, question: string): Promise<Answer &
   return { ...ask(symbol, question, calls), live: true };
 }
 
+// ---- who is speaking: transcripts print turns as "Name: ..." or "Name : ...". The moderator introduces each analyst
+// ("the next question is from the line of Amit Dixit from Goldman Sachs"); everyone else who takes a turn is management.
+type Role = "management" | "analyst" | "moderator" | "unknown";
+type Seg = { page: number; start: number; end: number; speaker: string | null; role: Role };
+const LABEL = /(?:^|(?<=[.?!"”’)\]]\s?)\s)((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’.-]+(?:\s[A-Z][A-Za-z'’.-]*){0,4})\s?:\s/g;
+const INTRO = /(?:line of|question (?:is|comes) from|questions? from|we have)\s+((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][A-Za-z'’-]+(?:\s[A-Z][A-Za-z'’-]*){0,3})(?=\s+(?:from|of|with)\s|\s?[.,–-])/g;
+// Hosted calls name the host in the header: "MODERATOR: MR. NISCHINT CHAWATHE – KOTAK SECURITIES"
+const HOST = /MODERATOR\s*:\s*(?:(?:MR|MS|MRS|DR)\.?\s)?([A-Z][A-Z'’-]+(?:\s[A-Z][A-Z'’-]+){0,3})\s*[–-]/;
+const NOT_NAME = /^(Page|Note|Subject|Sub|Ref|Date|Scrip|Symbol|ISIN|CIN|Email|Website|Tel|Phone|Fax|Encl|To|Dear|Regd|Registered|Re|Disclaimer|Management|Participants?|Analysts?|Speakers?|Q|A|Question|Answer|Agenda|Time|Venue)\b/;
+// "Yes. Manoj Jain" -> "Manoj Jain": drop a leading word that ends a sentence (honorifics stay).
+const cleanSpeaker = (n: string) => n.trim().replace(/^(?:(?!(?:Mr|Ms|Mrs|Dr)\.)[A-Z][a-z]*\.\s)+/, "");
+const keyOf = (n: string) => cleanSpeaker(n).replace(/^(Mr|Ms|Mrs|Dr)\.?\s/, "").toLowerCase().replace(/[^a-z\s]/g, "").trim();
+
+export function segments(call: Call): { segs: Seg[]; labelled: boolean } {
+  const all = call.pages.join("\n");
+  const analysts = new Set<string>();
+  const addAnalyst = (n: string) => {
+    const k = keyOf(n), w = k.split(/\s+/);
+    if (!k || NOT_NAME.test(cleanSpeaker(n))) return;
+    analysts.add(k);
+    if (w.length > 1) analysts.add(`${w[0]} ${w[w.length - 1]}`);
+  };
+  for (const m of all.matchAll(INTRO)) addAnalyst(m[1]);
+  const host = HOST.exec(call.pages.slice(0, 3).join(" "));
+  const hostKey = host ? keyOf(host[1]) : null;
+  const isMod = (k: string) => /^(moderator|operator|coordinator)$/.test(k) || k === hostKey;
+  const isAnalyst = (k: string) => { const w = k.split(/\s+/); return analysts.has(k) || (w.length > 1 && analysts.has(`${w[0]} ${w[w.length - 1]}`)); };
+
+  // Pass 1: cut every page at speaker labels. A label counts if it's the moderator, an introduced analyst, or
+  // someone who takes 2+ turns (a one-off "Registered Office:" is not a speaker).
+  const counts = new Map<string, number>();
+  for (const pg of call.pages) for (const m of pg.matchAll(LABEL)) if (!NOT_NAME.test(cleanSpeaker(m[1]))) counts.set(keyOf(m[1]), (counts.get(keyOf(m[1])) ?? 0) + 1);
+  const isSpeaker = (n: string) => { const k = keyOf(n); return !!k && !NOT_NAME.test(cleanSpeaker(n)) && !/\b(office|address|code|number|name|date)$/.test(k) && (isMod(k) || isAnalyst(k) || (counts.get(k) ?? 0) >= 2); };
+  const raw: { page: number; start: number; end: number; speaker: string | null }[] = [];
+  let cur: string | null = null, labelled = false;
+  call.pages.forEach((pg, i) => {
+    let at = 0;
+    for (const m of pg.matchAll(LABEL)) {
+      if (!isSpeaker(m[1])) continue;
+      labelled = true;
+      if (m.index! > at) raw.push({ page: i + 1, start: at, end: m.index!, speaker: cur });
+      cur = cleanSpeaker(m[1]);
+      at = m.index! + m[0].length;
+    }
+    if (pg.length > at) raw.push({ page: i + 1, start: at, end: pg.length, speaker: cur });
+  });
+
+  // Pass 2: whoever the moderator hands the line to ("Kunal Shah from Citi", "we start with Viral Shah of IIFL") is an
+  // analyst; so is anyone whose turns are mostly questions.
+  const NAMED = /((?:(?:Mr|Ms|Mrs|Dr)\.?\s)?[A-Z][a-z'’-]+(?:\s[A-Z][a-z'’-]+){0,3})\s(?:from|of)\s[A-Z]/g;
+  const asks = new Map<string, [number, number]>();
+  for (const r of raw) {
+    if (!r.speaker) continue;
+    const k = keyOf(r.speaker), body = call.pages[r.page - 1].slice(r.start, r.end);
+    if (isMod(k)) for (const m of body.matchAll(NAMED)) if (counts.has(keyOf(m[1]))) addAnalyst(m[1]);
+    const [q, n] = asks.get(k) ?? [0, 0];
+    asks.set(k, [q + Number(body.includes("?")), n + 1]);
+  }
+  for (const [k, [q, n]] of asks) if (n >= 2 && q / n >= 0.6 && !isMod(k)) analysts.add(k);
+  const roleOf = (n: string | null): Role => {
+    if (!n) return "unknown";
+    const k = keyOf(n);
+    return isMod(k) ? "moderator" : isAnalyst(k) ? "analyst" : "management";
+  };
+  return { segs: raw.map((r) => ({ ...r, role: roleOf(r.speaker) })), labelled };
+}
+
 export function ask(symbol: string, question: string, given?: Call[]): Answer {
   const calls = given ?? loadCalls(symbol);
   const searched = calls.map((c) => c.quarter);
@@ -107,18 +175,25 @@ export function ask(symbol: string, question: string, given?: Call[]): Answer {
   const hard = groups.filter((g) => !g.soft);
   if (!hard.length) return { found: false, reason: "the question has no specific subject to look for", searched };
 
-  // Passages: contiguous 2-sentence windows on each page (contiguous, so the quote is an exact substring).
-  type P = { text: string; call: Call; page: number; words: string[] };
+  // Passages: contiguous 2-sentence windows inside one speaker's turn on one page (so the quote is an exact substring
+  // of the page and has a single speaker). Only management's turns can answer; analysts' turns are kept to tell
+  // "management never said it" apart from "nobody said it".
+  type P = { text: string; call: Call; page: number; words: string[]; speaker: string | null; mgmt: boolean };
   const passages: P[] = [];
   for (const c of calls) {
-    c.pages.forEach((pg, i) => {
-      const sents = pg.split(/(?<=[.?!])\s+(?=[A-Z"“])/);
+    const { segs, labelled } = segments(c);
+    for (const sg of segs) {
+      if (sg.role === "moderator") continue;
+      const body = c.pages[sg.page - 1].slice(sg.start, sg.end).trim();
+      const sents = body.split(/(?<=[.?!])\s+(?=[A-Z"“])/);
       for (let k = 0; k < sents.length; k++) {
         const text = sents.slice(k, k + 2).join(" ");
         if (text.length < 40) continue;
-        passages.push({ text, call: c, page: i + 1, words: tok(text.replace(/fy\s*'?\s*(\d{2})/gi, "fy$1")) });
+        // Unlabelled transcripts: no speaker to go on, so anything that reads like a question or an analyst is excluded.
+        const mgmt = labelled ? sg.role === "management" : !text.includes("?") && !ANALYST.test(text);
+        passages.push({ text, call: c, page: sg.page, words: tok(text.replace(/fy\s*'?\s*(\d{2})/gi, "fy$1")), speaker: labelled ? sg.speaker : null, mgmt });
       }
-    });
+    }
   }
   const numeric = NUMERIC.test(question);
   const N = passages.length;
@@ -127,6 +202,7 @@ export function ask(symbol: string, question: string, given?: Call[]): Answer {
   const recency = Object.fromEntries(calls.map((c, i) => [c.quarter, 1 - i * 0.04])); // newer calls first in the file
 
   let best: { p: P; score: number; matched: string[] } | null = null;
+  let bestOther: { p: P; score: number } | null = null;
   for (const p of passages) {
     const matched = groups.filter((g) => g.alts.some((a) => p.words.includes(a)));
     const hardHit = matched.filter((g) => !g.soft).length;
@@ -146,17 +222,19 @@ export function ask(symbol: string, question: string, given?: Call[]): Answer {
     for (let k = 0; k + 1 < groups.length; k++) {
       if (groups[k].alts.some((a) => groups[k + 1].alts.some((b) => lower.includes(` ${a} ${b} `)))) score *= 1.5;
     }
-    if (p.text.includes("?")) score *= 0.5; // an analyst asking is not an answer
-    if (ANALYST.test(p.text)) score *= 0.6; // nor is an analyst paraphrasing management
+    if (p.text.includes("?")) score *= 0.5; // management restating a question is weaker than its answer
     score *= recency[p.call.quarter] ?? 1;
+    if (!p.mgmt) { if (!bestOther || score > bestOther.score) bestOther = { p, score }; continue; }
     if (!best || score > best.score) best = { p, score, matched: matched.map((g) => g.t) };
   }
   const total = hard.reduce((a, g) => a + idf[g.t], 0);
-  if (!best || best.score < Math.max(2.5, 0.75 * total)) {
+  const bar = Math.max(2.5, 0.75 * total);
+  if (!best || best.score < bar) {
+    if (bestOther && bestOther.score >= bar) return { found: false, analystOnly: true, reason: "only analysts’ questions mention it; management’s remarks don’t", searched };
     return { found: false, reason: "no passage in these calls answers it", searched };
   }
   // Verified quote: the passage text is an exact substring of the page it came from.
   const pageText = best.p.call.pages[best.p.page - 1];
   if (!pageText.includes(best.p.text)) return { found: false, reason: "quote failed verification", searched };
-  return { found: true, quote: best.p.text, quarter: best.p.call.quarter, page: best.p.page, url: best.p.call.url, score: Math.round(best.score * 10) / 10, matched: best.matched, searched };
+  return { found: true, quote: best.p.text, quarter: best.p.call.quarter, page: best.p.page, url: best.p.call.url, score: Math.round(best.score * 10) / 10, matched: best.matched, searched, speaker: best.p.speaker };
 }
