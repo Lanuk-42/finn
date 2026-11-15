@@ -435,7 +435,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
           </button>
         );
       })()}
-      {mgmt && mgmt.people.length > 0 && <People c={mgmt} />}
+      {mgmt && mgmt.people.length > 0 && <People c={mgmt} company={name} />}
 
       {earlier.length > 0 && (
         <div className="mt-2">
@@ -549,7 +549,11 @@ function ResultsTable({ c }: { c: ResultsCard }) {
   );
 }
 
-function People({ c }: { c: MgmtCard }) {
+/** LinkedIn people search for the incoming person (name + company). A search, not a profile: FINN can't verify which profile is theirs. */
+const linkedinSearch = (person: string, company: string) =>
+  `https://www.linkedin.com/search/results/people/?keywords=${encodeURIComponent(`${person} ${company}`)}`;
+
+function People({ c, company }: { c: MgmtCard; company: string }) {
   return (
     <ul className="mt-3 space-y-3">
       {c.people.map((p, i) => (
@@ -562,6 +566,12 @@ function People({ c }: { c: MgmtCard }) {
           {p.change === "left" && p.tenure && <p className="serif mt-1 text-[14px] italic leading-snug text-[var(--ink-2)]">“{tidyProse(p.tenure)}”</p>}
           {p.bio && <p className="mt-1 text-[14px] leading-snug text-[var(--ink-2)]">{tidyProse(p.bio)}</p>}
           {p.change !== "left" && !p.bio && <p className="mt-1 text-[13px] text-[var(--faint)]">No background given in the filing.</p>}
+          {p.change !== "left" && (
+            <p className="mt-1 text-[12px] text-[var(--muted)]">
+              {p.bio ? "Bio from the filing · " : ""}
+              <a href={linkedinSearch(cleanName(p.name), company)} target="_blank" rel="noopener noreferrer" className="link text-[var(--ink)]">Search on LinkedIn ↗</a>
+            </p>
+          )}
         </li>
       ))}
     </ul>
