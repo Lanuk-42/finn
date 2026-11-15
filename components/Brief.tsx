@@ -71,8 +71,12 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
   const breaches = theses.filter((s) => s.thesis.status === "breach");
 
   const rowsInWin = Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => inWin(r.date)).map((r) => ({ sym, ...r })));
+  // Per-stock overrides (saved on device) sit on top of the global price/volume control.
+  const [perStock, setPerStock] = useDeviceState<Record<string, { px: number; vx: number }>>("finn.thresholds.v1", {});
+  const [addSym, setAddSym] = useState("");
+  const thr = (sym: string) => perStock[sym] ?? { px, vx };
   const moves = rowsInWin
-    .filter((r) => Math.abs(r.pct) >= px || (r.volx ?? 0) >= vx)
+    .filter((r) => Math.abs(r.pct) >= thr(r.sym).px || (r.volx ?? 0) >= thr(r.sym).vx)
     .sort((a, b) => b.date.localeCompare(a.date) || Math.abs(b.pct) - Math.abs(a.pct));
 
   // For useful empty states: the last material event before this window, and the biggest move inside it.
@@ -266,6 +270,32 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
               Volume vs 20-day avg <b className="num float-right text-[var(--ink)]">{vx.toFixed(1)}×</b>
               <input type="range" min={1.2} max={6} step={0.1} value={vx} onChange={(e) => setVx(Number(e.target.value))} className="mt-2 w-full" aria-label="Volume threshold" />
             </label>
+            <div className="col-span-2 border-t rule pt-3">
+              <p className="label !text-[10px]">Per stock (overrides the sliders)</p>
+              {Object.entries(perStock).map(([sym, t]) => (
+                <div key={sym} className="num mt-2 flex items-center gap-2 text-[14px]">
+                  <span className="w-24 shrink-0 text-[12px] font-semibold uppercase tracking-[0.06em]">{sym}</span>
+                  <span className="text-[var(--muted)]">±</span>
+                  <input aria-label={`${sym} price threshold %`} type="number" inputMode="decimal" step="0.5" min="0.5" value={t.px}
+                    onChange={(e) => setPerStock((o) => ({ ...o, [sym]: { ...t, px: Number(e.target.value) || t.px } }))}
+                    className="w-12 border-b rule bg-transparent text-right outline-none" />
+                  <span className="text-[var(--muted)]">%</span>
+                  <input aria-label={`${sym} volume threshold`} type="number" inputMode="decimal" step="0.1" min="1" value={t.vx}
+                    onChange={(e) => setPerStock((o) => ({ ...o, [sym]: { ...t, vx: Number(e.target.value) || t.vx } }))}
+                    className="ml-2 w-12 border-b rule bg-transparent text-right outline-none" />
+                  <span className="text-[var(--muted)]">×</span>
+                  <button onClick={() => setPerStock((o) => { const n = { ...o }; delete n[sym]; return n; })} className="link ml-auto text-[12px] text-[var(--muted)]">Remove</button>
+                </div>
+              ))}
+              <div className="mt-2 flex items-center gap-2 text-[14px]">
+                <select aria-label="Add a per-stock threshold" value={addSym} onChange={(e) => setAddSym(e.target.value)} className="min-w-0 flex-1 border-b rule bg-transparent py-1 outline-none">
+                  <option value="">Add a stock…</option>
+                  {brief.stocks.filter((st) => !perStock[st.symbol]).map((st) => <option key={st.symbol} value={st.symbol}>{st.symbol}</option>)}
+                </select>
+                <button disabled={!addSym} onClick={() => { setPerStock((o) => ({ ...o, [addSym]: { px, vx } })); setAddSym(""); }}
+                  className="border border-[var(--ink)] px-2 py-0.5 text-[12px] font-semibold disabled:opacity-40">Add</button>
+              </div>
+            </div>
           </div>
         )}
         {moves.length === 0 && (
@@ -278,7 +308,7 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
           const linked = m.filings.map((id) => byId[id]).filter(Boolean) as Filing[];
           const rank = (f: Filing) => ({ Act: 0, Note: 1, Routine: 2 })[f.tier] * 100 + (brief.act_order.indexOf(f.category) < 0 ? 50 : brief.act_order.indexOf(f.category));
           const material = linked.filter((f) => f.tier !== "Routine").sort((a, b) => rank(a) - rank(b));
-          return <MoveItem key={m.sym + m.date} m={m} sym={m.sym} name={nm(m.sym)} reason={material[0]} linkedCount={linked.length} px={px} vx={vx} onOpen={() => onOpenStock(m.sym)} />;
+          return <MoveItem key={m.sym + m.date} m={m} sym={m.sym} name={nm(m.sym)} reason={material[0]} linkedCount={linked.length} px={thr(m.sym).px} vx={thr(m.sym).vx} custom={!!perStock[m.sym]} onOpen={() => onOpenStock(m.sym)} />;
         })}
       </Section>
 
@@ -481,14 +511,15 @@ function People({ c }: { c: MgmtCard }) {
 }
 
 // ---------------------------------------------------------------- Moves, Notes
-function MoveItem({ m, sym, name, reason, linkedCount, px, vx, onOpen }: {
-  m: MoveRow; sym: string; name: string; reason?: Filing; linkedCount: number; px: number; vx: number; onOpen: () => void;
+function MoveItem({ m, sym, name, reason, linkedCount, px, vx, custom, onOpen }: {
+  m: MoveRow; sym: string; name: string; reason?: Filing; linkedCount: number; px: number; vx: number; custom?: boolean; onOpen: () => void;
 }) {
   const [what, why] = moveLead(name, m, reason, linkedCount, px, vx);
   return (
     <Item>
       <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
         <button onClick={onOpen} className="font-semibold text-[var(--ink)]">{sym}</button>
+        {custom && <span className="num normal-case tracking-normal text-[11px] text-[var(--muted)]">your threshold ±{px}% · {vx}×</span>}
         <span className="num ml-auto normal-case tracking-normal text-[12px] text-[var(--faint)]">{day(m.date)}</span>
       </div>
       <div className="mt-1 flex items-start gap-4">
