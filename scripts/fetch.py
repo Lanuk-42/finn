@@ -104,7 +104,7 @@ def bse_api(bse_code, days=180):
                 "ts": ts.isoformat(), "title": (a.get("NEWSSUB") or "").strip(),
                 "headline": (a.get("HEADLINE") or "").strip(),  # the company's own one-liner (primary text)
                 "category": a.get("CATEGORYNAME"), "subcategory": a.get("SUBCATNAME"),
-                "url": f"https://www.bseindia.com/xml-data/corpfiling/AttachLive/{att}" if att else None,
+                "url": f"https://www.bseindia.com/xml-data/corpfiling/AttachHis/{att}" if att else None,
                 "source": "bse_api"})
         total = (j.get("Table1") or [{}])[0].get("ROWCNT", 0)
         if not rows or len(out) >= total or page >= 10:
