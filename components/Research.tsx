@@ -122,10 +122,11 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
 
 function TickerIndex({ label, list, active, onPick }: { label: string; list: string[]; active: string; onPick: (s: string) => void }) {
   if (!list.length) return null;
+  // Label stacked above its list: side-by-side columns overflowed on narrow phones with wider system fonts.
   return (
-    <div className="mt-3 flex gap-3">
-      <span className="label w-[72px] shrink-0 pt-[3px] !text-[10px] leading-tight">{label}</span>
-      <div className="flex flex-wrap gap-x-3 gap-y-1">
+    <div className="mt-3">
+      <p className="label !text-[10px]">{label}</p>
+      <div className="mt-1 flex flex-wrap gap-x-3 gap-y-1">
         {list.map((s) => (
           <button key={s} onClick={() => onPick(s)}
             className={`num text-[13px] ${active === s ? "font-semibold text-[var(--ink)] underline decoration-2 underline-offset-4" : "text-[var(--muted)]"}`}>
