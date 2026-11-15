@@ -34,12 +34,12 @@ def _two_sentences(s):
     return " ".join(parts[:2])
 
 
-def extract(text, headline=""):
+def extract(text, headline="", url=None):
     """Return {'people': [...verified...], 'dropped': n}. `text` is the filing's PDF text (or headline fallback)."""
     src = (text or "").strip() or headline
     if len(src) < 40:
         return {"people": [], "dropped": 0, "note": "Filing text not readable"}
-    raw = gemini.ask_json(SYSTEM, PROMPT.format(text=src[:30000]))
+    raw = gemini.ask_json(SYSTEM, PROMPT.format(text=src[:30000]), key=f"mgmt:v1:{url}" if url else None)
     if isinstance(raw, list):  # some models return the bare array
         raw = {"people": raw}
     people, dropped = [], 0

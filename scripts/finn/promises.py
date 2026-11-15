@@ -204,10 +204,10 @@ def guidance_chunks(text, window=2):
     return " ".join(out)
 
 
-def extract(text, quarter):
+def extract(text, quarter, url=None):
     fy = "FY" + quarter[-2:] if quarter else "the current fiscal year"
     raw = gemini.ask_json(SYSTEM, PROMPT.format(text=guidance_chunks(text)[:90000], quarter=quarter or "recent", fy=fy),
-                          models=gemini.STRONG)
+                          models=gemini.STRONG, key=f"promises:v1:{url}" if url else None)
     if isinstance(raw, list):
         raw = {"guidance": raw}
     return raw.get("guidance", [])
@@ -329,7 +329,7 @@ def run(symbol, scr, max_transcripts=5):
         transcripts.append({"label": c["period"], "quarter": q, "quarter_basis": how, "url": u, "chars": len(text),
                             "status": "ok"})
         try:
-            found = extract(text, q)
+            found = extract(text, q, url=u)
         except (gemini.QuotaExceeded, gemini.BudgetExceeded) as e:
             transcripts[-1]["status"] = f"skipped: {e}"
             break

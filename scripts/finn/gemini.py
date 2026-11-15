@@ -59,14 +59,21 @@ def _stream(model, body, key):
 LITE_ONLY = os.environ.get("FINN_LITE_ONLY") == "1"
 
 
-def ask_json(system, user, models=CHEAP, rounds=3):
+def ask_json(system, user, models=CHEAP, rounds=3, key=None):
+    """`key` (e.g. "mgmt:v1:<filing url>") makes the cache independent of the exact extracted text, which can differ
+    slightly between pypdf versions or machines. The prompt-hash entry is still read, so older caches keep working."""
     models = [models] if isinstance(models, str) else list(models)
     CACHE.mkdir(parents=True, exist_ok=True)
     h = hashlib.sha256(f"{models[0]}\n{system}\n{user}".encode()).hexdigest()[:24]
     p = CACHE / f"{h}.json"
-    if p.exists():  # cache first: a run without a key still reuses every earlier answer
-        USAGE["cached"] += 1
-        return json.loads(p.read_text())["parsed"]
+    stable = CACHE / f"k_{hashlib.sha256(key.encode()).hexdigest()[:24]}.json" if key else None
+    for c in ([stable] if stable else []) + [p]:  # cache first: a run without a key still reuses every earlier answer
+        if c.exists():
+            USAGE["cached"] += 1
+            d = json.loads(c.read_text())
+            if stable and not stable.exists():
+                stable.write_text(c.read_text())
+            return d["parsed"]
     key = os.environ.get("GEMINI_API_KEY")
     if not key:
         raise BudgetExceeded("GEMINI_API_KEY is not set; skipping new LLM calls")
@@ -105,7 +112,10 @@ def ask_json(system, user, models=CHEAP, rounds=3):
             USAGE["prompt_tokens"] += usage.get("prompt_tokens", 0)
             USAGE["completion_tokens"] += usage.get("completion_tokens", 0)
             USAGE["by_model"][model] = USAGE["by_model"].get(model, 0) + 1
-            p.write_text(json.dumps({"model": model, "usage": usage, "parsed": parsed}, ensure_ascii=False))
+            blob = json.dumps({"model": model, "usage": usage, "parsed": parsed}, ensure_ascii=False)
+            p.write_text(blob)
+            if stable:
+                stable.write_text(blob)
             return parsed
         if len(dead) == len(models):
             raise QuotaExceeded("daily free-tier quota used up on every model in the chain")
