@@ -10,6 +10,11 @@ import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteTe
 
 import { actGroupsFor, autoWindow, MIN_ACT, tsMs, WINDOWS } from "@/lib/window";
 
+const ALERT_TYPES: [string, string][] = [
+  ["results", "Results"], ["management_change", "Management"], ["M&A", "M&A"], ["litigation", "Legal"],
+  ["fund_raise", "Fund raise"], ["credit_rating", "Credit rating"], ["pledging", "Pledges"],
+];
+
 /** A change "matters" if it is a real decline (accent) or a large move (weight). Everything else stays quiet. */
 function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
   if (n == null) return "text-[var(--faint)]";
@@ -76,10 +81,15 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
   const pool = rowsInWin.length ? rowsInWin
     : Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => r.date === brief.latest_trading_day).map((r) => ({ sym, ...r })));
   const biggest = [...pool].sort((a, b) => Math.abs(b.pct) - Math.abs(a.pct))[0];
-  const total = actGroups.length;
+  // Alert types chosen on this device. A switched-off type is not hidden: its items move to "Worth a look".
+  const [alertOff, setAlertOff] = useDeviceState<string[]>("finn.alerts-off.v1", []);
+  const [chooseAlerts, setChooseAlerts] = useState(false);
+  const alerting = actGroups.filter((g) => !alertOff.includes(g.lead.category));
+  const demoted = actGroups.filter((g) => alertOff.includes(g.lead.category)).map((g) => g.lead);
+  const total = alerting.length;
   const doneSet = new Set(doneIds);
-  const open = actGroups.filter((g) => !doneSet.has(g.lead.id));
-  const handled = actGroups.filter((g) => doneSet.has(g.lead.id));
+  const open = alerting.filter((g) => !doneSet.has(g.lead.id));
+  const handled = alerting.filter((g) => doneSet.has(g.lead.id));
   const n = open.length;
   // The tour's results card: the first open results item that links to a promise tracker.
   const tourCard = open.find((g) => g.lead.card?.type === "results" && promiseLink(g.lead.card, promises.find((p) => p.symbol === g.lead.symbol)));
@@ -170,7 +180,32 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
       )}
 
       {/* Act */}
-      <Section label="Act on" right={total ? (handled.length ? `${n} open · ${handled.length} done` : String(n)) : undefined}>
+      <Section label="Act on" right={
+        <span className="num text-[12px] text-[var(--muted)]">
+          {total ? (handled.length ? `${n} open · ${handled.length} done · ` : `${n} · `) : ""}
+          <button onClick={() => setChooseAlerts((v) => !v)} className="link text-[var(--ink)]">{chooseAlerts ? "Done" : "Choose alerts"}</button>
+        </span>
+      }>
+        {chooseAlerts && (
+          <div className="border-b rule py-3">
+            <p className="text-[13px] text-[var(--muted)]">Count these filing types as things that need you. Others still appear under “Worth a look”.</p>
+            <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1.5">
+              {ALERT_TYPES.map(([key, label]) => {
+                const on = !alertOff.includes(key);
+                const count = actGroups.filter((g) => g.lead.category === key).length;
+                return (
+                  <button key={key} role="switch" aria-checked={on}
+                    onClick={() => setAlertOff((o) => (on ? [...o, key] : o.filter((x) => x !== key)))}
+                    className="flex items-center gap-2 text-left text-[14px]">
+                    <span className={`inline-flex h-4 w-4 items-center justify-center border border-[var(--ink)] text-[11px] leading-none ${on ? "bg-[var(--ink)] text-[var(--paper)]" : ""}`}>{on ? "✓" : ""}</span>
+                    <span className={on ? "" : "text-[var(--muted)]"}>{label}</span>
+                    <span className="num ml-auto text-[12px] text-[var(--faint)]">{count || ""}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        )}
         {total > 0 && n === 0 && (
           <div className="border-b rule py-5">
             <p className="serif text-[22px] font-semibold leading-tight">Inbox zero.</p>
@@ -248,8 +283,9 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
       </Section>
 
       {/* Note */}
-      <Section label="Worth a look" right={note.length ? String(note.length) : undefined}>
-        {note.length === 0 && <Empty>Nothing else worth a look in {W.span}.</Empty>}
+      <Section label="Worth a look" right={note.length + demoted.length ? String(note.length + demoted.length) : undefined}>
+        {note.length + demoted.length === 0 && <Empty>Nothing else worth a look in {W.span}.</Empty>}
+        {demoted.map((f) => <CompactItem key={f.id} f={f} name={nm(f.symbol)} onOpenStock={onOpenStock} />)}
         {note.map((f) => <CompactItem key={f.id} f={f} name={nm(f.symbol)} onOpenStock={onOpenStock} />)}
       </Section>
 
