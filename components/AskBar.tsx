@@ -37,6 +37,7 @@ export default function AskBar({ ticker, name }: { ticker: string; name: string 
           className="min-w-0 flex-1 bg-transparent text-[16px] outline-none placeholder:text-[var(--faint)]" />
         <button className="text-[14px] font-semibold" disabled={busy}>{busy ? "…" : "Ask →"}</button>
       </form>
+      {busy && <p className="serif py-3 text-[15px] text-[var(--muted)]">Reading {name}’s latest earnings calls…</p>}
       {ans && (
         <div className="border-b rule py-4">
           <p className="text-[13px] text-[var(--muted)]">{asked}</p>
@@ -53,7 +54,7 @@ export default function AskBar({ ticker, name }: { ticker: string; name: string 
           <button onClick={() => setHow((v) => !v)} className="link mt-2 text-[13px] text-[var(--muted)]">How FINN checked this</button>
           {how && (
             <div className="mt-2 space-y-1.5 border-l rule pl-3 text-[13px] leading-relaxed text-[var(--muted)]">
-              <p>FINN searched {ans.searched.length ? `the ${ans.searched.join(", ")} earnings-call transcripts` : "the transcripts on file"} sentence by sentence. No model writes the answer: it is the best-matching passage, shown word for word, and only if it clears a relevance bar.</p>
+              <p>FINN searched {ans.searched.length ? `the ${ans.searched.join(", ")} earnings-call transcripts` : "the transcripts on file"}{(ans as { live?: boolean }).live ? " (fetched just now from the exchange filings screener links to)" : ""} sentence by sentence. No model writes the answer: it is the best-matching passage, shown word for word, and only if it clears a relevance bar.</p>
               {ans.found ? <p>Matched on: {ans.matched.join(", ")}. The passage was checked to appear exactly on page {ans.page}.</p> : <p>Why nothing: {ans.reason}.</p>}
             </div>
           )}
