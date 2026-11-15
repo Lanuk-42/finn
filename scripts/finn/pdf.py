@@ -28,10 +28,17 @@ def text(url, max_pages=40):
         alt.append(url.replace("/AttachHis/", "/AttachLive/"))
     elif "/AttachLive/" in url:
         alt.append(url.replace("/AttachLive/", "/AttachHis/"))
+    r = None
     for u in alt:
-        r = requests.get(u, headers={"User-Agent": UA, "Referer": "https://www.bseindia.com/"}, timeout=60)
+        try:
+            r = requests.get(u, headers={"User-Agent": UA, "Referer": "https://www.bseindia.com/"}, timeout=60)
+        except requests.RequestException:
+            r = None  # host unreachable (e.g. company IR site not on the network allowlist)
+            continue
         if r.status_code == 200 and r.content[:4] == b"%PDF":
             break
+    if r is None:
+        return ""  # not cached: a later run may reach it
     if r.status_code == 200 and r.content[:4] == b"%PDF":
         try:
             reader = PdfReader(io.BytesIO(r.content))
