@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { readJSON, writeJSON } from "@/lib/device";
 import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, ResultsCard } from "@/lib/types";
 import { ageHours, CATEGORY_LABEL, cleanTitle, day, fyq, IST, STALE_HOURS, when } from "@/lib/format";
 import { useDeviceState } from "@/lib/device";
@@ -14,6 +15,12 @@ const ALERT_TYPES: [string, string][] = [
   ["results", "Results"], ["management_change", "Management"], ["M&A", "M&A"], ["litigation", "Legal"],
   ["fund_raise", "Fund raise"], ["credit_rating", "Credit rating"], ["pledging", "Pledges"],
 ];
+
+// "New since your last visit": the device remembers which filings and moves it showed last time (ids, not a clock),
+// because filings often arrive in a batch hours after they were filed.
+const NewCtx = createContext<Set<string>>(new Set());
+const NewMark = ({ id }: { id: string }) =>
+  useContext(NewCtx).has(id) ? <span className="normal-case tracking-normal text-[11px] font-semibold text-[var(--ink)]">● new</span> : null;
 
 /** A change "matters" if it is a real decline (accent) or a large move (weight). Everything else stays quiet. */
 function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
@@ -100,9 +107,22 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
   useEffect(() => {
     if (tour === 1.5 && tourCard) document.getElementById(`item-${tourCard.lead.id}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
   }, [tour, tourCard]);
+  const [fresh, setFresh] = useState<{ ids: Set<string>; since: string | null }>({ ids: new Set(), since: null });
+  useEffect(() => {
+    const seenNow = [...brief.filings.map((f) => f.id), ...Object.entries(brief.moves).flatMap(([s, rows]) => rows.map((r) => `${s}:${r.date}`))];
+    const prev = readJSON<{ at: string; ids: string[] } | null>("finn.seen.v1", null);
+    if (prev) {
+      const before = new Set(prev.ids);
+      setFresh({ ids: new Set(seenNow.filter((id) => !before.has(id))), since: prev.at });
+    }
+    writeJSON("finn.seen.v1", { at: new Date().toISOString(), ids: seenNow });
+  }, [brief]);
+  const newInWindow = filings.filter((f) => fresh.ids.has(f.id) && f.tier !== "Routine").length
+    + moves.filter((m) => fresh.ids.has(`${m.sym}:${m.date}`)).length;
   const toggleDone = (id: string) => setDoneIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
 
   return (
+    <NewCtx.Provider value={fresh.ids}>
     <div className="px-5">
       {/* Masthead */}
       <header className="pt-[max(env(safe-area-inset-top),18px)]">
@@ -118,6 +138,7 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
         <p className="num mt-2 text-[14px] text-[var(--muted)]">
           {handled.length > 0 && <>{handled.length} of {total} done · </>}from {filings.length} filings across {brief.stocks.length} holdings · as of {when(brief.data_as_of)} IST
           {stale && <> <StaleTag /></>}
+          {fresh.since && <><br /><span className="text-[var(--ink)]">{newInWindow ? `${newInWindow} new since your last visit` : "Nothing new since your last visit"}</span> ({when(fresh.since)})</>}
         </p>
         <nav aria-label="Time window" className="mt-4 flex gap-6 border-b rule">
           {WINDOWS.map((w) => (
@@ -342,6 +363,7 @@ export default function Brief({ brief, promises, defaultWin, onOpenStock, tour =
         )}
       </div>
     </div>
+    </NewCtx.Provider>
   );
 }
 
@@ -379,11 +401,12 @@ function More({ children, onClick }: { children: React.ReactNode; onClick: () =>
   return <button onClick={onClick} className="link py-3 text-[13px] text-[var(--muted)]">{children}</button>;
 }
 
-function Meta({ sym, kind, ts, onOpen }: { sym: string; kind?: string; ts: string; onOpen: () => void }) {
+function Meta({ sym, kind, ts, id, onOpen }: { sym: string; kind?: string; ts: string; id?: string; onOpen: () => void }) {
   return (
     <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
       <button onClick={onOpen} className="font-semibold text-[var(--ink)]">{sym}</button>
       {kind && <span className="text-[var(--muted)]">{kind}</span>}
+      {id && <NewMark id={id} />}
       <span className="num ml-auto normal-case tracking-normal text-[12px] text-[var(--faint)]">{when(ts)}</span>
     </div>
   );
@@ -397,7 +420,7 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
   const mgmt = f.card?.type === "management" ? f.card : null;
   return (
     <Item>
-      <Meta sym={f.symbol} kind={results ? `${fyq(results.quarter)} results` : CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
+      <Meta sym={f.symbol} id={f.id} kind={results ? `${fyq(results.quarter)} results` : CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
       <p className="serif mt-1.5 text-[19px] font-medium leading-[1.3]">{filingLead(name, f)}</p>
 
       {results?.status === "ok" && <ResultsTable c={results} />}
@@ -520,6 +543,7 @@ function MoveItem({ m, sym, name, reason, linkedCount, px, vx, custom, onOpen }:
       <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
         <button onClick={onOpen} className="font-semibold text-[var(--ink)]">{sym}</button>
         {custom && <span className="num normal-case tracking-normal text-[11px] text-[var(--muted)]">your threshold ±{px}% · {vx}×</span>}
+        <NewMark id={`${sym}:${m.date}`} />
         <span className="num ml-auto normal-case tracking-normal text-[12px] text-[var(--faint)]">{day(m.date)}</span>
       </div>
       <div className="mt-1 flex items-start gap-4">
@@ -537,7 +561,7 @@ function CompactItem({ f, name, onOpenStock }: { f: Filing; name: string; onOpen
   const text = noteText(f);
   return (
     <div className="border-b rule py-3">
-      <Meta sym={f.symbol} kind={CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
+      <Meta sym={f.symbol} id={f.id} kind={CATEGORY_LABEL[f.category] ?? f.category} ts={f.ts} onOpen={() => onOpenStock(f.symbol)} />
       <a href={f.url ?? undefined} target="_blank" rel="noreferrer" aria-label={`${name}: ${text}`} className="mt-1 block text-[15px] leading-snug text-[var(--ink)]">
         {text}
       </a>
