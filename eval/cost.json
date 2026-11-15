@@ -1,0 +1,57 @@
+{
+ "rows": [
+  {
+   "model": "gemini-3.5-flash-lite",
+   "calls": 87,
+   "input_tokens": 268297,
+   "output_tokens": 41467,
+   "paid_tier_usd": 0.18415659999999998,
+   "rate_source": "ai.google.dev pricing page"
+  },
+  {
+   "model": "gemini-3.5-flash",
+   "calls": 27,
+   "input_tokens": 353499,
+   "output_tokens": 24721,
+   "paid_tier_usd": 0.7527375,
+   "rate_source": "third-party forum post; not on the official page I retrieved"
+  },
+  {
+   "model": "gemini-3-flash-preview",
+   "calls": 2,
+   "input_tokens": 12288,
+   "output_tokens": 3734,
+   "paid_tier_usd": 0.017346,
+   "rate_source": "ai.google.dev pricing page"
+  }
+ ],
+ "total": {
+  "calls": 116,
+  "input_tokens": 634084,
+  "output_tokens": 69922,
+  "paid_tier_usd": 0.9542,
+  "actual_usd": 0
+ },
+ "rates_usd_per_1M": {
+  "gemini-3.5-flash-lite": {
+   "input": 0.3,
+   "output": 2.5,
+   "source": "ai.google.dev pricing page"
+  },
+  "gemini-3-flash-preview": {
+   "input": 0.5,
+   "output": 3.0,
+   "source": "ai.google.dev pricing page"
+  },
+  "gemini-3.5-flash": {
+   "input": 1.5,
+   "output": 9.0,
+   "source": "third-party forum post; not on the official page I retrieved"
+  }
+ },
+ "notes": [
+  "Counts successful calls only; 429/503 attempts are not billed.",
+  "Includes 12 lite calls on the first GitHub Actions dry run (from its log), before the cache-key fix.",
+  "Requests to gemini-3.5-flash were served by 3.6-flash per the API's own quota message; priced at 3.5 Flash rates."
+ ]
+}

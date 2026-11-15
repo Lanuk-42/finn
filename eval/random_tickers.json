@@ -1,0 +1,207 @@
+[
+ {
+  "ticker": "DMART",
+  "snapshot": {
+   "ok": true,
+   "name": "Avenue Supermarts Ltd",
+   "variant": "consolidated",
+   "quarter": "Sep 2026",
+   "bank": false,
+   "stale": null,
+   "error": null,
+   "extras": {
+    "trajectory": "Over five years {name} compounded revenue 23.3% a year and profit 22%.",
+    "cash": "Profits turn into cash: operating cash flow was 105% of profit over 5 years.",
+    "balance": "Modest debt (debt-to-equity 0.16); working capital ties up 18 days of sales, down from 23 in FY21.",
+    "isLender": false
+   },
+   "rev": {
+    "value": 19644,
+    "prev": 18795,
+    "year_ago": 16676,
+    "qoq": 4.5,
+    "yoy": 17.8
+   },
+   "secs": 1.8
+  },
+  "ask": [
+   {
+    "q": "What is the revenue growth guidance?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   },
+   {
+    "q": "What is the capex plan?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   }
+  ],
+  "promise": "unavailable"
+ },
+ {
+  "ticker": "ADANIPORTS",
+  "snapshot": {
+   "ok": true,
+   "name": "Adani Ports & Special Economic Zone Ltd",
+   "variant": "consolidated",
+   "quarter": "Sep 2026",
+   "bank": false,
+   "stale": null,
+   "error": null,
+   "extras": {
+    "trajectory": "Over five years {name} compounded revenue 25.3% a year and profit 20.4%; operating margin narrowed from 69% to 59%.",
+    "cash": "Profits turn into cash: operating cash flow was 177% of profit over 5 years.",
+    "balance": "Meaningful debt (debt-to-equity 0.65); suppliers fund its working capital (-33 days), down from -5 in FY21.",
+    "isLender": false
+   },
+   "rev": {
+    "value": 11340,
+    "prev": 10821,
+    "year_ago": 9167,
+    "qoq": 4.8,
+    "yoy": 23.7
+   },
+   "secs": 0.7
+  },
+  "ask": [
+   {
+    "q": "What is the revenue growth guidance?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   },
+   {
+    "q": "What is the capex plan?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   }
+  ],
+  "promise": "unavailable"
+ },
+ {
+  "ticker": "ITC",
+  "snapshot": {
+   "ok": true,
+   "name": "ITC Ltd",
+   "variant": "consolidated",
+   "quarter": "Sep 2026",
+   "bank": false,
+   "stale": null,
+   "error": null,
+   "extras": {
+    "trajectory": "Over five years {name} compounded revenue 9.9% a year and profit 9.4%.",
+    "cash": "Profits mostly turn into cash: operating cash flow was 79% of profit over 5 years.",
+    "balance": "Practically debt-free (debt-to-equity 0.01); working capital ties up 47 days of sales, up from 36 in FY21.",
+    "isLender": false
+   },
+   "rev": {
+    "value": 20269,
+    "prev": 19114,
+    "year_ago": 19502,
+    "qoq": 6,
+    "yoy": 3.9
+   },
+   "secs": 0.6
+  },
+  "ask": [
+   {
+    "q": "What is the revenue growth guidance?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   },
+   {
+    "q": "What is the capex plan?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   }
+  ],
+  "promise": "unavailable"
+ },
+ {
+  "ticker": "NAUKRI",
+  "snapshot": {
+   "ok": true,
+   "name": "Info Edge (India) Ltd",
+   "variant": "consolidated",
+   "quarter": "Sep 2026",
+   "bank": false,
+   "stale": null,
+   "error": null,
+   "extras": {
+    "trajectory": "Over five years {name} compounded revenue 23.8% a year and profit 4.5%; operating margin widened from 7% to 36%.",
+    "cash": "Cash lags profit: operating cash flow was only 24% of profit over 5 years.",
+    "balance": "Practically debt-free (debt-to-equity 0.01); working capital ties up 142 days of sales, down from 582 in FY21.",
+    "isLender": false
+   },
+   "rev": {
+    "value": 904,
+    "prev": 881,
+    "year_ago": 805,
+    "qoq": 2.6,
+    "yoy": 12.3
+   },
+   "secs": 0.6
+  },
+  "ask": [
+   {
+    "q": "What is the revenue growth guidance?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   },
+   {
+    "q": "What is the capex plan?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   }
+  ],
+  "promise": "unavailable"
+ },
+ {
+  "ticker": "PAGEIND",
+  "snapshot": {
+   "ok": true,
+   "name": "Page Industries Ltd",
+   "variant": "standalone",
+   "quarter": "Sep 2026",
+   "bank": false,
+   "stale": null,
+   "error": null,
+   "extras": {
+    "trajectory": "Over five years {name} compounded revenue 13.1% a year and profit 17.5%; operating margin widened from 19% to 22%.",
+    "cash": "Profits turn into cash: operating cash flow was 107% of profit over 5 years.",
+    "balance": "Modest debt (debt-to-equity 0.26); working capital ties up 26 days of sales, up from 10 in FY21.",
+    "isLender": false
+   },
+   "rev": {
+    "value": 1440,
+    "prev": 1420,
+    "year_ago": 1291,
+    "qoq": 1.4,
+    "yoy": 11.5
+   },
+   "secs": 1.5
+  },
+  "ask": [
+   {
+    "q": "What is the revenue growth guidance?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   },
+   {
+    "q": "What is the capex plan?",
+    "found": false,
+    "why": "no transcripts on file for this company",
+    "quote": ""
+   }
+  ],
+  "promise": "unavailable"
+ }
+]
