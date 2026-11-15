@@ -47,7 +47,7 @@ export async function progress(requestId: string) {
   return { state: run.conclusion === "success" ? ("done" as const) : ("failed" as const), stages, url: run.html_url };
 }
 
-export const DAILY_CAP = Number(process.env.FINN_BUILD_CAP || 10); // builds per IST day (env override only for testing)
+export const DAILY_CAP = Number(process.env.FINN_BUILD_CAP || 30); // builds per IST day (env override only for testing)
 
 type Run = { id: number; display_title: string; status: string; created_at: string; html_url: string };
 

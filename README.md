@@ -35,7 +35,7 @@ A mobile-first morning note for an Indian equity portfolio. It tells you the few
   - **Precomputed:** BEL, Polycab, Persistent.
   - **Built on demand:** PG Electroplast and Kaynes.
   - **Any other ticker:** "Build tracker" runs on GitHub Actions with live progress (about a minute) and saves the result for everyone. Built on demand so far: PG Electroplast, Kaynes, Havells, Amber, KEI.
-  - **Guards** (the button is public): invalid symbols are rejected instantly, unknown companies after a screener lookup; a ticker already building reuses that build; at most 10 builds per IST day, with a clear message when the cap is hit.
+  - **Guards** (the button is public): invalid symbols are rejected instantly, unknown companies after a screener lookup; a ticker already building reuses that build; at most 30 builds per IST day, with a clear message when the cap is hit.
 - **Live snapshot for any NSE ticker:** headline numbers, ratios, an 8-quarter trend, a five-year trajectory, cash quality (OCF ÷ PAT) and the balance sheet (debt-to-equity, working-capital days). If screener.in is down, a saved copy is shown, tagged STALE.
   - **Investment-heavy companies** (other income ≥30% of pre-tax profit): cash is compared with *operating* profit, and the line says so.
   - **Distorted working-capital days** (far above the trade cycle): FINN uses the trade cycle and marks the headline figure n/m.
