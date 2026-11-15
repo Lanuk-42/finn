@@ -108,6 +108,13 @@ function actualText(p: Promise_) {
   return `${v}%`;
 }
 
+/** Tracking below the low end of the target (only meaningful for margins/growth/bps, not part-year revenue). */
+function offTrack(p: Promise_) {
+  const v = p.status === "in_progress" ? p.tracking ?? p.actual : p.actual;
+  if (v == null || p.metric === "revenue" || p.low == null) return p.verdict === "Missed";
+  return v < p.low;
+}
+
 function Tracker({ pf }: { pf: PromiseFile }) {
   const [sheet, setSheet] = useState<Promise_ | null>(null);
   const [showNC, setShowNC] = useState(false);
@@ -123,7 +130,9 @@ function Tracker({ pf }: { pf: PromiseFile }) {
       <div className="card px-4 py-4">
         <p className="text-[12px] font-medium uppercase tracking-wide text-[var(--faint)]">Promise tracker · {pf.company}</p>
         <div className="mt-1 flex items-end gap-3">
-          <p className="num text-[34px] font-semibold leading-none">{kept}<span className="text-[20px] text-[var(--faint)]">/{checks}</span></p>
+          <p className="num text-[34px] font-semibold leading-none">
+            {checks ? <>{kept}<span className="text-[20px] text-[var(--faint)]">/{checks}</span></> : "—"}
+          </p>
           <p className="pb-1 text-[13px] leading-snug text-[var(--muted)]">
             checks kept: {c.kept}/{c.resolved} dated targets resolved, plus {qHeld}/{qTested} quarters inside a standing range.
             {c.in_progress > 0 && <> {c.in_progress} still in progress.</>}
@@ -148,7 +157,7 @@ function Tracker({ pf }: { pf: PromiseFile }) {
               <p className="mt-1.5 text-[14px] font-medium leading-snug">{p.summary}</p>
               <div className="num mt-1.5 flex flex-wrap gap-x-4 gap-y-0.5 text-[13px]">
                 <span className="text-[var(--muted)]">{METRIC[p.metric]} target <b className="text-[var(--ink)]">{target(p)}</b></span>
-                {a && <span className="text-[var(--muted)]">{p.status === "in_progress" ? "so far" : "actual"} <b className="text-[var(--ink)]">{a}</b></span>}
+                {a && <span className="text-[var(--muted)]">{p.status === "in_progress" ? "so far" : "actual"} <b className={offTrack(p) ? "text-[var(--down)]" : "text-[var(--ink)]"}>{a}</b></span>}
               </div>
               {p.status === "standing" && p.checks && p.checks.length > 0 && (
                 <div className="mt-2 flex gap-1">

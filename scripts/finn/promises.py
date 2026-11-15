@@ -234,7 +234,10 @@ def check(g, text, call_quarter, quarters, annual):
         out["unit"] = g["unit"] = "crore"
         g = {**g, "low": out["low"], "high": out["high"]}
     q = (g.get("qualifier") or "").strip()
-    if q and q.lower() not in ("null", "none"):
+    horizon = re.fullmatch(r"[\w\s,()-]*(term|aspir|ambition|run[- ]rate|guidance|target|trajectory|steady state|scale)[\w\s,()-]*", q, re.I)
+    narrows = re.search(r"exclud|\bex[- ]|excl\.|organic|constant currency|\bcc\b|like[- ]for[- ]like|segment|business|division|"
+                        r"\bjv\b|capex|export|domestic", q, re.I)
+    if q and q.lower() not in ("null", "none") and (narrows or not horizon):
         # a target that excludes something can't be checked against reported totals
         return {**out, "status": "not_checkable", "reason": f"qualified target ({q}); tables show reported totals"}
     if g.get("unit") == "bps" and g.get("metric", "").endswith("margin") and g.get("scope") == "company":
@@ -265,8 +268,8 @@ def bps_change(out, g, period, call_quarter, quarters, annual):
     """'X bps margin improvement in/by FY26': margin(period) - margin(last full FY reported before the call)."""
     if not re.fullmatch(r"FY\d{2}", period) or not call_quarter:
         return {**out, "status": "not_checkable", "reason": "bps target without a single fiscal year"}
-    call_fy = int(call_quarter[-2:])
-    base_fy = call_fy if call_quarter.startswith("Q4") else call_fy - 1
+    # "X bps improvement in FY27" is measured against the year before the target year.
+    base_fy = int(period[2:]) - 1
     base, _, _ = actual(g["metric"], f"FY{base_fy:02d}", quarters, annual)
     cur, st, basis = actual(g["metric"], period, quarters, annual)
     if base is None:

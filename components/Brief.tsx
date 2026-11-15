@@ -57,7 +57,7 @@ export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenSto
         <p className="num mt-1 text-[14px] leading-snug text-[var(--muted)]">
           As of <span className="text-[var(--ink)]">{when(brief.data_as_of)}</span>,{" "}
           <span className="text-[var(--ink)]">{filings.length}</span> filings checked,{" "}
-          <span className={act.length ? "font-semibold text-[var(--act)]" : "text-[var(--ink)]"}>{act.length}</span> need your attention
+          <span className={actGroups.length ? "font-semibold text-[var(--act)]" : "text-[var(--ink)]"}>{actGroups.length}</span> need your attention
         </p>
         <div className="mt-3 flex gap-1.5">
           {WINDOWS.map((w) => (
@@ -78,7 +78,7 @@ export default function Brief({ brief, onOpenStock }: { brief: BriefT; onOpenSto
         </section>
       )}
 
-      <Section title="Act" count={act.length} tone="act" hint="Material: results, management, legal, deals, equity raises">
+      <Section title="Act" count={actGroups.length} tone="act" hint="Material: results, management, legal, deals, equity raises">
         {act.length === 0 && <Empty>Nothing material in this window.</Empty>}
         {actGroups.map((g) => <FilingCard key={g.lead.id} f={g.lead} earlier={g.earlier} onOpenStock={onOpenStock} />)}
       </Section>

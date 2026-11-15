@@ -8,3 +8,4 @@ node_modules/
 data/cache/pdf/
 next-env.d.ts
 *.tsbuildinfo
+.vercel
