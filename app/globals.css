@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f5f4f0;
+  --card: #ffffff;
+  --ink: #15171a;
+  --muted: #6a6e75;
+  --faint: #9a9ea5;
+  --line: #e6e3dc;
+  --chip: #eeece6;
+  --act: #c2410c;
+  --act-bg: #fff3ec;
+  --note: #2f5fa7;
+  --note-bg: #eef3fb;
+  --up: #15803d;
+  --down: #b42318;
+  --warn: #a16207;
+  --warn-bg: #fdf6e3;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1012;
+    --card: #171a1e;
+    --ink: #ecebe6;
+    --muted: #a0a5ad;
+    --faint: #6f747c;
+    --line: #262a30;
+    --chip: #22262b;
+    --act: #fb8a4c;
+    --act-bg: #2a1a12;
+    --note: #86aef0;
+    --note-bg: #16202f;
+    --up: #4ade80;
+    --down: #f87171;
+    --warn: #facc15;
+    --warn-bg: #29240f;
+  }
+}
+
+html, body { background: var(--bg); color: var(--ink); }
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+.num { font-variant-numeric: tabular-nums; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; }
+.chip { background: var(--chip); border-radius: 999px; }
+.hairline { border-color: var(--line); }
+.clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+input[type="range"] { accent-color: var(--ink); }
