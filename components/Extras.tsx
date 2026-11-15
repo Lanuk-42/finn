@@ -43,7 +43,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
       )}
 
       <section className="mt-9">
-        <Head label="Cash quality" right={C ? "operating cash ÷ profit" : undefined} />
+        <Head label="Cash quality" right={C ? (C.basis === "ebitda" ? "operating cash ÷ operating profit" : "operating cash ÷ profit") : undefined} />
         {x.isLender && <p className="serif mt-3 text-[17px] leading-snug text-[var(--ink-2)]">Not meaningful for a lender: its operating cash flow is mostly deposits and loans moving through the book.</p>}
         {C && (
           <>
@@ -73,7 +73,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
                 ["Debt / equity", B.de == null ? "—" : B.de.toFixed(2)],
                 ["Borrowings", B.borrowings == null ? "—" : `₹${n0(B.borrowings)} Cr`],
                 ["Net worth", B.equity == null ? "—" : `₹${n0(B.equity)} Cr`],
-                ["Working cap. days", B.wcDays == null ? "—" : String(B.wcDays)],
+                ["Working cap. days", B.wcDays == null ? "—" : B.wcNotMeaningful ? "n/m*" : String(B.wcDays)],
                 ["Debtor days", B.debtorDays == null ? "—" : String(B.debtorDays)],
                 ["Inventory days", B.inventoryDays == null ? "—" : String(B.inventoryDays)],
                 ["Payable days", B.payableDays == null ? "—" : String(B.payableDays)],
@@ -85,6 +85,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
                 </div>
               ))}
             </dl>
+            {B.wcNotMeaningful && <p className="mt-2 text-[12px] text-[var(--muted)]">* Not meaningful here: the reported {B.wcDays} days include cash and investments. The cash cycle row is the trade figure.</p>}
           </>
         )}
       </section>

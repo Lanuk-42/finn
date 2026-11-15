@@ -6,12 +6,13 @@ export interface Extras {
     years: string[]; revenue: (number | null)[]; pat: (number | null)[]; opm: (number | null)[];
     revCagr: number | null; patCagr: number | null; lead: string;
   };
-  cash: null | { years: string[]; ocf: (number | null)[]; pat: (number | null)[]; ratio: (number | null)[]; total: number | null; fcf: number | null; lead: string; bad: boolean };
+  cash: null | { years: string[]; ocf: (number | null)[]; pat: (number | null)[]; ratio: (number | null)[]; total: number | null; fcf: number | null; lead: string; bad: boolean;
+    basis: "pat" | "ebitda"; otherIncomeShare: number | null };
   balance: null | {
     asOf: string; de: number | null; borrowings: number | null; equity: number | null;
     wcDays: number | null; wcDaysThen: number | null; thenYear: string | null;
     debtorDays: number | null; inventoryDays: number | null; payableDays: number | null; ccc: number | null;
-    lead: string; bad: boolean;
+    lead: string; bad: boolean; wcNotMeaningful: boolean;
   };
   isLender: boolean;
 }
@@ -56,24 +57,39 @@ export function computeExtras(name: string, pl: Table | null, bs: Table | null, 
     }
   }
 
-  // ---- cash quality (OCF / PAT); meaningless for lenders, whose operating cash flow is mostly deposit/loan movement
+  // ---- cash quality (OCF / PAT); meaningless for lenders, whose operating cash flow is mostly deposit/loan movement.
+  // Investment-heavy companies (other income >= 30% of pre-tax profit) book large gains that never pass through
+  // operating cash flow, so for them FINN compares operating cash with operating profit instead and says so.
+  let otherIncomeShare: number | null = null;
+  if (pl) {
+    const oi = row(pl, "Other Income"), pbt = row(pl, "Profit before tax");
+    const ix = yearIdx(pl, 5);
+    if (oi && pbt && ix.length) {
+      const so = ix.reduce((a, i) => a + (oi[i] ?? 0), 0), sp = ix.reduce((a, i) => a + (pbt[i] ?? 0), 0);
+      otherIncomeShare = sp > 0 ? Math.round((so / sp) * 100) : null;
+    }
+  }
+  const investmentHeavy = otherIncomeShare != null && otherIncomeShare >= 30;
   if (cf && pl && !isLender) {
     const idxCf = yearIdx(cf, 5);
-    const ocfRow = row(cf, "Cash from Operating Activity"), fcfRow = row(cf, "Free Cash Flow"), patRow = row(pl, "Net Profit");
-    if (idxCf.length >= 3 && ocfRow && patRow) {
+    const ocfRow = row(cf, "Cash from Operating Activity"), fcfRow = row(cf, "Free Cash Flow");
+    const denomRow = investmentHeavy ? row(pl, "Operating Profit") : row(pl, "Net Profit");
+    if (idxCf.length >= 3 && ocfRow && denomRow) {
       const years = idxCf.map((i) => cf.headers[i]);
       const ocf = idxCf.map((i) => ocfRow[i]);
-      const pat = years.map((h) => { const j = pl.headers.indexOf(h); return j >= 0 ? patRow[j] : null; });
-      const ratio = ocf.map((o, k) => (o != null && pat[k] ? Math.round((o / pat[k]!) * 100) : null));
+      const pat = years.map((h) => { const j = pl.headers.indexOf(h); return j >= 0 ? denomRow[j] : null; });
+      const ratio = ocf.map((o, k) => (o != null && pat[k] && pat[k]! > 0 ? Math.round((o / pat[k]!) * 100) : null));
       const so = ocf.reduce<number>((a, v) => a + (v ?? 0), 0), sp = pat.reduce<number>((a, v) => a + (v ?? 0), 0);
       const total = sp > 0 ? Math.round((so / sp) * 100) : null;
       const fcf = fcfRow ? idxCf.reduce<number>((a, i) => a + (fcfRow[i] ?? 0), 0) : null;
       const n = years.length;
-      const lead = total == null ? `${name} made a loss over the period, so cash conversion isn’t meaningful.`
-        : total >= 90 ? `Profits turn into cash: operating cash flow was ${total}% of profit over ${n} years.`
-        : total >= 70 ? `Profits mostly turn into cash: operating cash flow was ${total}% of profit over ${n} years.`
-        : `Cash lags profit: operating cash flow was only ${total}% of profit over ${n} years.`;
-      out.cash = { years: years.map(yr), ocf, pat, ratio, total, fcf, lead, bad: total != null && total < 70 };
+      const what = investmentHeavy ? "operating profit" : "profit";
+      let lead = total == null ? `{name} made an operating loss over the period, so cash conversion isn’t meaningful.`
+        : total >= 90 ? `Profits turn into cash: operating cash flow was ${total}% of ${what} over ${n} years.`
+        : total >= 70 ? `Profits mostly turn into cash: operating cash flow was ${total}% of ${what} over ${n} years.`
+        : `Cash lags ${what}: operating cash flow was only ${total}% of ${what} over ${n} years.`;
+      if (investmentHeavy) lead = `{name}’s reported profit is mostly investment gains (other income was ${otherIncomeShare}% of pre-tax profit), so FINN compares cash with operating profit. ` + lead;
+      out.cash = { years: years.map(yr), ocf, pat, ratio, total, fcf, lead, bad: total != null && total < 70, basis: investmentHeavy ? "ebitda" : "pat", otherIncomeShare };
     }
   }
 
@@ -100,13 +116,19 @@ export function computeExtras(name: string, pl: Table | null, bs: Table | null, 
       : de < 0.5 ? `Modest debt (debt-to-equity ${de.toFixed(2)})`
       : de < 1 ? `Meaningful debt (debt-to-equity ${de.toFixed(2)})`
       : `Heavily borrowed (debt-to-equity ${de.toFixed(2)})`;
+    // Working-capital days far above the trade cycle mean the figure is counting cash and investments (common for
+    // investment-heavy and advance-billing businesses): show the trade cycle instead and flag the headline figure.
+    const trade = ccc ?? (debtorDays != null ? (debtorDays ?? 0) + (inventoryDays ?? 0) - (payableDays ?? 0) : null);
+    const wcNotMeaningful = wcDays != null && trade != null && wcDays > 3 * Math.max(Math.abs(trade), 10) + 30;
     let wc = "";
-    if (wcDays != null) {
+    if (wcNotMeaningful) {
+      wc = `; its ${wcDays} working-capital days include cash and investments, so FINN uses the trade cycle instead: ${trade} day${Math.abs(trade!) === 1 ? "" : "s"} (debtors + inventory − payables)`;
+    } else if (wcDays != null) {
       wc = wcDays <= 0 ? `; suppliers fund its working capital (${wcDays} days)` : `; working capital ties up ${wcDays} days of sales`;
       if (wcDaysThen != null && Math.abs(wcDays - wcDaysThen) >= 5) wc += `, ${wcDays > wcDaysThen ? "up" : "down"} from ${wcDaysThen} in ${thenYear}`;
     }
-    const bad = (de != null && de >= 1) || (wcDays != null && wcDaysThen != null && wcDays - wcDaysThen >= 20);
-    out.balance = { asOf: bs.headers[last], de, borrowings, equity, wcDays, wcDaysThen, thenYear, debtorDays, inventoryDays, payableDays, ccc, lead: `${debt}${wc}.`, bad };
+    const bad = (de != null && de >= 1) || (!wcNotMeaningful && wcDays != null && wcDaysThen != null && wcDays - wcDaysThen >= 20);
+    out.balance = { asOf: bs.headers[last], de, borrowings, equity, wcDays, wcDaysThen, thenYear, debtorDays, inventoryDays, payableDays, ccc, lead: `${debt}${wc}.`, bad, wcNotMeaningful };
   }
   return out;
 }
