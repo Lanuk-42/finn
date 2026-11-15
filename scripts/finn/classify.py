@@ -29,6 +29,10 @@ RULES = [
     ("exchange_query", "press_release", NOTE, r"clarification|rumou?r|news verification"),
 
     # --- results family
+    # Another company's results (e.g. Maruti filing "results issued by Suzuki Motor Corporation", its parent) are not ours.
+    ("other_company_results", "press_release", NOTE,
+     r"(results?|financials?) (issued|declared|announced|published|reported) by|reference to the (consolidated |standalone )?financial results"),
+    ("transcript_first", "earnings_call", NOTE, r"transcript"),
     ("results_intimation", "results", ROUTINE, r"board meeting intimation|intimation of board meeting|prior intimation"),
     ("results_presentation", "results", NOTE, r"investor presentation|results presentation|earnings presentation"),
     ("results", "results", ACT,
@@ -54,15 +58,23 @@ RULES = [
      r"senior management|chief|officer)"),
 
     # --- corporate events
-    ("regulator_pharma", "litigation", ACT, r"usfda|\bfda\b|warning letter|import alert|form 483|establishment inspection|\beir\b"),
+    # Regulator: adverse findings are Act; product approvals and closed inspections are good news (Note).
+    ("regulator_adverse", "litigation", ACT, r"warning letter|import alert|form 483|483 observations|\boai\b|official action indicated|untitled letter"),
+    ("regulator_approval", "press_release", NOTE, r"usfda|u\.s\. fda|\bfda\b|establishment inspection|\beir\b|tentative approval|\banda\b"),
+    ("mna_cleanup_early", "unclassified", ROUTINE, r"strike off|struck off|dissolution|liquidation of .*subsidiary|voluntary winding"),
+    # Money moving between group companies (subsidiary investments, subscriptions, subsidiary buybacks) is not a deal.
+    ("intra_group", "M&A", NOTE,
+     r"subsidiary.{0,250}(buy-?back|investment|subscri|allot|at+ot+ed|al+ot+ed|infus|preference shares|rights issue)|"
+     r"(buy-?back|investment in|subscri\w* to|allot\w*|infus\w*).{0,600}subsidiary"),  # at+ot+ed: OCR reads "allotted" as "attotted"
     ("litigation", "litigation", ACT,
      r"penalt|\bfine[ds]?\b|show cause|\bnclt\b|tribunal|high court|supreme court|litigation|antitrust|"
      r"tax demand|demand notice|\bgst\b.*(order|demand)|income tax.*(order|search)|search and seizure|enforcement directorate|"
      r"sebi (order|adjudicat)|insolvency|\bcirp\b|legal review|internal review|fraud|forensic",
      r"observation letter"),
-    ("subsidiary_ipo_prep", "M&A", NOTE, r"proposed initial public offer|draft red herring|observation letter|red herring"),
-    ("subsidiary_ipo", "M&A", ACT, r"initial public offer|\bipo\b|listing of equity shares|issue price"),
-    ("mna_update", "M&A", NOTE, r"updates? on acquisition|completion of acquisition|incorporation of (a |wholly )?.*subsidiary"),
+    ("subsidiary_ipo_prep", "M&A", NOTE, r"proposed initial public offer|draft red herring|observation letter|red herring", r"post-ipo"),
+    # "(Post-IPO)" in Reliance's AGM papers is not an IPO
+    ("subsidiary_ipo", "M&A", ACT, r"initial public offer|\bipo\b|listing of equity shares|issue price", r"post-ipo|annual general meeting|chairman.s statement"),
+    ("mna_update", "M&A", NOTE, r"updates? on acquisition|completion of acquisition|incorporation of (a |wholly )?.*subsidiary|subsidiary.{0,120}(has been|was) incorporated"),
     ("mna_cleanup", "unclassified", ROUTINE, r"strike off|struck off|dissolution|liquidation of .*subsidiary"),
     ("mna", "M&A", ACT,
      r"acquisition|acquire|amalgamation|merger|demerger|joint venture|scheme of arrangement|stake (sale|purchase)|"
@@ -110,7 +122,7 @@ def _informative(s):
 
 
 def match(text):
-    t = (text or "").lower()
+    t = re.sub(r"\s+", " ", (text or "").lower())  # PDF line breaks must not split a phrase the rules look for
     for name, cat, tier, rx, anti in _COMPILED:
         if rx.search(t) and not (anti and anti.search(t)):
             return {"category": cat, "tier": tier, "rule": name}

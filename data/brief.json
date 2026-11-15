@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T20:29:14+05:30",
+ "generated_at": "2026-11-15T20:59:26+05:30",
  "data_as_of": "2026-11-15T19:24:19+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -789,7 +789,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -839,9 +839,9 @@
    "headline": "Reference to the Financial Results issued by Suzuki Motor Corporation",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/2b74a7fe-194c-4a61-8cf6-dbba26573f57.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "other_company_results",
    "basis": "title"
   },
   {
@@ -999,7 +999,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1038,7 +1038,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1142,7 +1142,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1498,7 +1498,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1563,7 +1563,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1862,7 +1862,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -1899,9 +1899,9 @@
    "headline": "Lupin Receives U.S. FDA Approval for Amifampridine Tablets.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a55f13ad-6af3-4ef7-ac65-2fb2bedbefeb.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -1977,11 +1977,10 @@
    "headline": "Transcript of the discussion on the Unaudited Financial Results (Consolidated and Standalone) of the Company for the quarter and half year ended September 30, 2026, is attached and also ....",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/8e997741-4d35-4188-933a-cf020fb9c816.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Routine",
-   "rule": "results+folded",
-   "basis": "title",
-   "folded_into": "dbab0252153f"
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
+   "basis": "title"
   },
   {
    "id": "839e3e00cc7d",
@@ -2060,7 +2059,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -3074,7 +3073,7 @@
    "source": "bse_api",
    "category": "unclassified",
    "tier": "Routine",
-   "rule": "mna_cleanup",
+   "rule": "mna_cleanup_early",
    "basis": "title"
   },
   {
@@ -3237,9 +3236,9 @@
    "headline": "Please find enclosed herewith the transcript of the Earning Call held on October 27, 2026 on the Unaudited Financial Results (Standalone and Consolidated) for the quarter and half year ....",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/67714d5a-dffb-45cd-a3f2-530d862c4f1c.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -3674,8 +3673,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/42acac4f-b419-4ae0-9b27-8b34d5794263.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "mna_update",
    "basis": "title"
   },
   {
@@ -3839,9 +3838,9 @@
    "headline": "U.S. FDA has concluded an inspection at Company''s manufacturing facility located in Goa, India.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/fb870f54-3068-4129-bde9-f0893670f7ad.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -4287,7 +4286,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -4418,8 +4417,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/649865c0-9c63-4060-bf8d-4ef48713ac79.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "title"
   },
   {
@@ -5111,7 +5110,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -5542,9 +5541,9 @@
    "headline": "Lupin Receives U.S. FDA Approval for Phytonadione Injectable Emulsion, USP",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c9e13c2-535f-470b-ab25-223fc8d8d178.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -6437,9 +6436,9 @@
    "headline": "Multicare Pharmaceuticals Philippines, Inc. (MPPI) has completed buyback of 30,559 shares, pursuant to which MPPI has become a step-down wholly owned subsidiary of the Company effective ....",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a6c2c60c-d27f-413f-b189-1a6803efec74.pdf",
    "source": "bse_api",
-   "category": "fund_raise",
-   "tier": "Act",
-   "rule": "fund_raise_equity",
+   "category": "M&A",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "title"
   },
   {
@@ -6876,8 +6875,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/afba0f34-2bca-405b-812a-de69c0391e9c.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "pdf"
   },
   {
@@ -7031,9 +7030,9 @@
    "headline": "Lupin Receives Tentative Approval from U.S. FDA for Novel Apixaban Oral Suspension.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/84d060d9-d6ae-4147-b567-c1ddee2d74f1.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -8678,7 +8677,7 @@
    "source": "bse_api",
    "category": "unclassified",
    "tier": "Routine",
-   "rule": "mna_cleanup",
+   "rule": "mna_cleanup_early",
    "basis": "title"
   },
   {
@@ -8728,9 +8727,9 @@
    "headline": "Lupin Receives U.S. FDA Approval for Modafinil Tablets, USP.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/6201426d-713f-4930-8ebe-451ac1f68a32.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -9553,8 +9552,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f3aa31b1-95dc-4413-8ab8-864c5655482c.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "pdf"
   },
   {
@@ -10387,9 +10386,9 @@
    "headline": "Lupin Announces Approval from U.S. FDA for Pitolisant Tablets.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3c6a8964-00b0-4330-8deb-8e02eceb55d4.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -10686,7 +10685,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -10816,7 +10815,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -10829,7 +10828,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -11433,7 +11432,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -11446,7 +11445,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -11893,7 +11892,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -11943,9 +11942,9 @@
    "headline": "Reference to the Consolidated financial results issued by Suzuki Motor Corporation in Japan",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5faef59a-6ce5-4fe4-9644-90dbc8da54ea.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "other_company_results",
    "basis": "title"
   },
   {
@@ -13218,9 +13217,9 @@
    "headline": "Lupin Announces U.S. FDA Approval and Launch of Sugammadex Injection.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/22b3bffd-5fb2-408d-a945-3a5cf50765a0.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -13246,7 +13245,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -13570,8 +13569,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7dea7146-70f0-4510-83c1-1dcfd6ce4e17.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "pdf"
   },
   {
@@ -13762,7 +13761,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -14289,9 +14288,9 @@
    "headline": "Transcript of the earnings call on unaudited financial results for the first quarter and three months ended on June 30, 2026.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/ce6a4ed4-39c4-43b3-8108-3846b38dfefd.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -14434,7 +14433,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -15082,7 +15081,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -15653,8 +15652,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/b0632d85-4848-45b9-b872-bc383e7075b5.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "pdf"
   },
   {
@@ -16119,7 +16118,7 @@
    "source": "bse_api",
    "category": "unclassified",
    "tier": "Routine",
-   "rule": "mna_cleanup",
+   "rule": "mna_cleanup_early",
    "basis": "title"
   },
   {
@@ -16444,7 +16443,7 @@
    "source": "bse_api",
    "category": "litigation",
    "tier": "Act",
-   "rule": "regulator_pharma",
+   "rule": "regulator_adverse",
    "basis": "pdf"
   },
   {
@@ -16702,9 +16701,9 @@
    "headline": "Lupin Receives EIR from U.S. FDA for its Somerset Facility with VAI Classification.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/19d83870-a51c-4187-8e17-83d996d8b480.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -16730,7 +16729,7 @@
    "source": "bse_api",
    "category": "M&A",
    "tier": "Note",
-   "rule": "mna_update",
+   "rule": "intra_group",
    "basis": "title"
   },
   {
@@ -17300,9 +17299,9 @@
    "headline": "Lupin Receives Tentative Approval from U.S. FDA for Enzalutamide Tablets.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d9c9d52f-0af5-4534-9fcc-ad881bd6dbc1.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -17911,9 +17910,9 @@
    "headline": "Chairman''s Statement delivered at the Forty-ninth Annual General Meeting (Post-IPO) of the Company",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e3b080f6-b445-4e2f-b454-16b8e0257d52.pdf",
    "source": "bse_api",
-   "category": "M&A",
-   "tier": "Act",
-   "rule": "subsidiary_ipo",
+   "category": "agm_egm",
+   "tier": "Routine",
+   "rule": "agm",
    "basis": "title"
   },
   {
@@ -17924,9 +17923,9 @@
    "headline": "Chairman''s Statement delivered at the Forty-ninth Annual General Meeting (Post-IPO) of the Company",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5747cd72-3208-4ca7-a0a0-f41d87712305.pdf",
    "source": "bse_api",
-   "category": "M&A",
-   "tier": "Act",
-   "rule": "subsidiary_ipo",
+   "category": "agm_egm",
+   "tier": "Routine",
+   "rule": "agm",
    "basis": "title"
   },
   {
@@ -19146,9 +19145,9 @@
    "headline": "Presentation on Item Nos. 6 and 7 of the notice of the 49th Annual General Meeting (Post-IPO) of the Company",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3b231879-9e44-4712-bb93-4444f21bbda4.pdf",
    "source": "bse_api",
-   "category": "M&A",
-   "tier": "Act",
-   "rule": "subsidiary_ipo",
+   "category": "agm_egm",
+   "tier": "Routine",
+   "rule": "agm",
    "basis": "title"
   },
   {
@@ -19263,9 +19262,9 @@
    "headline": "Lupin Receives Approval from U.S. FDA for Ranluspec (Ranibizumab) Injection",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e63e141c-2748-4fd1-986b-fab9c886faae.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -19458,9 +19457,9 @@
    "headline": "Lupin and Natco Receive Approval from U.S. FDA for Eribulin Mesylate Injection.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/213557d4-896c-44c4-905f-ec74ee67b868.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -19667,8 +19666,8 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/30bc2bb8-f0e8-419f-9945-ad7196d726fe.pdf",
    "source": "bse_api",
    "category": "M&A",
-   "tier": "Act",
-   "rule": "mna",
+   "tier": "Note",
+   "rule": "intra_group",
    "basis": "pdf"
   },
   {
@@ -19861,9 +19860,9 @@
    "headline": "Lupin Receives Approval from U.S. FDA for Sodium Sulfate, Magnesium Sulfate, and Potassium Chloride Tablets.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f1467896-b7f3-483b-990f-3b1ff7b0a885.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -19876,7 +19875,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -20262,9 +20261,9 @@
    "headline": "Notice convening the Forty-ninth Annual General Meeting (Post-IPO) (''Notice'') and the Integrated Annual Report of the Company, for the financial year 2025-26, are being sent through electronic ....",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/cc08294f-ec68-4f15-aaa4-c14a3c4bdfb2.pdf",
    "source": "bse_api",
-   "category": "M&A",
-   "tier": "Act",
-   "rule": "subsidiary_ipo",
+   "category": "unclassified",
+   "tier": "Note",
+   "rule": "annual_report",
    "basis": "title"
   },
   {
@@ -20275,9 +20274,9 @@
    "headline": "Notice of the Forty-ninth Annual General Meeting (Post-IPO) for the financial year 2025-26 is attached.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5c176b35-75bc-4a5d-979a-ef6540e43479.pdf",
    "source": "bse_api",
-   "category": "M&A",
-   "tier": "Act",
-   "rule": "subsidiary_ipo",
+   "category": "agm_egm",
+   "tier": "Routine",
+   "rule": "agm",
    "basis": "title"
   },
   {
@@ -20327,9 +20326,9 @@
    "headline": "Lupin''s Ankleshwar Facility Receives EIR from U.S. FDA.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f1e15ec1-0fe3-4896-8c72-71d9092f4d5b.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "regulator_pharma",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "regulator_approval",
    "basis": "title"
   },
   {
@@ -20665,9 +20664,9 @@
    "headline": "Transcript of Earnings call on audited financial results of the company for the fourth quarter and year ended march 31, 2026",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/50893fb0-cc12-4275-b98f-3e5963630fec.pdf",
    "source": "bse_api",
-   "category": "results",
-   "tier": "Act",
-   "rule": "results",
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -21396,7 +21395,7 @@
    "source": "bse_api",
    "category": "earnings_call",
    "tier": "Note",
-   "rule": "transcript",
+   "rule": "transcript_first",
    "basis": "title"
   },
   {
@@ -21602,9 +21601,9 @@
    "headline": "Disclosure under Regulation 30 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015.",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/be0d7702-89d5-489d-8760-e619ae825b6c.pdf",
    "source": "bse_api",
-   "category": "litigation",
-   "tier": "Act",
-   "rule": "litigation",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "mna_cleanup_early",
    "basis": "pdf"
   },
   {
@@ -21643,7 +21642,7 @@
    "source": "bse_api",
    "category": "unclassified",
    "tier": "Routine",
-   "rule": "mna_cleanup",
+   "rule": "mna_cleanup_early",
    "basis": "title"
   },
   {
@@ -22759,11 +22758,11 @@
     "volx": 5.83,
     "filings": [
      "dbab0252153f",
+     "c129b811e941",
      "03050e8a8795",
      "bccfa42a5dec",
      "b2cbee72d4de",
-     "d36dd089044e",
-     "c129b811e941"
+     "d36dd089044e"
     ],
     "explained": true
    },
@@ -32520,8 +32519,8 @@
     "pct": 1.61,
     "volx": 0.65,
     "filings": [
-     "285a9d9bfe62",
      "15c3ae38a295",
+     "285a9d9bfe62",
      "62b401c71bae"
     ],
     "explained": true
@@ -37658,8 +37657,8 @@
     "pct": 2.42,
     "volx": 0.71,
     "filings": [
-     "4d7e02023376",
      "62bfc3076796",
+     "4d7e02023376",
      "3caaae774baa",
      "1b7d3b6186a6",
      "47f836d4dade",
