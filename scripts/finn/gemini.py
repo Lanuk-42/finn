@@ -9,12 +9,16 @@ import json
 import os
 import time
 
+from pathlib import Path
+
 import requests
 
 from .config import DATA
 
 URL = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-CACHE = DATA / "cache" / "llm"
+CACHE = Path(os.environ["FINN_LLM_CACHE_DIR"]) if os.environ.get("FINN_LLM_CACHE_DIR") else DATA / "cache" / "llm"
+# Test switch: FINN_FORCE_GEMINI_ERROR=429 (or 404) makes every new call fail with that status, without the network.
+FORCE_ERROR = os.environ.get("FINN_FORCE_GEMINI_ERROR", "").strip()
 
 # Routing by task. Short jobs (management bios, results figures) -> lite. Long transcripts (promise extraction, in the
 # precomputed and on-demand trackers) -> the best available Flash model, falling back across Flash models, lite last.
@@ -27,7 +31,10 @@ USAGE = {"calls": 0, "cached": 0, "prompt_tokens": 0, "completion_tokens": 0, "b
 
 
 class QuotaExceeded(RuntimeError):
-    pass
+    """Every model in the chain is out of quota (429) or unavailable (404). Callers skip the AI step."""
+
+
+PAUSED = {"reason": None}  # circuit breaker: after one QuotaExceeded, later calls in this run fail fast
 
 
 class BudgetExceeded(RuntimeError):
@@ -76,8 +83,10 @@ def ask_json(system, user, models=CHEAP, rounds=3, key=None):
             if stable and not stable.exists():
                 stable.write_text(c.read_text())
             return d["parsed"]
+    if PAUSED["reason"]:
+        raise QuotaExceeded(PAUSED["reason"])
     key = os.environ.get("GEMINI_API_KEY")
-    if not key:
+    if not key and not FORCE_ERROR:
         raise BudgetExceeded("GEMINI_API_KEY is not set; skipping new LLM calls")
     if LITE_ONLY:
         models = [m for m in models if "lite" in m]
@@ -87,23 +96,25 @@ def ask_json(system, user, models=CHEAP, rounds=3, key=None):
         raise BudgetExceeded(f"LLM budget of {BUDGET} new calls used")
     body = {"temperature": 0, "response_format": {"type": "json_object"},
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]}
-    dead, last = set(), ""
+    dead, last, quota_only = set(), "", True
     for rnd in range(rounds):
         for model in models:
             if model in dead:
                 continue
             try:
-                code, text, usage = _stream(model, body, key)
+                code, text, usage = (int(FORCE_ERROR), "forced test error", {}) if FORCE_ERROR else _stream(model, body, key)
             except requests.RequestException as e:
-                last = f"{model}: {e}"
+                last, quota_only = f"{model}: {e}", False
                 continue
-            if code == 429 and "per day" in text.lower():
-                dead.add(model)  # this model's daily free quota is gone; try the next one
-                last = f"{model}: daily quota"
+            if code == 404 or (code == 429 and "per minute" not in text.lower()):
+                dead.add(model)  # out of quota for today, or this model isn't available to this key: try the next one
+                last = f"{model}: HTTP {code}"
                 continue
             if code != 200:
                 last = f"{model}: HTTP {code} {text[:120]}"
+                quota_only = quota_only and code == 429
                 continue
+            quota_only = False
             content = text.strip().removeprefix("```json").removeprefix("```").removesuffix("```").strip()
             try:
                 parsed = json.loads(content)
@@ -120,6 +131,10 @@ def ask_json(system, user, models=CHEAP, rounds=3, key=None):
                 stable.write_text(blob)
             return parsed
         if len(dead) == len(models):
-            raise QuotaExceeded("daily free-tier quota used up on every model in the chain")
+            PAUSED["reason"] = f"AI quota or model unavailable on every model ({last})"
+            raise QuotaExceeded(PAUSED["reason"])
         time.sleep(20 * (rnd + 1))
+    if quota_only:
+        PAUSED["reason"] = f"AI quota ({last})"
+        raise QuotaExceeded(PAUSED["reason"])
     raise RuntimeError(f"Gemini failed: {last}")

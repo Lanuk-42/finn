@@ -92,6 +92,8 @@ def build_filings(sym, raw, scr, now):
             m = management.extract(txt, f["headline"], url=f.get("url"), filing_year=int(f["ts"][:4]))
         except gemini.BudgetExceeded:
             m = {"people": [], "note": "Skipped: LLM budget for this run used up"}
+        except gemini.QuotaExceeded:
+            m = {"people": [], "note": "Names not extracted: the AI step is paused (quota), so the company’s own headline is shown"}
         except Exception as e:  # noqa: BLE001
             m = {"people": [], "note": f"extraction failed: {str(e)[:80]}"}
         f["card"] = {"type": "management", **m}
@@ -249,7 +251,7 @@ def main():
         "filings": filings,
         "moves": moves,
         "patterns": pats,
-        "llm_usage": gemini.USAGE,
+        "llm_usage": {**gemini.USAGE, "paused": gemini.PAUSED["reason"]},
     }
     (DATA / "brief.json").write_text(json.dumps(brief, ensure_ascii=False, indent=1))
     print("wrote data/brief.json", gemini.USAGE)

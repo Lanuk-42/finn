@@ -331,9 +331,10 @@ def run(symbol, scr, max_transcripts=5):
         page_texts = pdf.pages(u)
         try:
             found = extract(text, q, url=u)
-        except (gemini.QuotaExceeded, gemini.BudgetExceeded) as e:
+        except gemini.BudgetExceeded as e:
             transcripts[-1]["status"] = f"skipped: {e}"
             break
+        # gemini.QuotaExceeded is not caught: a tracker missing calls because of AI quota is never saved as a result
         for g in found:
             item = check(g, text, q, quarters, annual)
             item["source_url"] = u

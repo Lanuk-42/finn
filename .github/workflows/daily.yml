@@ -54,8 +54,14 @@ jobs:
       - name: Fetch (NSE API -> BSE API -> NSE RSS + screener; a failed source keeps the previous data)
         run: python scripts/fetch.py || echo "::warning::fetch.py exited non-zero; continuing with the data we have"
 
+      # If Gemini fails (quota, unavailable model), brain.py skips the AI steps itself. If it fails for any other reason,
+      # it is rerun from cached answers only, and the commit below still saves the fresh prices and filings.
       - name: Rebuild the brief (rules + code; lite LLM only for new management changes, capped)
-        run: python scripts/brain.py
+        run: python scripts/brain.py || { echo "::warning::brain.py failed; rebuilding from cached AI answers only"; FINN_LLM_BUDGET=0 python scripts/brain.py; }
+
+      - name: AI status
+        if: always()
+        run: python -c "import json; u=json.load(open('data/brief.json')).get('llm_usage', {}); print('AI paused:', u.get('paused') or 'no')"
 
       - name: Summary
         run: |
@@ -67,8 +73,8 @@ jobs:
           print(f"\nBrief as of {b['data_as_of']}; {len(b['filings'])} filings; LLM {b['llm_usage']}")
           PY
 
-      - name: Commit data/
-        if: ${{ !inputs.dry_run }}
+      - name: Commit data/ (runs even if a step above failed, so prices and filings are never lost)
+        if: ${{ always() && !inputs.dry_run }}
         run: |
           git config user.name "finn-bot"
           git config user.email "finn-bot@users.noreply.github.com"
@@ -78,7 +84,7 @@ jobs:
           for i in 1 2 3; do git pull --rebase -q origin main && git push && break; sleep 5; done
 
       - name: Redeploy the site
-        if: ${{ !inputs.dry_run && env.VERCEL_TOKEN != '' }}
+        if: ${{ always() && !inputs.dry_run && env.VERCEL_TOKEN != '' }}
         env:
           VERCEL_ORG_ID: ${{ vars.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ vars.VERCEL_PROJECT_ID }}

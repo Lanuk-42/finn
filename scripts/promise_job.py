@@ -46,7 +46,13 @@ def main(stage, sym):
         print(f"{sym}: {ok} readable transcripts")
     elif stage == "extract":
         scr = json.loads(f.read_text())
-        out = promises.run(sym, scr, max_transcripts=N_CALLS)
+        try:
+            out = promises.run(sym, scr, max_transcripts=N_CALLS)
+        except gemini.QuotaExceeded as e:
+            # Nothing is saved, so no empty tracker is ever shown; the workflow's "AI quota" step tells the app.
+            Path("paused.flag").write_text(str(e))
+            print(f"{sym}: tracker not saved, AI paused: {e}")
+            sys.exit(75)
         out["generated_at"] = datetime.now(IST).isoformat(timespec="seconds")
         out["company"] = scr.get("name")
         out["on_demand"] = True

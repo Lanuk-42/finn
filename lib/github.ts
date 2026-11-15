@@ -44,7 +44,20 @@ export async function progress(requestId: string) {
     status: s.conclusion === "failure" ? "failed" : s.status === "completed" ? "done" : s.status === "in_progress" ? "running" : "pending",
   }));
   if (run.status !== "completed") return { state: "running" as const, stages, url: run.html_url };
+  if (isPaused(steps)) return { state: "paused" as const, message: PAUSED_MESSAGE, stages, url: run.html_url };
   return { state: run.conclusion === "success" ? ("done" as const) : ("failed" as const), stages, url: run.html_url };
+}
+
+export const PAUSED_MESSAGE = "Tracker builds are paused right now (AI quota). Saved trackers and everything else still work.";
+// The workflow runs a step with this name only when Gemini answered 429 or 404 on every model and nothing was saved.
+const isPaused = (steps: { name: string; conclusion: string | null }[]) => steps.some((s) => s.name.startsWith("AI quota") && s.conclusion === "success");
+
+/** Did the latest finished build in the past hour stop on AI quota? Then don't start another one yet. */
+export async function pausedRecently(): Promise<boolean> {
+  const run = (await recentRuns(10)).find((r) => r.status === "completed");
+  if (!run || Date.now() - new Date(run.created_at).getTime() > 3600e3) return false;
+  const jobs = await gh(`/actions/runs/${run.id}/jobs`).then((r) => r.json());
+  return isPaused(jobs.jobs?.[0]?.steps ?? []);
 }
 
 export const DAILY_CAP = Number(process.env.FINN_BUILD_CAP || 30); // builds per IST day (env override only for testing)

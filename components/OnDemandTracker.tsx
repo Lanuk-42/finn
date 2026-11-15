@@ -8,7 +8,7 @@ type State =
   | { state: "loading" } | { state: "unavailable" } | { state: "buildable" }
   | { state: "queued" | "running"; req: string; stages: Stage[]; url?: string }
   | { state: "failed"; note?: string; url?: string } | { state: "ready"; tracker: PromiseFile }
-  | { state: "capped" | "rejected"; message: string };
+  | { state: "capped" | "rejected" | "paused"; message: string };
 
 const STAGES = ["fetch financial tables", "read earnings-call transcripts", "find guidance and check every quote", "save the tracker"];
 
@@ -27,7 +27,7 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
 
   const poll = (req: string) => {
     fetch(`/api/promise/${encodeURIComponent(ticker)}?req=${req}`).then((r) => r.json()).then((j) => {
-      if (j.state === "ready" || j.state === "failed") return setS(j);
+      if (j.state === "ready" || j.state === "failed" || j.state === "paused") return setS(j);
       setS({ state: j.state === "queued" ? "queued" : "running", req, stages: j.stages ?? [], url: j.url });
       timer.current = setTimeout(() => poll(req), 2000);
     }).catch(() => { timer.current = setTimeout(() => poll(req), 4000); });
@@ -69,7 +69,7 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
           <li className="pt-2 text-[12px] text-[var(--muted)]">{s.state === "queued" ? "Waiting for a runner…" : "Running on GitHub Actions; the finished tracker is saved for everyone."}</li>
         </ol>
       )}
-      {(s.state === "capped" || s.state === "rejected") && <p className="serif py-4 text-[17px] leading-snug">{s.message}</p>}
+      {(s.state === "capped" || s.state === "rejected" || s.state === "paused") && <p className="serif py-4 text-[17px] leading-snug">{s.message}</p>}
       {s.state === "failed" && (
         <p className="serif py-4 text-[17px] leading-snug">Couldn’t build {name}’s tracker this time{s.note ? ` (${s.note})` : ""}.{" "}
           {s.url && <a href={s.url} target="_blank" rel="noreferrer" className="link text-[15px]">See the run</a>}

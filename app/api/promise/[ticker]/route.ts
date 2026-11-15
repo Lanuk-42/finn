@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import { buildsToday, committedTracker, DAILY_CAP, dispatch, ghEnabled, progress, runningJob } from "@/lib/github";
+import { buildsToday, committedTracker, DAILY_CAP, dispatch, ghEnabled, PAUSED_MESSAGE, pausedRecently, progress, runningJob } from "@/lib/github";
 
 export const dynamic = "force-dynamic";
 
@@ -36,6 +36,7 @@ export async function GET(req: Request, ctx: { params: Promise<{ ticker: string 
   if (!id) {
     if (!ghEnabled()) return Response.json({ state: "unavailable" });
     if (!(await exists(symbol))) return Response.json({ state: "rejected", message: `${symbol} isn’t a company FINN can find on screener.in.` });
+    if (await pausedRecently().catch(() => false)) return Response.json({ state: "paused", message: PAUSED_MESSAGE });
     return Response.json({ state: "buildable" });
   }
   try {
@@ -63,6 +64,7 @@ export async function POST(_req: Request, ctx: { params: Promise<{ ticker: strin
     const running = await runningJob(symbol);
     if (running) return Response.json({ state: "queued", req: running, reused: true }); // someone already started it
     if (!(await exists(symbol))) return Response.json({ state: "rejected", message: `${symbol} isn’t a company FINN can find on screener.in.` });
+    if (await pausedRecently().catch(() => false)) return Response.json({ state: "paused", message: PAUSED_MESSAGE });
     const today = await buildsToday();
     if (today >= DAILY_CAP) {
       return Response.json({ state: "capped", message: `Today’s ${DAILY_CAP} tracker builds are used up. Try again tomorrow; trackers already built still open instantly.` });

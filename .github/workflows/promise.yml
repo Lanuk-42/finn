@@ -50,8 +50,14 @@ jobs:
         if: steps.dup.outputs.skip != '1'
         run: python scripts/promise_job.py transcripts "${{ inputs.ticker }}"
       - name: "stage 3: find guidance and check every quote"
+        id: extract
         if: steps.dup.outputs.skip != '1'
         run: python scripts/promise_job.py extract "${{ inputs.ticker }}"
+      # Gemini answered 429 or 404 on every model: nothing was saved. The app reads this step's name and shows
+      # "Tracker builds are paused right now (AI quota)".
+      - name: "AI quota: builds paused"
+        if: failure() && steps.extract.outcome == 'failure' && hashFiles('paused.flag') != ''
+        run: cat paused.flag
       - name: "stage 4: save the tracker"
         if: steps.dup.outputs.skip != '1'
         run: |

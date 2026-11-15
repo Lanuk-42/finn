@@ -128,6 +128,8 @@ def check(url, variant, quarter_label, card, cache_key):
                               models=gemini.CHEAP, key=cache_key)
     except gemini.BudgetExceeded as e:
         return {"status": "fallback", "reason": f"not checked ({e})"}
+    except gemini.QuotaExceeded:
+        return {"status": "fallback", "reason": "not checked against the filing: the AI step is paused (quota)"}
     except Exception as e:  # noqa: BLE001
         return {"status": "fallback", "reason": f"extraction failed ({str(e)[:60]})"}
     full = "\n".join(t for _, t in pages)
