@@ -2,10 +2,10 @@
  "rows": [
   {
    "model": "gemini-3.5-flash-lite",
-   "calls": 87,
-   "input_tokens": 268297,
-   "output_tokens": 41467,
-   "paid_tier_usd": 0.18415659999999998,
+   "calls": 102,
+   "input_tokens": 326201,
+   "output_tokens": 47187,
+   "paid_tier_usd": 0.21582780000000001,
    "rate_source": "Google Gemini API pricing page"
   },
   {
@@ -27,10 +27,10 @@
   }
  ],
  "total": {
-  "calls": 116,
-  "input_tokens": 634084,
-  "output_tokens": 69922,
-  "paid_tier_usd": 0.9542,
+  "calls": 131,
+  "input_tokens": 691988,
+  "output_tokens": 75642,
+  "paid_tier_usd": 0.9859,
   "actual_usd": 0
  },
  "rates_usd_per_1M": {
@@ -53,6 +53,7 @@
  "notes": [
   "Counts successful calls only; 429/503 attempts are not billed.",
   "Includes 12 lite calls on the first GitHub Actions dry run (from its log), before the cache-key fix.",
-  "Requests to gemini-3.5-flash were served by 3.6-flash per the API's own quota message; priced at 3.5 Flash rates."
+  "Requests to gemini-3.5-flash were served by 3.6-flash per the API's own quota message; priced at 3.5 Flash rates.",
+  "Includes 15 lite calls for the results-vs-filing check (one per results PDF filed in the last 30 days), counted from the cache."
  ]
 }
