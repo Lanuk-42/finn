@@ -37,13 +37,23 @@ jobs:
           python-version: "3.12"
           cache: pip
       - run: pip install -r requirements.txt
+      - name: Already built? (a second click that raced the first one stops here, with no model calls)
+        id: dup
+        run: |
+          git pull -q --ff-only origin main
+          T=$(echo "${{ inputs.ticker }}" | tr '[:lower:]' '[:upper:]')
+          if [ -f "data/promises/$T.json" ]; then echo "skip=1" >> "$GITHUB_OUTPUT"; echo "Tracker for $T already exists."; fi
       - name: "stage 1: fetch financial tables"
+        if: steps.dup.outputs.skip != '1'
         run: python scripts/promise_job.py fetch "${{ inputs.ticker }}"
       - name: "stage 2: read earnings-call transcripts"
+        if: steps.dup.outputs.skip != '1'
         run: python scripts/promise_job.py transcripts "${{ inputs.ticker }}"
       - name: "stage 3: find guidance and check every quote"
+        if: steps.dup.outputs.skip != '1'
         run: python scripts/promise_job.py extract "${{ inputs.ticker }}"
       - name: "stage 4: save the tracker"
+        if: steps.dup.outputs.skip != '1'
         run: |
           git config user.name "finn-bot"
           git config user.email "finn-bot@users.noreply.github.com"

@@ -7,7 +7,8 @@ type Stage = { name: string; status: "pending" | "running" | "done" | "failed" }
 type State =
   | { state: "loading" } | { state: "unavailable" } | { state: "buildable" }
   | { state: "queued" | "running"; req: string; stages: Stage[]; url?: string }
-  | { state: "failed"; note?: string; url?: string } | { state: "ready"; tracker: PromiseFile };
+  | { state: "failed"; note?: string; url?: string } | { state: "ready"; tracker: PromiseFile }
+  | { state: "capped" | "rejected"; message: string };
 
 const STAGES = ["fetch financial tables", "read earnings-call transcripts", "find guidance and check every quote", "save the tracker"];
 
@@ -34,7 +35,7 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
   const start = async () => {
     setS({ state: "queued", req: "", stages: [] });
     const j = await fetch(`/api/promise/${encodeURIComponent(ticker)}`, { method: "POST" }).then((r) => r.json()).catch(() => ({ state: "failed" }));
-    if (j.state === "queued") poll(j.req);
+    if (j.state === "queued") { setS({ state: "queued", req: j.req, stages: [] }); poll(j.req); }
     else setS(j);
   };
 
@@ -67,6 +68,7 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
           <li className="pt-2 text-[12px] text-[var(--muted)]">{s.state === "queued" ? "Waiting for a runner…" : "Running on GitHub Actions; the finished tracker is saved for everyone."}</li>
         </ol>
       )}
+      {(s.state === "capped" || s.state === "rejected") && <p className="serif py-4 text-[17px] leading-snug">{s.message}</p>}
       {s.state === "failed" && (
         <p className="serif py-4 text-[17px] leading-snug">Couldn’t build {name}’s tracker this time{s.note ? ` (${s.note})` : ""}.{" "}
           {s.url && <a href={s.url} target="_blank" rel="noreferrer" className="link text-[15px]">See the run</a>}
