@@ -273,3 +273,8 @@ export function promiseLink(c: ResultsCard, pf: PromiseFile | undefined): Promis
   const best = cands.sort((a, b) => b.score - a.score)[0];
   return { text: best.v, bad: best.bad };
 }
+
+/** Fill the pipeline's "{name}" placeholder with the short display name (possessive-aware). */
+export function fillName(text: string, name: string): string {
+  return text.replace(/\{name\}’s/g, poss(name)).replace(/\{name\}/g, name);
+}

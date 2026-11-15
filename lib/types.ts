@@ -44,6 +44,7 @@ export interface Brief {
   generated_at: string; data_as_of: string; latest_trading_day: string;
   fetch: Record<string, { announcements: string | null; prices: boolean; screener: boolean }>;
   act_order: string[]; stocks: Stock[]; filings: Filing[]; moves: Record<string, MoveRow[]>;
+  patterns?: Pattern[];
 }
 
 export interface Promise_ {
@@ -72,3 +73,5 @@ export interface Snapshot {
   extras?: import("./extras").Extras;
   stale?: boolean;
 }
+
+export interface Pattern { symbol: string; kind: "credit" | "exits" | "pledging"; severity: "flag" | "info"; lead: string; filings: string[] }

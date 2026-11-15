@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
+import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
 import { fyq, when } from "@/lib/format";
 import ExtrasView from "./Extras";
-import { actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
+import { fillName, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
-export default function Research({ promises, stocks, initial }: { promises: PromiseFile[]; stocks: Stock[]; initial: string | null }) {
+export default function Research({ promises, stocks, patterns = [], initial }: { promises: PromiseFile[]; stocks: Stock[]; patterns?: Pattern[]; initial: string | null }) {
   const tracked = promises.map((p) => p.symbol);
   const [ticker, setTicker] = useState<string>(initial ?? tracked[0] ?? "TCS");
   const [input, setInput] = useState("");
@@ -58,6 +58,21 @@ export default function Research({ promises, stocks, initial }: { promises: Prom
         {snap?.ok ? snap.name?.replace(/\s*\(searched.*\)$/, "") : portfolio?.name ?? ticker}
       </h1>
       <p className="label mt-1">{ticker}{portfolio ? ` · ${portfolio.sector} · ${portfolio.cap} cap` : ""}</p>
+
+      {patterns.filter((p) => p.symbol === ticker).length > 0 && (
+        <section className="mt-7">
+          <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
+            <h2 className="label !text-[var(--ink)]">Filing patterns</h2>
+            <span className="num text-[12px] text-[var(--muted)]">last 180 days</span>
+          </div>
+          {patterns.filter((p) => p.symbol === ticker).map((p) => (
+            <div key={p.kind} className="border-b rule py-3">
+              <p className="label !text-[10px]">{p.kind === "credit" ? "Credit rating" : p.kind === "exits" ? "Senior exits" : "Promoter pledges"}</p>
+              <p className={`serif mt-1 text-[17px] leading-snug ${p.severity === "flag" ? "text-[var(--accent)]" : ""}`}>{fillName(p.lead, name)}</p>
+            </div>
+          ))}
+        </section>
+      )}
 
       {pf && <Tracker pf={pf} name={name} />}
 

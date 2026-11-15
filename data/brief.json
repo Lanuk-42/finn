@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T20:21:14+05:30",
+ "generated_at": "2026-11-15T20:29:14+05:30",
  "data_as_of": "2026-11-15T19:24:19+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -37814,6 +37814,104 @@
    }
   ]
  },
+ "patterns": [
+  {
+   "symbol": "RELIANCE",
+   "kind": "credit",
+   "severity": "info",
+   "lead": "{name} is rated ICRA AAA (stable) (21 Oct); no earlier ICRA rating in the last 180 days to compare.",
+   "filings": [
+    "84923369052b",
+    "5beb23aa3cdc"
+   ]
+  },
+  {
+   "symbol": "HDFCBANK",
+   "kind": "exits",
+   "severity": "flag",
+   "lead": "3 senior people left {name} within 90 days: Sashidhar Jagdishan (Managing Director & Chief Executive Officer, 29 Aug); Sudhir Kumar Jha (Group Head - Legal & Group General Counsel, 30 Sep); Sanjay D’Souza (Group Head – Business Banking, Emerging & Micro Enterprises Group, 31 Oct).",
+   "filings": [
+    "402b5609d63f",
+    "d934729ba742",
+    "2d9bf31df1df"
+   ]
+  },
+  {
+   "symbol": "SUNPHARMA",
+   "kind": "credit",
+   "severity": "info",
+   "lead": "{name}’s CRISIL outlook moved from watch developing to stable at AAA (13 Oct).",
+   "filings": [
+    "26602858db7d",
+    "a55ec8d45efe"
+   ]
+  },
+  {
+   "symbol": "ASIANPAINT",
+   "kind": "credit",
+   "severity": "info",
+   "lead": "{name} is rated CRISIL AAA (stable) (11 Sep); no earlier CRISIL rating in the last 180 days to compare.",
+   "filings": [
+    "061fc1ef7a82",
+    "c47294af9934"
+   ]
+  },
+  {
+   "symbol": "ASIANPAINT",
+   "kind": "pledging",
+   "severity": "flag",
+   "lead": "{name}: 6 promoter pledge disclosures in the last 90 days (more than the 5 before); 9 new pledges, 2 releases, so promoters are pledging more.",
+   "filings": [
+    "f29aab1bd8fb",
+    "e7f96875de88",
+    "00db29bfb0a2",
+    "a4998703e2f8",
+    "1ef2d8e44c71",
+    "c4b347adefcc",
+    "228c2d7e8001",
+    "6a9a17dce29b",
+    "7a69b23ea2dc",
+    "4640cb85fdd5",
+    "cda7c57164e0"
+   ],
+   "counts": {
+    "recent": 6,
+    "before": 5,
+    "creation": 9,
+    "release": 2,
+    "invocation": 0
+   }
+  },
+  {
+   "symbol": "PERSISTENT",
+   "kind": "credit",
+   "severity": "flag",
+   "lead": "{name} remains on ICRA rating watch with negative implications at AA+ (22 Oct), as on 9 Oct.",
+   "filings": [
+    "6c8ebbd65f67",
+    "7b305a445da3"
+   ]
+  },
+  {
+   "symbol": "SAFARI",
+   "kind": "credit",
+   "severity": "info",
+   "lead": "{name} is rated CRISIL AA- (stable) (6 Oct); no earlier CRISIL rating in the last 180 days to compare.",
+   "filings": [
+    "0f1544e6fc0d"
+   ]
+  },
+  {
+   "symbol": "GRAVITA",
+   "kind": "credit",
+   "severity": "info",
+   "lead": "{name}’s rating is unchanged: ICRA AA (stable), same as 10 Jun.",
+   "filings": [
+    "b31f4570c621",
+    "6b5b1d6b3657"
+   ]
+  }
+ ],
  "llm_usage": {
   "calls": 0,
   "cached": 39,

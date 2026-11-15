@@ -10,7 +10,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from finn import classify, gemini, management, pdf, results  # noqa: E402
+from finn import classify, gemini, management, patterns, pdf, results  # noqa: E402
 from finn.config import DATA, PORTFOLIO  # noqa: E402
 
 IST = timezone(timedelta(hours=5, minutes=30))
@@ -138,7 +138,7 @@ def main():
     now = datetime.now(IST)
     ann = load(DATA / "announcements.json")
     report = load(DATA / "fetch_report.json")
-    stocks, filings, moves = [], [], {}
+    stocks, filings, moves, pats = [], [], {}, []
     for p in PORTFOLIO:
         sym = p["symbol"]
         scr = load(DATA / "screener" / f"{sym}.json")
@@ -146,6 +146,8 @@ def main():
         fl = build_filings(sym, ann.get(sym, []), scr, now)
         filings += fl
         moves[sym] = build_moves(prices, fl)
+        # "{name}" is filled in by the UI with its short display name
+        pats += [{"symbol": sym, **x} for x in patterns.for_stock(sym, "{name}", fl, now)]
         last, prev = prices["rows"][-1], prices["rows"][-2]
         stocks.append({
             "symbol": sym, "name": p["name"], "sector": p["sector"], "cap": p["cap"],
@@ -173,6 +175,7 @@ def main():
         "stocks": stocks,
         "filings": filings,
         "moves": moves,
+        "patterns": pats,
         "llm_usage": gemini.USAGE,
     }
     (DATA / "brief.json").write_text(json.dumps(brief, ensure_ascii=False, indent=1))

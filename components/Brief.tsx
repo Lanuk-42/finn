@@ -5,7 +5,7 @@ import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, Res
 import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
 import { useDeviceState } from "@/lib/device";
 import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
-import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
+import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
   { d: 1, label: "24h", phrase: "today", span: "the last 24 hours" },
@@ -140,6 +140,21 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
           <More onClick={() => setAllBreaches((v) => !v)}>{allBreaches ? "Show fewer" : `${breaches.length - 3} more off thesis`}</More>
         )}
       </Section>
+
+      {/* Patterns from filing history: only flags here; Research shows every pattern for a company */}
+      {(brief.patterns ?? []).some((p) => p.severity === "flag") && (
+        <Section label="Patterns" right={String((brief.patterns ?? []).filter((p) => p.severity === "flag").length)}>
+          {(brief.patterns ?? []).filter((p) => p.severity === "flag").map((p) => (
+            <Item key={p.symbol + p.kind}>
+              <div className="flex items-baseline gap-2 text-[11px] uppercase tracking-[0.08em]">
+                <button onClick={() => onOpenStock(p.symbol)} className="font-semibold text-[var(--ink)]">{p.symbol}</button>
+                <span className="text-[var(--muted)]">{p.kind === "credit" ? "Credit rating" : p.kind === "exits" ? "Senior exits" : "Promoter pledges"}</span>
+              </div>
+              <p className="serif mt-1.5 text-[17px] leading-snug">{fillName(p.lead, nm(p.symbol))}</p>
+            </Item>
+          ))}
+        </Section>
+      )}
 
       {editing && (
         <ThesisEditor
