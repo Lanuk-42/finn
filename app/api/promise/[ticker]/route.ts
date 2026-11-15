@@ -36,6 +36,9 @@ export async function GET(req: Request, ctx: { params: Promise<{ ticker: string 
   if (!id) {
     if (!ghEnabled()) return Response.json({ state: "unavailable" });
     if (!(await exists(symbol))) return Response.json({ state: "rejected", message: `${symbol} isn’t a company FINN can find on screener.in.` });
+    // a build already running for this ticker (e.g. the page was reloaded): show its progress, not a new Build button
+    const running = await runningJob(symbol).catch(() => null);
+    if (running) return Response.json({ state: "queued", req: running, stages: [] });
     if (await pausedRecently().catch(() => false)) return Response.json({ state: "paused", message: PAUSED_MESSAGE });
     return Response.json({ state: "buildable" });
   }
