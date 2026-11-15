@@ -8,27 +8,7 @@ import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
 import Callout from "./Tour";
 import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
-const WINDOWS = [
-  { d: 1, label: "24h", phrase: "today", span: "the last 24 hours" },
-  { d: 3, label: "3d", phrase: "this week", span: "the last 3 days" },
-  { d: 7, label: "7d", phrase: "this week", span: "the last 7 days" },
-  { d: 30, label: "30d", phrase: "this month", span: "the last 30 days" },
-];
-const MIN_ACT = 3; // default window = the smallest one with at least this many Act items
-
-const tsMs = (ts: string) => new Date(ts.length === 10 ? ts + "T15:30:00+05:30" : ts).getTime();
-
-/** Act filings in a window, with repeated updates on the same matter (e.g. six CIRP hearings) collapsed into one item. */
-function actGroupsFor(brief: BriefT, asOf: number, days: number) {
-  const rank = (c: string) => { const i = brief.act_order.indexOf(c); return i < 0 ? 99 : i; };
-  const act = brief.filings.filter((f) => f.tier === "Act" && asOf - tsMs(f.ts) <= days * 86400e3);
-  const groups: { lead: Filing; earlier: Filing[] }[] = [];
-  for (const f of [...act].sort((a, b) => b.ts.localeCompare(a.ts))) {
-    const g = groups.find((x) => x.lead.symbol === f.symbol && x.lead.category === f.category && x.lead.category !== "results" && x.lead.rule === f.rule && cleanTitle(x.lead.title) === cleanTitle(f.title));
-    if (g) g.earlier.push(f); else groups.push({ lead: f, earlier: [] });
-  }
-  return groups.sort((a, b) => rank(a.lead.category) - rank(b.lead.category) || b.lead.ts.localeCompare(a.lead.ts));
-}
+import { actGroupsFor, autoWindow, MIN_ACT, tsMs, WINDOWS } from "@/lib/window";
 
 /** A change "matters" if it is a real decline (accent) or a large move (weight). Everything else stays quiet. */
 function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
@@ -40,15 +20,20 @@ function sig(n: number | null | undefined, kind: "pct" | "pp" = "pct") {
 const fmtPct = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}%`);
 const fmtPp = (n: number | null | undefined) => (n == null ? "—" : `${n > 0 ? "+" : n < 0 ? "−" : ""}${Math.abs(n).toFixed(1)}pp`);
 
-export default function Brief({ brief, promises, onOpenStock, tour = 0, onTour, onSkipTour }: {
-  brief: BriefT; promises: PromiseFile[]; onOpenStock: (s: string) => void; tour?: number; onTour?: (n: number) => void; onSkipTour?: () => void;
+export default function Brief({ brief, promises, defaultWin, onOpenStock, tour = 0, onTour, onSkipTour }: {
+  brief: BriefT; promises: PromiseFile[]; defaultWin?: number; onOpenStock: (s: string) => void; tour?: number; onTour?: (n: number) => void; onSkipTour?: () => void;
 }) {
   const asOf = new Date(brief.data_as_of).getTime();
-  const autoWin = useMemo(
-    () => WINDOWS.find((w) => actGroupsFor(brief, asOf, w.d).length >= MIN_ACT)?.d ?? WINDOWS[WINDOWS.length - 1].d,
-    [brief, asOf],
-  );
+  // The default window is computed on the server from the data (lib/window.ts) and passed in, so the first paint and
+  // the hydrated page always agree. Nothing about the window is saved on the device.
+  const autoWin = useMemo(() => defaultWin ?? autoWindow(brief), [brief, defaultWin]);
   const [win, setWin] = useState(autoWin);
+  useEffect(() => {
+    // A page restored from the back/forward cache keeps its old in-memory state (e.g. 24h): reset to the auto window.
+    const onShow = (e: PageTransitionEvent) => { if (e.persisted) setWin(autoWin); };
+    window.addEventListener("pageshow", onShow);
+    return () => window.removeEventListener("pageshow", onShow);
+  }, [autoWin]);
   const [px, setPx] = useState(5);
   const [vx, setVx] = useState(2);
   const [adjust, setAdjust] = useState(false);

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import App from "@/components/App";
 import type { Brief, PromiseFile } from "@/lib/types";
+import { autoWindow } from "@/lib/window";
 
 export const dynamic = "force-static";
 
@@ -27,5 +28,5 @@ export default function Page() {
   const promises: PromiseFile[] = fs.existsSync(dir)
     ? fs.readdirSync(dir).filter((f) => f.endsWith(".json")).map((f) => load<PromiseFile>("promises", f))
     : [];
-  return <App brief={brief} promises={promises} />;
+  return <App brief={brief} promises={promises} defaultWin={autoWindow(brief)} />;
 }

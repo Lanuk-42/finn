@@ -6,7 +6,7 @@ import type { Brief as BriefT, PromiseFile } from "@/lib/types";
 import Brief from "./Brief";
 import Research from "./Research";
 
-export default function App({ brief, promises }: { brief: BriefT; promises: PromiseFile[] }) {
+export default function App({ brief, promises, defaultWin }: { brief: BriefT; promises: PromiseFile[]; defaultWin?: number }) {
   const [tab, setTab] = useState<"brief" | "research">("brief");
   const [researchTicker, setResearchTicker] = useState<string | null>(null);
   // "Start here": 1 = on the Brief, 1.5 = results card highlighted, 2 = on its tracker, 3 = try any ticker. Done is saved on device.
@@ -25,7 +25,7 @@ export default function App({ brief, promises }: { brief: BriefT; promises: Prom
   return (
     <div className="mx-auto min-h-dvh max-w-[560px] pb-20">
       {tab === "brief" ? (
-        <Brief brief={brief} promises={promises} onOpenStock={openResearch} tour={tour} onTour={setStep} onSkipTour={endTour} />
+        <Brief brief={brief} promises={promises} defaultWin={defaultWin} onOpenStock={openResearch} tour={tour} onTour={setStep} onSkipTour={endTour} />
       ) : (
         <Research promises={promises} stocks={brief.stocks} patterns={brief.patterns} asOf={brief.data_as_of} initial={researchTicker}
           tour={tour} onTour={setStep} onSkipTour={endTour} />
