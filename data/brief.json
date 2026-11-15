@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T22:21:06+05:30",
+ "generated_at": "2026-11-15T23:01:54+05:30",
  "data_as_of": "2026-11-15T21:57:12+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -2120,7 +2120,8 @@
       "effective_date": "October 31, 2026",
       "evidence": "We wish to inform you that Mr. Sanjay D’Souza has superannuated from the services of the Bank with effect from the close of business hours on October 31, 2026 and has accordingly ceased to be the Group Head – Business Banking, Emerging & Micro Enterprises Group and a Senior Management Personnel of the Bank.",
       "tenure": "During his association with the Bank for nearly 27 years, Mr. Sanjay D’Souza was one of the key architects of the Bank’s SME business, contributing significantly across both Credit and Business.",
-      "bio": null
+      "bio": null,
+      "tenure_years": 27
      }
     ],
     "dropped": 0
@@ -2939,21 +2940,15 @@
     "people": [
      {
       "name": "Mr. Noel N. Tata",
-      "role": "Chairman and Director",
-      "change": "left",
-      "effective_date": "11th November 2026",
-      "evidence": "Mr. Noel N. Tata (DIN: 00024713) will retire from the office of Chairman and Director of the Company with effect from the close of business hours on 11th November 2026.",
-      "tenure": "Mr. Tata has been associated with the Company since 1997 and has provided exemplary leadership and strategic direction throughout his tenure.",
-      "bio": null
-     },
-     {
-      "name": "Mr. Noel N. Tata",
       "role": "Chairman Emeritus",
-      "change": "joined",
+      "change": "moved",
       "effective_date": "12th November 2026",
       "evidence": "In recognition of his substantial and valuable contribution to the Company , the Board has appointed Mr. Noel N. Tata as Chairman Emeritus with effect from 12th November 2026.",
-      "tenure": null,
-      "bio": null
+      "tenure": "Mr. Tata has been associated with the Company since 1997 and has provided exemplary leadership and strategic direction throughout his tenure.",
+      "bio": null,
+      "from_role": "Chairman and Director",
+      "from_evidence": "Mr. Noel N. Tata (DIN: 00024713) will retire from the office of Chairman and Director of the Company with effect from the close of business hours on 11th November 2026.",
+      "tenure_years": 29
      },
      {
       "name": "Mr. Bahram Vakil",
@@ -3004,21 +2999,15 @@
     "people": [
      {
       "name": "Mr. Noel N. Tata",
-      "role": "Chairman and Director",
-      "change": "left",
-      "effective_date": "11th November 2026",
-      "evidence": "Mr. Noel N. Tata (DIN: 00024713) will retire from the office of Chairman and Director of the Company with effect from the close of business hours on 11th November 2026.",
-      "tenure": "Mr. Tata has been associated with the Company since 1997 and has provided exemplary leadership and strategic direction throughout his tenure.",
-      "bio": null
-     },
-     {
-      "name": "Mr. Noel N. Tata",
       "role": "Chairman Emeritus",
-      "change": "joined",
+      "change": "moved",
       "effective_date": "12th November 2026",
       "evidence": "In recognition of his substantial and valuable contribution to the Company , the Board has appointed Mr. Noel N. Tata as Chairman Emeritus with effect from 12th November 2026.",
-      "tenure": null,
-      "bio": null
+      "tenure": "Mr. Tata has been associated with the Company since 1997 and has provided exemplary leadership and strategic direction throughout his tenure.",
+      "bio": null,
+      "from_role": "Chairman and Director",
+      "from_evidence": "Mr. Noel N. Tata (DIN: 00024713) will retire from the office of Chairman and Director of the Company with effect from the close of business hours on 11th November 2026.",
+      "tenure_years": 29
      },
      {
       "name": "Mr. Bahram Vakil",
@@ -4755,7 +4744,8 @@
       "effective_date": "17th October 2026",
       "evidence": "Mr. Harish Bhat (DIN: 00478198), Non-Executive Non-Independent \nDirector of the Company has tendered his resignation with effect from 17th October 2026, due to \nhis existing and growing professional and personal commitments.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -5660,7 +5650,8 @@
       "effective_date": "12 October 2026",
       "evidence": "Mr. Gautam Doshi (DIN: 00004612) has tendered his resignation as a Non-Executive, Independent Director of the Company with effect from 12 October 2026, citing personal reasons.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -5805,7 +5796,8 @@
       "effective_date": "October 14, 2026",
       "evidence": "Dr. Rajesh Gharpure, SMP of the Company has tendered his resignation from the position of Chief Delivery Officer, due to personal reasons with effect from the closure of business hours on October 14, 2026 (IST).",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -6915,7 +6907,8 @@
       "effective_date": "September 30, 2026",
       "evidence": "Mr. Sudhir Kumar Jha, Group Head - Legal & Group General Counsel, has superannuated from the services of the Bank with effect from the close of business hours on September 30, 2026 and consequently has also ceased to be a Senior Management Personnel of the Bank.",
       "tenure": "throughout his 22 years of association with HDFC Group (including Housing Development Finance Corporation Limited and the Bank).",
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      },
      {
       "name": "Jigar Shah",
@@ -7136,7 +7129,8 @@
       "effective_date": "30th September 2026",
       "evidence": "Mr. Kazunari Yamaguchi has resigned from the post of Whole-time Director designated as Director (Production) w.e.f. close of business hours of 30th September 2026.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      },
      {
       "name": "Mr. Sarada Prasana Nayak",
@@ -9765,7 +9759,8 @@
       "effective_date": "October 26, 2026",
       "evidence": "Accordingly, he shall retire from the services of the Bank upon the close of business hours on October 26, 2026.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -9794,7 +9789,8 @@
       "effective_date": "October 26, 2026",
       "evidence": "Accordingly, he shall retire from the services of the Bank upon the close of business hours on October 26, 2026.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -10303,7 +10299,8 @@
       "effective_date": "21st August, 2026",
       "evidence": "Mr. Puneet Sharma, SBU Head - LifeSciences of the Company, has resigned from his position with effect from ctose of business hours on 21 st August, 2026.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -10676,7 +10673,8 @@
       "effective_date": "August 17, 2026",
       "evidence": "Please be informed about the demise of Mr. Diwaker Bharadwaj on August 1 7, 2026.",
       "tenure": "He joined the Company in 2013  and since then  he had strengthened the Automation,  Serialization, Packaging and Brand Protection function .",
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -11596,7 +11594,8 @@
       "effective_date": "August 7, 2026",
       "evidence": "he ceased to be an lndependent Director of the Company with eifect from today, i.e., August 7,2026.",
       "tenure": "compteted his second term as an lndependent Directoi",
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 0
@@ -11956,7 +11955,8 @@
       "effective_date": "31st August 2026",
       "evidence": "Mr. Ratul Neogi, Head – Internal Audit, will retire upon attaining superannuation with effect from 1st September 2026.",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      },
      {
       "name": "Varsha Agarwal",
@@ -13194,7 +13194,8 @@
       "effective_date": "31.07.2026",
       "evidence": "K Kumar srRdRVii Superannuation 4 > 4 IS < 31.07.2026",
       "tenure": null,
-      "bio": null
+      "bio": null,
+      "tenure_years": null
      }
     ],
     "dropped": 1

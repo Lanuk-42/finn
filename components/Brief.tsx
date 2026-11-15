@@ -7,7 +7,7 @@ import { ageHours, CATEGORY_LABEL, cleanTitle, day, fyq, IST, STALE_HOURS, when 
 import { useDeviceState } from "@/lib/device";
 import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
 import Callout from "./Tour";
-import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
+import { breachLead, cleanName, filingLead, fillName, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tenureText, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 import { actGroupsFor, autoWindow, MIN_ACT, tsMs, WINDOWS } from "@/lib/window";
 
@@ -480,8 +480,8 @@ function ActItem({ f, earlier, name, pf, onOpenStock, onDone }: { f: Filing; ear
           {results?.status === "pending" && <p>{results.note}</p>}
           {mgmt && (
             <>
-              <p>A model only copied names and sentences out of the filing; each was found word-for-word in the filing text before it was shown, and code decided who joined or left.{mgmt.dropped ? ` ${mgmt.dropped} unverifiable entr${mgmt.dropped > 1 ? "ies were" : "y was"} dropped.` : ""}{mgmt.note ? ` ${mgmt.note}.` : ""}</p>
-              {mgmt.people.map((p, i) => <blockquote key={i} className="serif italic text-[var(--ink-2)]">“{p.evidence}”</blockquote>)}
+              <p>A model only copied names and sentences out of the filing; each was found word-for-word in the filing text before it was shown, and code decided who joined, left or moved roles. Years of service are computed by code from a verified sentence such as “since 1997”; a forward-looking term of appointment is not counted.{mgmt.dropped ? ` ${mgmt.dropped} unverifiable entr${mgmt.dropped > 1 ? "ies were" : "y was"} dropped.` : ""}{mgmt.note ? ` ${mgmt.note}.` : ""}</p>
+              {mgmt.people.flatMap((p, i) => [p.from_evidence, p.evidence].filter(Boolean).map((e, j) => <blockquote key={`${i}-${j}`} className="serif italic text-[var(--ink-2)]">“{e}”</blockquote>))}
             </>
           )}
         </div>
@@ -558,15 +558,27 @@ function People({ c, company }: { c: MgmtCard; company: string }) {
     <ul className="mt-3 space-y-3">
       {c.people.map((p, i) => (
         <li key={i} className="border-t rule pt-2.5">
-          <p className="text-[15px] leading-snug">
-            <span className="label mr-2 !text-[var(--muted)]">{p.change}</span>
-            <b className="font-semibold">{cleanName(p.name)}</b>
-          </p>
-          <p className="text-[13px] leading-snug text-[var(--muted)]">{tidyRole(p.role)}</p>
-          {p.change === "left" && p.tenure && <p className="serif mt-1 text-[14px] italic leading-snug text-[var(--ink-2)]">“{tidyProse(p.tenure)}”</p>}
+          {p.change === "moved" ? (
+            <>
+              <p className="text-[15px] leading-snug">
+                <span className="label mr-2 !text-[var(--muted)]">moves</span>
+                <b className="font-semibold">{cleanName(p.name)}</b> moves to {tidyRole(p.role)}
+              </p>
+              <p className="text-[13px] leading-snug text-[var(--muted)]">from {tidyRole(p.from_role ?? "")}{p.tenure_years ? ` · ${tenureText(p.tenure_years)} with the company` : ""}</p>
+            </>
+          ) : (
+            <>
+              <p className="text-[15px] leading-snug">
+                <span className="label mr-2 !text-[var(--muted)]">{p.change}</span>
+                <b className="font-semibold">{cleanName(p.name)}</b>
+              </p>
+              <p className="text-[13px] leading-snug text-[var(--muted)]">{tidyRole(p.role)}{p.change === "left" && p.tenure_years ? ` · ${tenureText(p.tenure_years)} with the company` : ""}</p>
+            </>
+          )}
+          {(p.change === "left" || p.change === "moved") && p.tenure && <p className="serif mt-1 text-[14px] italic leading-snug text-[var(--ink-2)]">“{tidyProse(p.tenure)}”</p>}
           {p.bio && <p className="mt-1 text-[14px] leading-snug text-[var(--ink-2)]">{tidyProse(p.bio)}</p>}
-          {p.change !== "left" && !p.bio && <p className="mt-1 text-[13px] text-[var(--faint)]">No background given in the filing.</p>}
-          {p.change !== "left" && (
+          {p.change !== "left" && p.change !== "moved" && !p.bio && <p className="mt-1 text-[13px] text-[var(--faint)]">No background given in the filing.</p>}
+          {p.change !== "left" && p.change !== "moved" && (
             <p className="mt-1 text-[12px] text-[var(--muted)]">
               {p.bio ? "Bio from the filing · " : ""}
               <a href={linkedinSearch(cleanName(p.name), company)} target="_blank" rel="noopener noreferrer" className="link text-[var(--ink)]">Search on LinkedIn ↗</a>

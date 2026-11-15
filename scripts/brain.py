@@ -89,14 +89,15 @@ def build_filings(sym, raw, scr, now):
             f["card"] = {"type": "management", "people": [], "note": "LLM step skipped"}
             continue
         try:
-            m = management.extract(txt, f["headline"], url=f.get("url"))
+            m = management.extract(txt, f["headline"], url=f.get("url"), filing_year=int(f["ts"][:4]))
         except gemini.BudgetExceeded:
             m = {"people": [], "note": "Skipped: LLM budget for this run used up"}
         except Exception as e:  # noqa: BLE001
             m = {"people": [], "note": f"extraction failed: {str(e)[:80]}"}
         f["card"] = {"type": "management", **m}
         # Code-level tier correction: a verified departure/arrival in a top role is Act; pure reappointments are Note.
-        top = any(p["change"] in ("joined", "left") and _is_top(p["role"]) for p in m["people"])
+        top = any((p["change"] in ("joined", "left") and _is_top(p["role"])) or (p["change"] == "moved" and _is_top(p.get("from_role", "")))
+                  for p in m["people"])
         if top:
             f["tier"] = "Act"
         elif m["people"] and all(p["change"] == "reappointed" for p in m["people"]):

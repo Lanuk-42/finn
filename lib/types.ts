@@ -22,8 +22,9 @@ export interface ResultsCard {
 }
 
 export interface Person {
-  name: string; role: string; change: "joined" | "left" | "reappointed" | "redesignated";
+  name: string; role: string; change: "joined" | "left" | "reappointed" | "redesignated" | "moved";
   effective_date: string | null; evidence: string; tenure: string | null; bio: string | null;
+  tenure_years?: number | null; from_role?: string; from_evidence?: string;
 }
 export interface MgmtCard { type: "management"; people: Person[]; dropped?: number; note?: string }
 

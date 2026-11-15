@@ -54,10 +54,12 @@ export function mgmtLead(name: string, c: MgmtCard, fallback: string): string {
   const P = c.people;
   if (!P.length) return `${name}: ${fallback}`;
   const TOP = /chief executive|\bceo\b|chief financial|\bcfo\b|managing director|chair(man|person)?\b(?! emeritus)|whole[- ]time|executive director/i;
-  const left = P.find((p) => p.change === "left" && TOP.test(p.role)) ?? P.find((p) => p.change === "left");
-  const others = P.filter((p) => p.change === "joined" && (!left || cleanName(p.name) !== cleanName(left.name)));
+  const moved = P.find((p) => p.change === "moved" && TOP.test(p.from_role ?? ""));
+  const left = moved ? undefined : P.find((p) => p.change === "left" && TOP.test(p.role)) ?? P.find((p) => p.change === "left");
+  const others = P.filter((p) => p.change === "joined" && (!left || cleanName(p.name) !== cleanName(left.name)) && (!moved || cleanName(p.name) !== cleanName(moved.name)));
   const joined = others.find((p) => TOP.test(p.role) && !/emeritus/i.test(p.role)) ?? others[0];
   const parts: string[] = [];
+  if (moved) parts.push(`${cleanName(moved.name)} moves from ${shortRole(moved.from_role ?? "")} to ${shortRole(moved.role)}`);
   if (left) parts.push(`${cleanName(left.name)} leaves as ${shortRole(left.role)}`);
   if (joined) parts.push(`${cleanName(joined.name)} joins as ${shortRole(joined.role)}`);
   if (!parts.length) {
@@ -282,3 +284,6 @@ export function fillName(text: string, name: string): string {
 
 /** A PDF link that opens at the page a quote or figure was found on. */
 export const pdfAt = (url: string, page?: number | null) => (page ? `${url}#page=${page}` : url);
+
+/** Length of service, computed by the pipeline from a verified quote ("since 1997" -> 29). */
+export const tenureText = (y?: number | null) => (y ? `about ${y} year${y === 1 ? "" : "s"}` : "");

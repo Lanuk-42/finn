@@ -34,7 +34,35 @@ def _two_sentences(s):
     return " ".join(parts[:2])
 
 
-def extract(text, headline="", url=None):
+_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10,
+          "eleven": 11, "twelve": 12, "fifteen": 15, "twenty": 20, "twenty-five": 25, "thirty": 30}
+_SINCE = re.compile(r"\bsince\s+(?:[a-z]+\s+)?(?:\d{1,2}(?:st|nd|rd|th)?\s+)?(?:[A-Za-z]+,?\s+)?((?:19|20)\d\d)\b", re.I)
+_FOR = re.compile(r"\b(?:for|over|of)\s+(?:about\s+|around\s+|nearly\s+|more than\s+|over\s+)?(\d{1,2}|" + "|".join(_WORDS) +
+                  r")\s*(?:\(\w+\)\s*)?(?:\+\s*)?years?\b(?!\s*(?:term|tenure)\b)", re.I)
+_TERM = re.compile(r"\b(term|period of|commencing|up to|upto|till|w\.e\.f|re-?appoint)", re.I)
+
+
+def tenure_years(quote, filing_year):
+    """Length of service stated in a verified quote: 'since 1997' -> filing year - 1997; 'for 12 years' -> 12.
+    A forward-looking term ('for a period of 5 years commencing ...') is an appointment term, not service: None."""
+    if not quote:
+        return None
+    m = _SINCE.search(quote)
+    if m and filing_year and 0 < filing_year - int(m.group(1)) < 70:
+        return filing_year - int(m.group(1))
+    m = _FOR.search(quote)
+    if m and not _TERM.search(quote):
+        v = m.group(1).lower()
+        n = int(v) if v.isdigit() else _WORDS.get(v)
+        return n if n and 0 < n < 70 else None
+    return None
+
+
+def _key(name):
+    return re.sub(r"\b(mr|ms|mrs|dr|shri|smt)\b\.?", "", norm(name)).replace(".", " ").split()
+
+
+def extract(text, headline="", url=None, filing_year=None):
     """Return {'people': [...verified...], 'dropped': n}. `text` is the filing's PDF text (or headline fallback)."""
     src = (text or "").strip() or headline
     if len(src) < 40:
@@ -82,5 +110,23 @@ def extract(text, headline="", url=None):
             m["tenure"] = m["tenure"] or p["tenure"]
         else:
             merged[k] = dict(p)
-    return {"people": list(merged.values()), "dropped": dropped,
+    people = list(merged.values())
+    # Service length, computed by code from verified text only (tenure quote first, then the evidence sentence).
+    for p in people:
+        if p["change"] == "left":
+            p["tenure_years"] = tenure_years(p["tenure"], filing_year) or tenure_years(p["evidence"], filing_year)
+    # The same person leaving one role and taking another in this filing is one move, not a leave plus a join
+    # (e.g. Chairman -> Chairman Emeritus).
+    out = []
+    for p in people:
+        if p["change"] == "joined":
+            twin = next((q for q in people if q["change"] == "left" and _key(q["name"]) == _key(p["name"])), None)
+            if twin:
+                out.append({**p, "change": "moved", "from_role": twin["role"], "from_evidence": twin["evidence"],
+                            "tenure": twin["tenure"], "tenure_years": twin.get("tenure_years"), "bio": p["bio"] or twin.get("bio")})
+                continue
+        if p["change"] == "left" and any(q["change"] == "joined" and _key(q["name"]) == _key(p["name"]) for q in people):
+            continue
+        out.append(p)
+    return {"people": out, "dropped": dropped,
             **({"note": "Scanned filing: text not machine-readable"} if not (text or "").strip() else {})}
