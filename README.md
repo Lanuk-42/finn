@@ -21,6 +21,16 @@ A mobile-first daily brief for an Indian equity portfolio. It shows only what ch
 - **Promise tracker** for BEL, POLYCAB and PERSISTENT (precomputed). BEL replaced DIXON because Dixon guides mostly by segment; BEL gives company-wide yearly revenue-growth and EBITDA-margin targets, so FY26 resolves to real verdicts. It covers what management guided, the reported actual, and a Beat / Met / Missed / In progress verdict. Tap any item to see the exact transcript quote. Credibility is a simple count.
 - **Live financial snapshot** for any NSE ticker typed in. It fetches screener.in at request time and computes headline numbers, margins and an 8-quarter trend. Renamed companies resolve through screener search (ZOMATO → ETERNAL).
 
+**Added in the latest round (all code-only; zero new LLM calls)**
+- Results cards link to the promise tracker: “Guided ≥28% FY27 EBITDA margin → delivered 27.9% this quarter”.
+- Inbox zero: mark Act items done (saved on the device), undo, and a cleared state.
+- Thesis editor: why/metric/operator/number per holding, saved on the device, re-checked instantly.
+- Research extras: five-year trajectory, cash quality (OCF ÷ PAT), balance sheet (debt-to-equity, working-capital days).
+- Pattern flags from filing history: rating vs last rating, 2+ senior exits in 90 days, promoter-pledge trend.
+- Freshness: “as of” on every screen, a STALE tag after 24h, and a saved-copy fallback instead of errors.
+- Start here: a 3-tap first-visit path.
+- Ask the calls: retrieval over the transcripts (`scripts/transcripts.py` builds the page index). Answers are verbatim passages with call and page, or “Not found in the documents.” No model writes them.
+
 ## How it is built
 
 ```
