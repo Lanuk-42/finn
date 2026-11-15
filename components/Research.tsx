@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { Promise_, PromiseFile, Snapshot, Stock } from "@/lib/types";
 import { fyq, when } from "@/lib/format";
+import ExtrasView from "./Extras";
 import { actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
 export default function Research({ promises, stocks, initial }: { promises: PromiseFile[]; stocks: Stock[]; initial: string | null }) {
@@ -73,6 +74,7 @@ export default function Research({ promises, stocks, initial }: { promises: Prom
         )}
         {!loading && snap?.ok && <SnapshotBody s={snap} name={name} />}
       </section>
+      {!loading && snap?.ok && snap.extras && <ExtrasView x={snap.extras} name={name} />}
       <div className="h-8" />
     </div>
   );

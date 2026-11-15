@@ -2,6 +2,7 @@
 // Numbers are read from the page; every derived number (QoQ, YoY, margins) is computed here in code.
 import * as cheerio from "cheerio";
 import type { Line, Snapshot } from "./types";
+import { computeExtras } from "./extras";
 
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -115,5 +116,9 @@ export async function fetchSnapshot(symbolRaw: string, resolved = false): Promis
       ebitda_margin_ya: series.ebitda && series.revenue && i >= 4 ? margin(series.ebitda[i - 4], series.revenue[i - 4]) : null,
     },
     trend,
+    extras: computeExtras(
+      "{name}", // the client substitutes its short display name
+      parseTable($, "profit-loss"), parseTable($, "balance-sheet"), parseTable($, "cash-flow"), parseTable($, "ratios"),
+    ),
   };
 }

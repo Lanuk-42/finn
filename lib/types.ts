@@ -69,4 +69,6 @@ export interface Snapshot {
   latest?: { quarter: string; prev: string | null; year_ago: string | null; is_bank: boolean;
     lines: Record<"revenue" | "ebitda" | "pbt" | "pat", Line | null>; ebitda_margin: number | null; ebitda_margin_ya: number | null };
   trend?: { quarter: string; revenue: number | null; margin: number | null }[];
+  extras?: import("./extras").Extras;
+  stale?: boolean;
 }
