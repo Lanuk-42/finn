@@ -22,7 +22,7 @@ FINN is a mobile-first morning note for an Indian stock portfolio. It reads ever
 
 **Research** (look up any NSE-listed company):
 - **A promise tracker.** It lists each target management gave on earnings calls, what was delivered, and a verdict: Beat, Met or Missed for finished targets, and On track or Off track for running ones. Each quote opens the call transcript at its page.
-- **Any other company.** "Build tracker" reads its last four calls in a few minutes, and the result is saved for everyone.
+- **Any other company.** "Build tracker" reads its last four calls, and the result is saved for everyone. A build takes about 15 minutes, because the stronger model reads long transcripts slowly.
 - **A live snapshot.** Latest quarter, five-year trend, cash quality and balance sheet. Cash quality is operating cash flow as a share of profit.
 - **Bull vs bear.** Three points for and three against, built only from FINN's own numbers.
 - **Ask the calls.** Ask a question and get management's own words, with the speaker and page. If only an analyst raised the topic, it says "Not found in management's remarks." If nobody did, it says "Not found in the documents."
@@ -96,4 +96,5 @@ The Gemini key is read only from the `GEMINI_API_KEY` environment variable. The 
 - **Tenure is shown only when the filing states it.** There is no stored history of past appointments.
 - **Some speakers are misattributed.** Ask the calls identifies speakers by pattern. One analyst on one call is still counted as management.
 - **Bull vs bear thresholds are mine.** They are not calibrated.
+- **Tracker builds are slow.** A build takes about 15 minutes, since the Flash model reads each long transcript slowly. With the lite model it took about one minute but found fewer promises.
 - **Updates are slower than NSE.** Filings arrive through BSE, minutes later than on NSE, and the data refreshes once each weekday evening.

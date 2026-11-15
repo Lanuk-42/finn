@@ -56,7 +56,7 @@ export default function OnDemandTracker({ ticker, name, render }: { ticker: stri
       {s.state === "buildable" && (
         <div className="py-4">
           <p className="serif text-[17px] leading-snug">FINN hasn’t scored {name}’s promises yet. It can read its last four earnings calls now.</p>
-          <button onClick={start} className="mt-3 border border-[var(--ink)] px-3 py-1.5 text-[14px] font-semibold">Build {name}’s tracker → <span className="font-normal text-[var(--muted)]">about 2 minutes</span></button>
+          <button onClick={start} className="mt-3 border border-[var(--ink)] px-3 py-1.5 text-[14px] font-semibold">Build {name}’s tracker → <span className="font-normal text-[var(--muted)]">about 15 minutes</span></button>
         </div>
       )}
       {(s.state === "queued" || s.state === "running") && (
