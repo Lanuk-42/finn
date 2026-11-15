@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T19:25:07+05:30",
+ "generated_at": "2026-11-15T20:21:14+05:30",
  "data_as_of": "2026-11-15T19:24:19+05:30",
  "latest_trading_day": "2026-11-13",
  "fetch": {
@@ -119,6 +119,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 17.1,
+    "pat_margin": 8.9,
+    "revenue_yoy": 29.8,
+    "pat_yoy": 33.8
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1339.7,
    "date": "2026-11-13",
    "day_pct": 0.0,
@@ -139,6 +146,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": null,
+    "pat_margin": 22.6,
+    "revenue_yoy": 9.4,
+    "pat_yoy": 5.8
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 804.0,
    "date": "2026-11-13",
    "day_pct": -1.02,
@@ -159,6 +173,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 25.7,
+    "pat_margin": 19.0,
+    "revenue_yoy": 11.2,
+    "pat_yoy": 14.9
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 2407.5,
    "date": "2026-11-13",
    "day_pct": -1.43,
@@ -179,6 +200,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 29.3,
+    "pat_margin": 12.3,
+    "revenue_yoy": 11.9,
+    "pat_yoy": -36.2
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1880.0,
    "date": "2026-11-13",
    "day_pct": -0.27,
@@ -199,6 +227,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": 15.6,
+    "pat_margin": 10.9,
+    "revenue_yoy": 16.9,
+    "pat_yoy": 6.6
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 2550.0,
    "date": "2026-11-13",
    "day_pct": 0.53,
@@ -219,6 +254,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 2.7,
+    "pat_margin": 1.9,
+    "revenue_yoy": 46.7,
+    "pat_yoy": -44.9
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 12798.0,
    "date": "2026-11-13",
    "day_pct": -1.49,
@@ -239,6 +281,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 14.4,
+    "pat_margin": 10.0,
+    "revenue_yoy": 52.8,
+    "pat_yoy": 42.9
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 7904.0,
    "date": "2026-11-13",
    "day_pct": -2.18,
@@ -259,6 +308,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 13.6,
+    "pat_margin": 7.5,
+    "revenue_yoy": 30.2,
+    "pat_yoy": -25.3
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 6003.0,
    "date": "2026-11-13",
    "day_pct": -0.45,
@@ -279,6 +335,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 20.4,
+    "pat_margin": 12.9,
+    "revenue_yoy": 61.7,
+    "pat_yoy": 234.5
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1594.4,
    "date": "2026-11-13",
    "day_pct": -1.9,
@@ -299,6 +362,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 12.6,
+    "pat_margin": 5.3,
+    "revenue_yoy": 16.8,
+    "pat_yoy": 20.0
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 195.69,
    "date": "2026-11-13",
    "day_pct": -1.1,
@@ -319,6 +389,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 27.9,
+    "pat_margin": 21.0,
+    "revenue_yoy": 26.5,
+    "pat_yoy": 19.7
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 400.85,
    "date": "2026-11-13",
    "day_pct": -0.98,
@@ -339,6 +416,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 26.1,
+    "pat_margin": 14.8,
+    "revenue_yoy": 11.1,
+    "pat_yoy": -22.2
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1980.3,
    "date": "2026-11-13",
    "day_pct": -1.72,
@@ -359,6 +443,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": null,
+    "pat_margin": 17.6,
+    "revenue_yoy": 23.8,
+    "pat_yoy": 40.5
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1850.0,
    "date": "2026-11-13",
    "day_pct": -0.64,
@@ -379,6 +470,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": 8.9,
+    "pat_margin": 4.6,
+    "revenue_yoy": 26.0,
+    "pat_yoy": -26.4
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 12854.0,
    "date": "2026-11-13",
    "day_pct": -1.31,
@@ -399,6 +497,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": 18.0,
+    "pat_margin": 8.0,
+    "revenue_yoy": 21.9,
+    "pat_yoy": 25.5
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 3165.2,
    "date": "2026-11-13",
    "day_pct": -0.47,
@@ -419,6 +524,13 @@
     "quarter": "Sep 2026",
     "status": "ok"
    },
+   "metrics": {
+    "ebitda_margin": 13.6,
+    "pat_margin": 4.5,
+    "revenue_yoy": 23.7,
+    "pat_yoy": 6.3
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 5155.1,
    "date": "2026-11-13",
    "day_pct": -1.96,
@@ -439,6 +551,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": 10.3,
+    "pat_margin": 6.4,
+    "revenue_yoy": 9.0,
+    "pat_yoy": -21.3
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1344.3,
    "date": "2026-11-13",
    "day_pct": 3.54,
@@ -459,6 +578,13 @@
     "quarter": "Sep 2026",
     "status": "breach"
    },
+   "metrics": {
+    "ebitda_margin": 9.4,
+    "pat_margin": 7.1,
+    "revenue_yoy": 37.7,
+    "pat_yoy": 6.2
+   },
+   "metrics_quarter": "Sep 2026",
    "close": 1497.9,
    "date": "2026-11-13",
    "day_pct": -1.77,
@@ -5106,8 +5232,18 @@
    "basis": "title",
    "card": {
     "type": "management",
-    "people": [],
-    "dropped": 1
+    "people": [
+     {
+      "name": "Mr. Gautam Doshi",
+      "role": "Non-Executive, Independent Director",
+      "change": "left",
+      "effective_date": "12 October 2026",
+      "evidence": "Mr. Gautam Doshi (DIN: 00004612) has tendered his resignation as a Non-Executive, Independent Director of the Company with effect from 12 October 2026, citing personal reasons.",
+      "tenure": null,
+      "bio": null
+     }
+    ],
+    "dropped": 0
    }
   },
   {
@@ -8209,7 +8345,7 @@
       "effective_date": "9th September 2026",
       "evidence": "the shareholders of the Company have approved the appointment of Ms. Shubhlakshmi Dani as a Non – Executive Director of the Company.",
       "tenure": "liable to retire by rotation",
-      "bio": null
+      "bio": "Ms. Shubhlakshmi Dani is the spouse of Mr."
      }
     ],
     "dropped": 0
@@ -10079,8 +10215,18 @@
    "basis": "title",
    "card": {
     "type": "management",
-    "people": [],
-    "dropped": 1
+    "people": [
+     {
+      "name": "Shri. Partha Pratim Pathak",
+      "role": "Non - Official Director (Independent Director)",
+      "change": "joined",
+      "effective_date": "18th August 2026",
+      "evidence": "appointed Shri. Partha Pratim Pathak, (DIN: 02692935) as Non - Official Director (Independent Director) on the Board of Bharat Electronics Limited (BEL) for a period of three (03) years from the date of appointment.",
+      "tenure": "For a period of three years from the date of appointment, or until further orders.",
+      "bio": "Shri Partha Pratim Pathak took charge as Independent Director of Navratna Defence PSU Bharat Electronics Limited (BEL) today. He is a Promoter and Managing Director of Fresh Air Waste Management Services Private Limited and Director of Forcetech Energy Private Limited."
+     }
+    ],
+    "dropped": 0
    }
   },
   {
@@ -10416,8 +10562,27 @@
    "basis": "title",
    "card": {
     "type": "management",
-    "people": [],
-    "dropped": 2
+    "people": [
+     {
+      "name": "Shri Ambrish Tripathi",
+      "role": "Director (HR)",
+      "change": "joined",
+      "effective_date": "13th August, 2026",
+      "evidence": "Shri Ambrish Tripathi (DIN: 11888363), General Manager - Kotdwar Unit of BEL as Director (HR) on the Board of Bharat Electronics Limited (BEL) and in this regard, the Board of Directors through Circular Resolution approved the appointment of Shri Ambrish Tripathi, Director (HR) as Additional Director w.e.f 13th August, 2026.",
+      "tenure": "Till the date of his superannuation i.e 31.12.2028, or until further orders, whichever is earlier.",
+      "bio": "Shri Ambrish Tripathi took charge as Director (Human Resources) of Navratna Defence PSU Bharat Electronics Limited (BEL) today. He was working as General Manager (Kotdwar) / BEL since 01 Jan 2024 prior to his elevation."
+     },
+     {
+      "name": "Shri Anoop Kumar Rai",
+      "role": "Director (Marketing)",
+      "change": "joined",
+      "effective_date": "13th August, 2026",
+      "evidence": "Shri Anoop Kumar Rai (DIN: 11888162), ED, CRL-Ghaziabad of BEL as Director (Marketing) on the Board of Bharat Electronics Limited (BEL) and in this regard, the Board of Directors through Circular Resolution approved the appointment of Shri Anoop Kumar Rai (DIN: 11888162), Director (Marketing) as Additional Director w.e.f 13th August, 2026.",
+      "tenure": "Till the date of his superannuation i.e 30.09.2028, or until further orders, whichever is earlier.",
+      "bio": "Shri Anoop Kumar Rai took charge as Director (Marketing) of Navratna Defence PSU Bharat Electronics Limited (BEL) today. He was working as Executive Director (CRL-Ghaziabad) since 01 Aug 2025 prior to his elevation."
+     }
+    ],
+    "dropped": 0
    }
   },
   {
@@ -12447,13 +12612,122 @@
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/abe29a22-a5f1-4c45-b76f-1e4c5711ed34.pdf",
    "source": "bse_api",
    "category": "management_change",
-   "tier": "Note",
+   "tier": "Act",
    "rule": "mgmt_other",
    "basis": "title",
    "card": {
     "type": "management",
-    "people": [],
-    "dropped": 13
+    "people": [
+     {
+      "name": "Smt Rashmi Kathuria",
+      "role": "Executive Director (SCCS) - GAD Cx. & Unit Head",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Executive Director (SCCS) - GAD Cx. & Unit Head | 1. sffrRrt TRJT SMT Rashmi Kathuria RpjfrP Appointment 01.08.2026",
+      "tenure": "She joined BEL in October 1989 and has 36 years of professional experience.",
+      "bio": "Smt. Rashmi Kathuria holds a Bachelor of Engineering (Electronics) degree and is a certified Six Sigma Green Belt (SSGB-DMAIC)."
+     },
+     {
+      "name": "Shri Srinivas K",
+      "role": "Executive Director (PD & IC)",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Srinivas K Executive Director (PD & IC) TF Page 1 of 3 BHARAL ELECTRONICS = hl 4 MM = h R % $ FF Ttg - Executive Director (EW & A) - BG Cx. 3. R - ^ Rb Appointment RR < M X ^ T Shri Giriraja N 01.08.2026",
+      "tenure": "She joined BEL in October 1989 and has 36 years of professional experience.",
+      "bio": null
+     },
+     {
+      "name": "Shri Giriraja N",
+      "role": "Executive Director (EW & A) - BG Cx.",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Giriraja N 01.08.2026 RCHK 4 $ l 4 dl ) - 4 . 4 rf ^ rr Shri Sunil Bhatia R - ^ Rb Appointment Rwft 01.08.2026",
+      "tenure": "He joined BEL in January 1993 and has 33 years of professional experience.",
+      "bio": "Shri Giriraja N holds a Bachelor of Engineering (Electronics & Communication Engineering) degree. He joined BEL in January 1993 and has 33 years of professional experience."
+     },
+     {
+      "name": "Shri Sunil Bhatia",
+      "role": "General Manager (Product Support) - Delhi",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Sunil Bhatia R - ^ Rb Appointment Rwft 01.08.2026 General Manager (Product Support) - Delhi",
+      "tenure": "He joined BEL in January 1993 and has 33 years of professional experience.",
+      "bio": "Shri Sunil Bhatia holds a Bachelor of Engineering (Electronics & Communication Engineering) degree, an MBA in Project Management, and is a Project Management Professional (PMP). He joined BEL in January 1993 and has 33 years of professional experience."
+     },
+     {
+      "name": "Shri Anil Kumar Singh",
+      "role": "General Manager (Strategic Planning) - CO",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Anil Kumar Singh R - ^ Rb Appointment 01.08.2026 General Manager (Strategic Planning) - CO",
+      "tenure": "He joined BEL in December 1991 and has 34 years of professional experience.",
+      "bio": "Shri Anil Kumar Singh holds a Bachelor of Engineering (Electronics) degree and a Master of Science (Software Systems). He joined BEL in December 1991 and has 34 years of professional experience."
+     },
+     {
+      "name": "Shri Rajashekar G",
+      "role": "General Manager (EWNS) - HYD",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Rajashekar G RRRb Appointment 01.08.2026 HYD 8 . ! 4 ) 4 < R < 0 R = M ^ TT Smt Deepika Gupta R - ^ Rb Appointment 01.08.2026 General Manager (DCCS) - GAD",
+      "tenure": "He joined BEL in June 1994 and has 32 years of professional experience.",
+      "bio": "Shri Rajashekar G holds a Bachelor of Engineering (Electronics and Communication Engineering) degree. He joined BEL in June 1994 and has 32 years of professional experience."
+     },
+     {
+      "name": "Smt Deepika Gupta",
+      "role": "General Manager (DCCS) - GAD Cx.",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Smt Deepika Gupta R - ^ Rb Appointment 01.08.2026 General Manager (DCCS) - GAD Cx.",
+      "tenure": "She joined BEL in March 2000 and has 26 years of professional experience.",
+      "bio": "Smt. Deepika Gupta holds a Bachelor of Engineering (Electronics) degree and a Master of Engineering (Computer Science & Engineering) degree."
+     },
+     {
+      "name": "Shri Hemant Kumar Gupta",
+      "role": "General Manager (Unmanned Systems) - BG Cx.",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Hemant Kumar Gupta R ^ RF Appointment 01.08.2026 Cx. sft Jbl < ' jft . Shri Jagadish Kumar 10 . 4 ^ rRspF (% rf ) General Manager (Chennai)",
+      "tenure": "He joined BEL in October 1998 and has 27 years of professional experience.",
+      "bio": "Shri Hemant Kumar Gupta holds a Bachelor of Engineering (Electronics and Communication) degree, a Master of Technology (Communication Systems) degree, and is a certified Six Sigma Green Belt. He joined BEL in October 1998 and has 27 years of professional experience."
+     },
+     {
+      "name": "Shri Jagadish Kumar G",
+      "role": "General Manager (Chennai)",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Jagadish Kumar 10 . 4 ^ rRspF (% rf ) General Manager (Chennai) R ^ RF Appointment 01.08.2026",
+      "tenure": "He joined BEL in October 1998 and has 27 years of professional experience.",
+      "bio": "Shri Jagadish Kumar G holds a Bachelor of Engineering (Electronics & Communication) degree. He joined BEL in October 1998 and has 27 years of professional experience."
+     },
+     {
+      "name": "Shri Manish Kumar Chetiya",
+      "role": "General Manager (Panchkula)",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Shri Manish Kumar Chetiya 11 . 4 $ IMd 3 Rb ( T 4 ^ TT ) General Manager (Panchkula) R ^ RF Appointment 01.08.2026",
+      "tenure": "He joined BEL in August 1992 and has 33 years of professional experience.",
+      "bio": "Shri Manish Kumar Chetiya holds a Bachelor of Engineering (Electronics) degree. He joined BEL in August 1992 and has 33 years of professional experience."
+     },
+     {
+      "name": "Smt Mini Nair S",
+      "role": "General Manager (NS/S & CS) - BG Cx.",
+      "change": "joined",
+      "effective_date": "01.08.2026",
+      "evidence": "Smt Mini Nair S R ^ Rb 01.08.2026 Appointment cbl 4 ' HMeh R ^ 3 FF ( X ^ T TR 4 ) 4 , 4 ) - ^ 4 ^ 4 4 $ 4 Executive Director (S & CS) - BG Cx.",
+      "tenure": "She joined BEL in December 1991 and has 34 years of professional experience.",
+      "bio": "Smt. Mini Nair S holds a Bachelor of Engineering (Electronics) degree and is a Certified Six Sigma Black Belt and Project Management Professional (PMP)."
+     },
+     {
+      "name": "K Kumar",
+      "role": "K Kumar (Retd.)",
+      "change": "left",
+      "effective_date": "31.07.2026",
+      "evidence": "K Kumar srRdRVii Superannuation 4 > 4 IS < 31.07.2026",
+      "tenure": null,
+      "bio": null
+     }
+    ],
+    "dropped": 1
    }
   },
   {
@@ -12818,7 +13092,7 @@
       "effective_date": "5th May, 2027",
       "evidence": "Re-appointment of Mr. Atul B. Lall (DIN No. 00781436) as Managing Director of the Company for a further period of 5 (five) years with effect from 5 th May, 2027 until 4 th May, 2032 along with his remuneration, subject to approval of the shareholders of the Company.",
       "tenure": "for a further period of 5 (five) years with effect from 5 th May, 2027 until 4 th May, 2032",
-      "bio": null
+      "bio": "Mr. Atul B. Lall holds a master degree in management studies from Birla Institute of Technology and Science, Pilani and has been leading Dixon Technologies (India) Limited (“Dixon”) since foundation and built it to its current leadership position in the EMS Industry."
      }
     ],
     "dropped": 0
@@ -14386,31 +14660,7 @@
    "category": "management_change",
    "tier": "Note",
    "rule": "mgmt_reappoint",
-   "basis": "title",
-   "card": {
-    "type": "management",
-    "people": [
-     {
-      "name": "Dr. Sameer Sharma",
-      "role": "Director (Non-Executive Independent Director)",
-      "change": "joined",
-      "effective_date": "May 23, 2026",
-      "evidence": "Appointment of Dr. Sameer Sharma (DIN: 02749958) as Director (Non-Executive Independent Director) of the Company with effect from May 23, 2026, for a term of five consecutive years.",
-      "tenure": null,
-      "bio": null
-     },
-     {
-      "name": "Mr. Mudit Aggarwal",
-      "role": "Independent Director",
-      "change": "reappointed",
-      "effective_date": "August 14, 2026",
-      "evidence": "Re-appointment of Mr. Mudit Aggarwal (DIN: 07374870) as an Independent Director of the Company for second and final term of 5 years w.e.f. August 14, 2026 i.e. immediately after the expiry of his current term on August 13, 2026.",
-      "tenure": "Re-appointed as a Non-Executive Independent Director of the Company for second and final term of 5 years w.e.f. August 14, 2026, i.e. immediately after expiry of his current term on August 13, 2026 till August 13, 2031.",
-      "bio": null
-     }
-    ],
-    "dropped": 0
-   }
+   "basis": "title"
   },
   {
    "id": "0b3ff397b61a",
@@ -30841,8 +31091,8 @@
     "pct": 1.11,
     "volx": 0.78,
     "filings": [
-     "0999a205dd50",
-     "d3688a376297"
+     "d3688a376297",
+     "0999a205dd50"
     ],
     "explained": true
    },
@@ -37565,12 +37815,10 @@
   ]
  },
  "llm_usage": {
-  "calls": 12,
-  "cached": 28,
-  "prompt_tokens": 52806,
-  "completion_tokens": 6745,
-  "by_model": {
-   "gemini-3.5-flash-lite": 12
-  }
+  "calls": 0,
+  "cached": 39,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "by_model": {}
  }
 }

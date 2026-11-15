@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { Brief as BriefT, Filing, Line, MgmtCard, MoveRow, PromiseFile, ResultsCard } from "@/lib/types";
 import { CATEGORY_LABEL, cleanTitle, day, fyq, IST, when } from "@/lib/format";
 import { useDeviceState } from "@/lib/device";
+import ThesisEditor, { checkThesis, type ThesisLine } from "./ThesisEditor";
 import { breachLead, cleanName, filingLead, isBoiler, moveLead, noteText, promiseLink, sentenceCase, shortName, tidy, tidyProse, tidyRole } from "@/lib/lead";
 
 const WINDOWS = [
@@ -64,7 +65,15 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
   const actGroups = useMemo(() => actGroupsFor(brief, asOf, win), [brief, asOf, win]);
   const note = filings.filter((f) => f.tier === "Note");
   const routine = filings.filter((f) => f.tier === "Routine");
-  const breaches = brief.stocks.filter((s) => s.thesis.status === "breach");
+  // Thesis lines: defaults from the pipeline, overridden per device; re-checked here instantly.
+  const [overrides, setOverrides] = useDeviceState<Record<string, ThesisLine>>("finn.thesis.v1", {});
+  const [editing, setEditing] = useState(false);
+  const lineFor = (st: (typeof brief.stocks)[number]): ThesisLine => overrides[st.symbol] ?? { why: st.thesis.why, metric: st.thesis.metric, op: st.thesis.op, value: st.thesis.value };
+  const theses = brief.stocks.map((st) => {
+    const l = lineFor(st);
+    return { ...st, thesis: Number.isFinite(l.value) ? checkThesis(st, l) : { ...st.thesis, ...l, status: "n/a" as const } };
+  });
+  const breaches = theses.filter((s) => s.thesis.status === "breach");
 
   const rowsInWin = Object.entries(brief.moves).flatMap(([sym, rows]) => rows.filter((r) => inWin(r.date)).map((r) => ({ sym, ...r })));
   const moves = rowsInWin
@@ -111,7 +120,11 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
       </header>
 
       {/* Thesis */}
-      <Section label="Off thesis" right={breaches.length ? `${breaches.length} of ${brief.stocks.length}` : undefined}>
+      <Section label="Off thesis" right={
+        <span className="num text-[12px] text-[var(--muted)]">
+          {breaches.length ? `${breaches.length} of ${brief.stocks.length} · ` : ""}<button onClick={() => setEditing(true)} className="link text-[var(--ink)]">Edit lines</button>
+        </span>
+      }>
         {breaches.length === 0 && <Empty>All {brief.stocks.length} holdings are on thesis.</Empty>}
         {(allBreaches ? breaches : breaches.slice(0, 3)).map((s) => (
           <Item key={s.symbol}>
@@ -127,6 +140,16 @@ export default function Brief({ brief, promises, onOpenStock }: { brief: BriefT;
           <More onClick={() => setAllBreaches((v) => !v)}>{allBreaches ? "Show fewer" : `${breaches.length - 3} more off thesis`}</More>
         )}
       </Section>
+
+      {editing && (
+        <ThesisEditor
+          stocks={brief.stocks}
+          lines={Object.fromEntries(brief.stocks.map((st) => [st.symbol, lineFor(st)]))}
+          onChange={(sym, l) => setOverrides((o) => ({ ...o, [sym]: l }))}
+          onReset={(sym) => setOverrides((o) => { const n = { ...o }; delete n[sym]; return n; })}
+          onClose={() => setEditing(false)}
+        />
+      )}
 
       {/* Act */}
       <Section label="Act on" right={total ? (handled.length ? `${n} open · ${handled.length} done` : String(n)) : undefined}>

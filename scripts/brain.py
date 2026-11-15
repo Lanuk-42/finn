@@ -150,6 +150,9 @@ def main():
         stocks.append({
             "symbol": sym, "name": p["name"], "sector": p["sector"], "cap": p["cap"],
             "thesis": results.thesis_check(p["thesis"], scr.get("quarters")),
+            # every thesis metric for the latest quarter, so the on-device thesis editor can re-check instantly
+            "metrics": {m: results.metric_value(scr.get("quarters"), m)[0] for m in results.METRIC_LABEL},
+            "metrics_quarter": results.metric_value(scr.get("quarters"), "ebitda_margin")[1],
             "close": last["close"], "date": last["date"],
             "day_pct": round((last["close"] - prev["close"]) / prev["close"] * 100, 2),
             "screener_variant": scr.get("variant"),

@@ -35,6 +35,7 @@ export interface Thesis {
 export interface Stock {
   symbol: string; name: string; sector: string; cap: string; thesis: Thesis;
   close: number; date: string; day_pct: number;
+  metrics?: Record<string, number | null>; metrics_quarter?: string | null;
 }
 
 export interface MoveRow { date: string; close: number; pct: number; volx: number | null; filings: string[]; explained: boolean }
