@@ -19,7 +19,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
   return (
     <>
       {T && (
-        <section className="mt-9">
+        <section id="src-trajectory" className="mt-9 scroll-mt-4">
           <Head label="Five-year trajectory" right={`${T.years[0]}–${T.years[T.years.length - 1]}`} />
           <p className="serif mt-3 text-[18px] leading-[1.3]">{fill(T.lead)}</p>
           <div className="mt-3 overflow-x-auto">
@@ -27,14 +27,14 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
               <thead>
                 <tr className="text-[11px] uppercase tracking-[0.08em] text-[var(--faint)]">
                   <th className="pb-1 text-left font-medium">₹ crore</th>
-                  {T.years.map((y) => <th key={y} className="pb-1 text-right font-medium">{y}</th>)}
+                  {T.years.map((y) => <th key={y} className="pb-1 pl-2 text-right font-medium">{y}</th>)}
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Revenue</td>{T.revenue.map((v, i) => <td key={i} className={`py-1.5 text-right ${i === T.revenue.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
-                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Profit</td>{T.pat.map((v, i) => <td key={i} className={`py-1.5 text-right ${v != null && v < 0 ? "text-[var(--accent)]" : ""} ${i === T.pat.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
+                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Revenue</td>{T.revenue.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${i === T.revenue.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
+                <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Profit</td>{T.pat.map((v, i) => <td key={i} className={`py-1.5 pl-2 text-right ${v != null && v < 0 ? "text-[var(--accent)]" : ""} ${i === T.pat.length - 1 ? "font-semibold" : ""}`}>{n0(v)}</td>)}</tr>
                 {T.opm.some((v) => v != null) && (
-                  <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Op. margin</td>{T.opm.map((v, i) => <td key={i} className="py-1.5 text-right text-[var(--ink-2)]">{v == null ? "—" : `${Math.round(v)}%`}</td>)}</tr>
+                  <tr className="border-t rule"><td className="py-1.5 text-[13px] text-[var(--muted)]">Op. margin</td>{T.opm.map((v, i) => <td key={i} className="py-1.5 pl-2 text-right text-[var(--ink-2)]">{v == null ? "—" : `${Math.round(v)}%`}</td>)}</tr>
                 )}
               </tbody>
             </table>
@@ -42,7 +42,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
         </section>
       )}
 
-      <section className="mt-9">
+      <section id="src-cash" className="mt-9 scroll-mt-4">
         <Head label="Cash quality" right={C ? (C.basis === "ebitda" ? "operating cash ÷ operating profit" : "operating cash ÷ profit") : undefined} />
         {x.isLender && <p className="serif mt-3 text-[17px] leading-snug text-[var(--ink-2)]">Not meaningful for a lender: its operating cash flow is mostly deposits and loans moving through the book.</p>}
         {C && (
@@ -62,7 +62,7 @@ export default function ExtrasView({ x, name }: { x: Extras; name: string }) {
         {!C && !x.isLender && <p className="serif mt-3 text-[17px] text-[var(--ink-2)]">Cash-flow history isn’t published for this company.</p>}
       </section>
 
-      <section className="mt-9">
+      <section id="src-balance" className="mt-9 scroll-mt-4">
         <Head label="Balance sheet" right={B ? `as of ${B.asOf}` : undefined} />
         {x.isLender && <p className="serif mt-3 text-[17px] leading-snug text-[var(--ink-2)]">Debt-to-equity and working-capital days don’t apply to a lender; deposits and borrowings are its raw material.</p>}
         {B && (

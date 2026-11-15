@@ -9,6 +9,9 @@ import type { Pattern, Promise_, PromiseFile, Snapshot, Stock } from "@/lib/type
 import { day, fyq, when } from "@/lib/format";
 import { StaleTag } from "./Brief";
 import ExtrasView from "./Extras";
+import BullBear from "./BullBear";
+import { checkThesis, type ThesisLine } from "./ThesisEditor";
+import { useDeviceState } from "@/lib/device";
 import { fillName, actualText, isBad, promiseTitle, shortName, snapshotLead, targetText, trackerLead, verdictLabel } from "@/lib/lead";
 
 export default function Research({ promises, stocks, patterns = [], asOf, initial, tour = 0, onTour, onSkipTour }: {
@@ -43,6 +46,10 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
 
   const pf = promises.find((p) => p.symbol === ticker);
   const portfolio = stocks.find((s) => s.symbol === ticker);
+  // Your thesis line, with any edit saved on this device (same store as the Brief's editor).
+  const [overrides] = useDeviceState<Record<string, ThesisLine>>("finn.thesis.v1", {});
+  const held = portfolio && overrides[portfolio.symbol] && Number.isFinite(overrides[portfolio.symbol].value)
+    ? { ...portfolio, thesis: checkThesis(portfolio, overrides[portfolio.symbol]) } : portfolio;
   const name = shortName(snap?.ok && snap.symbol !== ticker ? snap.symbol : ticker, portfolio?.name ?? (snap?.ok ? snap.name : undefined));
   const go = (t: string) => { const s = t.trim().toUpperCase(); if (s) { setTicker(s); setInput(""); if (tour === 3) onSkipTour?.(); } };
   useEffect(() => { if (tour === 3) { window.scrollTo({ top: 0, behavior: "smooth" }); inputRef.current?.focus(); } }, [tour]);
@@ -77,9 +84,18 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
         {snap?.ok ? snap.name?.replace(/\s*\(searched.*\)$/, "") : portfolio?.name ?? ticker}
       </h1>
       <p className="label mt-1">{ticker}{portfolio ? ` · ${portfolio.sector} · ${portfolio.cap} cap` : ""}</p>
+      {held && held.thesis.status !== "n/a" && (
+        <p id="src-thesis" className="mt-3 scroll-mt-4 text-[14px] leading-snug text-[var(--ink-2)]">
+          <span className="label !text-[10px]">Your thesis · </span>{held.thesis.rule.replace(">=", "≥").replace("<=", "≤")}:{" "}
+          <span className={`num font-semibold ${held.thesis.status === "breach" ? "text-[var(--accent)]" : ""}`}>{held.thesis.actual}%</span>
+          {held.thesis.quarter ? ` in ${fyq(held.thesis.quarter)}` : ""}{held.thesis.status === "breach" ? " (broken)" : " (holding)"}
+        </p>
+      )}
+
+      {!loading && <BullBear name={name} snap={snap} pf={pf} patterns={patterns.filter((p) => p.symbol === ticker)} stock={held} />}
 
       {patterns.filter((p) => p.symbol === ticker).length > 0 && (
-        <section className="mt-7">
+        <section id="src-patterns" className="mt-7 scroll-mt-4">
           <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
             <h2 className="label !text-[var(--ink)]">Filing patterns</h2>
             <span className="num text-[12px] text-[var(--muted)]">180 days to {day(asOf)}</span>
@@ -103,7 +119,7 @@ export default function Research({ promises, stocks, patterns = [], asOf, initia
       <AskBar ticker={ticker} name={name} />
 
 
-      <section className="mt-9">
+      <section id="src-latest" className="mt-9 scroll-mt-4">
         <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
           <h2 className="label shrink-0 whitespace-nowrap !text-[var(--ink)]">Latest quarter</h2>
           {snap?.ok && snap.latest && (
@@ -159,7 +175,7 @@ function Tracker({ pf, name }: { pf: PromiseFile; name: string }) {
   const calls = pf.transcripts.filter((t) => t.status === "ok").map((t) => t.quarter).reverse();
 
   return (
-    <section className="mt-7">
+    <section id="src-promises" className="mt-7 scroll-mt-4">
       <div className="flex items-baseline justify-between border-b border-[var(--rule-strong)] pb-1.5">
         <h2 className="label !text-[var(--ink)]">Promises vs delivery</h2>
         <span className="num text-[12px] text-[var(--muted)]">{calls.length} calls · as of {day(pf.generated_at)}</span>
@@ -337,7 +353,7 @@ function SnapshotBody({ s, name }: { s: Snapshot; name: string }) {
       </table>
 
       {ratios.length > 0 && (
-        <dl className="num mt-5 grid grid-cols-3 border-t rule">
+        <dl id="src-ratios" className="num mt-5 grid scroll-mt-4 grid-cols-3 border-t rule">
           {ratios.map(([k, label]) => (
             <div key={k} className="border-b rule py-2 pr-2">
               <dt className="text-[11px] uppercase tracking-[0.08em] text-[var(--faint)]">{label}</dt>

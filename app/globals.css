@@ -48,3 +48,7 @@ body {
 .link { text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; }
 .link:hover { text-decoration-color: var(--ink); }
 input[type="range"] { accent-color: var(--ink); }
+
+/* Bull vs bear: the section a point cites flashes briefly when you jump to it */
+.src-flash { animation: src-flash 1.6s ease-out; }
+@keyframes src-flash { 0%, 30% { background: color-mix(in srgb, var(--accent) 10%, transparent); } 100% { background: transparent; } }
