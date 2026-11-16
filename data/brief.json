@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-15T23:15:03+05:30",
- "data_as_of": "2026-11-15T21:57:12+05:30",
- "latest_trading_day": "2026-11-13",
+ "generated_at": "2026-11-17T04:30:02+05:30",
+ "data_as_of": "2026-11-17T04:30:02+05:30",
+ "latest_trading_day": "2026-11-16",
  "fetch": {
   "RELIANCE": {
    "announcements": "bse_api",
@@ -127,9 +127,9 @@
     "pat_yoy": 33.8
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1339.7,
-   "date": "2026-11-13",
-   "day_pct": 0.0,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -155,9 +155,9 @@
     "pat_yoy": 5.8
    },
    "metrics_quarter": "Sep 2026",
-   "close": 804.0,
-   "date": "2026-11-13",
-   "day_pct": -1.02,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -183,9 +183,9 @@
     "pat_yoy": 14.9
    },
    "metrics_quarter": "Sep 2026",
-   "close": 2407.5,
-   "date": "2026-11-13",
-   "day_pct": -1.43,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -211,9 +211,9 @@
     "pat_yoy": -36.2
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1880.0,
-   "date": "2026-11-13",
-   "day_pct": -0.27,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -239,9 +239,9 @@
     "pat_yoy": 6.6
    },
    "metrics_quarter": "Sep 2026",
-   "close": 2550.0,
-   "date": "2026-11-13",
-   "day_pct": 0.53,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -267,9 +267,9 @@
     "pat_yoy": -44.9
    },
    "metrics_quarter": "Sep 2026",
-   "close": 12798.0,
-   "date": "2026-11-13",
-   "day_pct": -1.49,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -295,9 +295,9 @@
     "pat_yoy": 42.9
    },
    "metrics_quarter": "Sep 2026",
-   "close": 7904.0,
-   "date": "2026-11-13",
-   "day_pct": -2.18,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -323,9 +323,9 @@
     "pat_yoy": -25.3
    },
    "metrics_quarter": "Sep 2026",
-   "close": 6003.0,
-   "date": "2026-11-13",
-   "day_pct": -0.45,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -351,9 +351,9 @@
     "pat_yoy": 234.5
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1594.4,
-   "date": "2026-11-13",
-   "day_pct": -1.9,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -379,9 +379,9 @@
     "pat_yoy": 20.0
    },
    "metrics_quarter": "Sep 2026",
-   "close": 195.69,
-   "date": "2026-11-13",
-   "day_pct": -1.1,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "standalone"
   },
   {
@@ -407,9 +407,9 @@
     "pat_yoy": 19.7
    },
    "metrics_quarter": "Sep 2026",
-   "close": 400.85,
-   "date": "2026-11-13",
-   "day_pct": -0.98,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -435,9 +435,9 @@
     "pat_yoy": -22.2
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1980.3,
-   "date": "2026-11-13",
-   "day_pct": -1.72,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -463,9 +463,9 @@
     "pat_yoy": 40.5
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1850.0,
-   "date": "2026-11-13",
-   "day_pct": -0.64,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -491,9 +491,9 @@
     "pat_yoy": -26.4
    },
    "metrics_quarter": "Sep 2026",
-   "close": 12854.0,
-   "date": "2026-11-13",
-   "day_pct": -1.31,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -519,9 +519,9 @@
     "pat_yoy": 25.5
    },
    "metrics_quarter": "Sep 2026",
-   "close": 3165.2,
-   "date": "2026-11-13",
-   "day_pct": -0.47,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -547,9 +547,9 @@
     "pat_yoy": 6.3
    },
    "metrics_quarter": "Sep 2026",
-   "close": 5155.1,
-   "date": "2026-11-13",
-   "day_pct": -1.96,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -575,9 +575,9 @@
     "pat_yoy": -21.3
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1344.3,
-   "date": "2026-11-13",
-   "day_pct": 3.54,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   },
   {
@@ -603,13 +603,117 @@
     "pat_yoy": 6.2
    },
    "metrics_quarter": "Sep 2026",
-   "close": 1497.9,
-   "date": "2026-11-13",
-   "day_pct": -1.77,
+   "close": NaN,
+   "date": "2026-11-16",
+   "day_pct": NaN,
    "screener_variant": "consolidated"
   }
  ],
  "filings": [
+  {
+   "id": "a770a9aaf8eb",
+   "symbol": "DIXON",
+   "ts": "2026-11-16T20:11:55+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Memorandum of Understanding /Agreements",
+   "headline": "Announcement under Regulation 30 of SEBI LODR- Dixon Technologies (India) Limited executed an Asset Purchase Agreement with Vimal Plast (India) Private Limited",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/7c441734-0d84-47ac-8fef-831908ec674d.pdf",
+   "source": "bse_api",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "no_material_keyword",
+   "basis": "none"
+  },
+  {
+   "id": "bfdd3a681cab",
+   "symbol": "RELIANCE",
+   "ts": "2026-11-16T19:23:41+05:30",
+   "title": "Update On Institutional Investors'' Meeting - CLSA India Forum",
+   "headline": "This is further to the disclosure dated November 6, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - CLSA ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c3e0b430-7329-4925-8c6f-a9a1967bc0f9.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "92ae38ee6abf",
+   "symbol": "GRAVITA",
+   "ts": "2026-11-16T18:46:48+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "headline": "This is further to the disclosure dated 05th November, 2026 made by the Company. We wish to inform you that the Company's executives participated in the Institutional Investor's Meeting ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/0204778f-1a8f-4cf7-948f-c20ca0611dad.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "2f81bc21bfc9",
+   "symbol": "POLYCAB",
+   "ts": "2026-11-16T17:52:59+05:30",
+   "title": "Announcement Under Regulation 30 (LODR) - Analyst(S) / Investor(S) Meet - Intimation",
+   "headline": "Intimation of Institutional Analyst(s)/Investor(s) meet",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f81a8e9b-2133-4827-9a7e-7e82fa7ee92b.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "5edfa6292f7d",
+   "symbol": "DIXON",
+   "ts": "2026-11-16T17:43:16+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "headline": "Pursuant to the provisions of Regulations 30 and 46 of the SEBI (Listing Obligations and Disclosure Requirements) Regulations, 2015 read with Para A of Part A of Schedule III of the said ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/9f32b982-5393-4f42-a661-adcbc5db6d12.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "12dfce21e826",
+   "symbol": "TRENT",
+   "ts": "2026-11-16T16:58:41+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Credit Rating",
+   "headline": "Please find enclosed the credit rating pursuant to regulation 30 of SEBI Listing Regulations 2015.",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4c31e194-fe41-4e54-9862-fdda5efccb7b.pdf",
+   "source": "bse_api",
+   "category": "credit_rating",
+   "tier": "Routine",
+   "rule": "rating_other",
+   "basis": "title"
+  },
+  {
+   "id": "9e13fdd24683",
+   "symbol": "LUPIN",
+   "ts": "2026-11-16T13:05:21+05:30",
+   "title": "Shareholder Meeting / Postal Ballot-Notice of Postal Ballot",
+   "headline": "Notice of Postal Ballot dated November 03, 2026, along with Explanatory Statement.",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/d9725973-4a86-46f7-ba2a-aceaf8eee3e0.pdf",
+   "source": "bse_api",
+   "category": "postal_ballot",
+   "tier": "Routine",
+   "rule": "voting_results",
+   "basis": "title"
+  },
+  {
+   "id": "b79c43a3e6d5",
+   "symbol": "POLYCAB",
+   "ts": "2026-11-16T11:25:15+05:30",
+   "title": "Announcement Under Regulation 30 (LODR) - Analyst(S) / Investor(S) Meet - Intimation",
+   "headline": "Intimation of Institutional Analyst(s)/Investor(s) meet",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/a5d2906c-bc39-4fc9-8d6c-821f2f1c8789.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
   {
    "id": "d55f2bfeb496",
    "symbol": "BEL",
@@ -22595,16 +22699,6 @@
  "moves": {
   "RELIANCE": [
    {
-    "date": "2026-07-07",
-    "close": 1308.4,
-    "pct": -0.98,
-    "volx": 0.97,
-    "filings": [
-     "2620996fa750"
-    ],
-    "explained": true
-   },
-   {
     "date": "2026-07-08",
     "close": 1275.9,
     "pct": -2.48,
@@ -23494,17 +23588,20 @@
      "be9791204a11"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.35,
+    "filings": [
+     "be9791204a11",
+     "bfdd3a681cab"
+    ],
+    "explained": false
    }
   ],
   "HDFCBANK": [
-   {
-    "date": "2026-07-07",
-    "close": 829.3,
-    "pct": -0.07,
-    "volx": 1.59,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 810.3,
@@ -24385,19 +24482,19 @@
      "8a75e249d559"
     ],
     "explained": true
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.69,
+    "filings": [
+     "8a75e249d559"
+    ],
+    "explained": false
    }
   ],
   "TCS": [
-   {
-    "date": "2026-07-07",
-    "close": 2096.1,
-    "pct": 1.87,
-    "volx": 1.03,
-    "filings": [
-     "8ce868596814"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 2057.5,
@@ -25295,23 +25392,17 @@
     "volx": 0.63,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.37,
+    "filings": [],
+    "explained": false
    }
   ],
   "SUNPHARMA": [
-   {
-    "date": "2026-07-07",
-    "close": 1903.4,
-    "pct": -0.49,
-    "volx": 1.05,
-    "filings": [
-     "cef71102559d",
-     "dd025de6f0f2",
-     "3c0b7b93d414",
-     "d027ed17872c",
-     "9fd5e274bc8e"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-08",
     "close": 1888.2,
@@ -26191,19 +26282,17 @@
     "volx": 0.88,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.56,
+    "filings": [],
+    "explained": false
    }
   ],
   "ASIANPAINT": [
-   {
-    "date": "2026-07-07",
-    "close": 2731.4,
-    "pct": -0.85,
-    "volx": 0.36,
-    "filings": [
-     "9526faa0981e"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 2665.9,
@@ -27106,17 +27195,17 @@
     "volx": 0.56,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 1.06,
+    "filings": [],
+    "explained": false
    }
   ],
   "DIXON": [
-   {
-    "date": "2026-07-07",
-    "close": 13242.0,
-    "pct": -0.47,
-    "volx": 1.33,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 12934.0,
@@ -28023,20 +28112,20 @@
     "volx": 0.5,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.57,
+    "filings": [
+     "5edfa6292f7d",
+     "a770a9aaf8eb"
+    ],
+    "explained": false
    }
   ],
   "POLYCAB": [
-   {
-    "date": "2026-07-07",
-    "close": 9401.0,
-    "pct": -1.91,
-    "volx": 0.51,
-    "filings": [
-     "f39238c01f15",
-     "3d45abcad51b"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 9234.0,
@@ -28914,20 +29003,20 @@
     "volx": 1.1,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.58,
+    "filings": [
+     "b79c43a3e6d5",
+     "2f81bc21bfc9"
+    ],
+    "explained": false
    }
   ],
   "PERSISTENT": [
-   {
-    "date": "2026-07-07",
-    "close": 4884.8,
-    "pct": 3.58,
-    "volx": 1.28,
-    "filings": [
-     "8cef838d215c",
-     "42a799a81bba"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-08",
     "close": 4769.5,
@@ -29881,20 +29970,17 @@
     "volx": 0.44,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.38,
+    "filings": [],
+    "explained": false
    }
   ],
   "DEEPAKNTR": [
-   {
-    "date": "2026-07-07",
-    "close": 1613.1,
-    "pct": 0.68,
-    "volx": 0.99,
-    "filings": [
-     "fcec307335c5",
-     "2d15b441a780"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 1571.3,
@@ -30703,17 +30789,17 @@
     "volx": 0.25,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.29,
+    "filings": [],
+    "explained": false
    }
   ],
   "CAMPUS": [
-   {
-    "date": "2026-07-07",
-    "close": 231.4,
-    "pct": -0.75,
-    "volx": 0.39,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 229.89,
@@ -31555,17 +31641,17 @@
      "24ff5d91cbec"
     ],
     "explained": true
-   }
-  ],
-  "BEL": [
+   },
    {
-    "date": "2026-07-07",
-    "close": 419.15,
-    "pct": -1.5,
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
     "volx": 0.58,
     "filings": [],
     "explained": false
-   },
+   }
+  ],
+  "BEL": [
    {
     "date": "2026-07-08",
     "close": 407.6,
@@ -32407,19 +32493,19 @@
      "d55f2bfeb496"
     ],
     "explained": true
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.63,
+    "filings": [
+     "d55f2bfeb496"
+    ],
+    "explained": true
    }
   ],
   "LUPIN": [
-   {
-    "date": "2026-07-07",
-    "close": 2490.2,
-    "pct": -0.06,
-    "volx": 0.85,
-    "filings": [
-     "994a31abbd6f"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 2459.0,
@@ -33310,24 +33396,19 @@
      "2a1aad814714"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.59,
+    "filings": [
+     "9e13fdd24683"
+    ],
+    "explained": false
    }
   ],
   "CHOLAFIN": [
-   {
-    "date": "2026-07-07",
-    "close": 1853.4,
-    "pct": 0.16,
-    "volx": 1.07,
-    "filings": [
-     "3617ee27f404",
-     "07bcf2a063d3",
-     "c4892a790d38",
-     "8dd6c8febbcb",
-     "46bd4a1f69cb",
-     "0312d6554316"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-08",
     "close": 1769.4,
@@ -34157,19 +34238,17 @@
     "volx": 0.99,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.8,
+    "filings": [],
+    "explained": false
    }
   ],
   "MARUTI": [
-   {
-    "date": "2026-07-07",
-    "close": 14538.0,
-    "pct": 0.57,
-    "volx": 0.93,
-    "filings": [
-     "fb3a9a774b76"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-08",
     "close": 13951.0,
@@ -35057,19 +35136,17 @@
      "4cf4dab777ef"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 1.18,
+    "filings": [],
+    "explained": false
    }
   ],
   "TRENT": [
-   {
-    "date": "2026-07-07",
-    "close": 2927.8,
-    "pct": -12.44,
-    "volx": 4.92,
-    "filings": [
-     "7b44296e9c55"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 2924.0,
@@ -35876,17 +35953,20 @@
      "0ebc9f50d850"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.43,
+    "filings": [
+     "0ebc9f50d850",
+     "12dfce21e826"
+    ],
+    "explained": false
    }
   ],
   "JKCEMENT": [
-   {
-    "date": "2026-07-07",
-    "close": 5395.0,
-    "pct": -1.38,
-    "volx": 0.49,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 5332.0,
@@ -36705,17 +36785,17 @@
      "62b5df12e4b9"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 1.13,
+    "filings": [],
+    "explained": false
    }
   ],
   "SAFARI": [
-   {
-    "date": "2026-07-07",
-    "close": 1610.5,
-    "pct": -0.97,
-    "volx": 4.12,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 1600.5,
@@ -37522,17 +37602,17 @@
     "volx": 0.59,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.93,
+    "filings": [],
+    "explained": false
    }
   ],
   "GRAVITA": [
-   {
-    "date": "2026-07-07",
-    "close": 1787.4,
-    "pct": 0.91,
-    "volx": 1.36,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-08",
     "close": 1727.9,
@@ -38462,6 +38542,19 @@
      "a7b2cd1c6c9a"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-16",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.78,
+    "filings": [
+     "883080d465bc",
+     "afcaa9cdcca4",
+     "a7b2cd1c6c9a",
+     "92ae38ee6abf"
+    ],
+    "explained": false
    }
   ]
  },
@@ -38511,7 +38604,7 @@
    "symbol": "ASIANPAINT",
    "kind": "pledging",
    "severity": "flag",
-   "lead": "{name}: 6 promoter pledge disclosures in the last 90 days (more than the 5 before); 9 new pledges, 2 releases, so promoters are pledging more.",
+   "lead": "{name}: 5 promoter pledge disclosures in the last 90 days (fewer than the 6 before); 9 new pledges, 1 release, so promoters are pledging more.",
    "filings": [
     "f29aab1bd8fb",
     "e7f96875de88",
@@ -38526,10 +38619,10 @@
     "cda7c57164e0"
    ],
    "counts": {
-    "recent": 6,
-    "before": 5,
+    "recent": 5,
+    "before": 6,
     "creation": 9,
-    "release": 2,
+    "release": 1,
     "invocation": 0
    }
   },

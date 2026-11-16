@@ -1,18 +1,18 @@
 {
- "run_at": "2026-11-15T21:56:00+05:30",
+ "run_at": "2026-11-17T04:28:53+05:30",
  "stocks": {
   "RELIANCE": {
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
     "variant": "consolidated",
     "last_quarter": "Sep 2026",
-    "concalls_with_transcript": 20
+    "concalls_with_transcript": 19
    },
    "announcements": {
     "path": [
@@ -24,18 +24,18 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 99
+      "n": 97
      }
     ],
-    "stored_total": 99
+    "stored_total": 100
    }
   },
   "HDFCBANK": {
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -53,7 +53,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 82
+      "n": 80
      }
     ],
     "stored_total": 82
@@ -63,8 +63,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -92,8 +92,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -111,7 +111,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 81
+      "n": 80
      }
     ],
     "stored_total": 82
@@ -121,8 +121,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -150,8 +150,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -172,44 +172,15 @@
       "n": 86
      }
     ],
-    "stored_total": 86
+    "stored_total": 88
    }
   },
   "POLYCAB": {
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
-   },
-   "screener": {
-    "ok": true,
-    "variant": "consolidated",
-    "last_quarter": "Sep 2026",
-    "concalls_with_transcript": 35
-   },
-   "announcements": {
-    "path": [
-     {
-      "source": "nse_api",
-      "ok": false,
-      "error": "NSE homepage HTTP 403"
-     },
-     {
-      "source": "bse_api",
-      "ok": true,
-      "n": 85
-     }
-    ],
-    "stored_total": 85
-   }
-  },
-  "PERSISTENT": {
-   "prices": {
-    "ok": true,
-    "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -227,7 +198,36 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 155
+      "n": 85
+     }
+    ],
+    "stored_total": 87
+   }
+  },
+  "PERSISTENT": {
+   "prices": {
+    "ok": true,
+    "source": "yfinance",
+    "n": 125,
+    "last": "2026-11-16"
+   },
+   "screener": {
+    "ok": true,
+    "variant": "consolidated",
+    "last_quarter": "Sep 2026",
+    "concalls_with_transcript": 34
+   },
+   "announcements": {
+    "path": [
+     {
+      "source": "nse_api",
+      "ok": false,
+      "error": "NSE homepage HTTP 403"
+     },
+     {
+      "source": "bse_api",
+      "ok": true,
+      "n": 151
      }
     ],
     "stored_total": 155
@@ -237,8 +237,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -266,8 +266,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -285,7 +285,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 61
+      "n": 59
      }
     ],
     "stored_total": 61
@@ -295,8 +295,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -314,7 +314,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 55
+      "n": 51
      }
     ],
     "stored_total": 55
@@ -324,8 +324,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -343,18 +343,18 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 82
+      "n": 81
      }
     ],
-    "stored_total": 82
+    "stored_total": 83
    }
   },
   "CHOLAFIN": {
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -382,8 +382,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -411,8 +411,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -430,18 +430,18 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 52
+      "n": 53
      }
     ],
-    "stored_total": 52
+    "stored_total": 53
    }
   },
   "JKCEMENT": {
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -459,7 +459,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 69
+      "n": 67
      }
     ],
     "stored_total": 69
@@ -469,8 +469,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -488,7 +488,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 43
+      "n": 36
      }
     ],
     "stored_total": 43
@@ -498,8 +498,8 @@
    "prices": {
     "ok": true,
     "source": "yfinance",
-    "n": 127,
-    "last": "2026-11-13"
+    "n": 125,
+    "last": "2026-11-16"
    },
    "screener": {
     "ok": true,
@@ -517,12 +517,12 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 111
+      "n": 109
      }
     ],
-    "stored_total": 111
+    "stored_total": 112
    }
   }
  },
- "finished_at": "2026-11-15T21:57:12+05:30"
+ "finished_at": "2026-11-17T04:30:02+05:30"
 }

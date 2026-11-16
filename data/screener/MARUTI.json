@@ -3,12 +3,12 @@
  "name": "Maruti Suzuki India Ltd",
  "about": "The Company was established in 1981. A joint venture agreement was signed between the Government of India and Suzuki Motor Corporation (SMC), Japan in 1982. The Company became a subsidiary of SMC in 2002.It is the market leader in passenger vehicle segment in India. In terms of production volume and sales, the Company is now SMC’s largest subsidiary. SMC currently holds 56.28% of its equity stake. The principal activities of the Company are manufacturing, purchase and sale of motor vehicles, components and spare parts.",
  "ratios": {
-  "Market Cap": "₹ 4,04,133 Cr.",
-  "Current Price": "₹ 12,854",
+  "Market Cap": "₹ 3,95,235 Cr.",
+  "Current Price": "₹ 12,571",
   "High / Low": "₹ 17,372 / 10,984",
-  "Stock P/E": "30.0",
+  "Stock P/E": "29.4",
   "Book Value": "₹ 3,467",
-  "Dividend Yield": "1.09 %",
+  "Dividend Yield": "1.11 %",
   "ROCE": "18.9 %",
   "ROE": "14.3 %",
   "Face Value": "₹ 5.00"
@@ -1021,5 +1021,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/MARUTI/consolidated/",
- "fetched_at": "2026-11-15T21:56:54+05:30"
+ "fetched_at": "2026-11-17T04:29:45+05:30"
 }

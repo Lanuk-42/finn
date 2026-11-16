@@ -3,8 +3,8 @@
  "name": "Gravita India Ltd",
  "about": "Established in 1992, Gravita India Ltd is one of the largest lead producer in India. The company's business is organized across four specialized verticals: Lead Recycling (flagship), Aluminum recycling, Plastic recycling and Turnkey projects. The company also has expertise in the recycling of used batteries, cable scrap/other Lead scrap, Aluminum scrap, Plastic scrap, etc.",
  "ratios": {
-  "Market Cap": "₹ 11,056 Cr.",
-  "Current Price": "₹ 1,498",
+  "Market Cap": "₹ 11,067 Cr.",
+  "Current Price": "₹ 1,499",
   "High / Low": "₹ 1,914 / 1,267",
   "Stock P/E": "27.8",
   "Book Value": "₹ 358",
@@ -994,6 +994,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "ts": "2026-11-16T18:46:48+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0204778f-1a8f-4cf7-948f-c20ca0611dad.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-13T17:41:37+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=852cff02-06be-4c07-857c-a8546a231230.pdf"
@@ -1012,14 +1017,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
    "ts": "2026-11-12T19:09:15+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=671f5355-cd58-4d37-b606-5283993a63f5.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
-   "ts": "2026-11-05T15:26:11+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=22f83118-8dc1-45ed-912a-98dcf61bdfc1.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/GRAVITA/consolidated/",
- "fetched_at": "2026-11-15T21:57:08+05:30"
+ "fetched_at": "2026-11-17T04:29:58+05:30"
 }

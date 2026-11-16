@@ -3,12 +3,12 @@
  "name": "Trent Ltd",
  "about": "Trent Ltd is engaged in retailing of apparels, footwear, accessories, toys, games, food, grocery & non food products through various of its retail formats/ concepts. [1]",
  "ratios": {
-  "Market Cap": "₹ 1,68,779 Cr.",
-  "Current Price": "₹ 3,165",
+  "Market Cap": "₹ 1,70,832 Cr.",
+  "Current Price": "₹ 3,204",
   "High / Low": "₹ 3,400 / 2,184",
-  "Stock P/E": "88.1",
+  "Stock P/E": "89.2",
   "Book Value": "₹ 146",
-  "Dividend Yield": "0.13 %",
+  "Dividend Yield": "0.12 %",
   "ROCE": "28.3 %",
   "ROE": "27.7 %",
   "Face Value": "₹ 1.00"
@@ -882,6 +882,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Credit Rating",
+   "ts": "2026-11-16T16:58:41+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4c31e194-fe41-4e54-9862-fdda5efccb7b.pdf"
+  },
+  {
    "title": "Reminder Letter To Shareholders To Dematerialise The Shares",
    "ts": "2026-11-13T11:25:01+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ce3cb1dd-0d97-4fd3-8c15-78b958145ad4.pdf"
@@ -900,14 +905,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
    "ts": "2026-11-02T13:27:38+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=773ac0af-b53b-4ef9-9866-32dac67c2935.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Investor Presentation",
-   "ts": "2026-10-29T16:39:36+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5634f899-a008-45ab-b930-2b74cf08e566.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/TRENT/consolidated/",
- "fetched_at": "2026-11-15T21:56:58+05:30"
+ "fetched_at": "2026-11-17T04:29:49+05:30"
 }

@@ -3,10 +3,10 @@
  "name": "Persistent Systems Ltd",
  "about": "Persistent Systems provides software engineering and strategy services to help companies implement and modernize their businesses. It has its own software and frameworks with pre-built integration and acceleration [1] . It also has partnership with providers such as Salesforce and AWS [2] .",
  "ratios": {
-  "Market Cap": "₹ 99,550 Cr.",
-  "Current Price": "₹ 6,003",
+  "Market Cap": "₹ 99,144 Cr.",
+  "Current Price": "₹ 5,978",
   "High / Low": "₹ 6,599 / 4,243",
-  "Stock P/E": "53.2",
+  "Stock P/E": "53.0",
   "Book Value": "₹ 544",
   "Dividend Yield": "0.67 %",
   "ROCE": "34.4 %",
@@ -1033,5 +1033,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/PERSISTENT/consolidated/",
- "fetched_at": "2026-11-15T21:56:28+05:30"
+ "fetched_at": "2026-11-17T04:29:20+05:30"
 }

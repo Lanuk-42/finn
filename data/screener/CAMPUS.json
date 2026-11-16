@@ -3,12 +3,12 @@
  "name": "Campus Activewear Ltd",
  "about": "Campus Activewear Limited (“Campus”) was incorporated on September 24, 2008, and is one of India’s largest sports and athleisure footwear brands in terms of value and volume. The company manufactures and distributes a variety of footwear like Running Shoes, Walking Shoes, Casual Shoes, Floaters, Slippers, Flip Flops, and Sandals, available in multiple colors, styles, and at affordable prices. [1]",
  "ratios": {
-  "Market Cap": "₹ 5,982 Cr.",
-  "Current Price": "₹ 196",
+  "Market Cap": "₹ 6,068 Cr.",
+  "Current Price": "₹ 199",
   "High / Low": "₹ 285 / 182",
-  "Stock P/E": "37.8",
+  "Stock P/E": "38.3",
   "Book Value": "₹ 29.9",
-  "Dividend Yield": "0.77 %",
+  "Dividend Yield": "0.76 %",
   "ROCE": "21.2 %",
   "ROE": "18.0 %",
   "Face Value": "₹ 5.00"
@@ -378,9 +378,9 @@
     158.0
    ],
    "EPS in Rs": [
-    1.05,
-    1.34,
-    1.99,
+    1.03,
+    1.32,
+    1.98,
     0.88,
     3.57,
     3.84,
@@ -816,5 +816,5 @@
  ],
  "variant": "standalone",
  "url": "https://www.screener.in/company/CAMPUS/",
- "fetched_at": "2026-11-15T21:56:40+05:30"
+ "fetched_at": "2026-11-17T04:29:30+05:30"
 }

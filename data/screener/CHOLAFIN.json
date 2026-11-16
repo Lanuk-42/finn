@@ -3,7 +3,7 @@
  "name": "Cholamandalam Investment & Finance Company Ltd",
  "about": "Cholamandalam Investment & Finance Company is one of the premier diversified non-banking finance companies in India, engaged in providing vehicle finance, home loans and Loan against property. [1]",
  "ratios": {
-  "Market Cap": "₹ 1,58,662 Cr.",
+  "Market Cap": "₹ 1,58,645 Cr.",
   "Current Price": "₹ 1,850",
   "High / Low": "₹ 1,952 / 1,299",
   "Stock P/E": "25.5",
@@ -778,10 +778,6 @@
    "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=03e53d27-f8de-4137-b133-60b7c346f584.pdf"
   },
   {
-   "period": "Jul 2026",
-   "transcript_url": null
-  },
-  {
    "period": "May 2026",
    "transcript_url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=981e8fad-4008-49a1-aa2d-83d8b10a0fdf.pdf"
   },
@@ -963,5 +959,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/CHOLAFIN/consolidated/",
- "fetched_at": "2026-11-15T21:56:50+05:30"
+ "fetched_at": "2026-11-17T04:29:41+05:30"
 }
