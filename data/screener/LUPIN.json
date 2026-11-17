@@ -3,12 +3,12 @@
  "name": "Lupin Ltd",
  "about": "Lupin is an innovation-led transnational pharmaceutical company headquartered in Mumbai. Lupin develops and commercializes a wide range of branded and generic formulations, biotechnology products, and APIs in over 100 markets in the U.S., India, South Africa, and across the Asia Pacific (APAC), Latin America (LATAM), Europe, and Middle East regions.",
  "ratios": {
-  "Market Cap": "₹ 90,393 Cr.",
-  "Current Price": "₹ 1,977",
+  "Market Cap": "₹ 89,172 Cr.",
+  "Current Price": "₹ 1,950",
   "High / Low": "₹ 2,530 / 1,893",
-  "Stock P/E": "16.0",
+  "Stock P/E": "15.8",
   "Book Value": "₹ 526",
-  "Dividend Yield": "0.91 %",
+  "Dividend Yield": "0.92 %",
   "ROCE": "29.9 %",
   "ROE": "28.7 %",
   "Face Value": "₹ 2.00"
@@ -1042,6 +1042,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "ts": "2026-11-17T14:26:14+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=89239248-e85e-435f-b59c-89c94c3f2b75.pdf"
+  },
+  {
    "title": "Shareholder Meeting / Postal Ballot-Notice of Postal Ballot 16 Nov",
    "ts": "2026-11-16T13:05:21+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d9725973-4a86-46f7-ba2a-aceaf8eee3e0.pdf"
@@ -1060,14 +1065,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
    "ts": "2026-11-05T16:36:13+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c9ad326b-15e5-401d-9ce0-a683c0478077.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
-   "ts": "2026-11-04T21:18:17+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=147a2730-5cfb-4cd5-b239-b93cf25a38e7.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/LUPIN/consolidated/",
- "fetched_at": "2026-11-17T04:29:37+05:30"
+ "fetched_at": "2026-11-18T03:23:21+05:30"
 }

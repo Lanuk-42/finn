@@ -1,6 +1,15 @@
 {
  "RELIANCE": [
   {
+   "ts": "2026-11-17T18:51:02+05:30",
+   "title": "Update On Institutional Investors'' Meeting - JM Financial India Conference",
+   "headline": "This is further to the disclosure dated November 12, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - ....",
+   "category": "Company Update",
+   "subcategory": "General",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/eadec632-3d3c-49bd-8f85-6d26d79a4332.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-16T19:23:41+05:30",
    "title": "Update On Institutional Investors'' Meeting - CLSA India Forum",
    "headline": "This is further to the disclosure dated November 6, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - CLSA ....",
@@ -903,6 +912,24 @@
  ],
  "HDFCBANK": [
   {
+   "ts": "2026-11-17T15:47:31+05:30",
+   "title": "Grant Of Stock Options And Restricted Stock Units Under ESOP/RSU Scheme",
+   "headline": "Grant of stock options and restricted stock units under ESOP/RSU Scheme",
+   "category": "Company Update",
+   "subcategory": "General",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/5f857401-ae59-416d-9fa3-95705fa2e4d0.pdf",
+   "source": "bse_api"
+  },
+  {
+   "ts": "2026-11-17T13:54:37+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "headline": "Allotment of 14,12,278 equity shares pursuant to the exercise of ESOP/RSU.",
+   "category": "Company Update",
+   "subcategory": "Allotment of ESOP / ESPS",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3c252309-6a76-41db-b704-e8c0e51c8d14.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-13T16:30:11+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Change in Directorate",
    "headline": "Re-appointment of Mr. V. Srinivasa Rangan as the Whole-time Director(designated as Executive Director) of HDFC Bank Limited.",
@@ -1642,6 +1669,15 @@
   }
  ],
  "TCS": [
+  {
+   "ts": "2026-11-17T11:00:46+05:30",
+   "title": "Press Release - HFS Research Ranks TCS As A Leader In Agentic Application Management Services",
+   "headline": "Press Release - HFS Research ranks TCS as a leader in agentic application management services",
+   "category": "Company Update",
+   "subcategory": "General",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/6464f590-90c7-40d8-8093-0e700ab95a88.pdf",
+   "source": "bse_api"
+  },
   {
    "ts": "2026-11-09T16:59:25+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
@@ -2464,6 +2500,12 @@
  ],
  "SUNPHARMA": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 5 Nov",
+   "ts": "2026-11-05T15:57:15+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50d58706-f181-4522-8799-b05f65780ce8.pdf",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-05T15:57:15+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "headline": "Intimation of Schedule of Analyst/Institutional Investor Meeting",
@@ -2473,6 +2515,12 @@
    "source": "bse_api"
   },
   {
+   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 4 Nov",
+   "ts": "2026-11-04T19:19:52+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-04T19:19:52+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript",
    "headline": "Q2FY27 Earnings Call Transcript",
@@ -2480,6 +2528,12 @@
    "subcategory": "Earnings Call Transcript",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
    "source": "bse_api"
+  },
+  {
+   "title": "Rumour verification - Regulation 30(11)",
+   "ts": "2026-11-02T20:58:13+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
+   "source": "screener_bse"
   },
   {
    "ts": "2026-11-02T20:58:13+05:30",
@@ -2497,6 +2551,12 @@
    "source": "bse_api"
   },
   {
+   "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
+   "ts": "2026-11-02T14:23:57+05:30",
+   "url": "/company/id/3245/",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-02T14:23:57+05:30",
    "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
    "headline": "The Exchange has sought clarification from Sun Pharmaceutical Industries Ltd on November 2, 2026, with reference to news appeared in https://www.thehindu.com/ dated October 30, 2026 quoting ....",
@@ -2504,6 +2564,12 @@
    "subcategory": "Clarification",
    "url": null,
    "source": "bse_api"
+  },
+  {
+   "title": "Completion And Results Of Postal Ballot Dated 01 October 2026",
+   "ts": "2026-10-31T20:14:03+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
+   "source": "screener_bse"
   },
   {
    "ts": "2026-10-31T20:14:03+05:30",
@@ -8462,6 +8528,15 @@
  ],
  "LUPIN": [
   {
+   "ts": "2026-11-17T14:26:14+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Newspaper Publication regarding the Notice of Postal Ballot and Remote E-Voting.",
+   "category": "Company Update",
+   "subcategory": "Newspaper Publication",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/89239248-e85e-435f-b59c-89c94c3f2b75.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-16T13:05:21+05:30",
    "title": "Shareholder Meeting / Postal Ballot-Notice of Postal Ballot",
    "headline": "Notice of Postal Ballot dated November 03, 2026, along with Explanatory Statement.",
@@ -10529,6 +10604,15 @@
  ],
  "TRENT": [
   {
+   "ts": "2026-11-17T14:06:38+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
+   "headline": "Intimation of schedule of Analyst / Institutional Investors Meetings",
+   "category": "Company Update",
+   "subcategory": "Analyst / Investor Meet",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/68f10113-f839-4891-994e-312e5df5ebf0.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-16T16:58:41+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Credit Rating",
    "headline": "Please find enclosed the credit rating pursuant to regulation 30 of SEBI Listing Regulations 2015.",
@@ -12019,6 +12103,15 @@
   }
  ],
  "GRAVITA": [
+  {
+   "ts": "2026-11-17T18:41:41+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "headline": "This is further to the disclosure dated 05th November, 2026 made by the Company. We wish to inform you that the Company's executives participated in the Institutional Investor's Meeting ....",
+   "category": "Company Update",
+   "subcategory": "Analyst / Investor Meet",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c68ffd40-bdc6-4a12-b2c8-bb9da4fb205b.pdf",
+   "source": "bse_api"
+  },
   {
    "ts": "2026-11-16T18:46:48+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",

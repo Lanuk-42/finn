@@ -3,8 +3,8 @@
  "name": "Tata Consultancy Services Ltd",
  "about": "Tata Consultancy Services is the flagship company and a part of Tata group. It is an IT services, consulting and business solutions organization that has been partnering with many of the world's largest businesses in their transformation journeys for over 50 years. TCS offers a consulting-led, cognitive powered, integrated portfolio of business, technology and engineering services and solutions. [1]",
  "ratios": {
-  "Market Cap": "₹ 8,70,150 Cr.",
-  "Current Price": "₹ 2,405",
+  "Market Cap": "₹ 8,70,729 Cr.",
+  "Current Price": "₹ 2,407",
   "High / Low": "₹ 3,350 / 1,976",
   "Stock P/E": "15.9",
   "Book Value": "₹ 329",
@@ -1002,6 +1002,11 @@
  ],
  "filings": [
   {
+   "title": "Press Release - HFS Research Ranks TCS As A Leader In Agentic Application Management Services",
+   "ts": "2026-11-17T11:00:46+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6464f590-90c7-40d8-8093-0e700ab95a88.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-09T16:59:25+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c0a1bde0-4d57-46c0-ac73-940d5ff093d7.pdf"
@@ -1020,14 +1025,9 @@
    "title": "Press Release - TCS Bancs For Treasury Marks Its Entry Into Sri Lanka With Indian Bank",
    "ts": "2026-10-19T11:30:41+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b12e07f0-028d-4c07-a018-036951644a15.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
-   "ts": "2026-10-16T16:29:42+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=18a00aec-26f8-4738-9e5b-d33abe1ff616.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/TCS/consolidated/",
- "fetched_at": "2026-11-17T04:29:02+05:30"
+ "fetched_at": "2026-11-18T03:22:45+05:30"
 }

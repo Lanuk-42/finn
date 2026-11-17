@@ -3,12 +3,12 @@
  "name": "HDFC Bank Ltd",
  "about": "HDFC Bank Limited (also known as HDFC) is an Indian banking and financial services company headquartered in Mumbai. It is India's largest private sector bank by assets and the world's tenth-largest bank by market capitalization as of May 2024. As of April 2024, HDFC Bank has a market capitalization of $145 billion, making it the third-largest company on the Indian stock exchanges. [1]",
  "ratios": {
-  "Market Cap": "₹ 12,60,056 Cr.",
-  "Current Price": "₹ 816",
+  "Market Cap": "₹ 12,57,664 Cr.",
+  "Current Price": "₹ 815",
   "High / Low": "₹ 1,018 / 669",
   "Stock P/E": "15.7",
   "Book Value": "₹ 391",
-  "Dividend Yield": "1.59 %",
+  "Dividend Yield": "1.60 %",
   "ROCE": "7.02 %",
   "ROE": "13.6 %",
   "Face Value": "₹ 1.00"
@@ -899,6 +899,16 @@
  ],
  "filings": [
   {
+   "title": "Grant Of Stock Options And Restricted Stock Units Under ESOP/RSU Scheme",
+   "ts": "2026-11-17T15:47:31+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5f857401-ae59-416d-9fa3-95705fa2e4d0.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "ts": "2026-11-17T13:54:37+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3c252309-6a76-41db-b704-e8c0e51c8d14.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Change in Directorate",
    "ts": "2026-11-13T16:30:11+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7b9eb8a8-fa88-453b-810f-b55034589aac.pdf"
@@ -912,19 +922,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-12T14:21:58+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d01ef203-cd61-4f19-b88b-7a373979e5b5.pdf"
-  },
-  {
-   "title": "Shareholder Meeting / Postal Ballot-Outcome of Postal_Ballot",
-   "ts": "2026-11-06T22:28:09+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0926e958-96d9-4537-ae2b-188dfe3eb1d1.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Change in Management",
-   "ts": "2026-10-31T22:14:41+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b36ff756-1cf7-44a3-9b2c-4583e7e0e792.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/HDFCBANK/consolidated/",
- "fetched_at": "2026-11-17T04:28:58+05:30"
+ "fetched_at": "2026-11-18T03:22:41+05:30"
 }

@@ -3,12 +3,12 @@
  "name": "Reliance Industries Ltd",
  "about": "Reliance was founded by Dhirubhai Ambani and is now promoted and managed by his elder son, Mukesh Dhirubhai Ambani. Ambani's family has about 50% shareholding in the conglomerate.",
  "ratios": {
-  "Market Cap": "₹ 18,19,855 Cr.",
-  "Current Price": "₹ 1,345",
+  "Market Cap": "₹ 18,49,898 Cr.",
+  "Current Price": "₹ 1,367",
   "High / Low": "₹ 1,612 / 1,152",
-  "Stock P/E": "22.2",
+  "Stock P/E": "22.5",
   "Book Value": "₹ 698",
-  "Dividend Yield": "0.45 %",
+  "Dividend Yield": "0.44 %",
   "ROCE": "10.3 %",
   "ROE": "8.91 %",
   "Face Value": "₹ 10.0"
@@ -1014,6 +1014,11 @@
  ],
  "filings": [
   {
+   "title": "Update On Institutional Investors'' Meeting - JM Financial India Conference",
+   "ts": "2026-11-17T18:51:02+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=eadec632-3d3c-49bd-8f85-6d26d79a4332.pdf"
+  },
+  {
    "title": "Update On Institutional Investors'' Meeting - CLSA India Forum",
    "ts": "2026-11-16T19:23:41+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c3e0b430-7329-4925-8c6f-a9a1967bc0f9.pdf"
@@ -1032,14 +1037,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-06T19:17:12+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bab324f6-6fab-42fc-8b79-a3881f4fb7c7.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Credit Rating",
-   "ts": "2026-11-04T20:47:09+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=9a4b00d7-4978-4c75-beb2-78403163cb8e.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/RELIANCE/consolidated/",
- "fetched_at": "2026-11-17T04:28:55+05:30"
+ "fetched_at": "2026-11-18T03:22:37+05:30"
 }

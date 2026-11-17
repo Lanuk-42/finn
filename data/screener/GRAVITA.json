@@ -3,12 +3,12 @@
  "name": "Gravita India Ltd",
  "about": "Established in 1992, Gravita India Ltd is one of the largest lead producer in India. The company's business is organized across four specialized verticals: Lead Recycling (flagship), Aluminum recycling, Plastic recycling and Turnkey projects. The company also has expertise in the recycling of used batteries, cable scrap/other Lead scrap, Aluminum scrap, Plastic scrap, etc.",
  "ratios": {
-  "Market Cap": "₹ 11,067 Cr.",
-  "Current Price": "₹ 1,499",
+  "Market Cap": "₹ 10,998 Cr.",
+  "Current Price": "₹ 1,490",
   "High / Low": "₹ 1,914 / 1,267",
-  "Stock P/E": "27.8",
+  "Stock P/E": "27.6",
   "Book Value": "₹ 358",
-  "Dividend Yield": "0.51 %",
+  "Dividend Yield": "0.52 %",
   "ROCE": "16.2 %",
   "ROE": "15.5 %",
   "Face Value": "₹ 2.00"
@@ -995,6 +995,11 @@
  "filings": [
   {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "ts": "2026-11-17T18:41:41+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c68ffd40-bdc6-4a12-b2c8-bb9da4fb205b.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
    "ts": "2026-11-16T18:46:48+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=0204778f-1a8f-4cf7-948f-c20ca0611dad.pdf"
   },
@@ -1012,14 +1017,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
    "ts": "2026-11-13T15:48:20+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7a878a12-5245-45f5-a6c0-da88ac01ed96.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
-   "ts": "2026-11-12T19:09:15+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=671f5355-cd58-4d37-b606-5283993a63f5.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/GRAVITA/consolidated/",
- "fetched_at": "2026-11-17T04:29:58+05:30"
+ "fetched_at": "2026-11-18T03:23:42+05:30"
 }
