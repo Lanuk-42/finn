@@ -3,12 +3,12 @@
  "name": "Tata Consultancy Services Ltd",
  "about": "Tata Consultancy Services is the flagship company and a part of Tata group. It is an IT services, consulting and business solutions organization that has been partnering with many of the world's largest businesses in their transformation journeys for over 50 years. TCS offers a consulting-led, cognitive powered, integrated portfolio of business, technology and engineering services and solutions. [1]",
  "ratios": {
-  "Market Cap": "₹ 8,70,729 Cr.",
-  "Current Price": "₹ 2,407",
+  "Market Cap": "₹ 8,60,924 Cr.",
+  "Current Price": "₹ 2,380",
   "High / Low": "₹ 3,350 / 1,976",
-  "Stock P/E": "15.9",
+  "Stock P/E": "15.8",
   "Book Value": "₹ 329",
-  "Dividend Yield": "2.66 %",
+  "Dividend Yield": "2.69 %",
   "ROCE": "63.0 %",
   "ROE": "51.8 %",
   "Face Value": "₹ 1.00"
@@ -1029,5 +1029,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/TCS/consolidated/",
- "fetched_at": "2026-11-18T03:22:45+05:30"
+ "fetched_at": "2026-11-19T03:02:01+05:30"
 }

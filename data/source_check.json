@@ -1,41 +1,41 @@
 {
- "checked_at": "2026-11-18T03:22:35+05:30",
+ "checked_at": "2026-11-19T03:01:52+05:30",
  "results": [
   {
    "source": "NSE API",
    "ok": false,
    "detail": "homepage HTTP 403",
-   "ms": 86
+   "ms": 87
   },
   {
    "source": "NSE RSS",
-   "ok": false,
-   "detail": "HTTP 200, 0 items",
-   "ms": 197
+   "ok": true,
+   "detail": "HTTP 200, 5 items",
+   "ms": 358
   },
   {
    "source": "BSE API",
    "ok": true,
    "detail": "HTTP 200, 19 filings for RELIANCE",
-   "ms": 378
+   "ms": 446
   },
   {
    "source": "Yahoo Finance",
    "ok": true,
    "detail": "5 rows",
-   "ms": 925
+   "ms": 1036
   },
   {
    "source": "screener.in",
    "ok": true,
    "detail": "HTTP 200",
-   "ms": 966
+   "ms": 1395
   },
   {
    "source": "Gemini key",
    "ok": true,
    "detail": "models list HTTP 200",
-   "ms": 113
+   "ms": 119
   }
  ]
 }

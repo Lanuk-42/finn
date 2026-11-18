@@ -3,10 +3,10 @@
  "name": "Bharat Electronics Ltd",
  "about": "Incorporated in 1954, Bharat Electronics Ltd manufactures and supplies electronic equipment and systems to the defence sector. Company also has a limited presence in the civilian market [1]",
  "ratios": {
-  "Market Cap": "₹ 2,92,062 Cr.",
-  "Current Price": "₹ 400",
+  "Market Cap": "₹ 2,89,321 Cr.",
+  "Current Price": "₹ 396",
   "High / Low": "₹ 473 / 355",
-  "Stock P/E": "45.6",
+  "Stock P/E": "45.2",
   "Book Value": "₹ 35.9",
   "Dividend Yield": "0.63 %",
   "ROCE": "36.4 %",
@@ -969,5 +969,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/BEL/consolidated/",
- "fetched_at": "2026-11-18T03:23:17+05:30"
+ "fetched_at": "2026-11-19T03:02:33+05:30"
 }

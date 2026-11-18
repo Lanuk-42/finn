@@ -2500,12 +2500,6 @@
  ],
  "SUNPHARMA": [
   {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 5 Nov",
-   "ts": "2026-11-05T15:57:15+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50d58706-f181-4522-8799-b05f65780ce8.pdf",
-   "source": "screener_bse"
-  },
-  {
    "ts": "2026-11-05T15:57:15+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "headline": "Intimation of Schedule of Analyst/Institutional Investor Meeting",
@@ -2515,9 +2509,9 @@
    "source": "bse_api"
   },
   {
-   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 4 Nov",
-   "ts": "2026-11-04T19:19:52+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 5 Nov",
+   "ts": "2026-11-05T15:57:15+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50d58706-f181-4522-8799-b05f65780ce8.pdf",
    "source": "screener_bse"
   },
   {
@@ -2530,9 +2524,9 @@
    "source": "bse_api"
   },
   {
-   "title": "Rumour verification - Regulation 30(11)",
-   "ts": "2026-11-02T20:58:13+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
+   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 4 Nov",
+   "ts": "2026-11-04T19:19:52+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
    "source": "screener_bse"
   },
   {
@@ -2545,16 +2539,16 @@
    "source": "bse_api"
   },
   {
+   "title": "Rumour verification - Regulation 30(11)",
+   "ts": "2026-11-02T20:58:13+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-02T14:23:57.597000+05:30",
    "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
    "url": null,
    "source": "bse_api"
-  },
-  {
-   "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
-   "ts": "2026-11-02T14:23:57+05:30",
-   "url": "/company/id/3245/",
-   "source": "screener_bse"
   },
   {
    "ts": "2026-11-02T14:23:57+05:30",
@@ -2566,9 +2560,9 @@
    "source": "bse_api"
   },
   {
-   "title": "Completion And Results Of Postal Ballot Dated 01 October 2026",
-   "ts": "2026-10-31T20:14:03+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
+   "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
+   "ts": "2026-11-02T14:23:57+05:30",
+   "url": "/company/id/3245/",
    "source": "screener_bse"
   },
   {
@@ -2579,6 +2573,12 @@
    "subcategory": "General",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
    "source": "bse_api"
+  },
+  {
+   "title": "Completion And Results Of Postal Ballot Dated 01 October 2026",
+   "ts": "2026-10-31T20:14:03+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
+   "source": "screener_bse"
   },
   {
    "ts": "2026-10-31T18:35:16+05:30",
@@ -9286,6 +9286,15 @@
  ],
  "CHOLAFIN": [
   {
+   "ts": "2026-11-18T21:06:56+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Enclosed the copy of the newspaper advertisement regarding the proposed transfer of shares to IEPFA",
+   "category": "Company Update",
+   "subcategory": "Newspaper Publication",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/97de8544-23fa-4e7e-960e-96fafe0dfa0a.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-09T18:54:18+05:30",
    "title": "Shareholder Meeting / Postal Ballot-Notice of Postal Ballot",
    "headline": "Intimation on despatch of Postal Ballot Notice to Shareholders",
@@ -12103,6 +12112,15 @@
   }
  ],
  "GRAVITA": [
+  {
+   "ts": "2026-11-18T18:56:45+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "headline": "This is further to the disclosure dated 05th November, 2026 made by the Company. We wish to inform you that the Company's executives participated in the Institutional Investor's Meeting ....",
+   "category": "Company Update",
+   "subcategory": "Analyst / Investor Meet",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f5ccd990-cdab-4658-ab3c-57d7c085e118.pdf",
+   "source": "bse_api"
+  },
   {
    "ts": "2026-11-17T18:41:41+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",

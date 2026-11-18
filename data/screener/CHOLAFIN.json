@@ -3,10 +3,10 @@
  "name": "Cholamandalam Investment & Finance Company Ltd",
  "about": "Cholamandalam Investment & Finance Company is one of the premier diversified non-banking finance companies in India, engaged in providing vehicle finance, home loans and Loan against property. [1]",
  "ratios": {
-  "Market Cap": "₹ 1,61,638 Cr.",
-  "Current Price": "₹ 1,885",
+  "Market Cap": "₹ 1,60,806 Cr.",
+  "Current Price": "₹ 1,875",
   "High / Low": "₹ 1,952 / 1,299",
-  "Stock P/E": "26.0",
+  "Stock P/E": "25.8",
   "Book Value": "₹ 403",
   "Dividend Yield": "0.11 %",
   "ROCE": "9.71 %",
@@ -932,6 +932,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "ts": "2026-11-18T21:06:56+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=97de8544-23fa-4e7e-960e-96fafe0dfa0a.pdf"
+  },
+  {
    "title": "Shareholder Meeting / Postal Ballot-Notice of Postal Ballot 9 Nov",
    "ts": "2026-11-09T18:54:18+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=3ceef3ba-18f9-4d77-a990-fe2801500231.pdf"
@@ -950,14 +955,9 @@
    "title": "Intimation Of Change In Corporate Office Address Of The RTA",
    "ts": "2026-11-03T22:11:23+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77c6f181-eccd-4c46-a7b9-c37153b074d5.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
-   "ts": "2026-10-29T22:13:01+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=ae42f10c-d2a1-46d3-a371-2c47ddf5f4a5.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/CHOLAFIN/consolidated/",
- "fetched_at": "2026-11-18T03:23:24+05:30"
+ "fetched_at": "2026-11-19T03:02:40+05:30"
 }

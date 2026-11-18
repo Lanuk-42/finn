@@ -3,12 +3,12 @@
  "name": "J K Cements Ltd",
  "about": "The Company is engaged in the manufacturing and selling of Cement and Cement related products with over 4 decades of experience in cement manufacturing. It is an affiliate of the multi-disciplinary industrial conglomerate JK Organisation. [1]",
  "ratios": {
-  "Market Cap": "₹ 40,469 Cr.",
-  "Current Price": "₹ 5,238",
+  "Market Cap": "₹ 39,807 Cr.",
+  "Current Price": "₹ 5,152",
   "High / Low": "₹ 6,105 / 4,670",
-  "Stock P/E": "40.9",
+  "Stock P/E": "40.2",
   "Book Value": "₹ 951",
-  "Dividend Yield": "0.38 %",
+  "Dividend Yield": "0.39 %",
   "ROCE": "15.1 %",
   "ROE": "15.6 %",
   "Face Value": "₹ 10.0"
@@ -953,5 +953,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/JKCEMENT/consolidated/",
- "fetched_at": "2026-11-18T03:23:36+05:30"
+ "fetched_at": "2026-11-19T03:02:50+05:30"
 }

@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-18T03:23:47+05:30",
- "data_as_of": "2026-11-18T03:23:46+05:30",
- "latest_trading_day": "2026-11-17",
+ "generated_at": "2026-11-19T03:03:01+05:30",
+ "data_as_of": "2026-11-19T03:03:01+05:30",
+ "latest_trading_day": "2026-11-18",
  "fetch": {
   "RELIANCE": {
    "announcements": "bse_api",
@@ -19,7 +19,7 @@
    "screener": true
   },
   "SUNPHARMA": {
-   "announcements": "screener_bse",
+   "announcements": "bse_api",
    "prices": true,
    "screener": true
   },
@@ -128,7 +128,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -156,7 +156,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -184,7 +184,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -212,7 +212,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -240,7 +240,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -268,7 +268,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -296,7 +296,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -324,7 +324,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -352,7 +352,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -380,7 +380,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "standalone"
   },
@@ -408,7 +408,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -436,7 +436,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -464,7 +464,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -492,7 +492,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -520,7 +520,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -548,7 +548,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -576,7 +576,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -604,12 +604,38 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-17",
+   "date": "2026-11-18",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   }
  ],
  "filings": [
+  {
+   "id": "07b3bb285d28",
+   "symbol": "CHOLAFIN",
+   "ts": "2026-11-18T21:06:56+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Enclosed the copy of the newspaper advertisement regarding the proposed transfer of shares to IEPFA",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/97de8544-23fa-4e7e-960e-96fafe0dfa0a.pdf",
+   "source": "bse_api",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "newspaper",
+   "basis": "title"
+  },
+  {
+   "id": "2133abb076a9",
+   "symbol": "GRAVITA",
+   "ts": "2026-11-18T18:56:45+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "headline": "This is further to the disclosure dated 05th November, 2026 made by the Company. We wish to inform you that the Company's executives participated in the Institutional Investor's Meeting ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/f5ccd990-cdab-4658-ab3c-57d7c085e118.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
   {
    "id": "7d7a191df768",
    "symbol": "RELIANCE",
@@ -1372,19 +1398,6 @@
    "basis": "title"
   },
   {
-   "id": "3cf561c34a83",
-   "symbol": "SUNPHARMA",
-   "ts": "2026-11-05T15:57:15+05:30",
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 5 Nov",
-   "headline": "",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50d58706-f181-4522-8799-b05f65780ce8.pdf",
-   "source": "screener_bse",
-   "category": "investor_meetings",
-   "tier": "Routine",
-   "rule": "investor_meet",
-   "basis": "title"
-  },
-  {
    "id": "6fca3e3c80b6",
    "symbol": "SUNPHARMA",
    "ts": "2026-11-05T15:57:15+05:30",
@@ -1392,6 +1405,19 @@
    "headline": "Intimation of Schedule of Analyst/Institutional Investor Meeting",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/50d58706-f181-4522-8799-b05f65780ce8.pdf",
    "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "3cf561c34a83",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-05T15:57:15+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 5 Nov",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=50d58706-f181-4522-8799-b05f65780ce8.pdf",
+   "source": "screener_bse",
    "category": "investor_meetings",
    "tier": "Routine",
    "rule": "investor_meet",
@@ -1771,19 +1797,6 @@
    "basis": "title"
   },
   {
-   "id": "db562e9b783e",
-   "symbol": "SUNPHARMA",
-   "ts": "2026-11-04T19:19:52+05:30",
-   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 4 Nov",
-   "headline": "",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
-   "source": "screener_bse",
-   "category": "earnings_call",
-   "tier": "Note",
-   "rule": "transcript_first",
-   "basis": "title"
-  },
-  {
    "id": "654c224ad414",
    "symbol": "SUNPHARMA",
    "ts": "2026-11-04T19:19:52+05:30",
@@ -1791,6 +1804,19 @@
    "headline": "Q2FY27 Earnings Call Transcript",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
    "source": "bse_api",
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
+   "basis": "title"
+  },
+  {
+   "id": "db562e9b783e",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-04T19:19:52+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 4 Nov",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=fe431adc-0e1a-48ee-9c2b-b6e39cba04e4.pdf",
+   "source": "screener_bse",
    "category": "earnings_call",
    "tier": "Note",
    "rule": "transcript_first",
@@ -2206,19 +2232,6 @@
    "basis": "title"
   },
   {
-   "id": "911b061641f9",
-   "symbol": "SUNPHARMA",
-   "ts": "2026-11-02T20:58:13+05:30",
-   "title": "Rumour verification - Regulation 30(11)",
-   "headline": "",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
-   "source": "screener_bse",
-   "category": "press_release",
-   "tier": "Note",
-   "rule": "exchange_query",
-   "basis": "title"
-  },
-  {
    "id": "2b9d04ba0b10",
    "symbol": "SUNPHARMA",
    "ts": "2026-11-02T20:58:13+05:30",
@@ -2226,6 +2239,19 @@
    "headline": "Clarification regarding news report relating to the Company''s Assam facility",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
    "source": "bse_api",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "exchange_query",
+   "basis": "title"
+  },
+  {
+   "id": "911b061641f9",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-02T20:58:13+05:30",
+   "title": "Rumour verification - Regulation 30(11)",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=1bbe06aa-8721-4e47-b0b1-985a91279ce9.pdf",
+   "source": "screener_bse",
    "category": "press_release",
    "tier": "Note",
    "rule": "exchange_query",
@@ -2284,19 +2310,6 @@
    "basis": "title"
   },
   {
-   "id": "9d45e80d4c3c",
-   "symbol": "SUNPHARMA",
-   "ts": "2026-11-02T14:23:57+05:30",
-   "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
-   "headline": "",
-   "url": "/company/id/3245/",
-   "source": "screener_bse",
-   "category": "press_release",
-   "tier": "Note",
-   "rule": "exchange_query",
-   "basis": "title"
-  },
-  {
    "id": "fef5bb9f32c1",
    "symbol": "SUNPHARMA",
    "ts": "2026-11-02T14:23:57+05:30",
@@ -2304,6 +2317,19 @@
    "headline": "The Exchange has sought clarification from Sun Pharmaceutical Industries Ltd on November 2, 2026, with reference to news appeared in https://www.thehindu.com/ dated October 30, 2026 quoting ....",
    "url": null,
    "source": "bse_api",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "exchange_query",
+   "basis": "title"
+  },
+  {
+   "id": "9d45e80d4c3c",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-11-02T14:23:57+05:30",
+   "title": "Clarification Sought From Sun Pharmaceutical Industries Ltd",
+   "headline": "",
+   "url": "/company/id/3245/",
+   "source": "screener_bse",
    "category": "press_release",
    "tier": "Note",
    "rule": "exchange_query",
@@ -2430,19 +2456,6 @@
    "basis": "title"
   },
   {
-   "id": "34f051e9d3f2",
-   "symbol": "SUNPHARMA",
-   "ts": "2026-10-31T20:14:03+05:30",
-   "title": "Completion And Results Of Postal Ballot Dated 01 October 2026",
-   "headline": "",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
-   "source": "screener_bse",
-   "category": "postal_ballot",
-   "tier": "Routine",
-   "rule": "voting_results",
-   "basis": "title"
-  },
-  {
    "id": "9237e1cfec3b",
    "symbol": "SUNPHARMA",
    "ts": "2026-10-31T20:14:03+05:30",
@@ -2450,6 +2463,19 @@
    "headline": "Completion and results of postal ballot dated 01 October 2026",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
    "source": "bse_api",
+   "category": "postal_ballot",
+   "tier": "Routine",
+   "rule": "voting_results",
+   "basis": "title"
+  },
+  {
+   "id": "34f051e9d3f2",
+   "symbol": "SUNPHARMA",
+   "ts": "2026-10-31T20:14:03+05:30",
+   "title": "Completion And Results Of Postal Ballot Dated 01 October 2026",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=e87d46d8-c447-4fc2-9b82-a95a8a922b0f.pdf",
+   "source": "screener_bse",
    "category": "postal_ballot",
    "tier": "Routine",
    "rule": "voting_results",
@@ -22834,16 +22860,6 @@
  "moves": {
   "RELIANCE": [
    {
-    "date": "2026-07-09",
-    "close": 1279.8,
-    "pct": 0.31,
-    "volx": 1.01,
-    "filings": [
-     "0d15f0cbf659"
-    ],
-    "explained": false
-   },
-   {
     "date": "2026-07-10",
     "close": 1307.8,
     "pct": 2.19,
@@ -23727,27 +23743,27 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1367.0,
+    "pct": 1.65,
     "volx": 0.75,
     "filings": [
      "bfdd3a681cab",
      "7d7a191df768"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.86,
+    "filings": [
+     "7d7a191df768"
+    ],
+    "explained": false
    }
   ],
   "HDFCBANK": [
-   {
-    "date": "2026-07-09",
-    "close": 817.55,
-    "pct": 0.89,
-    "volx": 1.05,
-    "filings": [
-     "7644c939d32f"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 824.95,
@@ -24623,9 +24639,20 @@
    },
    {
     "date": "2026-11-17",
+    "close": 814.95,
+    "pct": -0.19,
+    "volx": 0.9,
+    "filings": [
+     "11953e7b0834",
+     "7a234c8e0fab"
+    ],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.9,
+    "volx": 0.55,
     "filings": [
      "11953e7b0834",
      "7a234c8e0fab"
@@ -24634,22 +24661,6 @@
    }
   ],
   "TCS": [
-   {
-    "date": "2026-07-09",
-    "close": 2049.5,
-    "pct": -0.39,
-    "volx": 0.84,
-    "filings": [
-     "7e384548b4ef",
-     "5078c0e5ffdb",
-     "047119406c55",
-     "8d56d417c57f",
-     "7136a623f452",
-     "374742dcf405",
-     "70676b1022c0"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-10",
     "close": 2069.0,
@@ -25534,9 +25545,19 @@
    },
    {
     "date": "2026-11-17",
+    "close": 2406.6,
+    "pct": 0.07,
+    "volx": 0.67,
+    "filings": [
+     "d14b2565cf2d"
+    ],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.67,
+    "volx": 0.34,
     "filings": [
      "d14b2565cf2d"
     ],
@@ -25544,14 +25565,6 @@
    }
   ],
   "SUNPHARMA": [
-   {
-    "date": "2026-07-09",
-    "close": 1938.7,
-    "pct": 2.67,
-    "volx": 2.4,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 1935.5,
@@ -26327,17 +26340,17 @@
     "volx": 2.12,
     "filings": [
      "a89123ce2111",
-     "9d45e80d4c3c",
      "fef5bb9f32c1",
+     "9d45e80d4c3c",
      "d6ece37174ed",
-     "911b061641f9",
      "2b9d04ba0b10",
+     "911b061641f9",
      "51906f7f0fe1",
      "614a70187568",
      "6902ffde11ac",
      "def96eb2290c",
-     "34f051e9d3f2",
-     "9237e1cfec3b"
+     "9237e1cfec3b",
+     "34f051e9d3f2"
     ],
     "explained": true
    },
@@ -26347,11 +26360,11 @@
     "pct": -0.01,
     "volx": 1.56,
     "filings": [
-     "9d45e80d4c3c",
      "fef5bb9f32c1",
+     "9d45e80d4c3c",
      "d6ece37174ed",
-     "911b061641f9",
-     "2b9d04ba0b10"
+     "2b9d04ba0b10",
+     "911b061641f9"
     ],
     "explained": true
    },
@@ -26361,8 +26374,8 @@
     "pct": 0.2,
     "volx": 2.8,
     "filings": [
-     "db562e9b783e",
-     "654c224ad414"
+     "654c224ad414",
+     "db562e9b783e"
     ],
     "explained": true
    },
@@ -26372,10 +26385,10 @@
     "pct": 3.14,
     "volx": 2.03,
     "filings": [
-     "db562e9b783e",
      "654c224ad414",
-     "3cf561c34a83",
-     "6fca3e3c80b6"
+     "db562e9b783e",
+     "6fca3e3c80b6",
+     "3cf561c34a83"
     ],
     "explained": true
    },
@@ -26385,8 +26398,8 @@
     "pct": 1.69,
     "volx": 1.13,
     "filings": [
-     "3cf561c34a83",
-     "6fca3e3c80b6"
+     "6fca3e3c80b6",
+     "3cf561c34a83"
     ],
     "explained": false
    },
@@ -26432,28 +26445,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 1870.0,
+    "pct": 0.13,
+    "volx": 0.62,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.62,
+    "volx": 0.72,
     "filings": [],
     "explained": false
    }
   ],
   "ASIANPAINT": [
-   {
-    "date": "2026-07-09",
-    "close": 2673.8,
-    "pct": 0.3,
-    "volx": 0.69,
-    "filings": [
-     "47f6485a72e2",
-     "33f1ba5836be",
-     "cb3d74d59817",
-     "e892c1c5dbcd",
-     "4242d7d57a91"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 2677.8,
@@ -27345,26 +27352,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 2625.0,
+    "pct": 2.02,
+    "volx": 1.29,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 1.29,
+    "volx": 0.66,
     "filings": [],
     "explained": false
    }
   ],
   "DIXON": [
-   {
-    "date": "2026-07-09",
-    "close": 13477.0,
-    "pct": 4.2,
-    "volx": 1.31,
-    "filings": [
-     "34cadcba5298",
-     "58a7e9b0a642",
-     "c7ebf0112e38"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-10",
     "close": 13421.0,
@@ -28263,27 +28266,25 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 13081.0,
+    "pct": 1.48,
     "volx": 0.97,
     "filings": [
      "5edfa6292f7d",
      "a770a9aaf8eb"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.67,
+    "filings": [],
+    "explained": false
    }
   ],
   "POLYCAB": [
-   {
-    "date": "2026-07-09",
-    "close": 9074.0,
-    "pct": -1.73,
-    "volx": 1.39,
-    "filings": [
-     "2f70edfb6b28"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 9210.5,
@@ -29155,25 +29156,25 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 7702.0,
+    "pct": -3.19,
     "volx": 1.64,
     "filings": [
      "b79c43a3e6d5",
      "2f81bc21bfc9"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 2.68,
+    "filings": [],
+    "explained": false
    }
   ],
   "PERSISTENT": [
-   {
-    "date": "2026-07-09",
-    "close": 4829.9,
-    "pct": 1.27,
-    "volx": 0.43,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 5053.9,
@@ -30120,22 +30121,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 5911.0,
+    "pct": -1.13,
+    "volx": 0.52,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.52,
+    "volx": 0.43,
     "filings": [],
     "explained": false
    }
   ],
   "DEEPAKNTR": [
-   {
-    "date": "2026-07-09",
-    "close": 1621.2,
-    "pct": 3.18,
-    "volx": 1.25,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 1644.0,
@@ -30939,22 +30940,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 1590.1,
+    "pct": -0.3,
+    "volx": 0.19,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.19,
+    "volx": 0.64,
     "filings": [],
     "explained": false
    }
   ],
   "CAMPUS": [
-   {
-    "date": "2026-07-09",
-    "close": 228.04,
-    "pct": -0.8,
-    "volx": 0.5,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 231.09,
@@ -31791,22 +31792,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 195.57,
+    "pct": -1.48,
+    "volx": 0.6,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.6,
+    "volx": 0.21,
     "filings": [],
     "explained": false
    }
   ],
   "BEL": [
-   {
-    "date": "2026-07-09",
-    "close": 406.2,
-    "pct": -0.34,
-    "volx": 0.81,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 414.85,
@@ -32645,28 +32646,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 399.55,
+    "pct": -0.46,
+    "volx": 0.65,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.65,
+    "volx": 0.62,
     "filings": [],
     "explained": false
    }
   ],
   "LUPIN": [
-   {
-    "date": "2026-07-09",
-    "close": 2503.3,
-    "pct": 1.8,
-    "volx": 0.69,
-    "filings": [
-     "36ee52e95040",
-     "b992168ef480",
-     "88ecbd188567",
-     "d9a3562e96ff",
-     "9a2c1db1e824"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-10",
     "close": 2496.3,
@@ -33543,29 +33538,27 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1950.0,
+    "pct": -1.35,
     "volx": 0.93,
     "filings": [
      "9e13fdd24683",
      "f69db45e69a0"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 1.25,
+    "filings": [
+     "f69db45e69a0"
+    ],
+    "explained": false
    }
   ],
   "CHOLAFIN": [
-   {
-    "date": "2026-07-09",
-    "close": 1791.9,
-    "pct": 1.27,
-    "volx": 0.62,
-    "filings": [
-     "67fbfdd68803",
-     "1ab81cd9e894",
-     "97048e719409"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 1807.8,
@@ -34381,22 +34374,24 @@
    },
    {
     "date": "2026-11-17",
+    "close": 1884.7,
+    "pct": 1.89,
+    "volx": 0.6,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
     "volx": 0.6,
-    "filings": [],
+    "filings": [
+     "07b3bb285d28"
+    ],
     "explained": false
    }
   ],
   "MARUTI": [
-   {
-    "date": "2026-07-09",
-    "close": 13728.0,
-    "pct": -1.6,
-    "volx": 1.01,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 13854.0,
@@ -35277,22 +35272,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 12625.0,
+    "pct": 0.43,
+    "volx": 0.78,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.78,
+    "volx": 1.02,
     "filings": [],
     "explained": false
    }
   ],
   "TRENT": [
-   {
-    "date": "2026-07-09",
-    "close": 2904.1,
-    "pct": -0.68,
-    "volx": 0.67,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 2902.8,
@@ -36097,28 +36092,27 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 3176.3,
+    "pct": -0.86,
     "volx": 0.75,
     "filings": [
      "12dfce21e826",
      "99bba0bc1388"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 1.3,
+    "filings": [
+     "99bba0bc1388"
+    ],
+    "explained": false
    }
   ],
   "JKCEMENT": [
-   {
-    "date": "2026-07-09",
-    "close": 5393.5,
-    "pct": 1.15,
-    "volx": 0.49,
-    "filings": [
-     "1d87b8af157f",
-     "ce31d1295bb5"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 5398.5,
@@ -36929,24 +36923,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 5237.5,
+    "pct": -0.29,
+    "volx": 1.25,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 1.25,
+    "volx": 0.46,
     "filings": [],
     "explained": false
    }
   ],
   "SAFARI": [
-   {
-    "date": "2026-07-09",
-    "close": 1622.6,
-    "pct": 1.38,
-    "volx": 0.43,
-    "filings": [
-     "8d43728964de"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 1631.2,
@@ -37746,24 +37738,22 @@
    },
    {
     "date": "2026-11-17",
+    "close": 1402.4,
+    "pct": 1.82,
+    "volx": 1.0,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
     "close": NaN,
     "pct": NaN,
-    "volx": 1.0,
+    "volx": 1.14,
     "filings": [],
     "explained": false
    }
   ],
   "GRAVITA": [
-   {
-    "date": "2026-07-09",
-    "close": 1811.4,
-    "pct": 4.83,
-    "volx": 6.65,
-    "filings": [
-     "6b6fdc2e9396"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-10",
     "close": 1854.6,
@@ -38691,12 +38681,23 @@
    },
    {
     "date": "2026-11-17",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1490.1,
+    "pct": -0.62,
     "volx": 0.61,
     "filings": [
      "92ae38ee6abf",
      "080fa2bb7b0d"
+    ],
+    "explained": false
+   },
+   {
+    "date": "2026-11-18",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.47,
+    "filings": [
+     "080fa2bb7b0d",
+     "2133abb076a9"
     ],
     "explained": false
    }
