@@ -3,12 +3,12 @@
  "name": "Gravita India Ltd",
  "about": "Established in 1992, Gravita India Ltd is one of the largest lead producer in India. The company's business is organized across four specialized verticals: Lead Recycling (flagship), Aluminum recycling, Plastic recycling and Turnkey projects. The company also has expertise in the recycling of used batteries, cable scrap/other Lead scrap, Aluminum scrap, Plastic scrap, etc.",
  "ratios": {
-  "Market Cap": "₹ 10,915 Cr.",
-  "Current Price": "₹ 1,479",
+  "Market Cap": "₹ 10,762 Cr.",
+  "Current Price": "₹ 1,458",
   "High / Low": "₹ 1,914 / 1,267",
-  "Stock P/E": "27.4",
+  "Stock P/E": "27.0",
   "Book Value": "₹ 358",
-  "Dividend Yield": "0.52 %",
+  "Dividend Yield": "0.53 %",
   "ROCE": "16.2 %",
   "ROE": "15.5 %",
   "Face Value": "₹ 2.00"
@@ -1021,5 +1021,5 @@
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/GRAVITA/consolidated/",
- "fetched_at": "2026-11-19T03:02:56+05:30"
+ "fetched_at": "2026-11-20T03:15:08+05:30"
 }

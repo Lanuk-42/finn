@@ -3,12 +3,12 @@
  "name": "Maruti Suzuki India Ltd",
  "about": "The Company was established in 1981. A joint venture agreement was signed between the Government of India and Suzuki Motor Corporation (SMC), Japan in 1982. The Company became a subsidiary of SMC in 2002.It is the market leader in passenger vehicle segment in India. In terms of production volume and sales, the Company is now SMC’s largest subsidiary. SMC currently holds 56.28% of its equity stake. The principal activities of the Company are manufacturing, purchase and sale of motor vehicles, components and spare parts.",
  "ratios": {
-  "Market Cap": "₹ 3,97,153 Cr.",
-  "Current Price": "₹ 12,632",
+  "Market Cap": "₹ 4,27,242 Cr.",
+  "Current Price": "₹ 13,589",
   "High / Low": "₹ 17,372 / 10,984",
-  "Stock P/E": "29.5",
+  "Stock P/E": "31.8",
   "Book Value": "₹ 3,467",
-  "Dividend Yield": "1.11 %",
+  "Dividend Yield": "1.03 %",
   "ROCE": "18.9 %",
   "ROE": "14.3 %",
   "Face Value": "₹ 5.00"
@@ -994,6 +994,11 @@
  ],
  "filings": [
   {
+   "title": "Disclosures under Reg. 29(2) of SEBI (SAST) Regulations, 2011 19 Nov",
+   "ts": "2026-11-19T10:46:36+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5032B2DC_353F_4F45_BDF4_0641BBF3C146_104632.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 12 Nov",
    "ts": "2026-11-12T11:57:08+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19833a7e-2123-409e-990d-b9c1bfd1a543.pdf"
@@ -1012,14 +1017,9 @@
    "title": "Maruti Suzuki Production Volume: October 2026",
    "ts": "2026-11-01T14:44:08+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b7585ba4-523e-4c05-b037-263a3e803229.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Press Release / Media Release",
-   "ts": "2026-11-01T13:44:54+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=817afcae-2ee4-486a-a3c0-fdbfd7a392e9.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/MARUTI/consolidated/",
- "fetched_at": "2026-11-19T03:02:43+05:30"
+ "fetched_at": "2026-11-20T03:14:55+05:30"
 }

@@ -1,6 +1,15 @@
 {
  "RELIANCE": [
   {
+   "ts": "2026-11-19T18:37:38+05:30",
+   "title": "Update On Institutional Investors'' Meeting - Morgan Stanley 25Th Annual Asia-Pacific Summit",
+   "headline": "This is further to the disclosure dated November 13, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - ....",
+   "category": "Company Update",
+   "subcategory": "General",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3c911ae3-537d-4dad-b536-c6c8337562ee.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-17T18:51:02+05:30",
    "title": "Update On Institutional Investors'' Meeting - JM Financial India Conference",
    "headline": "This is further to the disclosure dated November 12, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - ....",
@@ -1669,6 +1678,24 @@
   }
  ],
  "TCS": [
+  {
+   "ts": "2026-11-19T17:39:33+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Copy of Newspaper Publication for IEPF Statutory Reminder letters for Third Interim Dividend 2019-20",
+   "category": "Company Update",
+   "subcategory": "Newspaper Publication",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/943a8ed9-8e89-481f-b0d5-dece57330687.pdf",
+   "source": "bse_api"
+  },
+  {
+   "ts": "2026-11-19T17:28:02+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Newspaper Advertisement regarding the opening of another special window for re-lodgement of transfer request of physical shares.",
+   "category": "Company Update",
+   "subcategory": "Newspaper Publication",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/82a70838-3f9c-456b-b3f7-655b39e0ece9.pdf",
+   "source": "bse_api"
+  },
   {
    "ts": "2026-11-17T11:00:46+05:30",
    "title": "Press Release - HFS Research Ranks TCS As A Leader In Agentic Application Management Services",
@@ -9286,6 +9313,15 @@
  ],
  "CHOLAFIN": [
   {
+   "ts": "2026-11-19T17:24:20+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "headline": "Information on allotment of 40,239 equity shares pursuant to exercise of Employee Stock Options.",
+   "category": "Company Update",
+   "subcategory": "Allotment of ESOP / ESPS",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c24c553c-3bcb-4b69-ac1d-04da559356e7.pdf",
+   "source": "bse_api"
+  },
+  {
    "ts": "2026-11-18T21:06:56+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
    "headline": "Enclosed the copy of the newspaper advertisement regarding the proposed transfer of shares to IEPFA",
@@ -9819,6 +9855,18 @@
  ],
  "MARUTI": [
   {
+   "title": "Disclosures under Reg. 29(2) of SEBI (SAST) Regulations, 2011 19 Nov",
+   "ts": "2026-11-19T10:46:36+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5032B2DC_353F_4F45_BDF4_0641BBF3C146_104632.pdf",
+   "source": "screener_bse"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 12 Nov",
+   "ts": "2026-11-12T11:57:08+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19833a7e-2123-409e-990d-b9c1bfd1a543.pdf",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-12T11:57:08+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "headline": "Schedule of Investor Meetings",
@@ -9826,6 +9874,12 @@
    "subcategory": "Analyst / Investor Meet",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/19833a7e-2123-409e-990d-b9c1bfd1a543.pdf",
    "source": "bse_api"
+  },
+  {
+   "title": "Reference To The Financial Results Issued By Suzuki Motor Corporation",
+   "ts": "2026-11-10T11:55:47+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2b74a7fe-194c-4a61-8cf6-dbba26573f57.pdf",
+   "source": "screener_bse"
   },
   {
    "ts": "2026-11-10T11:55:47+05:30",
@@ -9837,6 +9891,12 @@
    "source": "bse_api"
   },
   {
+   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 2 Nov",
+   "ts": "2026-11-02T21:06:59+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4a189744-1646-4de4-809b-e936a67b6fe4.pdf",
+   "source": "screener_bse"
+  },
+  {
    "ts": "2026-11-02T21:06:59+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript",
    "headline": "Transcript of investors'' call",
@@ -9844,6 +9904,12 @@
    "subcategory": "Earnings Call Transcript",
    "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/4a189744-1646-4de4-809b-e936a67b6fe4.pdf",
    "source": "bse_api"
+  },
+  {
+   "title": "Maruti Suzuki Production Volume: October 2026",
+   "ts": "2026-11-01T14:44:08+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b7585ba4-523e-4c05-b037-263a3e803229.pdf",
+   "source": "screener_bse"
   },
   {
    "ts": "2026-11-01T14:44:08+05:30",
@@ -11100,6 +11166,15 @@
   }
  ],
  "JKCEMENT": [
+  {
+   "ts": "2026-11-19T20:02:39+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Acquisition",
+   "headline": "Intimation regarding approval for investment in Equity Shares of Clean Renewable Energy KK 1E Private Limited. The investment is being made for sourcing solar power for the Company''s Muddapur ....",
+   "category": "Company Update",
+   "subcategory": "Acquisition",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/89d5294e-d16b-4523-af17-0c5c580c83da.pdf",
+   "source": "bse_api"
+  },
   {
    "ts": "2026-11-12T17:43:14+05:30",
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",

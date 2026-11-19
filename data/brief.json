@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-11-19T03:03:01+05:30",
- "data_as_of": "2026-11-19T03:03:01+05:30",
- "latest_trading_day": "2026-11-18",
+ "generated_at": "2026-11-20T03:15:14+05:30",
+ "data_as_of": "2026-11-20T03:15:13+05:30",
+ "latest_trading_day": "2026-11-19",
  "fetch": {
   "RELIANCE": {
    "announcements": "bse_api",
@@ -69,7 +69,7 @@
    "screener": true
   },
   "MARUTI": {
-   "announcements": "bse_api",
+   "announcements": "screener_bse",
    "prices": true,
    "screener": true
   },
@@ -128,7 +128,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -156,7 +156,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -184,7 +184,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -212,7 +212,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -240,7 +240,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -268,7 +268,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -296,7 +296,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -324,7 +324,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -352,7 +352,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -380,7 +380,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "standalone"
   },
@@ -408,7 +408,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -436,7 +436,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -464,7 +464,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -492,7 +492,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -520,7 +520,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -548,7 +548,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -576,7 +576,7 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   },
@@ -604,12 +604,90 @@
    },
    "metrics_quarter": "Sep 2026",
    "close": NaN,
-   "date": "2026-11-18",
+   "date": "2026-11-19",
    "day_pct": NaN,
    "screener_variant": "consolidated"
   }
  ],
  "filings": [
+  {
+   "id": "c5a929211973",
+   "symbol": "JKCEMENT",
+   "ts": "2026-11-19T20:02:39+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Acquisition",
+   "headline": "Intimation regarding approval for investment in Equity Shares of Clean Renewable Energy KK 1E Private Limited. The investment is being made for sourcing solar power for the Company''s Muddapur ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/89d5294e-d16b-4523-af17-0c5c580c83da.pdf",
+   "source": "bse_api",
+   "category": "M&A",
+   "tier": "Act",
+   "rule": "mna",
+   "basis": "title"
+  },
+  {
+   "id": "0f4e44df78ba",
+   "symbol": "RELIANCE",
+   "ts": "2026-11-19T18:37:38+05:30",
+   "title": "Update On Institutional Investors'' Meeting - Morgan Stanley 25Th Annual Asia-Pacific Summit",
+   "headline": "This is further to the disclosure dated November 13, 2026 made by the Company. We wish to inform you that the Company executives participated in the Institutional Investors'' Meeting - ....",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/3c911ae3-537d-4dad-b536-c6c8337562ee.pdf",
+   "source": "bse_api",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
+   "id": "05faa3bd5fdf",
+   "symbol": "TCS",
+   "ts": "2026-11-19T17:39:33+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Copy of Newspaper Publication for IEPF Statutory Reminder letters for Third Interim Dividend 2019-20",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/943a8ed9-8e89-481f-b0d5-dece57330687.pdf",
+   "source": "bse_api",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "newspaper",
+   "basis": "title"
+  },
+  {
+   "id": "ea94b6a5d40f",
+   "symbol": "TCS",
+   "ts": "2026-11-19T17:28:02+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "headline": "Newspaper Advertisement regarding the opening of another special window for re-lodgement of transfer request of physical shares.",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/82a70838-3f9c-456b-b3f7-655b39e0ece9.pdf",
+   "source": "bse_api",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "newspaper",
+   "basis": "title"
+  },
+  {
+   "id": "149f9ba46bf2",
+   "symbol": "CHOLAFIN",
+   "ts": "2026-11-19T17:24:20+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "headline": "Information on allotment of 40,239 equity shares pursuant to exercise of Employee Stock Options.",
+   "url": "https://www.bseindia.com/xml-data/corpfiling/AttachHis/c24c553c-3bcb-4b69-ac1d-04da559356e7.pdf",
+   "source": "bse_api",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "esop",
+   "basis": "title"
+  },
+  {
+   "id": "24d04a9ef293",
+   "symbol": "MARUTI",
+   "ts": "2026-11-19T10:46:36+05:30",
+   "title": "Disclosures under Reg. 29(2) of SEBI (SAST) Regulations, 2011 19 Nov",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5032B2DC_353F_4F45_BDF4_0641BBF3C146_104632.pdf",
+   "source": "screener_bse",
+   "category": "insider_trading",
+   "tier": "Note",
+   "rule": "sast_insider",
+   "basis": "title"
+  },
   {
    "id": "07b3bb285d28",
    "symbol": "CHOLAFIN",
@@ -1045,6 +1123,19 @@
    "basis": "title"
   },
   {
+   "id": "aa9bb019ee5d",
+   "symbol": "MARUTI",
+   "ts": "2026-11-12T11:57:08+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation 12 Nov",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=19833a7e-2123-409e-990d-b9c1bfd1a543.pdf",
+   "source": "screener_bse",
+   "category": "investor_meetings",
+   "tier": "Routine",
+   "rule": "investor_meet",
+   "basis": "title"
+  },
+  {
    "id": "4cf4dab777ef",
    "symbol": "MARUTI",
    "ts": "2026-11-12T11:57:08+05:30",
@@ -1068,6 +1159,19 @@
    "category": "press_release",
    "tier": "Routine",
    "rule": "press_release",
+   "basis": "title"
+  },
+  {
+   "id": "bbdf2604cd07",
+   "symbol": "MARUTI",
+   "ts": "2026-11-10T11:55:47+05:30",
+   "title": "Reference To The Financial Results Issued By Suzuki Motor Corporation",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=2b74a7fe-194c-4a61-8cf6-dbba26573f57.pdf",
+   "source": "screener_bse",
+   "category": "press_release",
+   "tier": "Note",
+   "rule": "other_company_results",
    "basis": "title"
   },
   {
@@ -2219,6 +2323,19 @@
    "basis": "title"
   },
   {
+   "id": "c955c098d5ef",
+   "symbol": "MARUTI",
+   "ts": "2026-11-02T21:06:59+05:30",
+   "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript 2 Nov",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4a189744-1646-4de4-809b-e936a67b6fe4.pdf",
+   "source": "screener_bse",
+   "category": "earnings_call",
+   "tier": "Note",
+   "rule": "transcript_first",
+   "basis": "title"
+  },
+  {
    "id": "c1b34d445b84",
    "symbol": "MARUTI",
    "ts": "2026-11-02T21:06:59+05:30",
@@ -2373,6 +2490,19 @@
    "tier": "Note",
    "rule": "transcript_first",
    "basis": "title"
+  },
+  {
+   "id": "fbebd5bfb761",
+   "symbol": "MARUTI",
+   "ts": "2026-11-01T14:44:08+05:30",
+   "title": "Maruti Suzuki Production Volume: October 2026",
+   "headline": "",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b7585ba4-523e-4c05-b037-263a3e803229.pdf",
+   "source": "screener_bse",
+   "category": "unclassified",
+   "tier": "Routine",
+   "rule": "no_material_keyword",
+   "basis": "none"
   },
   {
    "id": "839e3e00cc7d",
@@ -22860,17 +22990,6 @@
  "moves": {
   "RELIANCE": [
    {
-    "date": "2026-07-10",
-    "close": 1307.8,
-    "pct": 2.19,
-    "volx": 0.59,
-    "filings": [
-     "f8a186ad3ce7",
-     "d20cbfb8e5f5"
-    ],
-    "explained": false
-   },
-   {
     "date": "2026-07-13",
     "close": 1296.9,
     "pct": -0.83,
@@ -23754,28 +23873,26 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1363.0,
+    "pct": -0.29,
     "volx": 0.86,
     "filings": [
      "7d7a191df768"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.68,
+    "filings": [
+     "0f4e44df78ba"
+    ],
+    "explained": false
    }
   ],
   "HDFCBANK": [
-   {
-    "date": "2026-07-10",
-    "close": 824.95,
-    "pct": 0.91,
-    "volx": 0.62,
-    "filings": [
-     "2166c1178608",
-     "7644c939d32f",
-     "988e3f6900e6"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 817.95,
@@ -24650,34 +24767,25 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 808.15,
+    "pct": -0.83,
     "volx": 0.55,
     "filings": [
      "11953e7b0834",
      "7a234c8e0fab"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.62,
+    "filings": [],
+    "explained": false
    }
   ],
   "TCS": [
-   {
-    "date": "2026-07-10",
-    "close": 2069.0,
-    "pct": 0.95,
-    "volx": 1.46,
-    "filings": [
-     "7e384548b4ef",
-     "5078c0e5ffdb",
-     "047119406c55",
-     "8d56d417c57f",
-     "7136a623f452",
-     "374742dcf405",
-     "70676b1022c0",
-     "22a94c3a8459"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 2181.5,
@@ -25555,26 +25663,27 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 2379.5,
+    "pct": -1.13,
     "volx": 0.34,
     "filings": [
      "d14b2565cf2d"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.67,
+    "filings": [
+     "ea94b6a5d40f",
+     "05faa3bd5fdf"
+    ],
+    "explained": false
    }
   ],
   "SUNPHARMA": [
-   {
-    "date": "2026-07-10",
-    "close": 1935.5,
-    "pct": -0.17,
-    "volx": 0.75,
-    "filings": [
-     "d3e12001affd"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 1921.4,
@@ -26453,30 +26562,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 1871.5,
+    "pct": 0.08,
+    "volx": 0.72,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.72,
+    "volx": 0.84,
     "filings": [],
     "explained": false
    }
   ],
   "ASIANPAINT": [
-   {
-    "date": "2026-07-10",
-    "close": 2677.8,
-    "pct": 0.15,
-    "volx": 0.75,
-    "filings": [
-     "f93c4a2979f7",
-     "d8d8e05e23bc",
-     "47f6485a72e2",
-     "33f1ba5836be",
-     "cb3d74d59817",
-     "e892c1c5dbcd",
-     "4242d7d57a91"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 2652.1,
@@ -27360,25 +27461,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 2580.3,
+    "pct": -1.7,
+    "volx": 0.66,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.66,
+    "volx": 0.75,
     "filings": [],
     "explained": false
    }
   ],
   "DIXON": [
-   {
-    "date": "2026-07-10",
-    "close": 13421.0,
-    "pct": -0.42,
-    "volx": 2.64,
-    "filings": [
-     "34cadcba5298",
-     "c7ebf0112e38"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 13490.0,
@@ -28277,22 +28375,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 12615.0,
+    "pct": -3.56,
+    "volx": 0.68,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.67,
+    "volx": 0.84,
     "filings": [],
     "explained": false
    }
   ],
   "POLYCAB": [
-   {
-    "date": "2026-07-10",
-    "close": 9210.5,
-    "pct": 1.5,
-    "volx": 1.12,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 9306.5,
@@ -29167,22 +29265,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 7307.5,
+    "pct": -5.12,
+    "volx": 2.68,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 2.68,
+    "volx": 2.93,
     "filings": [],
     "explained": false
    }
   ],
   "PERSISTENT": [
-   {
-    "date": "2026-07-10",
-    "close": 5053.9,
-    "pct": 4.64,
-    "volx": 1.11,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 5192.4,
@@ -30129,24 +30227,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 5857.0,
+    "pct": -0.91,
+    "volx": 0.43,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.43,
+    "volx": 0.77,
     "filings": [],
     "explained": false
    }
   ],
   "DEEPAKNTR": [
-   {
-    "date": "2026-07-10",
-    "close": 1644.0,
-    "pct": 1.41,
-    "volx": 0.91,
-    "filings": [
-     "0d9aee86aa61"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 1667.2,
@@ -30948,22 +31044,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 1562.9,
+    "pct": -1.71,
+    "volx": 0.64,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.64,
+    "volx": 0.29,
     "filings": [],
     "explained": false
    }
   ],
   "CAMPUS": [
-   {
-    "date": "2026-07-10",
-    "close": 231.09,
-    "pct": 1.34,
-    "volx": 0.63,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 229.41,
@@ -31800,24 +31896,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 194.71,
+    "pct": -0.44,
+    "volx": 0.21,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.21,
+    "volx": 1.55,
     "filings": [],
     "explained": false
    }
   ],
   "BEL": [
-   {
-    "date": "2026-07-10",
-    "close": 414.85,
-    "pct": 2.13,
-    "volx": 0.68,
-    "filings": [
-     "c30dbc6b2a85"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 410.8,
@@ -32654,24 +32748,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 395.8,
+    "pct": -0.94,
+    "volx": 0.62,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 0.62,
+    "volx": 0.79,
     "filings": [],
     "explained": false
    }
   ],
   "LUPIN": [
-   {
-    "date": "2026-07-10",
-    "close": 2496.3,
-    "pct": -0.28,
-    "volx": 0.69,
-    "filings": [
-     "9a2c1db1e824"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 2492.6,
@@ -33549,24 +33641,24 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1971.9,
+    "pct": 1.12,
     "volx": 1.25,
     "filings": [
      "f69db45e69a0"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.5,
+    "filings": [],
+    "explained": false
    }
   ],
   "CHOLAFIN": [
-   {
-    "date": "2026-07-10",
-    "close": 1807.8,
-    "pct": 0.89,
-    "volx": 0.36,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 1810.9,
@@ -34382,26 +34474,27 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1875.0,
+    "pct": -0.51,
     "volx": 0.6,
     "filings": [
      "07b3bb285d28"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.68,
+    "filings": [
+     "07b3bb285d28",
+     "149f9ba46bf2"
+    ],
+    "explained": false
    }
   ],
   "MARUTI": [
-   {
-    "date": "2026-07-10",
-    "close": 13854.0,
-    "pct": 0.92,
-    "volx": 0.73,
-    "filings": [
-     "84d55177801a"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 13695.0,
@@ -35184,8 +35277,10 @@
     "pct": 2.41,
     "volx": 0.84,
     "filings": [
+     "c955c098d5ef",
      "c1b34d445b84",
      "a35ebeb5d831",
+     "fbebd5bfb761",
      "839e3e00cc7d"
     ],
     "explained": true
@@ -35196,6 +35291,7 @@
     "pct": 1.69,
     "volx": 0.78,
     "filings": [
+     "c955c098d5ef",
      "c1b34d445b84"
     ],
     "explained": true
@@ -35238,6 +35334,7 @@
     "pct": 1.99,
     "volx": 1.83,
     "filings": [
+     "bbdf2604cd07",
      "a05ff84056d2"
     ],
     "explained": true
@@ -35248,6 +35345,7 @@
     "pct": -1.22,
     "volx": 1.29,
     "filings": [
+     "aa9bb019ee5d",
      "4cf4dab777ef"
     ],
     "explained": false
@@ -35258,6 +35356,7 @@
     "pct": -1.31,
     "volx": 0.88,
     "filings": [
+     "aa9bb019ee5d",
      "4cf4dab777ef"
     ],
     "explained": false
@@ -35280,22 +35379,24 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 12632.0,
+    "pct": 0.06,
     "volx": 1.02,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 2.39,
+    "filings": [
+     "24d04a9ef293"
+    ],
+    "explained": true
    }
   ],
   "TRENT": [
-   {
-    "date": "2026-07-10",
-    "close": 2902.8,
-    "pct": -0.04,
-    "volx": 0.47,
-    "filings": [],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 2900.1,
@@ -36103,27 +36204,24 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 3190.0,
+    "pct": 0.43,
     "volx": 1.3,
     "filings": [
      "99bba0bc1388"
     ],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.73,
+    "filings": [],
+    "explained": false
    }
   ],
   "JKCEMENT": [
-   {
-    "date": "2026-07-10",
-    "close": 5398.5,
-    "pct": 0.09,
-    "volx": 0.35,
-    "filings": [
-     "1d87b8af157f",
-     "ce31d1295bb5"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 5361.5,
@@ -36931,27 +37029,24 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 5151.8,
+    "pct": -1.64,
     "volx": 0.46,
     "filings": [],
     "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.77,
+    "filings": [
+     "c5a929211973"
+    ],
+    "explained": true
    }
   ],
   "SAFARI": [
-   {
-    "date": "2026-07-10",
-    "close": 1631.2,
-    "pct": 0.53,
-    "volx": 0.31,
-    "filings": [
-     "92031a87960e",
-     "8d43728964de",
-     "52b1cde797aa",
-     "8510d461ad03"
-    ],
-    "explained": true
-   },
    {
     "date": "2026-07-13",
     "close": 1683.5,
@@ -37746,24 +37841,22 @@
    },
    {
     "date": "2026-11-18",
+    "close": 1373.5,
+    "pct": -2.06,
+    "volx": 1.14,
+    "filings": [],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
     "close": NaN,
     "pct": NaN,
-    "volx": 1.14,
+    "volx": 1.98,
     "filings": [],
     "explained": false
    }
   ],
   "GRAVITA": [
-   {
-    "date": "2026-07-10",
-    "close": 1854.6,
-    "pct": 2.38,
-    "volx": 2.06,
-    "filings": [
-     "6b6fdc2e9396"
-    ],
-    "explained": false
-   },
    {
     "date": "2026-07-13",
     "close": 1846.0,
@@ -38692,11 +38785,21 @@
    },
    {
     "date": "2026-11-18",
-    "close": NaN,
-    "pct": NaN,
+    "close": 1478.8,
+    "pct": -0.76,
     "volx": 0.47,
     "filings": [
      "080fa2bb7b0d",
+     "2133abb076a9"
+    ],
+    "explained": false
+   },
+   {
+    "date": "2026-11-19",
+    "close": NaN,
+    "pct": NaN,
+    "volx": 0.58,
+    "filings": [
      "2133abb076a9"
     ],
     "explained": false

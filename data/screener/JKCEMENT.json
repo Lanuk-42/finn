@@ -3,12 +3,12 @@
  "name": "J K Cements Ltd",
  "about": "The Company is engaged in the manufacturing and selling of Cement and Cement related products with over 4 decades of experience in cement manufacturing. It is an affiliate of the multi-disciplinary industrial conglomerate JK Organisation. [1]",
  "ratios": {
-  "Market Cap": "₹ 39,807 Cr.",
-  "Current Price": "₹ 5,152",
+  "Market Cap": "₹ 41,110 Cr.",
+  "Current Price": "₹ 5,320",
   "High / Low": "₹ 6,105 / 4,670",
-  "Stock P/E": "40.2",
+  "Stock P/E": "41.6",
   "Book Value": "₹ 951",
-  "Dividend Yield": "0.39 %",
+  "Dividend Yield": "0.38 %",
   "ROCE": "15.1 %",
   "ROE": "15.6 %",
   "Face Value": "₹ 10.0"
@@ -926,6 +926,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Acquisition",
+   "ts": "2026-11-19T20:02:39+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=89d5294e-d16b-4523-af17-0c5c580c83da.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-12T17:43:14+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=aba8ec7f-9640-4837-8d41-b739be9565da.pdf"
@@ -944,14 +949,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
    "ts": "2026-10-27T16:43:02+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=65d0d292-66ee-4953-8676-788672b39c0c.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
-   "ts": "2026-10-27T15:04:11+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=956c2b5b-18b9-4d44-9222-8966b73e76b7.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/JKCEMENT/consolidated/",
- "fetched_at": "2026-11-19T03:02:50+05:30"
+ "fetched_at": "2026-11-20T03:15:02+05:30"
 }

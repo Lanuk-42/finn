@@ -3,12 +3,12 @@
  "name": "Tata Consultancy Services Ltd",
  "about": "Tata Consultancy Services is the flagship company and a part of Tata group. It is an IT services, consulting and business solutions organization that has been partnering with many of the world's largest businesses in their transformation journeys for over 50 years. TCS offers a consulting-led, cognitive powered, integrated portfolio of business, technology and engineering services and solutions. [1]",
  "ratios": {
-  "Market Cap": "₹ 8,60,924 Cr.",
-  "Current Price": "₹ 2,380",
+  "Market Cap": "₹ 8,47,609 Cr.",
+  "Current Price": "₹ 2,343",
   "High / Low": "₹ 3,350 / 1,976",
-  "Stock P/E": "15.8",
+  "Stock P/E": "15.5",
   "Book Value": "₹ 329",
-  "Dividend Yield": "2.69 %",
+  "Dividend Yield": "2.73 %",
   "ROCE": "63.0 %",
   "ROE": "51.8 %",
   "Face Value": "₹ 1.00"
@@ -1002,6 +1002,16 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "ts": "2026-11-19T17:39:33+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=943a8ed9-8e89-481f-b0d5-dece57330687.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
+   "ts": "2026-11-19T17:28:02+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=82a70838-3f9c-456b-b3f7-655b39e0ece9.pdf"
+  },
+  {
    "title": "Press Release - HFS Research Ranks TCS As A Leader In Agentic Application Management Services",
    "ts": "2026-11-17T11:00:46+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6464f590-90c7-40d8-8093-0e700ab95a88.pdf"
@@ -1015,19 +1025,9 @@
    "title": "Press Release - TCS Enterprise AI Study: 84% Say Productivity Is AI'S Top Benefit; Just 10% Let AI Act Without Human Oversight",
    "ts": "2026-11-04T11:00:53+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4b1ab7e2-a0c4-40d9-8758-64975aea90d9.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
-   "ts": "2026-11-03T18:44:23+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=878869fb-5e51-4867-b640-2120edd34b6c.pdf"
-  },
-  {
-   "title": "Press Release - TCS Bancs For Treasury Marks Its Entry Into Sri Lanka With Indian Bank",
-   "ts": "2026-10-19T11:30:41+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=b12e07f0-028d-4c07-a018-036951644a15.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/TCS/consolidated/",
- "fetched_at": "2026-11-19T03:02:01+05:30"
+ "fetched_at": "2026-11-20T03:14:11+05:30"
 }

@@ -932,6 +932,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Allotment of ESOP / ESPS",
+   "ts": "2026-11-19T17:24:20+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=c24c553c-3bcb-4b69-ac1d-04da559356e7.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Newspaper Publication",
    "ts": "2026-11-18T21:06:56+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=97de8544-23fa-4e7e-960e-96fafe0dfa0a.pdf"
@@ -950,14 +955,9 @@
    "title": "Intimation Of Change In Corporate Office Address Of The RTA Of The Company",
    "ts": "2026-11-03T21:48:42+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=272509dd-ec5c-497b-bfc0-2e5e45d9994e.pdf"
-  },
-  {
-   "title": "Intimation Of Change In Corporate Office Address Of The RTA",
-   "ts": "2026-11-03T22:11:23+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=77c6f181-eccd-4c46-a7b9-c37153b074d5.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/CHOLAFIN/consolidated/",
- "fetched_at": "2026-11-19T03:02:40+05:30"
+ "fetched_at": "2026-11-20T03:14:51+05:30"
 }

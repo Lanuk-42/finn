@@ -1,12 +1,12 @@
 {
- "run_at": "2026-11-19T03:01:52+05:30",
+ "run_at": "2026-11-20T03:14:02+05:30",
  "stocks": {
   "RELIANCE": {
    "prices": {
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -24,10 +24,10 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 98
+      "n": 99
      }
     ],
-    "stored_total": 101
+    "stored_total": 102
    }
   },
   "HDFCBANK": {
@@ -35,7 +35,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -64,7 +64,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -82,10 +82,10 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 92
+      "n": 94
      }
     ],
-    "stored_total": 92
+    "stored_total": 94
    }
   },
   "SUNPHARMA": {
@@ -93,7 +93,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -111,7 +111,7 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 76
+      "n": 75
      }
     ],
     "stored_total": 87
@@ -122,7 +122,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -151,7 +151,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -180,7 +180,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -209,7 +209,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -238,7 +238,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -267,7 +267,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -296,7 +296,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -325,7 +325,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -354,7 +354,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -372,10 +372,10 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 58
+      "n": 59
      }
     ],
-    "stored_total": 59
+    "stored_total": 60
    }
   },
   "MARUTI": {
@@ -383,7 +383,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -400,11 +400,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 400"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 86
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 88
+    "stored_total": 93
    }
   },
   "TRENT": {
@@ -412,7 +422,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -441,7 +451,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -459,10 +469,10 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 67
+      "n": 63
      }
     ],
-    "stored_total": 69
+    "stored_total": 70
    }
   },
   "SAFARI": {
@@ -470,7 +480,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -499,7 +509,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-18"
+    "last": "2026-11-19"
    },
    "screener": {
     "ok": true,
@@ -524,5 +534,5 @@
    }
   }
  },
- "finished_at": "2026-11-19T03:03:01+05:30"
+ "finished_at": "2026-11-20T03:15:13+05:30"
 }
