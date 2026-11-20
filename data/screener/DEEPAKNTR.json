@@ -3,12 +3,12 @@
  "name": "Deepak Nitrite Ltd",
  "about": "Incorporated in 1970, Deepak Nitrite Ltd manufactures Basic Intermediates, Fine & Speciality Chemicals, Performance Products, and Phenolics [1]",
  "ratios": {
-  "Market Cap": "₹ 21,172 Cr.",
-  "Current Price": "₹ 1,552",
+  "Market Cap": "₹ 20,884 Cr.",
+  "Current Price": "₹ 1,531",
   "High / Low": "₹ 1,898 / 1,280",
-  "Stock P/E": "19.8",
+  "Stock P/E": "19.5",
   "Book Value": "₹ 475",
-  "Dividend Yield": "0.48 %",
+  "Dividend Yield": "0.49 %",
   "ROCE": "11.4 %",
   "ROE": "9.82 %",
   "Face Value": "₹ 2.00"
@@ -986,6 +986,11 @@
  ],
  "filings": [
   {
+   "title": "Disclosure Under Regulation 30 Of SEBI LODR Regulations, 2015",
+   "ts": "2026-11-20T16:27:28+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=6ca90438-38d5-48c4-b328-a1a9ab5af663.pdf"
+  },
+  {
    "title": "Submission Of Earning Concall Transcript",
    "ts": "2026-11-04T11:11:51+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=5dfbdab4-d040-4a99-b694-bbe26f015f14.pdf"
@@ -1004,14 +1009,9 @@
    "title": "Unaudited Financial Result For The Quarter And Half Year Ended 30Th September, 2026 29 Oct",
    "ts": "2026-10-29T18:52:40+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=a59f1b7a-6692-4d45-9886-f842d7faf839.pdf"
-  },
-  {
-   "title": "Schedule Of Q2 & H1 FY 2027 Earnings Conference Call",
-   "ts": "2026-10-16T22:50:08+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=4d2b0a11-d089-428a-ac4f-48653e5eab08.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/DEEPAKNTR/consolidated/",
- "fetched_at": "2026-11-20T03:14:35+05:30"
+ "fetched_at": "2026-11-21T02:56:54+05:30"
 }

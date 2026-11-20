@@ -3,10 +3,10 @@
  "name": "Trent Ltd",
  "about": "Trent Ltd is engaged in retailing of apparels, footwear, accessories, toys, games, food, grocery & non food products through various of its retail formats/ concepts. [1]",
  "ratios": {
-  "Market Cap": "₹ 1,71,967 Cr.",
-  "Current Price": "₹ 3,225",
+  "Market Cap": "₹ 1,73,626 Cr.",
+  "Current Price": "₹ 3,256",
   "High / Low": "₹ 3,400 / 2,184",
-  "Stock P/E": "89.8",
+  "Stock P/E": "90.6",
   "Book Value": "₹ 146",
   "Dividend Yield": "0.12 %",
   "ROCE": "28.3 %",
@@ -883,6 +883,11 @@
  "filings": [
   {
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
+   "ts": "2026-11-20T18:03:16+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=095a423a-3e97-4ac3-a292-08f80bdbf1f5.pdf"
+  },
+  {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-17T14:06:38+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=68f10113-f839-4891-994e-312e5df5ebf0.pdf"
   },
@@ -900,14 +905,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
    "ts": "2026-11-09T13:01:18+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=bca602f2-cf50-4964-8641-a88186d2b914.pdf"
-  },
-  {
-   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Intimation",
-   "ts": "2026-11-06T10:35:13+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=11b1a994-4cb5-4dc8-98ea-73923446674c.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/TRENT/consolidated/",
- "fetched_at": "2026-11-20T03:14:58+05:30"
+ "fetched_at": "2026-11-21T02:57:15+05:30"
 }

@@ -1,12 +1,12 @@
 {
- "run_at": "2026-11-20T03:14:02+05:30",
+ "run_at": "2026-11-21T02:56:25+05:30",
  "stocks": {
   "RELIANCE": {
    "prices": {
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -23,11 +23,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 99
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 102
+    "stored_total": 107
    }
   },
   "HDFCBANK": {
@@ -35,7 +45,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -52,11 +62,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 82
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 84
+    "stored_total": 89
    }
   },
   "TCS": {
@@ -64,7 +84,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -81,11 +101,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 94
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 94
+    "stored_total": 99
    }
   },
   "SUNPHARMA": {
@@ -93,7 +123,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -110,8 +140,18 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 75
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
     "stored_total": 87
@@ -122,7 +162,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -139,11 +179,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 101
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 101
+    "stored_total": 106
    }
   },
   "DIXON": {
@@ -151,7 +201,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -168,11 +218,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 86
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 88
+    "stored_total": 93
    }
   },
   "POLYCAB": {
@@ -180,7 +240,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -197,11 +257,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 84
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 87
+    "stored_total": 92
    }
   },
   "PERSISTENT": {
@@ -209,7 +279,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -226,11 +296,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 148
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 155
+    "stored_total": 160
    }
   },
   "DEEPAKNTR": {
@@ -238,7 +318,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -256,10 +336,10 @@
      {
       "source": "bse_api",
       "ok": true,
-      "n": 35
+      "n": 36
      }
     ],
-    "stored_total": 36
+    "stored_total": 37
    }
   },
   "CAMPUS": {
@@ -267,7 +347,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -284,11 +364,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 58
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 61
+    "stored_total": 66
    }
   },
   "BEL": {
@@ -296,7 +386,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -325,7 +415,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -342,11 +432,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 81
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 84
+    "stored_total": 89
    }
   },
   "CHOLAFIN": {
@@ -354,7 +454,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -371,11 +471,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 59
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 60
+    "stored_total": 65
    }
   },
   "MARUTI": {
@@ -383,7 +493,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -401,7 +511,7 @@
      {
       "source": "bse_api",
       "ok": false,
-      "error": "BSE API HTTP 400"
+      "error": "BSE API HTTP 403"
      },
      {
       "source": "nse_rss",
@@ -414,7 +524,7 @@
       "n": 5
      }
     ],
-    "stored_total": 93
+    "stored_total": 94
    }
   },
   "TRENT": {
@@ -422,7 +532,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -439,11 +549,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 54
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 54
+    "stored_total": 59
    }
   },
   "JKCEMENT": {
@@ -451,7 +571,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -468,11 +588,21 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 63
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 70
+    "stored_total": 75
    }
   },
   "SAFARI": {
@@ -480,7 +610,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -509,7 +639,7 @@
     "ok": true,
     "source": "yfinance",
     "n": 127,
-    "last": "2026-11-19"
+    "last": "2026-11-20"
    },
    "screener": {
     "ok": true,
@@ -526,13 +656,23 @@
      },
      {
       "source": "bse_api",
+      "ok": false,
+      "error": "BSE API HTTP 403"
+     },
+     {
+      "source": "nse_rss",
       "ok": true,
-      "n": 108
+      "n": 0
+     },
+     {
+      "source": "screener_bse",
+      "ok": true,
+      "n": 5
      }
     ],
-    "stored_total": 114
+    "stored_total": 119
    }
   }
  },
- "finished_at": "2026-11-20T03:15:13+05:30"
+ "finished_at": "2026-11-21T02:57:27+05:30"
 }

@@ -3,10 +3,10 @@
  "name": "Dixon Technologies (India) Ltd",
  "about": "Dixon Technologies (India) Limited,  incorporated  in  1993 ,  is  a  Electronic  Manufacturing  Services  (EMS)  company  with operations in the electronic products vertical such as consumer electronics, lighting, home appliance, closed-circuit television cameras  (CCTVs), and mobile  phones. It also  undertakes reverse logistics operations.  Besides, it manufactures security surveillance equipment, wearables & audibles, AC-PCBs. Recently, it has entered a JV with Imagine Marketing Private Limited for designing and manufacturing wireless audio solutions in India. [1]",
  "ratios": {
-  "Market Cap": "₹ 79,901 Cr.",
-  "Current Price": "₹ 13,054",
-  "High / Low": "₹ 15,320 / 9,600",
-  "Stock P/E": "51.5",
+  "Market Cap": "₹ 80,305 Cr.",
+  "Current Price": "₹ 13,120",
+  "High / Low": "₹ 15,098 / 9,600",
+  "Stock P/E": "51.8",
   "Book Value": "₹ 961",
   "Dividend Yield": "0.08 %",
   "ROCE": "29.2 %",
@@ -982,6 +982,11 @@
  ],
  "filings": [
   {
+   "title": "Announcement under Regulation 30 (LODR)-Analyst / Investor Meet - Outcome",
+   "ts": "2026-11-20T12:13:54+05:30",
+   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=68d52f83-69e0-4d96-9cc5-c772d7503218.pdf"
+  },
+  {
    "title": "Announcement under Regulation 30 (LODR)-Memorandum of Understanding /Agreements",
    "ts": "2026-11-16T20:11:55+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=7c441734-0d84-47ac-8fef-831908ec674d.pdf"
@@ -1000,14 +1005,9 @@
    "title": "Announcement under Regulation 30 (LODR)-Earnings Call Transcript",
    "ts": "2026-11-05T16:36:05+05:30",
    "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=995a3a71-4a1e-4c1f-a29a-6c6747e4ca10.pdf"
-  },
-  {
-   "title": "Announcement Under Regulation 30 Of SEBI LODR- Intimation Regarding Change In The Corporate Office Of The Registrar And Share Transfer Agent (RTA) Of The Company",
-   "ts": "2026-11-03T17:30:11+05:30",
-   "url": "https://www.bseindia.com/stockinfo/AnnPdfOpen.aspx?Pname=d219f169-7be4-4d16-9697-1251e8767e69.pdf"
   }
  ],
  "variant": "consolidated",
  "url": "https://www.screener.in/company/DIXON/consolidated/",
- "fetched_at": "2026-11-20T03:14:23+05:30"
+ "fetched_at": "2026-11-21T02:56:44+05:30"
 }
